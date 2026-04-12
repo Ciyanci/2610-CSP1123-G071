@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
     public HealthPoints _playerHealth = new HealthPoints(100, 100);
 
-    void Awoken()
+    void Awake()
     {
         if (gameManager != null && gameManager != this)
         {
