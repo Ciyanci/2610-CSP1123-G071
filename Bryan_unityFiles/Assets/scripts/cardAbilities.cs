@@ -1,16 +1,11 @@
 using UnityEngine;
+using TMPro;
 
-public class cardAbilities : MonoBehaviour
+public class cardView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private TMP_Text title;
+    [SerializeField] private TMP_Text description;
+    [SerializeField] private TMP_Text cost;
+    [SerializeField] private SpriteRenderer imageSR;
+    [SerializeField] private GameObject wrapper;
 }
