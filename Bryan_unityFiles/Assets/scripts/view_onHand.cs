@@ -7,8 +7,8 @@ using DG.Tweening;
 public class HandView : MonoBehaviour
 {
    [SerializeField] private SplineContainer splineContainer;
-   private readonly List<cardView> cards = new();
-   public IEnumerator AddCard(cardView cardView)
+   private readonly List<CardView> cards = new();
+   public IEnumerator AddCard(CardView cardView)
     {
         cards.Add(cardView);
         yield return UpdateCardPositions(0.15f);
@@ -29,6 +29,7 @@ public class HandView : MonoBehaviour
             cards[i].transform.DOMove(splinePosition + transform.position + 0.01f * i * Vector3.back, duration);
             cards[i].transform.DORotate(rotation.eulerAngles, duration);
         }
+        yield return new WaitForSeconds(duration);
     }
 }
 

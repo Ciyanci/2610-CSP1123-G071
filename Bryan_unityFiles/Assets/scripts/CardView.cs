@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class cardView : MonoBehaviour
+public class CardView : MonoBehaviour
 {
     //to make it show in unity inspector
     [SerializeField] private TMP_Text title;
