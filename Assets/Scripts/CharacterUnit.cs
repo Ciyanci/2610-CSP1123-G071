@@ -6,13 +6,11 @@ public class CharacterUnit : MonoBehaviour
     public string unitName;
     public int hp;
 
-    [Header("Scene refs")]
     public Transform visual;
     public Transform headAnchor;
     public Transform clashAnchor;
     public Transform weaponAnchor;
 
-    [Header("Sprites")]
     public Sprite idle;
     public Sprite move;
     public Sprite windup;
@@ -29,36 +27,55 @@ public class CharacterUnit : MonoBehaviour
 
     Vector3 startPos;
 
+    Vector3 smoothHeadPos;
+
     void Awake()
     {
         sr = visual.GetComponent<SpriteRenderer>();
-        startPos = transform.position;
+        startPos = visual.position;
         sr.sprite = idle;
+        smoothHeadPos = headAnchor != null ? headAnchor.position : Vector3.zero;
+    }
+
+    void Update()
+    {
+        if (headAnchor != null)
+        {
+            smoothHeadPos = Vector3.Lerp(
+                smoothHeadPos,
+                headAnchor.position,
+                Time.deltaTime * 14f
+            );
+        }
     }
 
     public void ResetState()
     {
         sr.sprite = idle;
-        transform.position = startPos;
+        visual.position = startPos;
+    }
+
+    public Vector3 GetSmoothedHead()
+    {
+        return smoothHeadPos;
     }
 
     public IEnumerator MoveTo(Vector3 target, float t = 0.2f)
     {
-        if(!animLock)
+        if (!animLock)
             sr.sprite = move;
 
-        Vector3 start = transform.position;
+        Vector3 start = visual.position;
         float time = 0;
 
         while (time < t)
         {
-            Vector3 pos = Vector3.Lerp(start,target,time / t);
-            transform.position = pos;
+            visual.position = Vector3.Lerp(start, target, time / t);
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = target;
+        visual.position = target;
     }
 
     public IEnumerator WindUp(float duration)
@@ -67,21 +84,15 @@ public class CharacterUnit : MonoBehaviour
         yield return new WaitForSeconds(duration);
     }
 
-    public void PlayAttack()
-    {
-        PlayAnim(attack, 0.2f);
-    }
-
-    public void PlayHit()
-    {
-        PlayAnim(hit, 0.2f);
-    }
+    public void PlayAttack() => PlayAnim(attack, 0.2f);
+    public void PlayHit() => PlayAnim(hit, 0.2f);
 
     void PlayAnim(Sprite s, float d)
     {
         if (animRoutine != null)
             StopCoroutine(animRoutine);
-        animRoutine = StartCoroutine(AnimLocked(s,d));
+
+        animRoutine = StartCoroutine(AnimLocked(s, d));
     }
 
     IEnumerator AnimLocked(Sprite s, float d)
@@ -93,8 +104,31 @@ public class CharacterUnit : MonoBehaviour
         sr.sprite = idle;
     }
 
+    public IEnumerator Recoil(Vector3 direction, float strength, float duration)
+    {
+        Vector3 start = visual.position;
+        Vector3 target = start + direction.normalized * strength;
+
+        float t = 0;
+        while (t < duration)
+        {
+            visual.position = Vector3.Lerp(start, target, t / duration);
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        t = 0;
+        while (t < duration)
+        {
+            visual.position = Vector3.Lerp(target, start, t / duration);
+            t += Time.deltaTime;
+            yield return null;
+        }
+    }
+
     public void TakeDamage(int dmg)
     {
         hp -= dmg;
     }
 }
+//oh my god bro kill me right now
