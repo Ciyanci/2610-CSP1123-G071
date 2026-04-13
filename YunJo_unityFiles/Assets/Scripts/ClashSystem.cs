@@ -5,8 +5,19 @@ public class ClashSystem : MonoBehaviour
 {
     public DiceUI dice;
     public CombatCamera cam;
-    public float clashSpacing = 1.2f;
-    public CharacterUnit sr;
+    public float clashSpacing = 1.0f;
+
+    IEnumerator Buffer(float t)
+    {
+        yield return new WaitForSeconds(t);
+    }
+
+    IEnumerator HitStop(float duration)
+    {
+        Time.timeScale = 0.05f;
+        yield return new WaitForSecondsRealtime(duration);
+        Time.timeScale = 1f;
+    }
 
     IEnumerator Parallel(params IEnumerator[] routines)
     {
@@ -20,23 +31,9 @@ public class ClashSystem : MonoBehaviour
             yield return r;
             running--;
         }
+
         while (running > 0)
             yield return null;
-    }
-
-    IEnumerator SlowMo(float targetScale, float duration)
-    {
-        float start = Time.timeScale;
-        float t = 0;
-
-        while (t < duration)
-        {
-            Time.timeScale = Mathf.Lerp(start, targetScale, t / duration);
-            t += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        Time.timeScale = targetScale;
     }
 
     public IEnumerator Resolve(CombatAction a, CombatAction b)
@@ -45,18 +42,16 @@ public class ClashSystem : MonoBehaviour
 
         CharacterUnit A = a.user;
         CharacterUnit B = b.user;
-        Vector3 Apos = A.visual.position;
-        Vector3 Bpos = B.visual.position;
 
-        Vector3 mid = (Apos + Bpos) * 0.5f;
-        mid.y = 0;
-        mid.z = Apos.z;
+        Vector3 mid = (A.visual.position + B.visual.position) * 0.5f;
+        mid.y = Mathf.Min(A.visual.position.y, B.visual.position.y) + 1f;
 
-        Vector3 dir = (Bpos - Apos);
+        Vector3 dir = (B.visual.position - A.visual.position);
         dir.y = 0;
         dir.Normalize();
 
-        float spacing = 0.8f;
+        float spacing = Mathf.Max(A.HalfWidth, B.HalfWidth) + clashSpacing;
+
         Vector3 aTarget = mid - dir * spacing;
         Vector3 bTarget = mid + dir * spacing;
 
@@ -67,45 +62,74 @@ public class ClashSystem : MonoBehaviour
             B.MoveTo(bTarget)
         );
 
-        yield return A.WindUp(0.15f);
-        yield return B.WindUp(0.15f);
+        yield return Buffer(0.1f);
+
+        yield return A.WindUp(0.1f);
+        yield return B.WindUp(0.1f);
+
+        yield return Buffer(0.1f);
 
         int rollA = 0;
         int rollB = 0;
 
-        yield return SlowMo(0.35f, 0.1f);
-
+        // ======================
+        // ROLL A
+        // ======================
         dice.Follow(A.headAnchor);
-        yield return dice.Roll(a.card.min, a.card.max,r=> rollA = r);
-        yield return cam.ImpactBurst();
+        yield return dice.DiceTossEffect();
+        yield return dice.Roll(a.card.min, a.card.max, r => rollA = r);
 
-        yield return new WaitForSeconds(0.15f);
+        yield return Buffer(0.2f);
 
+        // ======================
+        // ROLL B
+        // ======================
         dice.Follow(B.headAnchor);
-        yield return dice.Roll(b.card.min, b.card.max,r=> rollB = r);
-        yield return cam.ImpactBurst();
+        yield return dice.DiceTossEffect();
+        yield return dice.Roll(b.card.min, b.card.max, r => rollB = r);
 
-        dice.SetResultColor(rollA,rollB);
+        yield return Buffer(0.2f);
 
-        yield return SlowMo(1f, 0.15f);
+        // ONLY NOW SET COLOR (FIXED DESYNC)
+        dice.SetResultColor(rollA, rollB);
 
-        CharacterUnit winner = rollA >= rollB ? A : B;
-        CharacterUnit loser = rollA >= rollB ? B : A;
-        CombatAction winAction = rollA >= rollB ? a : b;
+        yield return Buffer(0.2f);
+
+        // tie handling FIX
+        if (rollA == rollB)
+        {
+            yield return Buffer(0.2f);
+            yield return Resolve(a, b);
+            yield break;
+        }
+
+        bool aWins = rollA > rollB;
+
+        CharacterUnit winner = aWins ? A : B;
+        CharacterUnit loser = aWins ? B : A;
+        CombatAction winAction = aWins ? a : b;
         int winRoll = Mathf.Max(rollA, rollB);
-        yield return cam.LeanToward(winner.visual.position);
+
+        yield return HitStop(0.08f);
 
         winner.PlayAttack();
         loser.PlayHit();
 
-        yield return new WaitForSeconds(0.25f);
+        Vector3 recoilDir = (loser.visual.position - winner.visual.position).normalized;
+
+        yield return loser.Recoil(recoilDir, 0.4f, 0.12f);
+
+        yield return cam.ImpactShake(0.12f, 0.12f);
+
+        yield return Buffer(0.15f);
 
         int dmg = Mathf.RoundToInt(winAction.card.damage * (winRoll / (float)winAction.card.max));
-
         loser.TakeDamage(dmg);
 
         yield return cam.Reset();
 
         dice.text.color = Color.white;
+
+        yield return Buffer(0.25f);
     }
 }

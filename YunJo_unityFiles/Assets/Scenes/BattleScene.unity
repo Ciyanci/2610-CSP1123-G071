@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayer
   factor: 0.1
+  start: {x: 0, y: 0, z: 0}
 --- !u!1 &119812217
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,8 +290,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -516,7 +517,7 @@ MonoBehaviour:
   clashSize: 6
   followStrength: 0.35
   horizontalClamp: 2.5
-  verticalOffset: 0.8
+  verticalBias: -2.5
   basePos: {x: 0, y: 0, z: 0}
 --- !u!1 &248125089
 GameObject:
@@ -653,7 +654,7 @@ Transform:
   m_GameObject: {fileID: 323545230}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.59, y: 1.5, z: 0}
+  m_LocalPosition: {x: 6.44, y: 1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -691,7 +692,6 @@ MonoBehaviour:
   dice: {fileID: 589676956}
   cam: {fileID: 198258396}
   clashSpacing: 1.2
-  sr: {fileID: 0}
 --- !u!4 &471948246
 Transform:
   m_ObjectHideFlags: 0
@@ -890,7 +890,7 @@ Transform:
   m_GameObject: {fileID: 781766432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37, y: 0.02, z: 0}
+  m_LocalPosition: {x: 36.42, y: -0.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1490,6 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParallaxLayer
   factor: 0.1
+  start: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

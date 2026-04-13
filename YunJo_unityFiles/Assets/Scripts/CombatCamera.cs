@@ -4,68 +4,25 @@ using System.Collections;
 public class CombatCamera : MonoBehaviour
 {
     public Camera cam;
-    public float normalSize = 15;
-    public float clashSize = 6f;
-    public float followStrength = 0.35f;
-    public float horizontalClamp = 2.5f;
-    public float verticalOffset = 0.8f;
+
+    public float normalSize = 10.5f;
+    public float clashSize = 11.5f;
+
+    public float followStrength = 0.12f;
+    public float horizontalClamp = 2.0f;
+    public float verticalBias = -1.2f;
+
     public Vector3 basePos;
 
     void Awake()
     {
         basePos = cam.transform.position;
-        basePos.y = 0f;
     }
 
-    public IEnumerator LeanToward(Vector3 winnerPos)
+    Vector3 ClampMid(Vector3 mid)
     {
-        float t = 0;
-        float dur = 0.2f;
-        Vector3 start = cam.transform.position;
-
-        Vector3 offset = new Vector3(
-            Mathf.Clamp(winnerPos.x * followStrength, -horizontalClamp, horizontalClamp),
-            0f,
-            0
-        );
-
-        Vector3 target = start + offset;
-
-        while (t < dur)
-        {
-            float eased = Mathf.SmoothStep(0,1,t / dur);
-
-            cam.transform.position = Vector3.Lerp(start, target, eased);
-
-            t += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    public IEnumerator ImpactBurst()
-    {
-        float t = 0;
-        float dur = 0.12f;
-
-        Vector3 startPos = cam.transform.position;
-        float startSize = cam.orthographicSize;
-
-        Vector3 punch = startPos + new Vector3(0, -0.15f, 0);
-
-        while(t < dur)
-        {
-            float eased = Mathf.SmoothStep(0,1, t / dur);
-
-            cam.transform.position = Vector3.Lerp(startPos, punch, eased);
-            cam.orthographicSize = Mathf.Lerp(startSize, startSize - 0.4f, eased);
-
-            t += Time.unscaledDeltaTime;
-            yield return null;
-        }
-
-        cam.transform.position = startPos;
-        cam.orthographicSize = startSize;
-
+        mid.y = Mathf.Clamp(mid.y, -3f, 3f);
+        return mid;
     }
 
     public IEnumerator ClashZoom(Vector3 mid)
@@ -73,25 +30,45 @@ public class CombatCamera : MonoBehaviour
         float t = 0;
         float dur = 0.25f;
 
-        Vector3 startPos = cam.transform.position;
+        mid = ClampMid(mid);
+
+        Vector3 start = cam.transform.position;
+
         Vector3 offset = new Vector3(
             Mathf.Clamp(mid.x * followStrength, -horizontalClamp, horizontalClamp),
-            verticalOffset,
+            verticalBias,
             0
         );
 
-        Vector3 targetPos = basePos + offset;
-        targetPos.z = basePos.z;
+        Vector3 target = basePos + offset;
+        target.z = basePos.z;
 
         while (t < dur)
         {
-            float eased = Mathf.SmoothStep(0,1, t / dur);
-            cam.transform.position = Vector3.Lerp(startPos,targetPos,eased);
-            cam.orthographicSize = Mathf.Lerp(normalSize, clashSize, eased);
+            float e = Mathf.SmoothStep(0, 1, t / dur);
+
+            cam.transform.position = Vector3.Lerp(start, target, e);
+            cam.orthographicSize = Mathf.Lerp(normalSize, clashSize, e);
 
             t += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public IEnumerator ImpactShake(float intensity, float time)
+    {
+        Vector3 start = cam.transform.position;
+        float t = 0;
+
+        while (t < time)
+        {
+            cam.transform.position = start + (Vector3)Random.insideUnitCircle * intensity;
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        cam.transform.position = start;
     }
 
     public IEnumerator Reset()
@@ -99,13 +76,14 @@ public class CombatCamera : MonoBehaviour
         float t = 0;
         float dur = 0.2f;
 
-        Vector3 startPos = cam.transform.position;
+        Vector3 start = cam.transform.position;
 
         while (t < dur)
         {
-            float eased = Mathf.SmoothStep(0,1, t / dur);
-            cam.transform.position = Vector3.Lerp(startPos, basePos, eased);
-            cam.orthographicSize = Mathf.Lerp(clashSize, normalSize, eased);
+            float e = Mathf.SmoothStep(0, 1, t / dur);
+
+            cam.transform.position = Vector3.Lerp(start, basePos, e);
+            cam.orthographicSize = Mathf.Lerp(clashSize, normalSize, e);
 
             t += Time.deltaTime;
             yield return null;
