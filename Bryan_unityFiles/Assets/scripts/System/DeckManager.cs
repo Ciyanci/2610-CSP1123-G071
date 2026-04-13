@@ -18,37 +18,47 @@ public class DeckManager : MonoBehaviour
     {
         InitializeDeck();
         Shuffle(drawPile);
+        Debug.Log("Deck has been created, Cards in draw pile:"+drawPile.Count);
     }
 
     void InitializeDeck()
     {
-        
+        Debug.Log("starting deck size:" + startingDeck.Count);
         foreach (var data in startingDeck)
         {
             drawPile.Add(new Card(data));
         }
+        Debug.Log("draw pile after init:" + drawPile.Count);
     }
     void DrawCard()
     {
+        Debug.Log("attempting to draw card");
+
         if (drawPile.Count == 0)
         {
+            Debug.Log("draw pile empty, reshuffling");
             Reshuffle();
         }
         if (drawPile.Count == 0)
         {
+            Debug.Log("no cards after reshuffle stil");
              return;
         }
         Card card = drawPile[0];
         drawPile.RemoveAt(0);
         onHand.Add(card);
+        Debug.Log("drew card: "+ card.Title + card.Description + card.Image);
     }
 
     public void DrawHand()
     {
+        Debug.Log("drawing hand");
+
         for (int i =0; i < handSize; i++)
         {
             DrawCard();
         }
+        Debug.Log("hand size after drawing" + onHand.Count);
     }
 
     public void Reshuffle()
@@ -71,5 +81,19 @@ public class DeckManager : MonoBehaviour
         discardPile.Clear();
         Shuffle(drawPile);
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DrawCard();
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            DrawHand();
+        }
+    }
+
+    
 
 }
