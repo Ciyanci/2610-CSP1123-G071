@@ -77,8 +77,8 @@ public class DeckManager : MonoBehaviour
     }
     public void EndTurn()
     {
-        drawPile.AddRange(discardPile);
-        discardPile.Clear();
+        drawPile.AddRange(onHand);
+        onHand.Clear();
         Shuffle(drawPile);
     }
     void Update()
