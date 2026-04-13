@@ -18,7 +18,8 @@ public class DeckManager : MonoBehaviour
     {
         InitializeDeck();
         Shuffle(drawPile);
-        Debug.Log("Deck has been created, Cards in draw pile:"+drawPile.Count);
+        Debug.Log("deck has been created, cards in draw pile:"+drawPile.Count);
+        DrawHand();
     }
 
     void InitializeDeck()
@@ -41,13 +42,14 @@ public class DeckManager : MonoBehaviour
         }
         if (drawPile.Count == 0)
         {
-            Debug.Log("no cards after reshuffle stil");
+            Debug.Log("no cards after reshuffle still");
              return;
         }
         Card card = drawPile[0];
         drawPile.RemoveAt(0);
         onHand.Add(card);
         Debug.Log("drew card: "+ card.Title + card.Description + card.Image);
+        PrintDeckState();
     }
 
     public void DrawHand()
@@ -59,6 +61,7 @@ public class DeckManager : MonoBehaviour
             DrawCard();
         }
         Debug.Log("hand size after drawing" + onHand.Count);
+        PrintDeckState();
     }
 
     public void Reshuffle()
@@ -77,21 +80,32 @@ public class DeckManager : MonoBehaviour
     }
     public void EndTurn()
     {
-        drawPile.AddRange(onHand);
+        discardPile.AddRange(onHand);
         onHand.Clear();
         Shuffle(drawPile);
+        PrintDeckState();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             DrawCard();
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             DrawHand();
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            EndTurn();
+        }
+    }
+    void PrintDeckState()
+    {
+        Debug.Log("draw: " + drawPile.Count);
+        Debug.Log("hand: " + onHand.Count);
+        Debug.Log("discard "+ discardPile.Count);
     }
 
     
