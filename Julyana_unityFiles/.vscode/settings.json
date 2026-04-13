@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Julyana.slnx",
+    "dotnet.defaultSolution": "Julyana_unityFiles.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }
