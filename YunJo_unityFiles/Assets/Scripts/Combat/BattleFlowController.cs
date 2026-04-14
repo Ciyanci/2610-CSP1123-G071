@@ -19,7 +19,7 @@ public class BattleFlowController : MonoBehaviour
         playerUnit = FindFirstObjectByType<CharacterUnit>();
     }
 
-    // called when clicking card
+    // called when clicking acrd
     public void PlayCardFromUI(Card c)
     {
         if (targeting.selectedTarget == null) return;
@@ -61,3 +61,5 @@ public class BattleFlowController : MonoBehaviour
         enemyQueue.Clear();
     }
 }
+
+//need to add assets first before ts can work
