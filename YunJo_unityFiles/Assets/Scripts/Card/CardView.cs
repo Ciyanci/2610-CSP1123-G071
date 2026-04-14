@@ -7,7 +7,6 @@ public class CardView : MonoBehaviour
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text cost;
     [SerializeField] private SpriteRenderer imageSR;
-    [SerializeField] private GameObject wrapper;
 
     public Card Card { get; private set; }
 
@@ -28,8 +27,6 @@ public class CardView : MonoBehaviour
         var flow = FindFirstObjectByType<BattleFlowController>();
 
         if (flow != null)
-        {
             flow.PlayCardFromUI(Card);
-        }
     }
 }

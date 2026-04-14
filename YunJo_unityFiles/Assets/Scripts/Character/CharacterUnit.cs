@@ -26,7 +26,6 @@ public class CharacterUnit : MonoBehaviour
     Coroutine animRoutine;
 
     Vector3 startPos;
-
     Vector3 smoothHeadPos;
 
     void Awake()
@@ -34,6 +33,7 @@ public class CharacterUnit : MonoBehaviour
         sr = visual.GetComponent<SpriteRenderer>();
         startPos = visual.position;
         sr.sprite = idle;
+
         smoothHeadPos = headAnchor != null ? headAnchor.position : Vector3.zero;
     }
 
@@ -44,9 +44,14 @@ public class CharacterUnit : MonoBehaviour
             smoothHeadPos = Vector3.Lerp(
                 smoothHeadPos,
                 headAnchor.position,
-                Time.deltaTime * 14f
+                Time.deltaTime * 12f
             );
         }
+    }
+
+    public Vector3 GetSmoothedHead()
+    {
+        return smoothHeadPos;
     }
 
     public void ResetState()
@@ -55,15 +60,9 @@ public class CharacterUnit : MonoBehaviour
         visual.position = startPos;
     }
 
-    public Vector3 GetSmoothedHead()
-    {
-        return smoothHeadPos;
-    }
-
     public IEnumerator MoveTo(Vector3 target, float t = 0.2f)
     {
-        if (!animLock)
-            sr.sprite = move;
+        if (!animLock) sr.sprite = move;
 
         Vector3 start = visual.position;
         float time = 0;
