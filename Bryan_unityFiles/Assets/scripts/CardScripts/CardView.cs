@@ -15,10 +15,24 @@ public class CardView : MonoBehaviour
     //method to display cards on the screen. It also updates the UI for the cards
     public void Setup(Card card)
     {
+        Debug.Log("Setting up card: " + (card == null ? "null" : card.Title));
         Card = card;
         title.text = card.Title;
         description.text = card.Description;
         cost.text = card.Cost.ToString();
         imageSR.sprite = card.Image;
     } 
+
+    void OnMouseEnter()
+    {
+        wrapper.SetActive(false);
+        Vector3 pos = new(transform.position.x -2, 0);
+        CardViewHoverSystem.Instance.Show(Card, pos);
+    }
+    
+    void OnMouseExit()
+    {
+        CardViewHoverSystem.Instance.Hide();
+        wrapper.SetActive(true);
+    }
 }

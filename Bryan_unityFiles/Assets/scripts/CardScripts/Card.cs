@@ -7,7 +7,6 @@ public class Card
     public string Description => data.Description;
     public Sprite Image => data.Image;
     public int Cost {get; private set;}
-
     //once its set in the constructor it cannot be modified
     private readonly CardData data;
 

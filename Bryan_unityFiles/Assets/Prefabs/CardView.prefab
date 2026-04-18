@@ -648,11 +648,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc64b5fa68342e844a0bd928044f866f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  title: {fileID: 0}
-  description: {fileID: 0}
-  cost: {fileID: 0}
-  imageSR: {fileID: 0}
-  wrapper: {fileID: 0}
+  title: {fileID: 3654792188975355342}
+  description: {fileID: 3559935328573624535}
+  cost: {fileID: 1992166411371109591}
+  imageSR: {fileID: 3576441399739786946}
+  wrapper: {fileID: 7498419274871562670}
 --- !u!61 &1913548834827383971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 8395165252284668172}
   - component: {fileID: 4117725008258980829}
   m_Layer: 0
-  m_Name: Cards
+  m_Name: CardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
