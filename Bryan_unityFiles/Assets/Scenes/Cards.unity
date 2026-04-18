@@ -514,6 +514,23 @@ SortingGroup:
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
+--- !u!114 &910451759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910451755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc64b5fa68342e844a0bd928044f866f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardView
+  title: {fileID: 510435684}
+  description: {fileID: 825056128}
+  cost: {fileID: 1247562668}
+  imageSR: {fileID: 618465022}
+  wrapper: {fileID: 1210819692}
 --- !u!1 &985504240
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,11 +953,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc64b5fa68342e844a0bd928044f866f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardView
-  title: {fileID: 0}
-  description: {fileID: 0}
-  cost: {fileID: 0}
-  imageSR: {fileID: 0}
-  wrapper: {fileID: 0}
+  title: {fileID: 533774737}
+  description: {fileID: 1394405247}
+  cost: {fileID: 1390244994}
+  imageSR: {fileID: 1174485784}
+  wrapper: {fileID: 1210819692}
 --- !u!1 &1247562661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1620298859628389514, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
@@ -1758,6 +1775,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7498419274871562670, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 910451757}
+    - targetCorrespondingSourceObject: {fileID: 7498419274871562670, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 910451759}
     - targetCorrespondingSourceObject: {fileID: 1533292275760623140, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 510435681}
