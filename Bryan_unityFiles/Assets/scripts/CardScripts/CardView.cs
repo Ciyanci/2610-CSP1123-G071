@@ -1,7 +1,10 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
+using DG.Tweening;
 
-public class CardView : MonoBehaviour
+
+public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //to make it show in unity inspector
     [SerializeField] private TMP_Text title;
@@ -23,16 +26,19 @@ public class CardView : MonoBehaviour
         imageSR.sprite = card.Image;
     } 
 
-    void OnMouseEnter()
+     public void OnPointerEnter(PointerEventData eventData)
     {
-        wrapper.SetActive(false);
-        Vector3 pos = new(transform.position.x -2, 0);
-        CardViewHoverSystem.Instance.Show(Card, pos);
+        transform.DOKill();
+
+        transform.localScale = Vector3.one * 1.1f;
+        transform.position += Vector3.up * 1.5f;
     }
-    
-    void OnMouseExit()
+
+    public void OnPointerExit(PointerEventData eventData)
     {
-        CardViewHoverSystem.Instance.Hide();
-        wrapper.SetActive(true);
+        transform.DOKill();
+
+        transform.localScale = Vector3.one;
+        transform.position -= Vector3.up * 1.5f;
     }
 }
