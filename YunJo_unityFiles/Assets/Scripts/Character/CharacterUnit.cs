@@ -1,5 +1,10 @@
 using UnityEngine;
 using System.Collections;
+public enum UnitType
+{
+    Melee,
+    Ranged
+}
 
 public class CharacterUnit : MonoBehaviour
 {
@@ -18,6 +23,15 @@ public class CharacterUnit : MonoBehaviour
     public Sprite hit;
 
     bool animLock;
+    public UnitType unitType;
+
+    public Vector3 GetClashPosition()
+    {
+        // force same Y axis (LoR style)
+        Vector3 pos = clashAnchor.position;
+        pos.y = 0f;
+        return pos;
+    }
 
     [SerializeField] private SpriteRenderer sr;
 

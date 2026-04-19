@@ -53,6 +53,15 @@ TagManager:
   - name: Characters
     uniqueID: 1242368463
     locked: 0
+  - name: Cards
+    uniqueID: 946254563
+    locked: 0
+  - name: UI
+    uniqueID: 3143983059
+    locked: 0
+  - name: FX
+    uniqueID: 48865623
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1

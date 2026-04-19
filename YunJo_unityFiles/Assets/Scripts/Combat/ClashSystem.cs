@@ -15,8 +15,18 @@ public class ClashSystem : MonoBehaviour
         CharacterUnit A = a.user;
         CharacterUnit B = b.user;
 
-        yield return A.MoveTo(A.clashAnchor.position);
-        yield return B.MoveTo(B.clashAnchor.position);
+    Vector3 clashPoint = new Vector3(
+        (A.GetClashPosition().x + B.GetClashPosition().x) / 2,
+        0f,
+        0f
+    );
+
+    // melee moves in, ranged stays back
+    if (A.unitType == UnitType.Melee)
+        yield return A.MoveTo(clashPoint);
+
+    if (B.unitType == UnitType.Melee)
+        yield return B.MoveTo(clashPoint);
 
         yield return Buffer(0.2f);
 
