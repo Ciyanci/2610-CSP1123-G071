@@ -1039,6 +1039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestSystem
   handView: {fileID: 327496658}
+  cardData: {fileID: 11400000, guid: 6e55a8bb7c3cfc34695af6d7dfe29311, type: 2}
 --- !u!4 &1405178030
 Transform:
   m_ObjectHideFlags: 0
