@@ -1,15 +1,36 @@
 using UnityEngine;
 using System.Collections;
-public enum UnitType
-{
-    Melee,
-    Ranged
-}
 
 public class CharacterUnit : MonoBehaviour
 {
     public string unitName;
     public int hp;
+
+    public enum UnitState
+    {
+        Idle,
+        Moving,
+        Windup,
+        Attacking,
+        Hit,
+        Clashing
+    }
+
+    public UnitState currentState;
+
+    public DiceRoller diceUI;
+    public int currentSpeedRoll;
+
+    public int maxEnergy = 5;
+    public int currentEnergy;
+
+    public bool isHighlighted;
+
+    public void Highlight(bool state)
+    {
+        isHighlighted = state;
+        sr.color = state ? Color.yellow : Color.white;
+    }
 
     public Transform visual;
     public Transform headAnchor;
@@ -22,16 +43,11 @@ public class CharacterUnit : MonoBehaviour
     public Sprite attack;
     public Sprite hit;
 
-    bool animLock;
-    public UnitType unitType;
+    public int currentSpeed;
 
-    public Vector3 GetClashPosition()
-    {
-        // force same Y axis (LoR style)
-        Vector3 pos = clashAnchor.position;
-        pos.y = 0f;
-        return pos;
-    }
+    bool animLock;
+
+    public UnitType unitType;
 
     [SerializeField] private SpriteRenderer sr;
 
@@ -47,36 +63,29 @@ public class CharacterUnit : MonoBehaviour
         sr = visual.GetComponent<SpriteRenderer>();
         startPos = visual.position;
         sr.sprite = idle;
-
-        smoothHeadPos = headAnchor != null ? headAnchor.position : Vector3.zero;
+        smoothHeadPos = headAnchor.position;
     }
 
     void Update()
     {
-        if (headAnchor != null)
-        {
-            smoothHeadPos = Vector3.Lerp(
-                smoothHeadPos,
-                headAnchor.position,
-                Time.deltaTime * 12f
-            );
-        }
+        smoothHeadPos = Vector3.Lerp(
+            smoothHeadPos,
+            headAnchor.position,
+            Time.deltaTime * 12f
+        );
     }
 
-    public Vector3 GetSmoothedHead()
-    {
-        return smoothHeadPos;
-    }
+    public Vector3 GetSmoothedHead() => smoothHeadPos;
 
-    public void ResetState()
+    public IEnumerator SetState(UnitState state)
     {
-        sr.sprite = idle;
-        visual.position = startPos;
+        currentState = state;
+        yield return null;
     }
 
     public IEnumerator MoveTo(Vector3 target, float t = 0.2f)
     {
-        if (!animLock) sr.sprite = move;
+        currentState = UnitState.Moving;
 
         Vector3 start = visual.position;
         float time = 0;
@@ -89,32 +98,42 @@ public class CharacterUnit : MonoBehaviour
         }
 
         visual.position = target;
+        currentState = UnitState.Idle;
     }
 
     public IEnumerator WindUp(float duration)
     {
+        currentState = UnitState.Windup;
         sr.sprite = windup;
         yield return new WaitForSeconds(duration);
     }
 
-    public void PlayAttack() => PlayAnim(attack, 0.2f);
-    public void PlayHit() => PlayAnim(hit, 0.2f);
-
-    void PlayAnim(Sprite s, float d)
+    public void PlayAttack()
     {
-        if (animRoutine != null)
-            StopCoroutine(animRoutine);
-
-        animRoutine = StartCoroutine(AnimLocked(s, d));
+        StartCoroutine(AttackRoutine());
     }
 
-    IEnumerator AnimLocked(Sprite s, float d)
+    IEnumerator AttackRoutine()
     {
-        animLock = true;
-        sr.sprite = s;
-        yield return new WaitForSeconds(d);
-        animLock = false;
+        currentState = UnitState.Attacking;
+        sr.sprite = attack;
+        yield return new WaitForSeconds(0.2f);
         sr.sprite = idle;
+        currentState = UnitState.Idle;
+    }
+
+    public void PlayHit()
+    {
+        StartCoroutine(HitRoutine());
+    }
+
+    IEnumerator HitRoutine()
+    {
+        currentState = UnitState.Hit;
+        sr.sprite = hit;
+        yield return new WaitForSeconds(0.2f);
+        sr.sprite = idle;
+        currentState = UnitState.Idle;
     }
 
     public IEnumerator Recoil(Vector3 direction, float strength, float duration)
@@ -137,6 +156,12 @@ public class CharacterUnit : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
+    }
+
+    void OnMouseDown()
+    {
+        CombatInputController.Instance.SelectUnit(this);
+        Debug.Log("Unit clicked: " + name);
     }
 
     public void TakeDamage(int dmg)

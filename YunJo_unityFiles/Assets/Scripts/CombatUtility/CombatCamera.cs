@@ -5,7 +5,7 @@ public class CombatCamera : MonoBehaviour
 {
     public Camera cam;
 
-    public float normalSize = 10.5f;
+    public float normalSize = 25.0f;
     public float clashSize = 11.5f;
 
     public float followStrength = 0.12f;
@@ -53,6 +53,12 @@ public class CombatCamera : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void FocusBetween(Transform a, Transform b)
+    {
+        Vector3 mid = (a.position + b.position) / 2f;
+        StartCoroutine(ClashZoom(mid));
     }
 
     public IEnumerator ImpactShake(float intensity, float time)

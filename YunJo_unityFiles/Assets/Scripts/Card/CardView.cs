@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.Splines;
-using DG.Tweening;
 using TMPro;
+using DG.Tweening;
 
 public class CardView : MonoBehaviour
 {
@@ -12,14 +11,19 @@ public class CardView : MonoBehaviour
     [SerializeField] private SpriteRenderer artworkSR;
 
     public Card Card { get; private set; }
+
     public System.Action<CardView> onHoverEnter;
     public System.Action<CardView> onHoverExit;
+    public System.Action<CardView> onCardClicked;
+
+    public CharacterUnit owner;
 
     Vector3 basePos;
 
-    public void Setup(Card card)
+    public void Setup(Card card, CharacterUnit unit)
     {
         Card = card;
+        owner = unit;
 
         title.text = card.Title;
         description.text = card.Description;
@@ -39,23 +43,14 @@ public class CardView : MonoBehaviour
 
     void OnMouseDown()
     {
-        var input = FindFirstObjectByType<CardInputHandler>();
-        var unit = FindFirstObjectByType<CharacterUnit>(); // temporary (you should bind owner later)
-
-        if (input != null && unit != null)
-        {
-            input.BeginDrag(Card, unit);
-        }
+        CombatFlowController.Instance.SelectCard(Card, owner);
     }
-
-    // -----------------------------
-    // 🧠 HOVER SYSTEM (NEW + FIXED)
-    // -----------------------------
 
     void OnMouseEnter()
     {
         onHoverEnter?.Invoke(this);
 
+        transform.DOKill();
         transform.DOLocalMove(basePos + Vector3.up * 0.5f, 0.15f);
         transform.DOScale(1.2f, 0.15f);
     }
@@ -64,6 +59,7 @@ public class CardView : MonoBehaviour
     {
         onHoverExit?.Invoke(this);
 
+        transform.DOKill();
         transform.DOLocalMove(basePos, 0.15f);
         transform.DOScale(1f, 0.15f);
     }

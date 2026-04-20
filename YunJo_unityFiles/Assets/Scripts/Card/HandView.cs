@@ -1,68 +1,72 @@
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Splines;
 using DG.Tweening;
 
 public class HandView : MonoBehaviour
 {
-    [SerializeField] private SplineContainer splineContainer;
-    [SerializeField] private float baseSpacing = 0.08f;
-    [SerializeField] private float hoverSpacing = 0.18f;
+    [SerializeField] private float spacing = 120f;
+    [SerializeField] private float hoverSpacing = 180f;
 
+    private List<CardView> cards = new();
     private int hoveredIndex = -1;
-    private readonly List<CardView> cards = new();
-    public IEnumerator AddCard(CardView cardView)
+
+    public void Register(CardView card)
     {
-        cards.Add(cardView);
-        yield return UpdateCardPositions(0.15f);
+        if (card == null) return;
+
+        cards.Add(card);
+
+        card.onHoverEnter += OnHoverEnter;
+        card.onHoverExit += OnHoverExit;
+
+        UpdateLayout();
     }
-    private IEnumerator UpdateCardPositions(float duration)
+
+    public void Clear()
     {
-        if (cards.Count == 0) yield break;
+        foreach (var c in cards)
+            if (c != null)
+                Destroy(c.gameObject);
 
+        cards.Clear();
+    }
+
+    void OnHoverEnter(CardView cv)
+    {
+        hoveredIndex = cards.IndexOf(cv);
+        UpdateLayout();
+    }
+
+    void OnHoverExit(CardView cv)
+    {
+        hoveredIndex = -1;
+        UpdateLayout();
+    }
+
+    public void UpdateLayout()
+    {
         float center = (cards.Count - 1) / 2f;
-
-        Spline spline = splineContainer.Spline;
 
         for (int i = 0; i < cards.Count; i++)
         {
-            // -----------------------------
-            // 🧠 HOVER-BASED SPACING
-            // -----------------------------
+            var c = cards[i];
+            if (c == null) continue;
 
-            float spacing = baseSpacing;
+            float influence = 0;
 
             if (hoveredIndex != -1)
             {
                 float dist = Mathf.Abs(i - hoveredIndex);
-                float influence = 1f - (dist / (float)cards.Count);
-
-                spacing = Mathf.Lerp(baseSpacing, hoverSpacing, influence);
+                influence = 1f - dist / cards.Count;
             }
 
-            float offset = (i - center) * spacing;
+            float s = Mathf.Lerp(spacing, hoverSpacing, influence);
+            float x = (i - center) * s;
 
-            float p = 0.5f + offset;
+            Vector3 target = new Vector3(x, 0, 0);
 
-            Vector3 splinePosition = spline.EvaluatePosition(p);
-            Vector3 forward = spline.EvaluateTangent(p);
-            Vector3 up = spline.EvaluateUpVector(p);
-
-            Quaternion rotation = Quaternion.LookRotation(
-                -up,
-                Vector3.Cross(-up, forward).normalized
-            );
-
-            Vector3 finalPos =
-                splinePosition +
-                transform.position +
-                0.01f * i * Vector3.back;
-
-            cards[i].transform.DOMove(finalPos, duration);
-            cards[i].transform.DORotate(rotation.eulerAngles, duration);
+            c.transform.DOKill();
+            c.transform.DOLocalMove(target, 0.15f);
         }
-
-        yield return new WaitForSeconds(duration);
     }
 }
