@@ -553,7 +553,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3008225327330167095}
   - component: {fileID: 3576441399739786946}
-  - component: {fileID: 4969256503679213934}
   - component: {fileID: 1913548834827383971}
   m_Layer: 0
   m_Name: CardTemplate
@@ -636,24 +635,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &4969256503679213934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7366772080435571516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc64b5fa68342e844a0bd928044f866f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  title: {fileID: 3654792188975355342}
-  description: {fileID: 3559935328573624535}
-  cost: {fileID: 1992166411371109591}
-  imageSR: {fileID: 3576441399739786946}
-  wrapper: {fileID: 7498419274871562670}
-  player: {fileID: 0}
 --- !u!61 &1913548834827383971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -726,7 +707,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -99}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7406937467909809959}
