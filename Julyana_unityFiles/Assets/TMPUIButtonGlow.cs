@@ -14,6 +14,6 @@ public class TMPUIButtonGlow : MonoBehaviour
     // Update is called once per frame
     public void MouseOutColor()
     {
-        Subtext.color = Color.white;
+        Subtext.color = Color.red;
     }
 }

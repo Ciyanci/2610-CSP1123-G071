@@ -45,6 +45,7 @@ public class DeckManager : MonoBehaviour
             Debug.Log("no cards after reshuffle still");
              return;
         }
+        //removes card from drawpile and puts it on your hand
         Card card = drawPile[0];
         drawPile.RemoveAt(0);
         onHand.Add(card);
@@ -66,6 +67,7 @@ public class DeckManager : MonoBehaviour
 
     public void Reshuffle()
     {
+        //adds discardpile to drawpile, clears discardpile and shuffles drawpile
         drawPile.AddRange(discardPile);
         discardPile.Clear();
         Shuffle(drawPile);
@@ -74,7 +76,9 @@ public class DeckManager : MonoBehaviour
     {
         for (int i = 0; i < list.Count; i++)
         {
+            // randomises the list from i to list.count-1 (does not count numbers before i)
             int rand = UnityEngine.Random.Range(i, list.Count);
+            // swaps i with the random number given
             (list [i], list[rand]) = (list[rand], list[i]);
         }
     }

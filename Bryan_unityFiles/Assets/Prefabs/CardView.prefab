@@ -648,11 +648,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc64b5fa68342e844a0bd928044f866f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  title: {fileID: 0}
-  description: {fileID: 0}
-  cost: {fileID: 0}
-  imageSR: {fileID: 0}
-  wrapper: {fileID: 0}
+  title: {fileID: 3654792188975355342}
+  description: {fileID: 3559935328573624535}
+  cost: {fileID: 1992166411371109591}
+  imageSR: {fileID: 3576441399739786946}
+  wrapper: {fileID: 7498419274871562670}
 --- !u!61 &1913548834827383971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 8395165252284668172}
   - component: {fileID: 4117725008258980829}
   m_Layer: 0
-  m_Name: Cards
+  m_Name: CardView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -764,7 +764,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3915090383712411346}
@@ -778,8 +778,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7673380054821397209}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 233312343
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
   m_Sort3DAs2D: 0
