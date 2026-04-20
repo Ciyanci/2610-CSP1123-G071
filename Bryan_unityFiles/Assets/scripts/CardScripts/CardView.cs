@@ -17,7 +17,6 @@ public class CardView : MonoBehaviour
     //method to display cards on the screen. It also updates the UI for the cards
     public void Setup(CardData data)
     {
-        Debug.Log("Setting up card: " + (data == null ? "null" : data.Name));
         cardData = data;
         title.text = data.Name;
         description.text = data.Description;
