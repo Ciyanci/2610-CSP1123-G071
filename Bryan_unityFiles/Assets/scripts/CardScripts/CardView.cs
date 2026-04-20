@@ -1,10 +1,7 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
-using DG.Tweening;
 
-
-public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CardView : MonoBehaviour
 {
     //to make it show in unity inspector
     [SerializeField] private TMP_Text title;
@@ -12,6 +9,8 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     [SerializeField] private TMP_Text cost;
     [SerializeField] private SpriteRenderer imageSR;
     [SerializeField] private GameObject wrapper;
+    [SerializeField] private Player player;
+
 
     public Card Card {get; private set;}
     
@@ -26,19 +25,25 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         imageSR.sprite = card.Image;
     } 
 
-     public void OnPointerEnter(PointerEventData eventData)
+    /*void OnMouseEnter()
     {
-        transform.DOKill();
-
-        transform.localScale = Vector3.one * 1.1f;
-        transform.position += Vector3.up * 1.5f;
+        wrapper.SetActive(false);
+        Vector3 pos = new(transform.position.x -2, 0);
+        CardViewHoverSystem.Instance.Show(Card, pos);
     }
-
-    public void OnPointerExit(PointerEventData eventData)
+    
+    void OnMouseExit()
     {
-        transform.DOKill();
+        CardViewHoverSystem.Instance.Hide();
+        wrapper.SetActive(true);
+    }*/
 
-        transform.localScale = Vector3.one;
-        transform.position -= Vector3.up * 1.5f;
+    void OnMouseDown()
+    {
+        Debug.Log("Card clicked!");
+        if (Card != null)
+        {
+            player.PlayCard(Card.Data);
+        }
     }
 }
