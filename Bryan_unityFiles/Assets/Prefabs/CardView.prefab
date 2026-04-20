@@ -653,6 +653,7 @@ MonoBehaviour:
   cost: {fileID: 1992166411371109591}
   imageSR: {fileID: 3576441399739786946}
   wrapper: {fileID: 7498419274871562670}
+  player: {fileID: 0}
 --- !u!61 &1913548834827383971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -800,6 +801,7 @@ MonoBehaviour:
   cost: {fileID: 1992166411371109591}
   imageSR: {fileID: 3576441399739786946}
   wrapper: {fileID: 7498419274871562670}
+  player: {fileID: 6925669126261389978, guid: ce2d34e807afc1e4e82d88e4a909c2ca, type: 3}
 --- !u!65 &4117725008258980829
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -12,38 +12,38 @@ public class CardView : MonoBehaviour
     [SerializeField] private Player player;
 
 
-    public Card Card {get; private set;}
+    public CardData cardData {get; private set;}
     
     //method to display cards on the screen. It also updates the UI for the cards
-    public void Setup(Card card)
+    public void Setup(CardData data)
     {
-        Debug.Log("Setting up card: " + (card == null ? "null" : card.Title));
-        Card = card;
-        title.text = card.Title;
-        description.text = card.Description;
-        cost.text = card.Cost.ToString();
-        imageSR.sprite = card.Image;
+        Debug.Log("Setting up card: " + (data == null ? "null" : data.Name));
+        cardData = data;
+        title.text = data.Name;
+        description.text = data.Description;
+        cost.text = data.Cost.ToString();
+        imageSR.sprite = data.Image;
     } 
 
-    /*void OnMouseEnter()
+    void OnMouseEnter()
     {
         wrapper.SetActive(false);
         Vector3 pos = new(transform.position.x -2, 0);
-        CardViewHoverSystem.Instance.Show(Card, pos);
+        CardViewHoverSystem.Instance.Show(cardData, pos);
     }
     
     void OnMouseExit()
     {
         CardViewHoverSystem.Instance.Hide();
         wrapper.SetActive(true);
-    }*/
+    }
 
     void OnMouseDown()
     {
         Debug.Log("Card clicked!");
-        if (Card != null)
+        if (cardData != null)
         {
-            player.PlayCard(Card.Data);
+            player.PlayCard(cardData);
         }
     }
 }

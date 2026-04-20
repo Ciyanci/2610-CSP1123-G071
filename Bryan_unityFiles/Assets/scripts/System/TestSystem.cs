@@ -13,8 +13,8 @@ public class TestSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Card card = new(cardData);
             CardView cardView = CardViewCreator.Instance.CreateCardView(transform.position, Quaternion.identity);
+            cardView.Setup(cardData);
             StartCoroutine(handView.AddCard(cardView));
         }
     }
