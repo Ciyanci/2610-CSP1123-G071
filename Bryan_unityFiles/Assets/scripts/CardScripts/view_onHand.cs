@@ -30,6 +30,8 @@ public class HandView : MonoBehaviour
             cards[i].transform.DORotate(rotation.eulerAngles, duration);
         }
         yield return new WaitForSeconds(duration);
+
+        //i used a guide for this it looks horrible and i dont understand 100% fully how it works yet
     }
 }
 
