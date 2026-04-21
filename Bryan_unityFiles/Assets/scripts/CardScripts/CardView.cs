@@ -43,6 +43,7 @@ public class CardView : MonoBehaviour
         if (cardData != null)
         {
             player.PlayCard(cardData);
+
         }
     }
 }

@@ -18,6 +18,5 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         Debug.Log("Enemy Defeated!");
-        Destroy(gameObject);
     }
 }
