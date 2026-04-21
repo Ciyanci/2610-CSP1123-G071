@@ -50,7 +50,7 @@ public class CombatInputController : MonoBehaviour
         if (!inputEnabled) return;
         if (selectedUnit == null || selectedCard == null) return;
 
-        battle.RegisterIntent(selectedUnit, selectedCard, target);
+        battle.QueueAction(selectedUnit, target, selectedCard);
 
         arrow.End();
 
@@ -60,7 +60,9 @@ public class CombatInputController : MonoBehaviour
     public void Cancel()
     {
         arrow.End();
-        selectedUnit?.Highlight(false);
+
+        if (selectedUnit != null)
+            selectedUnit.Highlight(false);
 
         selectedUnit = null;
         selectedCard = null;

@@ -10,7 +10,7 @@ public class BattleStarter : MonoBehaviour
     void Start(){}
     IEnumerator StartBattle()
     {
-        // give initial hand
+        //give initial hand
         for (int i = 0; i < 5; i++)
         {
             playerDeck.Draw();

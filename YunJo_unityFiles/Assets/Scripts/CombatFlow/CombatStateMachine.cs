@@ -9,18 +9,16 @@ public class CombatStateMachine : MonoBehaviour
 
     public BattleFlowController flow;
     public TurnSystem turnUI;
+    public TurnSystem turnSystem;
     public CardInputHandler input;
 
     List<CardDeck> playerDecks;
-    List<CardDeck> enemyDecks;
 
     void Awake()
     {
-        playerDecks = new List<CardDeck>(FindObjectsByType<CardDeck>(FindObjectsSortMode.None))
-            .FindAll(d => d.owner != null && d.owner.CompareTag("Player"));
-
-        enemyDecks = new List<CardDeck>(FindObjectsByType<CardDeck>(FindObjectsSortMode.None))
-            .FindAll(d => d.owner != null && d.owner.CompareTag("Enemy"));
+        playerDecks = new List<CardDeck>(
+            FindObjectsByType<CardDeck>(FindObjectsSortMode.None)
+        ).FindAll(d => d.owner != null && d.owner.CompareTag("Player"));
     }
 
     void Start()
@@ -44,7 +42,6 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator StartTurn()
     {
         phase = CombatPhase.StartTurn;
-
         yield return turnUI.ShowTurn();
     }
 
@@ -52,41 +49,29 @@ public class CombatStateMachine : MonoBehaviour
     {
         phase = CombatPhase.Draw;
 
-        for (int i = 0; i < 5; i++)
-        {
-            foreach (var deck in playerDecks)
-                deck.Draw();
+        foreach (var deck in playerDecks)
+            deck.OpenDeck();
 
-            yield return new WaitForSeconds(0.1f);
-        }
+        yield return new WaitForSeconds(0.2f);
     }
 
     IEnumerator PlanningPhase()
     {
         phase = CombatPhase.Planning;
 
-        input.SetInputEnabled(true);
-
-        flow.ResetPlanning();
+        CombatFlowController.Instance.SetInputEnabled(true);
 
         foreach (var enemy in enemies)
             StartCoroutine(enemy.TakeTurn());
 
-        while (!flow.HasPlayerFinishedPlanning())
-            yield return null;
-
-        input.SetInputEnabled(false);
+        yield return new WaitUntil(() => !CombatFlowController.Instance.inputEnabled);
     }
 
     IEnumerator IntentPreview()
     {
         phase = CombatPhase.IntentPreview;
 
-        flow.BuildAllActions();
-        FindFirstObjectByType<TargetingSystem>()
-            .DebugDrawIntents();
-
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.0f);
     }
 
     IEnumerator ResolvePhase()
@@ -99,7 +84,6 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator EndTurn()
     {
         phase = CombatPhase.EndTurn;
-
         yield return new WaitForSeconds(0.5f);
     }
 }

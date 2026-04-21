@@ -28,6 +28,11 @@ public class TurnSystem : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        StartCoroutine(RunTurn());
+    }
+
     public IEnumerator RunTurn()
     {
         yield return SetPhase(Phase.Start);
@@ -37,22 +42,22 @@ public class TurnSystem : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         yield return SetPhase(Phase.Planning);
+
         yield return new WaitUntil(() =>
             CombatFlowController.Instance.inputEnabled == false);
 
         yield return SetPhase(Phase.Clash);
-
         yield return SetPhase(Phase.Resolve);
-
         yield return SetPhase(Phase.End);
+
         turn++;
     }
 
-    public IEnumerator SetPhase(Phase p)
-    {
-        currentPhase = p;
-        yield return null;
-    }
+        public IEnumerator SetPhase(Phase p)
+        {
+            currentPhase = p;
+            yield return null;
+        }
 
     public IEnumerator ShowTurn()
     {
@@ -65,11 +70,16 @@ public class TurnSystem : MonoBehaviour
         yield return Fade(0);
     }
 
+    public void HideUI()
+    {
+        StartCoroutine(Fade(0));
+        turnText.text = "";
+    }
+
     IEnumerator Fade(float target)
     {
         float t = 0;
         float dur = 0.5f;
-
         float start = fade.alpha;
 
         while (t < dur)

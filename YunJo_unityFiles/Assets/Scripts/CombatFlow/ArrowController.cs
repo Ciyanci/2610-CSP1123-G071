@@ -22,6 +22,11 @@ public class ArrowController : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void ForceRefresh(CharacterUnit user, Card card)
+    {
+        Begin(user, card);
+    }
+
     public void End()
     {
         start = null;
@@ -47,7 +52,7 @@ public class ArrowController : MonoBehaviour
             tip.right = (mouse - startPos).normalized;
         }
 
-        // LEFT CLICK = confirm target
+        //left click to confirm target
         if (Input.GetMouseButtonDown(0))
         {
             Collider2D hit = Physics2D.OverlapPoint(mouse);
@@ -62,7 +67,7 @@ public class ArrowController : MonoBehaviour
             }
         }
 
-        // RIGHT CLICK = cancel
+        //right click to cancel
         if (Input.GetMouseButtonDown(1))
         {
             CombatFlowController.Instance.ResetAll();

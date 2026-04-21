@@ -5,5 +5,5 @@ public class CombatIntent
     public Card card;
 
     public int speed;
-    public int diceRoll;
+    public bool resolved;
 }

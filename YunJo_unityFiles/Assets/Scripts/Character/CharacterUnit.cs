@@ -3,8 +3,15 @@ using System.Collections;
 
 public class CharacterUnit : MonoBehaviour
 {
+    [Header("Identity")]
     public string unitName;
     public int hp;
+
+    [Header("State")]
+    public UnitState currentState;
+
+    [Header("Visual Offset Fix")]
+    public Vector3 headOffset = new Vector3(0, 1.2f, 0);
 
     public enum UnitState
     {
@@ -16,58 +23,130 @@ public class CharacterUnit : MonoBehaviour
         Clashing
     }
 
-    public UnitState currentState;
-
-    public DiceRoller diceUI;
+    [Header("Dice")]
+    public DiceUI diceUI; // ✅ unified system
     public int currentSpeedRoll;
 
+    [Header("Energy")]
     public int maxEnergy = 5;
     public int currentEnergy;
 
+    
+
+    public void RefreshEnergy()
+    {
+        currentEnergy = maxEnergy;
+    }
+
+    public bool CanPay(int cost)
+    {
+        return currentEnergy >= cost;
+    }
+
+    public void Spend(int cost)
+    {
+        currentEnergy -= cost;
+    }
+
+    [Header("Highlight")]
     public bool isHighlighted;
 
     public void Highlight(bool state)
     {
         isHighlighted = state;
-        sr.color = state ? Color.yellow : Color.white;
+
+        if (sr != null)
+            sr.color = state ? Color.yellow : Color.white;
     }
 
+    [Header("Transforms")]
     public Transform visual;
     public Transform headAnchor;
     public Transform clashAnchor;
     public Transform weaponAnchor;
 
+    [Header("Sprites")]
     public Sprite idle;
     public Sprite move;
     public Sprite windup;
     public Sprite attack;
     public Sprite hit;
 
+    [Header("Combat")]
     public int currentSpeed;
-
-    bool animLock;
-
     public UnitType unitType;
 
     [SerializeField] private SpriteRenderer sr;
 
-    public float HalfWidth => sr.bounds.extents.x;
+    public float HalfWidth => sr != null ? sr.bounds.extents.x : 0.5f;
 
-    Coroutine animRoutine;
-
-    Vector3 startPos;
     Vector3 smoothHeadPos;
+    Vector3 combatStartPos;
+
+    public void SetCombatStartPosition()
+    {
+        combatStartPos = visual.position;
+    }
+    // -----------------------------
+    // ✅ CLASH POSITION (FIXED ERROR)
+    // -----------------------------
+    public Vector3 GetClashPosition()
+    {
+        if (clashAnchor != null)
+        {
+            Vector3 pos = clashAnchor.position;
+            pos.y = -7.5f;
+            return pos;
+        }
+
+        return transform.position;
+    }
+
+    public void ResetPosition()
+    {
+        StopAllCoroutines();
+
+        if (visual != null)
+            visual.position = combatStartPos;
+
+        currentState = UnitState.Idle;
+    }
+
+    public Vector3 GetCombatFocusPoint()
+    {
+        return visual != null
+            ? visual.position + new Vector3(0, 1.0f, 0)
+            : transform.position;
+    }
+
+    Vector3 startWorldPos;
 
     void Awake()
     {
         sr = visual.GetComponent<SpriteRenderer>();
-        startPos = visual.position;
+        startWorldPos = visual.position; // IMPORTANT ADD
         sr.sprite = idle;
         smoothHeadPos = headAnchor.position;
+
+        if (visual != null)
+            sr = visual.GetComponent<SpriteRenderer>();
+
+        if (sr != null && idle != null)
+            sr.sprite = idle;
+
+        if (headAnchor != null)
+            smoothHeadPos = headAnchor.position;
+    }
+
+    void Start()
+    {
+        UnitRegistry.Instance?.Refresh();
     }
 
     void Update()
     {
+        if (headAnchor == null) return;
+
         smoothHeadPos = Vector3.Lerp(
             smoothHeadPos,
             headAnchor.position,
@@ -75,14 +154,12 @@ public class CharacterUnit : MonoBehaviour
         );
     }
 
-    public Vector3 GetSmoothedHead() => smoothHeadPos;
-
-    public IEnumerator SetState(UnitState state)
+    public Vector3 GetDiceAnchor()
     {
-        currentState = state;
-        yield return null;
+        return headAnchor != null ? headAnchor.position + headOffset : transform.position + Vector3.up * 1.2f;
     }
 
+    //movement if u wanna change then change here
     public IEnumerator MoveTo(Vector3 target, float t = 0.2f)
     {
         currentState = UnitState.Moving;
@@ -94,6 +171,8 @@ public class CharacterUnit : MonoBehaviour
         {
             visual.position = Vector3.Lerp(start, target, time / t);
             time += Time.deltaTime;
+            if (sr != null && move != null)
+            sr.sprite = move;
             yield return null;
         }
 
@@ -104,10 +183,14 @@ public class CharacterUnit : MonoBehaviour
     public IEnumerator WindUp(float duration)
     {
         currentState = UnitState.Windup;
-        sr.sprite = windup;
+
+        if (sr != null && windup != null)
+            sr.sprite = windup;
+
         yield return new WaitForSeconds(duration);
     }
 
+    //animation but temu
     public void PlayAttack()
     {
         StartCoroutine(AttackRoutine());
@@ -116,9 +199,15 @@ public class CharacterUnit : MonoBehaviour
     IEnumerator AttackRoutine()
     {
         currentState = UnitState.Attacking;
-        sr.sprite = attack;
+
+        if (sr != null && attack != null)
+            sr.sprite = attack;
+
         yield return new WaitForSeconds(0.2f);
-        sr.sprite = idle;
+
+        if (sr != null && idle != null)
+            sr.sprite = idle;
+
         currentState = UnitState.Idle;
     }
 
@@ -130,9 +219,15 @@ public class CharacterUnit : MonoBehaviour
     IEnumerator HitRoutine()
     {
         currentState = UnitState.Hit;
-        sr.sprite = hit;
+
+        if (sr != null && hit != null)
+            sr.sprite = hit;
+
         yield return new WaitForSeconds(0.2f);
-        sr.sprite = idle;
+
+        if (sr != null && idle != null)
+            sr.sprite = idle;
+
         currentState = UnitState.Idle;
     }
 
@@ -160,10 +255,11 @@ public class CharacterUnit : MonoBehaviour
 
     void OnMouseDown()
     {
-        CombatInputController.Instance.SelectUnit(this);
-        Debug.Log("Unit clicked: " + name);
+        if (CombatInputController.Instance != null)
+            CombatInputController.Instance.SelectUnit(this);
     }
 
+    //damage, modify how they take damage here
     public void TakeDamage(int dmg)
     {
         hp -= dmg;

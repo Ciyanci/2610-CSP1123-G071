@@ -25,9 +25,15 @@ public class CombatFlowController : MonoBehaviour
             ResetAll();
     }
 
-    // -----------------------------
-    // UNIT SELECTION
-    // -----------------------------
+    public void RefreshIntentPreview()
+    {
+        //reactivate arrows if intents already exist
+        if (selectedUnit != null && selectedCard != null)
+        {
+            arrow.Begin(selectedUnit, selectedCard);
+        }
+    }
+
     public void SelectUnit(CharacterUnit unit)
     {
         if (!inputEnabled) return;
@@ -38,9 +44,6 @@ public class CombatFlowController : MonoBehaviour
         unit.GetComponentInChildren<CardDeck>()?.OpenDeck();
     }
 
-    // -----------------------------
-    // CARD SELECTION
-    // -----------------------------
     public void SelectCard(Card card, CharacterUnit user)
     {
         if (!inputEnabled) return;
@@ -51,9 +54,6 @@ public class CombatFlowController : MonoBehaviour
         arrow.Begin(user, card);
     }
 
-    // -----------------------------
-    // TARGET CONFIRMATION
-    // -----------------------------
     public void ConfirmTarget(CharacterUnit target)
     {
         if (!inputEnabled) return;
@@ -62,19 +62,14 @@ public class CombatFlowController : MonoBehaviour
         battleFlow.QueueAction(selectedUnit, target, selectedCard);
 
         arrow.End();
-
         selectedCard = null;
     }
 
-    // -----------------------------
-    // CANCEL INPUT
-    // -----------------------------
     public void Cancel()
     {
         arrow.End();
-
-        selectedCard = null;
         selectedUnit = null;
+        selectedCard = null;
     }
 
     public void ResetAll()

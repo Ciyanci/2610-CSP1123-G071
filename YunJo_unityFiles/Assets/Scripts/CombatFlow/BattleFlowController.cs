@@ -1,102 +1,93 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BattleFlowController : MonoBehaviour
 {
     public CombatCamera cam;
+    public ClashSystem clashSystem;
+    public TurnSystem turnSystem;
 
-    List<CombatIntent> intents = new();
-
+    public List<CombatIntent> intents = new();
     List<(CombatIntent, CombatIntent)> clashes = new();
 
-    public void RegisterIntent(CharacterUnit user, Card card, CharacterUnit target)
+    //adding intent preview
+    public void QueueAction(CharacterUnit user, CharacterUnit target, Card card)
     {
         intents.Add(new CombatIntent
         {
             user = user,
-            card = card,
-            target = target
+            target = target,
+            card = card
         });
     }
 
-    // -------------------------
-    // PHASE 1: SPEED ROLL
-    // -------------------------
-    public IEnumerator RollSpeedPhase()
+    //debug ** manual clash test
+    public void TestClash(CharacterUnit a, CharacterUnit b, Card cardA, Card cardB)
     {
-        foreach (var i in intents)
+        if (a == null || b == null || cardA == null || cardB == null)
         {
-            i.speed = DiceSystem.Roll(1, 6);
-            yield return i.user.diceUI.Roll(1, 6, i.user.headAnchor, r => i.speed = r);
+            Debug.LogError("TestClash received null values!");
+            return;
         }
 
-        intents.Sort((a, b) => b.speed.CompareTo(a.speed));
+        intents.Clear();
+
+        QueueAction(a, b, cardA);
+        QueueAction(b, a, cardB);
+
+        StartCoroutine(ResolveAll());
     }
 
-    // -------------------------
-    // PHASE 2: CLASH PAIRING
-    // -------------------------
-    public void BuildClashes()
+    //resolution zone brrrr
+    public IEnumerator ResolveAll()
     {
-        clashes.Clear();
+        BuildClashes();
 
-        for (int i = 0; i < intents.Count; i++)
-        {
-            for (int j = i + 1; j < intents.Count; j++)
-            {
-                if (intents[i].target == intents[j].user &&
-                    intents[j].target == intents[i].user)
-                {
-                    clashes.Add((intents[i], intents[j]));
-                }
-            }
-        }
-    }
+        yield return cam.Reset();
 
-    // -------------------------
-    // PHASE 3: RESOLVE
-    // -------------------------
-    public IEnumerator Resolve()
-    {
-        foreach (var clash in clashes)
+        foreach (var c in clashes)
         {
-            yield return ResolveClash(clash.Item1, clash.Item2);
+            yield return clashSystem.Resolve(c.Item1, c.Item2);
+            c.Item1.resolved = true;
+            c.Item2.resolved = true;
         }
 
         foreach (var i in intents)
         {
-            if (!IsInClash(i))
+            if (!i.resolved)
                 yield return ResolveSingle(i);
         }
 
         Cleanup();
+
+        //signals done
+        CombatFlowController.Instance.SetInputEnabled(false);
     }
 
-    IEnumerator ResolveClash(CombatIntent a, CombatIntent b)
+
+    IEnumerator AfterClash()
     {
-        yield return cam.ClashZoom((a.user.transform.position + b.user.transform.position) / 2f);
-
-        int aRoll = DiceSystem.Roll(1, 6);
-        int bRoll = DiceSystem.Roll(1, 6);
-
-        if (aRoll >= bRoll)
-            yield return ResolveWin(a, b);
-        else
-            yield return ResolveWin(b, a);
-
-        yield return cam.Reset();
+        yield return new WaitForSeconds(0.3f);
     }
 
-    IEnumerator ResolveWin(CombatIntent winner, CombatIntent loser)
+    void BuildClashes()
     {
-        yield return winner.user.MoveTo(loser.user.clashAnchor.position);
+        clashes.Clear();
 
-        winner.user.PlayAttack();
-        loser.user.PlayHit();
+        foreach (var a in intents)
+        {
+            foreach (var b in intents)
+            {
+                if (a == b) continue;
 
-        int dmg = winner.card.damage + DiceSystem.Roll(1, 6);
-        loser.user.TakeDamage(dmg);
+                if (a.user == b.target && a.target == b.user)
+                {
+                    if (!clashes.Contains((a, b)) && !clashes.Contains((b, a)))
+                        clashes.Add((a, b));
+                }
+            }
+        }
     }
 
     IEnumerator ResolveSingle(CombatIntent i)
@@ -106,16 +97,10 @@ public class BattleFlowController : MonoBehaviour
         i.user.PlayAttack();
         i.target.PlayHit();
 
-        int dmg = i.card.damage + DiceSystem.Roll(1, 6);
+        int dmg = Random.Range(i.card.min, i.card.max + 1);
         i.target.TakeDamage(dmg);
-    }
 
-    bool IsInClash(CombatIntent i)
-    {
-        foreach (var c in clashes)
-            if (c.Item1 == i || c.Item2 == i)
-                return true;
-        return false;
+        yield return new WaitForSeconds(0.2f);
     }
 
     void Cleanup()
@@ -124,12 +109,4 @@ public class BattleFlowController : MonoBehaviour
         clashes.Clear();
     }
 }
-
-public class CombatIntent
-{
-    public CharacterUnit user;
-    public CharacterUnit target;
-    public Card card;
-    public int speed;
-}
-//need to add assets first before ts can work
+//kill me

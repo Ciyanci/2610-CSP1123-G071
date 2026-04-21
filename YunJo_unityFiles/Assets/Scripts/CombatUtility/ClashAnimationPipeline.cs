@@ -9,24 +9,24 @@ public class ClashAnimationPipeline : MonoBehaviour
     {
         Vector3 mid = (a.transform.position + b.transform.position) / 2f;
 
-        // 1. zoom camera
+        //zoom camera
         yield return cam.ClashZoom(mid);
 
-        // 2. move both units into clash lane
+        //move into clash lane please
         yield return a.MoveTo(a.clashAnchor.position);
         yield return b.MoveTo(b.clashAnchor.position);
 
         a.currentState = CharacterUnit.UnitState.Clashing;
         b.currentState = CharacterUnit.UnitState.Clashing;
 
-        // 3. dice roll phase
+        //dice rolling initialisationasfndasonf
         int aRoll = 0;
         int bRoll = 0;
 
         yield return Roll(a, r => aRoll = r);
         yield return Roll(b, r => bRoll = r);
 
-        // 4. resolve clash
+        //clash number logic thingamajajiggy
         if (aRoll > bRoll)
         {
             a.PlayAttack();
@@ -39,12 +39,11 @@ public class ClashAnimationPipeline : MonoBehaviour
         }
         else
         {
-            // tie pushback
+            //tie recoil
             yield return a.Recoil(Vector3.left, 0.2f, 0.1f);
             yield return b.Recoil(Vector3.right, 0.2f, 0.1f);
         }
 
-        // 5. reset camera
         yield return cam.Reset();
     }
 
