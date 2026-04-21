@@ -1360,6 +1360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7729841289297992770, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1616,10 +1620,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7673380054821397209, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
-      propertyPath: m_Name
-      value: CardView
-      objectReference: {fileID: 0}
     - target: {fileID: 5967318407120810133, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1659,6 +1659,10 @@ PrefabInstance:
     - target: {fileID: 5967318407120810133, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673380054821397209, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
+      propertyPath: m_Name
+      value: CardView
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

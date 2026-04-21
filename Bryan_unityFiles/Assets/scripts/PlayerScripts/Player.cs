@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
                     break;
 
                 case EffectType.Block:
-                    // TODO: add block system later
+                    // add block system later
                     break;
             }
         }
