@@ -14,6 +14,7 @@ public class TestSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CardView cardView = CardViewCreator.Instance.CreateCardView(transform.position, Quaternion.identity);
+            Card card = new Card(cardData);
             cardView.Setup(cardData);
             StartCoroutine(handView.AddCard(cardView));
         }
