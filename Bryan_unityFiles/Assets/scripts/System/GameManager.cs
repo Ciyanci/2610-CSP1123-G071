@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager { get; private set;}
 
-    public PlayerHealth _playerHealth = new PlayerHealth(100, 100);
+    public PlayerHealth _playerHealth;
 
     void Awake()
     {
