@@ -747,6 +747,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
   currentHealth: 100
+--- !u!212 &1178888909 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8329716419356289772, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
+  m_PrefabInstance: {fileID: 4923497004959584677}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1405178028
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestSystem
   handView: {fileID: 327496658}
-  cardData: {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
+  cardData: {fileID: 11400000, guid: f141beecaf1960c4183ec1e32bde1d13, type: 2}
 --- !u!4 &1405178030
 Transform:
   m_ObjectHideFlags: 0
@@ -1547,6 +1552,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2156126410412748161, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
+      propertyPath: cost
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2156126410412748161, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4635341865922517768}
@@ -1555,20 +1564,30 @@ PrefabInstance:
       value: HealingCard
       objectReference: {fileID: 0}
     - target: {fileID: 3291898997644031408, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
+      propertyPath: cost
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3291898997644031408, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 4635341865922517768}
+    - target: {fileID: 3291898997644031408, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
+      propertyPath: imageSR
+      value: 
+      objectReference: {fileID: 1178888909}
+    - target: {fileID: 4240509288836819143, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
+      propertyPath: cost
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1269729838232349620, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5936628755631971276, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 71827392588156538, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1269729838232349620, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 90448494edb7d9e40aa7aa2b16e2b68d, type: 3}
@@ -1768,8 +1787,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardView
       objectReference: {fileID: 0}
+    - target: {fileID: 8395165252284668172, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
+      propertyPath: imageSR
+      value: 
+      objectReference: {fileID: 1178888909}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7918458993134804249, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1533292275760623140, guid: bc8a25a8aa8015940afe99f14905ee9d, type: 3}

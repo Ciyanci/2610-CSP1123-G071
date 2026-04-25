@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   <Name>k__BackingField: Heal
   <Description>k__BackingField: Heals player for 10
-  <Cost>k__BackingField: 10
+  <Cost>k__BackingField: 9
   <Image>k__BackingField: {fileID: -7259685956808212303, guid: a078c341aec19b54ea9401f1bf13d4e0, type: 3}
   <Effects>k__BackingField:
   - type: 2
     value: 10
+  <CardPrefab>k__BackingField: {fileID: 0}

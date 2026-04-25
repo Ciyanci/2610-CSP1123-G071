@@ -15,7 +15,8 @@ MonoBehaviour:
   <Name>k__BackingField: Slash
   <Description>k__BackingField: Deals 10 damage to an enemy
   <Cost>k__BackingField: 3
-  <Image>k__BackingField: {fileID: 323514693916519810, guid: 9044eeec90178084685607987dbd0036, type: 3}
+  <Image>k__BackingField: {fileID: -6939695964637348897, guid: 2dccca5a8b9bb6f4784a44d157257859, type: 3}
   <Effects>k__BackingField:
   - type: 0
     value: 10
+  <CardPrefab>k__BackingField: {fileID: 0}

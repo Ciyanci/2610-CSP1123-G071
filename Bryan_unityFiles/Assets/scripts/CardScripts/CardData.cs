@@ -9,7 +9,9 @@ public class CardData : ScriptableObject
  [field: SerializeField] public string Description {get; private set;}
  [field: SerializeField] public int Cost {get; private set;}
  [field: SerializeField] public Sprite Image {get; private set;}
+
  [field: SerializeField] public List<CardEffect> Effects {get; private set;}
+ [field: SerializeField] public CardView CardPrefab { get; private set; }
 
 
  
