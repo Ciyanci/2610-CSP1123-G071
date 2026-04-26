@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4e68bbb27d61242983c549078342a3, type: 3}
+  m_Name: Piercing
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  <Name>k__BackingField: Pierce
+  <Description>k__BackingField: Deals 10 pierce damage
+  <Cost>k__BackingField: 9
+  <Image>k__BackingField: {fileID: 8357367252987858672, guid: 0f5d7875aa74f6042a36c876925d05bf, type: 3}
+  <Effects>k__BackingField:
+  - type: 0
+    value: 10
+  <CardPrefab>k__BackingField: {fileID: 0}
