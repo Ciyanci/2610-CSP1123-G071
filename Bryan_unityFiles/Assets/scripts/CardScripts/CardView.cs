@@ -13,6 +13,14 @@ public class CardView : MonoBehaviour
 
 
     public CardData cardData {get; private set;}
+    private TestSystem testSystem;
+    private Card card;
+
+    public void Init(TestSystem system, Card c)
+    {
+        testSystem = system;
+        card = c;
+    }
     
     //method to display cards on the screen. It also updates the UI for the cards
     public void Setup(CardData data)
@@ -39,11 +47,11 @@ public class CardView : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("Card clicked!");
         if (cardData != null)
         {
             player.PlayCard(cardData);
-
+            testSystem.DiscardCard(card);
+            Destroy(gameObject);
         }
     }
 }
