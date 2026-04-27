@@ -6,6 +6,7 @@ public class TestSystem : MonoBehaviour
 {
     [SerializeField] private HandView handView;
     [SerializeField] private List<CardData> startingDeck;
+    [SerializeField] private PlayerCost energy;
 
     private List<Card> drawPile = new();
     private List<Card> hand = new();
