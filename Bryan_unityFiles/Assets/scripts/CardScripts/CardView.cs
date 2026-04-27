@@ -49,9 +49,7 @@ public class CardView : MonoBehaviour
     {
         if (cardData != null)
         {
-            player.PlayCard(cardData);
-            testSystem.DiscardCard(card);
-            Destroy(gameObject);
+            testSystem.TryPlayCard(this, card);
         }
     }
 }

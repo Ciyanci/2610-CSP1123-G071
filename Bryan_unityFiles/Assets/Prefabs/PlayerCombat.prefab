@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3499003820864906240}
   - component: {fileID: 7277763206781794412}
+  - component: {fileID: 1528523117441076373}
   m_Layer: 0
   m_Name: PlayerCombat
   m_TagString: Untagged
@@ -45,3 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   enemy: {fileID: 7729841289297992770, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
+--- !u!114 &1528523117441076373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582586006165225769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be6d46190f64e8448fe073e9578d1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCost
+  maxEnergy: 10
