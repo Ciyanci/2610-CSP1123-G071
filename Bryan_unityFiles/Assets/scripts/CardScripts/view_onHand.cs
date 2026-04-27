@@ -7,6 +7,7 @@ using DG.Tweening;
 public class HandView : MonoBehaviour
 {
    [SerializeField] private SplineContainer splineContainer;
+   
    private readonly List<CardView> cards = new();
    public IEnumerator AddCard(CardView cardView)
     {
@@ -35,11 +36,30 @@ public class HandView : MonoBehaviour
     }
 
     public void ClearHand()
-{
-    foreach (Transform child in transform)
     {
-        Destroy(child.gameObject);
+        foreach (var c in cards)
+        {
+            Destroy(c.gameObject);
+        }
+        cards.Clear();
     }
-}
+
+    public void RemoveFirstCard()
+    {
+        if(cards.Count == 0) return;
+        cards.RemoveAt(0);
+    }
+
+    public void RemoveCard(CardView view)
+    {
+        if (view == null) return;
+
+        if (cards.Contains(view))
+        {
+            cards.Remove(view);
+        }
+        Destroy(view.gameObject);
+    }
+
 }
 

@@ -21,7 +21,7 @@ public class TestSystem : MonoBehaviour
             drawPile.Add(new Card(data));
         }
         Shuffle(drawPile);
-        DrawHand();
+        StartTurn();
     }
 
 
@@ -40,6 +40,11 @@ public class TestSystem : MonoBehaviour
             EndTurn();
         }
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            TryPlayFirstCard();
+        }
+
         /*if (Input.GetKeyDown(KeyCode.Space))
         {
             CardView cardView = CardViewCreator.Instance.CreateCardView(transform.position, Quaternion.identity);
@@ -47,6 +52,12 @@ public class TestSystem : MonoBehaviour
             cardView.Setup(cardData);
             StartCoroutine(handView.AddCard(cardView));
         }*/
+    }
+
+    void StartTurn()
+    {
+        energy.StartTurn();
+        DrawHand();
     }
 
     void DrawCard()
@@ -85,20 +96,44 @@ public class TestSystem : MonoBehaviour
         StartCoroutine(handView.AddCard(view));
     }
 
-    public void DiscardCard(Card card)
+    void TryPlayFirstCard()
+    {
+        if (hand.Count == 0) return;
+        Card card = hand[0];
+        if (!energy.Spend(card.Cost))
+        {
+            Debug.Log("not enough energy");
+            return;
+        }
+
+        hand.RemoveAt(0);
+        discardPile.Add(card);
+        handView.RemoveFirstCard();
+    }
+
+    void EndTurn()
+    {
+        discardPile.AddRange(hand);
+        hand.Clear();
+        handView.ClearHand();
+        Debug.Log("end turn");
+        StartTurn();
+    }
+
+   /* public void DiscardCard(Card card)
     {
         hand.Remove(card);
         discardPile.Add(card);
         Debug.Log("Discarded: " + card.Title);
-    }
+    }*/
 
-    public void EndTurn()
+    /*public void EndTurn()
     {
         discardPile.AddRange(hand);
         hand.Clear();
         Debug.Log("End turn => discard all");
         DrawHand();
-    }
+    }*/
 
     void Reshuffle()
     {
@@ -115,5 +150,23 @@ public class TestSystem : MonoBehaviour
             int rand = Random.Range(i, list.Count);
             (list[i], list[rand]) = (list[rand], list[i]);
         }
+    }
+
+    public void TryPlayCard(CardView view, Card card)
+    {
+        if (!energy.Spend(card.Cost))
+        {
+            Debug.Log("Not enough energy!");
+            return;
+        }
+
+        Debug.Log("Played: " + card.Title);
+
+        hand.Remove(card);
+        discardPile.Add(card);
+
+        handView.RemoveCard(view);
+
+        Destroy(view.gameObject);
     }
 }
