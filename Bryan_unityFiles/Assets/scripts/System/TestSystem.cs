@@ -53,6 +53,11 @@ public class TestSystem : MonoBehaviour
         if (drawPile.Count == 0)
         {
             Reshuffle();
+        }
+
+        if (drawPile.Count == 0)
+        {
+            Debug.Log("no cards left!");
             return;
         }
 
