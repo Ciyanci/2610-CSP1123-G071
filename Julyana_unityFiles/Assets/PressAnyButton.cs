@@ -15,6 +15,6 @@ public class PressAnyButton : MonoBehaviour
         }
 
         // makes text blink
-        promptText.alpha = Mathf.PingPong(Time.time, 1f);
+        promptText.alpha = Mathf.PingPong(Time.time * 0.5f, 1f);
     }
 }
