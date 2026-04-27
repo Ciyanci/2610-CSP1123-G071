@@ -33,5 +33,13 @@ public class HandView : MonoBehaviour
 
         //i used a guide for this it looks horrible and i dont understand 100% fully how it works yet
     }
+
+    public void ClearHand()
+{
+    foreach (Transform child in transform)
+    {
+        Destroy(child.gameObject);
+    }
+}
 }
 
