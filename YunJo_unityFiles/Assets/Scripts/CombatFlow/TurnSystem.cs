@@ -21,7 +21,8 @@ public class TurnSystem : MonoBehaviour
 
     public Phase currentPhase;
 
-    int turn = 1;
+    int turn = 0;
+    bool running;
 
     void Awake()
     {
@@ -30,50 +31,74 @@ public class TurnSystem : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(RunTurn());
+        StartCoroutine(TurnLoop());
+    }
+
+    IEnumerator TurnLoop()
+    {
+        while (true)
+        {
+            yield return RunTurn();
+        }
     }
 
     public IEnumerator RunTurn()
     {
-        yield return SetPhase(Phase.Start);
-        yield return ShowTurn();
+        if (running) yield break;
+        running = true;
 
+        turn++;
+
+        // =========================
+        // START PHASE + TURN UI
+        // =========================
+        yield return SetPhase(Phase.Start);
+
+        turnText.text = "Turn " + turn;
+        yield return Fade(1);
+
+        foreach (var unit in FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None))
+        {
+            unit.RollSpeed();
+        }
+
+        yield return new WaitForSeconds(0.4f);
+
+        yield return Fade(0);
+        turnText.text = "";
+
+        // =========================
+        // DRAW
+        // =========================
         yield return SetPhase(Phase.Draw);
         yield return new WaitForSeconds(0.2f);
 
+        // =========================
+        // PLANNING
+        // =========================
         yield return SetPhase(Phase.Planning);
+
+        CombatFlowController.Instance.SetInputEnabled(true);
 
         yield return new WaitUntil(() =>
             CombatFlowController.Instance.inputEnabled == false);
 
+        // =========================
+        // CLASH / RESOLVE
+        // =========================
         yield return SetPhase(Phase.Clash);
+
         yield return SetPhase(Phase.Resolve);
+
         yield return SetPhase(Phase.End);
 
-        turn++;
+        running = false;
     }
 
-        public IEnumerator SetPhase(Phase p)
-        {
-            currentPhase = p;
-            yield return null;
-        }
-
-    public IEnumerator ShowTurn()
+    public IEnumerator SetPhase(Phase p)
     {
-        yield return Fade(1);
-
-        turnText.text = "Turn " + turn;
-
-        yield return new WaitForSeconds(1f);
-
-        yield return Fade(0);
-    }
-
-    public void HideUI()
-    {
-        StartCoroutine(Fade(0));
-        turnText.text = "";
+        currentPhase = p;
+        yield return null;
     }
 
     IEnumerator Fade(float target)

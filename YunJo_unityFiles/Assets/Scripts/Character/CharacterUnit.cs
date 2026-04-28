@@ -27,6 +27,8 @@ public class CharacterUnit : MonoBehaviour
     public DiceUI diceUI; // ✅ unified system
     public int currentSpeedRoll;
 
+    public SpeedDiceUI speedDiceUI;
+
     [Header("Energy")]
     public int maxEnergy = 5;
     public int currentEnergy;
@@ -102,14 +104,21 @@ public class CharacterUnit : MonoBehaviour
         return transform.position;
     }
 
+// -----------------------------
+// POSITION RESET (RESTORED)
+// -----------------------------
+Vector3 startWorldPos;
     public void ResetPosition()
     {
         StopAllCoroutines();
 
         if (visual != null)
-            visual.position = combatStartPos;
+            visual.position = startWorldPos;
 
         currentState = UnitState.Idle;
+
+        if (sr != null && idle != null)
+            sr.sprite = idle;
     }
 
     public Vector3 GetCombatFocusPoint()
@@ -118,8 +127,6 @@ public class CharacterUnit : MonoBehaviour
             ? visual.position + new Vector3(0, 1.0f, 0)
             : transform.position;
     }
-
-    Vector3 startWorldPos;
 
     void Awake()
     {
@@ -251,6 +258,28 @@ public class CharacterUnit : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
+    }
+
+    public void RollSpeed()
+    {
+        currentSpeedRoll = Random.Range(1, 10);
+
+        if (speedDiceUI != null)
+        {
+            speedDiceUI.Init(headAnchor);
+            speedDiceUI.SetValue(currentSpeedRoll);
+            speedDiceUI.Show();
+        }
+    }
+
+    public void HideSpeed()
+    {
+        speedDiceUI?.Hide();
+    }
+
+    public void ShowSpeed()
+    {
+        speedDiceUI?.Show();
     }
 
     void OnMouseDown()

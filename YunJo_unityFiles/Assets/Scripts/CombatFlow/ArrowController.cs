@@ -5,8 +5,14 @@ public class ArrowController : MonoBehaviour
     public LineRenderer lr;
     public Transform tip;
 
+    public void Begin(CharacterUnit user, Card card)
+    {
+        start = user.headAnchor;
+        gameObject.SetActive(true);
+    }
+
     Transform start;
-    Card currentCard;
+    Transform end;
 
     Camera cam;
 
@@ -15,62 +21,32 @@ public class ArrowController : MonoBehaviour
         cam = Camera.main;
     }
 
-    public void Begin(CharacterUnit user, Card card)
+    public void Set(Transform from, Transform to)
     {
-        start = user.headAnchor;
-        currentCard = card;
-        gameObject.SetActive(true);
-    }
-
-    public void ForceRefresh(CharacterUnit user, Card card)
-    {
-        Begin(user, card);
+        start = from;
+        end = to;
     }
 
     public void End()
     {
         start = null;
-        currentCard = null;
+        end = null;
         gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (start == null) return;
+        if (start == null || end == null) return;
 
         Vector3 startPos = start.position + Vector3.up * 0.2f;
-
-        Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
-        mouse.z = 0;
+        Vector3 endPos = end.position + Vector3.up * 0.2f;
 
         lr.SetPosition(0, startPos);
-        lr.SetPosition(1, mouse);
+        lr.SetPosition(1, endPos);
 
         if (tip != null)
         {
-            tip.position = mouse;
-            tip.right = (mouse - startPos).normalized;
-        }
-
-        //left click to confirm target
-        if (Input.GetMouseButtonDown(0))
-        {
-            Collider2D hit = Physics2D.OverlapPoint(mouse);
-
-            if (hit == null) return;
-
-            CharacterUnit target = hit.GetComponent<CharacterUnit>();
-
-            if (target != null)
-            {
-                CombatFlowController.Instance.ConfirmTarget(target);
-            }
-        }
-
-        //right click to cancel
-        if (Input.GetMouseButtonDown(1))
-        {
-            CombatFlowController.Instance.ResetAll();
+            tip.position = endPos;
         }
     }
 }

@@ -1,23 +1,21 @@
 using UnityEngine;
+using System.Collections.Generic;
+
 public class ClashTestDriver : MonoBehaviour
 {
-    public CharacterUnit a;
-    public CharacterUnit b;
-    public Card cardA;
-    public Card cardB;
+    public List<CharacterUnit> units;
+    public List<Card> cards;
+
     public BattleFlowController flow;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            if (a == null || b == null || cardA == null || cardB == null)
-            {
-                Debug.LogError("ClashTestDriver missing setup references!");
+            if (flow == null || units.Count == 0 || cards.Count == 0)
                 return;
-            }
 
-            flow.TestClash(a, b, cardA, cardB);
+            flow.TestClash(units, cards);
         }
     }
 }

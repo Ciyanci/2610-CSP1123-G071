@@ -25,40 +25,46 @@ public class DiceUI : MonoBehaviour
         text.color = Color.white;
     }
 
-    //follows target (headanchor or offsetted thing)
+    // -------------------------
+    // FOLLOW TARGET
+    // -------------------------
     public void Follow(Transform t)
     {
         follow = t;
-    }
-
-    public void Hide()
-    {
-        canvasGroup.alpha = 0;
-        follow = null;
     }
 
     void LateUpdate()
     {
         if (!follow || !cam) return;
 
-        Vector3 worldPos;
-
-        worldPos = follow.position;
-
-        worldPos += Vector3.up * 0.5f;
-
+        Vector3 worldPos = follow.position + Vector3.up * 0.5f;
         Vector3 screen = cam.WorldToScreenPoint(worldPos);
 
         if (screen.z <= 0) return;
 
         smoothedScreen = Vector3.Lerp(smoothedScreen, screen, Time.deltaTime * 15f);
-
         rect.position = smoothedScreen;
     }
 
-    public IEnumerator Roll(int min, int max, System.Action<int> onDone)
+    // -------------------------
+    // VISIBILITY
+    // -------------------------
+    public void Show()
     {
         canvasGroup.alpha = 1;
+    }
+
+    public void Hide()
+    {
+        canvasGroup.alpha = 0;
+    }
+
+    // -------------------------
+    // ROLL
+    // -------------------------
+    public IEnumerator Roll(int min, int max, System.Action<int> onDone)
+    {
+        Show();
         text.color = Color.white;
 
         int final = Random.Range(min, max + 1);
@@ -74,16 +80,17 @@ public class DiceUI : MonoBehaviour
         }
 
         text.text = final.ToString();
-        yield return new WaitForSeconds(0.15f);
 
         onDone?.Invoke(final);
     }
 
-    //i dont know why this works
-    public void SetResultColor(int a, int b)
+    // -------------------------
+    // SET FINAL COLOR
+    // -------------------------
+    public void SetResult(int myRoll, int enemyRoll)
     {
-        if (a == b) text.color = tieColor;
-        else if (a < b) text.color = winColor;
+        if (myRoll == enemyRoll) text.color = tieColor;
+        else if (myRoll > enemyRoll) text.color = winColor;
         else text.color = loseColor;
     }
 }

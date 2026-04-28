@@ -3,22 +3,26 @@ using System.Collections;
 
 public class ClashSystem : MonoBehaviour
 {
-    public DiceUI dice;
+    public DiceUI diceA;
+    public DiceUI diceB;
+
     public CombatCamera cam;
     public System.Action OnClashFinished;
 
     void Awake()
     {
-        if (dice == null)
-            dice = FindFirstObjectByType<DiceUI>();
+        if (diceA == null || diceB == null)
+        {
+            var all = FindObjectsByType<DiceUI>(FindObjectsSortMode.None);
+            if (all.Length >= 2)
+            {
+                diceA = all[0];
+                diceB = all[1];
+            }
+        }
 
         if (cam == null)
             cam = FindFirstObjectByType<CombatCamera>();
-    }
-
-    IEnumerator Buffer(float t)
-    {
-        yield return new WaitForSeconds(t);
     }
 
     public IEnumerator Resolve(CombatIntent a, CombatIntent b)
@@ -29,13 +33,25 @@ public class ClashSystem : MonoBehaviour
         CharacterUnit A = a.user;
         CharacterUnit B = b.user;
 
-        A.SetCombatStartPosition();
-        B.SetCombatStartPosition();
+        //hide speed dice
+        A.HideSpeed();
+        B.HideSpeed();
 
+        // positioning
         Vector3 mid = (A.GetClashPosition() + B.GetClashPosition()) / 2f;
 
-        Vector3 aPoint = mid + Vector3.left * 3.5f;
-        Vector3 bPoint = mid + Vector3.right * 3.5f;
+        float meleeDist = 8f;
+        float rangedDist = 14f;
+
+        float dist =
+            (A.unitType == UnitType.Ranged || B.unitType == UnitType.Ranged)
+                ? rangedDist
+                : meleeDist;
+
+        Vector3 dir = (B.GetClashPosition() - A.GetClashPosition()).normalized;
+
+        Vector3 aPoint = mid - dir * dist * 0.5f;
+        Vector3 bPoint = mid + dir * dist * 0.5f;
 
         if (A.unitType == UnitType.Melee)
             yield return A.MoveTo(aPoint);
@@ -45,32 +61,58 @@ public class ClashSystem : MonoBehaviour
 
         yield return new WaitForSeconds(0.2f);
 
+        //center cam
+        yield return cam.ClashCenter(mid);
+
         while (true)
         {
             int rollA = 0;
             int rollB = 0;
 
-            yield return cam.ClashZoom(A.GetCombatFocusPoint());
-            dice.Follow(A.headAnchor);
-            yield return dice.Roll(a.card.min, a.card.max, r => rollA = r);
+            // 🎲 POSITION DICE
+            diceA.Follow(A.headAnchor);
+            diceB.Follow(B.headAnchor);
 
-            yield return cam.ClashZoom(B.GetCombatFocusPoint());
-            dice.Follow(B.headAnchor);
-            yield return dice.Roll(b.card.min, b.card.max, r => rollB = r);
+            yield return new WaitForSeconds(0.15f);
 
-            dice.SetResultColor(rollA, rollB);
+            // 🎲 ROLL BOTH (TRUE PARALLEL)
+            bool doneA = false;
+            bool doneB = false;
 
-            yield return new WaitForSeconds(0.2f);
+            StartCoroutine(diceA.Roll(a.card.min, a.card.max, r =>
+            {
+                rollA = r;
+                doneA = true;
+            }));
 
+            StartCoroutine(diceB.Roll(b.card.min, b.card.max, r =>
+            {
+                rollB = r;
+                doneB = true;
+            }));
+
+            yield return new WaitUntil(() => doneA && doneB);
+
+            // 🎨 RESULT COLORS
+            diceA.SetResult(rollA, rollB);
+            diceB.SetResult(rollB, rollA);
+
+            yield return new WaitForSeconds(0.25f);
+
+            // -----------------------------
+            // 🤝 TIE → SHAKE
+            // -----------------------------
             if (rollA == rollB)
             {
                 A.PlayHit();
                 B.PlayHit();
 
-                Vector3 dir = (B.visual.position - A.visual.position).normalized;
+                yield return cam.Shake(0.15f, 0.2f);
 
-                yield return A.Recoil(-dir, 0.3f, 0.12f);
-                yield return B.Recoil(dir, 0.3f, 0.12f);
+                Vector3 recoilDir = (B.visual.position - A.visual.position).normalized;
+
+                yield return A.Recoil(-recoilDir, 0.4f, 0.12f);
+                yield return B.Recoil(recoilDir, 0.4f, 0.12f);
 
                 yield return A.MoveTo(aPoint);
                 yield return B.MoveTo(bPoint);
@@ -78,6 +120,9 @@ public class ClashSystem : MonoBehaviour
                 continue;
             }
 
+            // -----------------------------
+            // 🏆 WIN → FOLLOW LOSER
+            // -----------------------------
             bool aWins = rollA > rollB;
 
             CharacterUnit winner = aWins ? A : B;
@@ -86,8 +131,12 @@ public class ClashSystem : MonoBehaviour
             winner.PlayAttack();
             loser.PlayHit();
 
+            // 🔥 SMOOTH FOLLOW (NOT INSTANT SNAP)
+            yield return cam.SmoothFollow(loser.visual, 0.25f);
+
             Vector3 hitDir = (loser.visual.position - winner.visual.position).normalized;
-            yield return loser.Recoil(hitDir, 0.4f, 0.15f);
+
+            yield return loser.Recoil(hitDir, 1.2f, 0.15f);
 
             int dmg = Mathf.RoundToInt(
                 aWins
@@ -96,13 +145,25 @@ public class ClashSystem : MonoBehaviour
             );
 
             loser.TakeDamage(dmg);
+
             break;
         }
+
+        // -----------------------------
+        // 🔄 CLEAN RESET
+        // -----------------------------
+        yield return new WaitForSeconds(0.3f);
 
         A.ResetPosition();
         B.ResetPosition();
 
-        dice.Hide();
+        // ✅ RESTORE SPEED DICE
+        A.ShowSpeed();
+        B.ShowSpeed();
+
+        diceA.Hide();
+        diceB.Hide();
+
         yield return cam.Reset();
 
         OnClashFinished?.Invoke();

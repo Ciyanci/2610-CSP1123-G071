@@ -42,7 +42,7 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator StartTurn()
     {
         phase = CombatPhase.StartTurn;
-        yield return turnUI.ShowTurn();
+        yield return null;
     }
 
     IEnumerator DrawPhase()
