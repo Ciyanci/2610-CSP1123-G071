@@ -8,7 +8,7 @@ public class ReturnFunction : MonoBehaviour
     public void ReturnClick()
     {
         Debug.Log("Return Button Clicked");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MenuSelectionScreen");
     }
 }
 
