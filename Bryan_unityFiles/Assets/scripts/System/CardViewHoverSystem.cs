@@ -3,12 +3,12 @@ using UnityEngine;
 public class CardViewHoverSystem : Singleton<CardViewHoverSystem>
 {
     [SerializeField] private CardView cardViewHover;
-    public void Show(Card card, Vector3 position)
+    public void Show(CardData cardData, Vector3 position)
     {
-        Debug.Log(card == null ? "card null" : "card working");
+        Debug.Log(cardData == null ? "card null" : "card working");
 
         cardViewHover.gameObject.SetActive(true);
-        cardViewHover.Setup(card);
+        cardViewHover.Setup(cardData);
         cardViewHover.transform.position = position;
     }
 

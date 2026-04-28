@@ -1,57 +1,31 @@
 using UnityEngine;
 
-public class HealthPoints
+public class PlayerHealth : MonoBehaviour
 {
-    
-    int current_health;
-    int current_maxhealth;
-    public int Health
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int currentHealth = 100;
+
+    public int Health => currentHealth;
+    public int MaxHealth => maxHealth;
+
+    public void DmgPoint(int dmgAmount)
     {
-        get
-        {
-            return current_health;
-            
-        }
-        set
-        {
-            current_health = value;    
-        }
+        currentHealth -= dmgAmount;
+        if (currentHealth < 0)
+            currentHealth = 0;
+ 
+            Debug.Log("Player took damage: " + dmgAmount + " HP: " + currentHealth);
+
     }
 
-    public int MaxHealth
+    public void healing(int healAmount)
     {
-        get
-        {
-            return current_maxhealth;
-            
-        }
-        set
-        {
-            current_maxhealth = value;    
-        }
-    }
-    public HealthPoints(int health, int maxHealth)
-    {
-        current_health = health;
-        current_maxhealth = maxHealth;
-    }
-    public void DmgPoint (int dmgAmount)
-    {
-        if (current_health > 0)
-        {
-            current_health -= dmgAmount;
-        }
+        currentHealth += healAmount;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        Debug.Log("Player healed: " + healAmount + " HP: " + currentHealth);
+
     }
 
-    public void healing (int healAmount)
-    {
-         if (current_health < current_maxhealth)
-        {
-            current_health += healAmount;
-        }
-        if (current_health > current_maxhealth)
-        {
-            current_health = current_maxhealth;
-        }
-    }
 }

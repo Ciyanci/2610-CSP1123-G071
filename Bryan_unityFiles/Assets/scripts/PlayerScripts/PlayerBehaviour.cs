@@ -5,7 +5,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayerTakeDmg(20);
             Debug.Log(GameManager.gameManager._playerHealth.Health);
@@ -14,7 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             PlayerHeal(10);
             Debug.Log(GameManager.gameManager._playerHealth.Health);
-        }
+        }*/
     }
     private void PlayerTakeDmg(int dmg)
     {
