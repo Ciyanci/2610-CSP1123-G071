@@ -59,7 +59,7 @@ public class CombatFlowController : MonoBehaviour
         if (!inputEnabled) return;
         if (selectedCard == null || selectedUnit == null) return;
 
-        battleFlow.QueueAction(selectedUnit, target, selectedCard);
+        battleFlow.QueuePreview(selectedUnit, target, selectedCard);
 
         arrow.End();
         selectedCard = null;

@@ -50,19 +50,72 @@ public class ClashSystem : MonoBehaviour
 
         Vector3 dir = (B.GetClashPosition() - A.GetClashPosition()).normalized;
 
-        Vector3 aPoint = mid - dir * dist * 0.5f;
-        Vector3 bPoint = mid + dir * dist * 0.5f;
+        float spacing = 3.5f;
 
-        if (A.unitType == UnitType.Melee)
+        bool meleeA = A.unitType == UnitType.Melee;
+        bool meleeB = B.unitType == UnitType.Melee;
+
+        // melee vs melee
+        if (meleeA && meleeB)
+        {
+            spacing = 4.5f;
+        }
+
+        // ranged vs ranged
+        else if (!meleeA && !meleeB)
+        {
+            spacing = 6f;
+        }
+
+        // melee vs ranged
+        else
+        {
+            spacing = 4.5f;
+        }
+
+        Vector3 aPoint = mid + Vector3.left * spacing;
+        Vector3 bPoint = mid + Vector3.right * spacing;
+
+        // melee vs melee
+        if (meleeA && meleeB)
+        {
+            yield return A.MoveTo(aPoint);
+            yield return B.MoveTo(bPoint);
+        }
+
+        // melee vs ranged
+        else if (meleeA && !meleeB)
+        {
             yield return A.MoveTo(aPoint);
 
-        if (B.unitType == UnitType.Melee)
+            // slight reposition
+            yield return B.MoveTo(
+                B.visual.position + Vector3.right * 0.5f,
+                0.12f
+            );
+        }
+
+        // ranged vs melee
+        else if (!meleeA && meleeB)
+        {
             yield return B.MoveTo(bPoint);
+
+            yield return A.MoveTo(
+                A.visual.position + Vector3.left * 0.5f,
+                0.12f
+            );
+        }
 
         yield return new WaitForSeconds(0.2f);
 
-        //center cam
-        yield return cam.ClashCenter(mid);
+        if (meleeA && meleeB)
+        {
+            yield return cam.ClashCenter(mid);
+        }
+        else
+        {
+            yield return cam.Reset();
+        }
 
         while (true)
         {

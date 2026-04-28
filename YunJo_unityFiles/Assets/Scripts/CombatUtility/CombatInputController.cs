@@ -50,7 +50,7 @@ public class CombatInputController : MonoBehaviour
         if (!inputEnabled) return;
         if (selectedUnit == null || selectedCard == null) return;
 
-        battle.QueueAction(selectedUnit, target, selectedCard);
+        battle.QueuePreview(selectedUnit, target, selectedCard);
 
         arrow.End();
 

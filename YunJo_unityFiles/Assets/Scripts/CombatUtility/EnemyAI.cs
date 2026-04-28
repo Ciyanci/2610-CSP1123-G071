@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
             self.Spend(card.Cost);
 
             FindFirstObjectByType<BattleFlowController>()
-                .QueueAction(self, target, card);
+                .QueuePreview(self, target, card);
 
             yield return new WaitForSeconds(0.2f);
         }

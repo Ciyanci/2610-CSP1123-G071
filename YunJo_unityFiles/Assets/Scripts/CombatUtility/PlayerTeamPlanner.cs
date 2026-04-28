@@ -15,7 +15,7 @@ public class PlayerTeamPlanner : MonoBehaviour
 
             CharacterUnit target = FindTargetFor(deck.owner);
 
-            flow.QueueAction(deck.owner, target, card);
+            flow.QueuePreview(deck.owner, target, card);
         }
     }
 

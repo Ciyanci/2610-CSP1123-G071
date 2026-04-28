@@ -4,90 +4,151 @@ using System.Collections.Generic;
 
 public class BattleFlowController : MonoBehaviour
 {
+    public static BattleFlowController Instance;
+
     public CombatCamera cam;
     public ClashSystem clashSystem;
 
-    public List<ArrowController> activeArrows = new();
+    [Header("Arrow")]
     public ArrowController arrowPrefab;
 
+    // =========================
+    // PREVIEW LAYER
+    // =========================
+    public List<PreviewIntent> previewIntents = new();
+
+    // =========================
+    // COMBAT LAYER
+    // =========================
     public List<CombatIntent> intents = new();
     List<(CombatIntent, CombatIntent)> clashes = new();
 
-    // =========================
-    // INTENT (supports multiple)
-    // =========================
-    public void QueueAction(CharacterUnit user, CharacterUnit target, Card card)
+    void Awake()
     {
-        CombatIntent intent = new CombatIntent
-        {
-            user = user,
-            target = target,
-            card = card
-        };
+        Instance = this;
+    }
 
-        intents.Add(intent);
+    // =====================================================
+    // PREVIEW
+    // =====================================================
+    public void QueuePreview(CharacterUnit user, CharacterUnit target, Card card)
+    {
+        if (user == null || target == null || card == null)
+            return;
 
         ArrowController arrow = Instantiate(arrowPrefab, transform);
         arrow.Set(user.headAnchor, target.headAnchor);
 
-        activeArrows.Add(arrow);
+        PreviewIntent preview = new PreviewIntent
+        {
+            user = user,
+            target = target,
+            card = card,
+            arrow = arrow
+        };
+
+        previewIntents.Add(preview);
     }
 
-    // =========================
-    // TEST DRIVER SAFE ENTRY
-    // =========================
-    public void TestClash(List<CharacterUnit> units, List<Card> cards)
+    // =====================================================
+    // COMBAT BUILD
+    // =====================================================
+    public void BuildCombatIntents()
     {
         intents.Clear();
-        CleanupArrows();
 
-        int count = Mathf.Min(units.Count, cards.Count);
-
-        for (int i = 0; i < count; i++)
+        foreach (var p in previewIntents)
         {
-            var user = units[i];
-            var target = units[(i + 1) % count];
+            if (p == null || p.user == null || p.target == null) continue;
 
-            QueueAction(user, target, cards[i]);
+            intents.Add(new CombatIntent
+            {
+                user = p.user,
+                target = p.target,
+                card = p.card,
+                resolved = false
+            });
         }
-
-        StartCoroutine(ResolveAll());
     }
 
-    // =========================
-    // RESOLVE ALL (MULTI + UNOPPOSED)
-    // =========================
+    // =====================================================
+    // RESOLVE ALL
+    // =====================================================
     public IEnumerator ResolveAll()
     {
+        BuildCombatIntents();
         BuildClashes();
+
+        ClearPreview(); // 🔥 IMPORTANT (fixes arrow bug)
 
         yield return cam.Reset();
 
-        // 1. RESOLVE CLASHES
         foreach (var c in clashes)
         {
             yield return clashSystem.Resolve(c.Item1, c.Item2);
-
             c.Item1.resolved = true;
             c.Item2.resolved = true;
         }
 
-        // 2. UNOPPOSED ATTACKS
         foreach (var i in intents)
         {
-            if (!i.resolved)
-            {
-                yield return ResolveSingle(i);
-            }
+            if (i == null || i.resolved)
+                continue;
+
+            yield return ResolveSingle(i);
         }
 
         Cleanup();
 
-        CombatFlowController.Instance.SetInputEnabled(false);
+        if (CombatFlowController.Instance != null)
+            CombatFlowController.Instance.SetInputEnabled(false);
     }
 
+    // =====================================================
+    // CLASH BUILD
+    // =====================================================
+    void BuildClashes()
+    {
+        clashes.Clear();
+
+        HashSet<CombatIntent> used = new();
+
+        for (int i = 0; i < intents.Count; i++)
+        {
+            var a = intents[i];
+            if (a == null || used.Contains(a)) continue;
+
+            for (int j = i + 1; j < intents.Count; j++)
+            {
+                var b = intents[j];
+                if (b == null || used.Contains(b)) continue;
+
+                bool clash =
+                    a.user == b.target &&
+                    a.target == b.user;
+
+                if (clash)
+                {
+                    clashes.Add((a, b));
+                    used.Add(a);
+                    used.Add(b);
+                    break;
+                }
+            }
+        }
+    }
+
+    // =====================================================
+    // UNOPPOSED
+    // =====================================================
     IEnumerator ResolveSingle(CombatIntent i)
     {
+        if (i.user == null || i.target == null)
+            yield break;
+
+        i.user.SetCombatStartPosition();
+        i.target.SetCombatStartPosition();
+
         yield return i.user.MoveTo(i.target.clashAnchor.position);
 
         i.user.PlayAttack();
@@ -96,47 +157,39 @@ public class BattleFlowController : MonoBehaviour
         int dmg = Random.Range(i.card.min, i.card.max + 1);
         i.target.TakeDamage(dmg);
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.3f);
+
+        i.user.ResetPosition();
+        i.target.ResetPosition();
     }
 
-    // =========================
-    // CLASH BUILDING (safe multi-match)
-    // =========================
-    void BuildClashes()
-    {
-        clashes.Clear();
-
-        for (int i = 0; i < intents.Count; i++)
-        {
-            for (int j = i + 1; j < intents.Count; j++)
-            {
-                var a = intents[i];
-                var b = intents[j];
-
-                if (a.user == b.target && a.target == b.user)
-                {
-                    clashes.Add((a, b));
-                }
-            }
-        }
-    }
-
+    // =====================================================
+    // CLEANUP COMBAT
+    // =====================================================
     void Cleanup()
     {
         intents.Clear();
         clashes.Clear();
-        CleanupArrows();
     }
 
-    void CleanupArrows()
+    // =====================================================
+    // PREVIEW CLEANUP (FIXED - THIS WAS MISSING)
+    // =====================================================
+    public void ClearPreview()
     {
-        foreach (var arrow in activeArrows)
+        foreach (var p in previewIntents)
         {
-            if (arrow != null)
-                Destroy(arrow.gameObject);
+            if (p?.arrow != null)
+                Destroy(p.arrow.gameObject);
         }
 
-        activeArrows.Clear();
+        previewIntents.Clear();
+    }
+
+    // Optional alias (fixes older scripts calling this)
+    public void HidePreviewArrows()
+    {
+        ClearPreview();
     }
 }
 //kill me
