@@ -7,6 +7,7 @@ public class TestSystem : MonoBehaviour
     [SerializeField] private HandView handView;
     [SerializeField] private List<CardData> startingDeck;
     [SerializeField] private PlayerCost energy;
+    [SerializeField] private Player player;
 
     private List<Card> drawPile = new();
     private List<Card> hand = new();
@@ -161,6 +162,8 @@ public class TestSystem : MonoBehaviour
         }
 
         Debug.Log("Played: " + card.Title);
+
+        player.PlayCard(card.Data);
 
         hand.Remove(card);
         discardPile.Add(card);
