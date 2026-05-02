@@ -32,7 +32,7 @@ public class CardView : MonoBehaviour
         imageSR.sprite = data.Image;
     } 
 
-    void OnMouseEnter()
+    /*void OnMouseEnter()
     {
         wrapper.SetActive(false);
         Vector3 pos = new(transform.position.x -2, 0);
@@ -43,7 +43,7 @@ public class CardView : MonoBehaviour
     {
         CardViewHoverSystem.Instance.Hide();
         wrapper.SetActive(true);
-    }
+    }*/
 
     void OnMouseDown()
     {

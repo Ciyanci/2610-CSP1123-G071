@@ -1613,7 +1613,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1528523117441076373, guid: ce2d34e807afc1e4e82d88e4a909c2ca, type: 3}
       propertyPath: maxEnergy
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1582586006165225769, guid: ce2d34e807afc1e4e82d88e4a909c2ca, type: 3}
       propertyPath: m_Name
