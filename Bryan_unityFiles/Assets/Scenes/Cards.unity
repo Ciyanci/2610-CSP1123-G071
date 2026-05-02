@@ -795,6 +795,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
   - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
   energy: {fileID: 5229071647962458151}
+  player: {fileID: 4635341865922517768}
 --- !u!4 &1405178030
 Transform:
   m_ObjectHideFlags: 0
@@ -1613,7 +1614,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1528523117441076373, guid: ce2d34e807afc1e4e82d88e4a909c2ca, type: 3}
       propertyPath: maxEnergy
-      value: 10
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1582586006165225769, guid: ce2d34e807afc1e4e82d88e4a909c2ca, type: 3}
       propertyPath: m_Name

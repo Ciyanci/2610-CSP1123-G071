@@ -47,7 +47,7 @@ public class CardView : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (cardData != null)
+        if (testSystem != null && card != null)
         {
             testSystem.TryPlayCard(this, card);
         }
