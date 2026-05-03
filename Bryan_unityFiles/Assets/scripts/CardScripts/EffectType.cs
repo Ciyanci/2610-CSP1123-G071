@@ -6,6 +6,10 @@ public enum EffectType
 {
     Damage,
     Block,
-    Heal
+    Heal,
+    ApplyResistanceUp,
+    ApplyResistanceDown,
+    ApplyDamageUp,
+    ApplyDamageDown
     //probably will add more effects
 }
