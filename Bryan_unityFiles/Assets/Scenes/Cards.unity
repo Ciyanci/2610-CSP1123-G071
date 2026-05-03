@@ -783,17 +783,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestSystem
   handView: {fileID: 327496658}
   startingDeck:
-  - {fileID: 11400000, guid: 2ddc0d5b345600649a907006aedf9c6f, type: 2}
-  - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
-  - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
-  - {fileID: 11400000, guid: f141beecaf1960c4183ec1e32bde1d13, type: 2}
-  - {fileID: 11400000, guid: 2ddc0d5b345600649a907006aedf9c6f, type: 2}
-  - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
-  - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
-  - {fileID: 11400000, guid: f141beecaf1960c4183ec1e32bde1d13, type: 2}
   - {fileID: 11400000, guid: 29fd1668443eda14f8ba1349b9f8aa0c, type: 2}
-  - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
-  - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
+  - {fileID: 11400000, guid: 297f92d57963d8b49baf48f9033c83a7, type: 2}
+  - {fileID: 11400000, guid: 6735032789331fb4aa8d417d8601ba0d, type: 2}
   energy: {fileID: 5229071647962458151}
   player: {fileID: 4635341865922517768}
 --- !u!4 &1405178030
