@@ -19,4 +19,5 @@ MonoBehaviour:
   <Effects>k__BackingField:
   - type: 0
     value: 10
+    damageType: 2
   <CardPrefab>k__BackingField: {fileID: 0}

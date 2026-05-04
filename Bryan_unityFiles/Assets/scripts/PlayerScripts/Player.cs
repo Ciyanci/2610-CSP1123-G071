@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
             {
                 case EffectType.Damage:
                     int finalDamage = ModifyDamage(effect.value);
-                    enemy.TakeDamage(finalDamage);
+                    enemy.TakeDamage(finalDamage, effect.damageType);
                     break;
 
                 case EffectType.Heal:
