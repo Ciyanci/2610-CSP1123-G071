@@ -12,12 +12,12 @@ public class CombatStateMachine : MonoBehaviour
     public TurnSystem turnSystem;
     public CardInputHandler input;
 
-    List<CardDeck> playerDecks;
+    List<CharacterDeck> playerDecks;
 
     void Awake()
     {
-        playerDecks = new List<CardDeck>(
-            FindObjectsByType<CardDeck>(FindObjectsSortMode.None)
+        playerDecks = new List<CharacterDeck>(
+            FindObjectsByType<CharacterDeck>(FindObjectsSortMode.None)
         ).FindAll(d => d.owner != null && d.owner.CompareTag("Player"));
     }
 

@@ -4,82 +4,44 @@ using System.Collections.Generic;
 
 public class BattleFlowController : MonoBehaviour
 {
-    public static BattleFlowController Instance;
-
     public CombatCamera cam;
     public ClashSystem clashSystem;
 
-    [Header("Arrow")]
     public ArrowController arrowPrefab;
 
-    // =========================
-    // PREVIEW LAYER
-    // =========================
     public List<PreviewIntent> previewIntents = new();
-
-    // =========================
-    // COMBAT LAYER
-    // =========================
     public List<CombatIntent> intents = new();
+
     List<(CombatIntent, CombatIntent)> clashes = new();
 
-    void Awake()
-    {
-        Instance = this;
-    }
-
-    // =====================================================
+    // ======================
     // PREVIEW
-    // =====================================================
+    // ======================
+
     public void QueuePreview(CharacterUnit user, CharacterUnit target, Card card)
     {
-        if (user == null || target == null || card == null)
-            return;
-
         ArrowController arrow = Instantiate(arrowPrefab, transform);
         arrow.Set(user.headAnchor, target.headAnchor);
+        Debug.Log($"[PREVIEW] {user.name} → {target.name} using {card.Data.Name}");
 
-        PreviewIntent preview = new PreviewIntent
+        previewIntents.Add(new PreviewIntent
         {
             user = user,
             target = target,
             card = card,
             arrow = arrow
-        };
-
-        previewIntents.Add(preview);
+        });
     }
 
-    // =====================================================
-    // COMBAT BUILD
-    // =====================================================
-    public void BuildCombatIntents()
-    {
-        intents.Clear();
+    // ======================
+    // RESOLVE
+    // ======================
 
-        foreach (var p in previewIntents)
-        {
-            if (p == null || p.user == null || p.target == null) continue;
-
-            intents.Add(new CombatIntent
-            {
-                user = p.user,
-                target = p.target,
-                card = p.card,
-                resolved = false
-            });
-        }
-    }
-
-    // =====================================================
-    // RESOLVE ALL
-    // =====================================================
     public IEnumerator ResolveAll()
     {
-        BuildCombatIntents();
+        ConvertPreviewToCombat();
         BuildClashes();
-
-        ClearPreview(); // 🔥 IMPORTANT (fixes arrow bug)
+        HidePreview();
 
         yield return cam.Reset();
 
@@ -92,104 +54,163 @@ public class BattleFlowController : MonoBehaviour
 
         foreach (var i in intents)
         {
-            if (i == null || i.resolved)
-                continue;
-
-            yield return ResolveSingle(i);
+            if (!i.resolved)
+                yield return ResolveSingle(i);
         }
 
         Cleanup();
 
-        if (CombatFlowController.Instance != null)
-            CombatFlowController.Instance.SetInputEnabled(false);
+        CombatFlowController.Instance.SetInputEnabled(false);
     }
 
-    // =====================================================
-    // CLASH BUILD
-    // =====================================================
+    // ======================
+    // BUILD
+    // ======================
+
+    void ConvertPreviewToCombat()
+    {
+        intents.Clear();
+
+        foreach (var p in previewIntents)
+        {
+            intents.Add(new CombatIntent
+            {
+                user = p.user,
+                target = p.target,
+                card = p.card,
+                resolved = false
+            });
+        }
+    }
+
     void BuildClashes()
     {
         clashes.Clear();
-
         HashSet<CombatIntent> used = new();
 
         for (int i = 0; i < intents.Count; i++)
         {
             var a = intents[i];
-            if (a == null || used.Contains(a)) continue;
+            if (used.Contains(a)) continue;
 
             for (int j = i + 1; j < intents.Count; j++)
             {
                 var b = intents[j];
-                if (b == null || used.Contains(b)) continue;
+                if (used.Contains(b)) continue;
 
-                bool clash =
-                    a.user == b.target &&
-                    a.target == b.user;
-
-                if (clash)
+                if (a.user == b.target && a.target == b.user)
                 {
                     clashes.Add((a, b));
                     used.Add(a);
                     used.Add(b);
                     break;
                 }
+            Debug.Log($"[COMBAT] Building {previewIntents.Count} intents");
             }
         }
+        Debug.Log($"[COMBAT] Clashes found: {clashes.Count}");
     }
 
-    // =====================================================
+    // ======================
     // UNOPPOSED
-    // =====================================================
+    // ======================
+
     IEnumerator ResolveSingle(CombatIntent i)
     {
         if (i.user == null || i.target == null)
             yield break;
 
+        var cam = this.cam;
+
         i.user.SetCombatStartPosition();
         i.target.SetCombatStartPosition();
 
-        yield return i.user.MoveTo(i.target.clashAnchor.position);
+        Vector3 attackPos = i.target.clashAnchor.position;
 
+        // -------------------------
+        // MOVE INTO RANGE
+        // -------------------------
+        yield return i.user.MoveTo(attackPos);
+
+        // -------------------------
+        // 🎥 ZOOM IN ON ATTACK
+        // -------------------------
+        if (cam != null)
+            yield return cam.Focus(i.user.visual.position, 0.4f, 0.3f);
+
+        // -------------------------
+        // 💥 WINDUP ANIMATION
+        // -------------------------
+        i.user.PlayWindup();   // 🔥 you need to add this
+        yield return new WaitForSeconds(0.4f);
+
+        // -------------------------
+        // 🎲 ROLL DAMAGE DICE
+        // -------------------------
+        int roll = Random.Range(i.card.Min, i.card.Max + 1);
+
+        Debug.Log($"[UNOPPOSED] {i.user.name} rolled {roll}");
+
+        yield return new WaitForSeconds(0.2f);
+
+        // -------------------------
+        // 💥 ATTACK
+        // -------------------------
         i.user.PlayAttack();
         i.target.PlayHit();
 
-        int dmg = Random.Range(i.card.min, i.card.max + 1);
-        i.target.TakeDamage(dmg);
+        i.target.TakeDamage(roll);
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.25f);
 
+        // -------------------------
+        // 🎥 RESET CAMERA
+        // -------------------------
+        if (cam != null)
+            yield return cam.Reset();
+
+        // -------------------------
+        // RESET POSITIONS
+        // -------------------------
         i.user.ResetPosition();
         i.target.ResetPosition();
     }
 
-    // =====================================================
-    // CLEANUP COMBAT
-    // =====================================================
+    // ======================
+    // CLEANUP
+    // ======================
+
     void Cleanup()
     {
         intents.Clear();
         clashes.Clear();
-    }
 
-    // =====================================================
-    // PREVIEW CLEANUP (FIXED - THIS WAS MISSING)
-    // =====================================================
-    public void ClearPreview()
-    {
         foreach (var p in previewIntents)
         {
-            if (p?.arrow != null)
+            if (p.arrow != null)
                 Destroy(p.arrow.gameObject);
         }
 
         previewIntents.Clear();
     }
 
-    // Optional alias (fixes older scripts calling this)
-    public void HidePreviewArrows()
+    void HidePreview()
     {
-        ClearPreview();
+        foreach (var p in previewIntents)
+        {
+            if (p.arrow != null)
+                p.arrow.gameObject.SetActive(false);
+        }
+    }
+
+    public void ClearPreview()
+    {
+        foreach (var p in previewIntents)
+        {
+            if (p.arrow != null)
+                Destroy(p.arrow.gameObject);
+        }
+
+        previewIntents.Clear();
     }
 }
-//kill me

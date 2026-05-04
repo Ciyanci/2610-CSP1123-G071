@@ -45,7 +45,7 @@ public class CardView : MonoBehaviour
         imageSR.sprite = data.Image;
     } 
 
-    void OnMouseEnter()
+    /*void OnMouseEnter()
     {
         wrapper.SetActive(false);
         Vector3 pos = new(transform.position.x -2, 0);
@@ -56,6 +56,7 @@ public class CardView : MonoBehaviour
     {
         CardViewHoverSystem.Instance.Hide();
         wrapper.SetActive(true);
+<<<<<<< HEAD
 >>>>>>> 2f72c6e5ee10f44ca8e6760df476034df3dc4dc5
     }
 
@@ -69,6 +70,13 @@ public class CardView : MonoBehaviour
             flow.PlayCardFromUI(Card);
 =======
         if (cardData != null)
+=======
+    }*/
+
+    void OnMouseDown()
+    {
+        if (testSystem != null && card != null)
+>>>>>>> 75e8017c02b66a7acdf8e63d8f1e357d7d064d27
         {
             testSystem.TryPlayCard(this, card);
 >>>>>>> 2f72c6e5ee10f44ca8e6760df476034df3dc4dc5

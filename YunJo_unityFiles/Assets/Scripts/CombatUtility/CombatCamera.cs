@@ -3,10 +3,16 @@ using System.Collections;
 
 public class CombatCamera : MonoBehaviour
 {
-    public float zoomSize = 15f;
     public float moveSpeed = 2f;
 
+    [Header("Zoom Levels (LoR Style Tuning)")]
+    public float defaultZoom = 70f;
+    public float clashZoom = 15f;
+    public float focusZoom = 10f;
+    public float unopposedZoom = 15f;
+
     Camera cam;
+
     Vector3 defaultPos;
     float defaultSize;
 
@@ -15,38 +21,72 @@ public class CombatCamera : MonoBehaviour
     void Awake()
     {
         cam = Camera.main;
+
         defaultPos = transform.position;
-        defaultSize = cam.orthographicSize;
+        defaultSize = defaultZoom; // IMPORTANT: stable baseline
+        cam.orthographicSize = defaultZoom;
     }
 
     // -----------------------------
-    // BASIC ZOOM (used before rolls)
+    // CLASH ZOOM (center fight)
     // -----------------------------
     public IEnumerator ClashZoom(Vector3 focus)
     {
         Vector3 targetPos = new Vector3(focus.x, focus.y, transform.position.z);
 
-        float t = 0;
-        float dur = 0.25f;
-
         Vector3 startPos = transform.position;
         float startSize = cam.orthographicSize;
 
+        float t = 0;
+        float dur = 0.25f;
+
         while (t < dur)
         {
-            transform.position = Vector3.Lerp(startPos, targetPos, t / dur);
-            cam.orthographicSize = Mathf.Lerp(startSize, zoomSize, t / dur);
+            float e = t / dur;
+            e = e * e * (3f - 2f * e); // smoothstep
+
+            transform.position = Vector3.Lerp(startPos, targetPos, e);
+            cam.orthographicSize = Mathf.Lerp(startSize, clashZoom, e);
 
             t += Time.deltaTime;
             yield return null;
         }
 
         transform.position = targetPos;
-        cam.orthographicSize = zoomSize;
+        cam.orthographicSize = clashZoom;
     }
 
     // -----------------------------
-    // FOLLOW TARGET (LOSER TRACK)
+    // CENTER CLASH (stable framing)
+    // -----------------------------
+    public IEnumerator ClashCenter(Vector3 point)
+    {
+        Vector3 target = new Vector3(point.x, point.y, transform.position.z);
+
+        Vector3 startPos = transform.position;
+        float startSize = cam.orthographicSize;
+
+        float t = 0;
+        float dur = 0.35f;
+
+        while (t < dur)
+        {
+            float e = t / dur;
+            e = e * e * (3f - 2f * e);
+
+            transform.position = Vector3.Lerp(startPos, target, e);
+            cam.orthographicSize = Mathf.Lerp(startSize, clashZoom, e);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = target;
+        cam.orthographicSize = clashZoom;
+    }
+
+    // -----------------------------
+    // FOLLOW LOSER
     // -----------------------------
     public void FollowTarget(Transform target, float duration)
     {
@@ -54,34 +94,6 @@ public class CombatCamera : MonoBehaviour
             StopCoroutine(followRoutine);
 
         followRoutine = StartCoroutine(FollowRoutine(target, duration));
-    }
-
-    public IEnumerator ClashCenter(Vector3 point)
-    {
-        Vector3 target = new Vector3(point.x, point.y, transform.position.z);
-
-        float t = 0;
-        float dur = 0.35f; // slightly longer = smoother
-
-        Vector3 startPos = transform.position;
-        float startSize = cam.orthographicSize;
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime / dur;
-
-            // 🔥 SMOOTHSTEP easing (ease in + ease out)
-            float eased = t * t * (3f - 2f * t);
-
-            transform.position = Vector3.Lerp(startPos, target, eased);
-            cam.orthographicSize = Mathf.Lerp(startSize, zoomSize, eased);
-
-            yield return null;
-        }
-
-        // no hard snap needed anymore, but keep for precision
-        transform.position = target;
-        cam.orthographicSize = zoomSize;
     }
 
     IEnumerator FollowRoutine(Transform target, float duration)
@@ -108,12 +120,39 @@ public class CombatCamera : MonoBehaviour
     }
 
     // -----------------------------
-    // SCREENSHAKE (FOR TIE)
+    // FOCUS (single unit / attack)
+    // -----------------------------
+    public IEnumerator Focus(Vector3 target, float zoom, float duration)
+    {
+        Vector3 startPos = transform.position;
+        float startSize = cam.orthographicSize;
+
+        Vector3 targetPos = new Vector3(target.x, target.y, transform.position.z);
+
+        float t = 0;
+
+        while (t < duration)
+        {
+            float e = t / duration;
+            e = e * e * (15f - 2f * e);
+
+            transform.position = Vector3.Lerp(startPos, targetPos, e);
+            cam.orthographicSize = Mathf.Lerp(startSize, zoom, e);
+
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.position = targetPos;
+        cam.orthographicSize = zoom;
+    }
+
+    // -----------------------------
+    // SHAKE (tie)
     // -----------------------------
     public IEnumerator Shake(float intensity, float duration)
     {
         Vector3 original = transform.position;
-
         float t = 0;
 
         while (t < duration)
@@ -129,7 +168,7 @@ public class CombatCamera : MonoBehaviour
     }
 
     // -----------------------------
-    // RESET
+    // RESET CAMERA
     // -----------------------------
     public IEnumerator Reset()
     {
@@ -144,20 +183,26 @@ public class CombatCamera : MonoBehaviour
 
         while (t < dur)
         {
-            transform.position = Vector3.Lerp(startPos, defaultPos, t / dur);
-            cam.orthographicSize = Mathf.Lerp(startSize, defaultSize, t / dur);
+            float e = t / dur;
+            e = e * e * (3f - 2f * e);
+
+            transform.position = Vector3.Lerp(startPos, defaultPos, e);
+            cam.orthographicSize = Mathf.Lerp(startSize, defaultZoom, e);
 
             t += Time.deltaTime;
             yield return null;
         }
 
         transform.position = defaultPos;
-        cam.orthographicSize = defaultSize;
+        cam.orthographicSize = defaultZoom;
     }
+
+    // -----------------------------
+    // SMOOTH FOLLOW (optional utility)
+    // -----------------------------
     public IEnumerator SmoothFollow(Transform target, float duration)
     {
         Vector3 start = transform.position;
-        Vector3 end = new Vector3(target.position.x, target.position.y, transform.position.z);
 
         float t = 0;
 
@@ -165,9 +210,15 @@ public class CombatCamera : MonoBehaviour
         {
             t += Time.deltaTime / duration;
 
-            float eased = t * t * (3f - 2f * t); // smoothstep
+            float e = t * t * (3f - 2f * t);
 
-            transform.position = Vector3.Lerp(start, end, eased);
+            Vector3 end = new Vector3(
+                target.position.x,
+                target.position.y,
+                transform.position.z
+            );
+
+            transform.position = Vector3.Lerp(start, end, e);
 
             yield return null;
         }

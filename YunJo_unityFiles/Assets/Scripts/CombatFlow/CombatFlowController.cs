@@ -4,44 +4,30 @@ public class CombatFlowController : MonoBehaviour
 {
     public static CombatFlowController Instance;
 
-    public CharacterUnit selectedUnit;
-    public Card selectedCard;
-
-    public BattleFlowController battleFlow;
-    public ArrowController arrow;
-
     public bool inputEnabled;
+
+    CharacterUnit selectedUnit;
+    Card selectedCard;
+
+    public ArrowController arrow;
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void SetInputEnabled(bool enabled)
+    public void SetInputEnabled(bool value)
     {
-        inputEnabled = enabled;
-
-        if (!enabled)
-            ResetAll();
-    }
-
-    public void RefreshIntentPreview()
-    {
-        //reactivate arrows if intents already exist
-        if (selectedUnit != null && selectedCard != null)
-        {
-            arrow.Begin(selectedUnit, selectedCard);
-        }
+        inputEnabled = value;
     }
 
     public void SelectUnit(CharacterUnit unit)
     {
-        if (!inputEnabled) return;
-
         selectedUnit = unit;
-        selectedCard = null;
+        Debug.Log($"[FLOW] Selected unit: {unit.name}");
 
-        unit.GetComponentInChildren<CardDeck>()?.OpenDeck();
+        var handUI = FindFirstObjectByType<HandUI>();
+        handUI.Show(unit.deck);
     }
 
     public void SelectCard(Card card, CharacterUnit user)
@@ -50,30 +36,28 @@ public class CombatFlowController : MonoBehaviour
 
         selectedUnit = user;
         selectedCard = card;
+        Debug.Log($"[FLOW] Selected card: {card.Data.Name} by {selectedUnit.name}");
 
         arrow.Begin(user, card);
     }
 
     public void ConfirmTarget(CharacterUnit target)
     {
-        if (!inputEnabled) return;
-        if (selectedCard == null || selectedUnit == null) return;
+        if (!inputEnabled || selectedCard == null) return;
 
-        battleFlow.QueuePreview(selectedUnit, target, selectedCard);
+        var flow = FindFirstObjectByType<BattleFlowController>();
+
+        flow.QueuePreview(selectedUnit, target, selectedCard);
+        Debug.Log($"[FLOW] Target selected: {target.name}");
+        Debug.Log($"[ARROW] Attempting target selection");
 
         arrow.End();
-        selectedCard = null;
-    }
-
-    public void Cancel()
-    {
-        arrow.End();
-        selectedUnit = null;
         selectedCard = null;
     }
 
     public void ResetAll()
     {
-        Cancel();
+        arrow.End();
+        selectedCard = null;
     }
 }

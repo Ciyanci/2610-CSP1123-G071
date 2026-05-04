@@ -3,8 +3,8 @@ using System.Collections;
 
 public class BattleStarter : MonoBehaviour
 {
-    public CardDeck playerDeck;
-    public CardDeck enemyDeck;
+    public CharacterDeck playerDeck;
+    public CharacterDeck enemyDeck;
     public BattleFlowController flow;
 
     void Start(){}

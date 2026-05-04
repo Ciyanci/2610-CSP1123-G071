@@ -4,63 +4,43 @@ using DG.Tweening;
 
 public class CardView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text title;
-    [SerializeField] private TMP_Text description;
-    [SerializeField] private TMP_Text cost;
-    [SerializeField] private SpriteRenderer frameSR;
-    [SerializeField] private SpriteRenderer artworkSR;
+    public TMP_Text title;
+    public TMP_Text desc;
+    public TMP_Text cost;
+    public TMP_Text dice;
 
-    public Card Card { get; private set; }
+    Card card;
+    CharacterUnit owner;
 
-    public System.Action<CardView> onHoverEnter;
-    public System.Action<CardView> onHoverExit;
-    public System.Action<CardView> onCardClicked;
+    Vector3 baseScale;
+    Vector3 expandedScale = new Vector3(1.6f, 1f, 1f);
 
-    public CharacterUnit owner;
-
-    Vector3 basePos;
-
-    public void Setup(Card card, CharacterUnit unit)
+    public void Setup(Card c, CharacterUnit unit)
     {
-        Card = card;
+        card = c;
         owner = unit;
 
-        title.text = card.Title;
-        description.text = card.Description;
-        cost.text = card.Cost.ToString();
+        title.text = c.Data.Name;
+        desc.text = c.Data.Description;
+        cost.text = c.Cost.ToString();
+        dice.text = $"{c.Min}-{c.Max}";
 
-        if (card.Image != null)
-            artworkSR.sprite = card.Image;
-
-        if (card.data != null && card.data.Frame != null)
-            frameSR.sprite = card.data.Frame;
-    }
-
-    void Start()
-    {
-        basePos = transform.localPosition;
-    }
-
-    void OnMouseDown()
-    {
-        CombatFlowController.Instance.SelectCard(Card, owner);
+        baseScale = transform.localScale;
     }
 
     void OnMouseEnter()
     {
-        onHoverEnter?.Invoke(this);
-
-        transform.DOKill();
-        transform.DOLocalMove(basePos + Vector3.up * 0.5f, 0.15f);
-        transform.DOScale(1.2f, 0.15f);
+        transform.DOScale(expandedScale, 0.15f);
     }
 
     void OnMouseExit()
     {
-        onHoverExit?.Invoke(this);
+        transform.DOScale(baseScale, 0.15f);
+    }
 
-        transform.DOKill();
-        transform.DOLocalMove(basePos, 0.15f);
-        transform.DOScale(1f, 0.15f);
+    void OnMouseDown()
+    {
+        CombatFlowController.Instance.SelectCard(card, owner);
+        Debug.Log($"[CARD] Clicked: {card.Data.Name}");
     }
 }

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34651287d4e379447a1c19edeb301de8, type: 3}
   m_Name: IDontConsent
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Description>k__BackingField: lawsuit incoming
-  <Cost>k__BackingField: 2
-  <Frame>k__BackingField: {fileID: 0}
-  <Artwork>k__BackingField: {fileID: 0}
+  Name: 
+  Description: 
+  Image: {fileID: 0}
+  Cost: 0
+  MinRoll: 1
+  MaxRoll: 6
+  Damage: 0
+  prefab: {fileID: 0}

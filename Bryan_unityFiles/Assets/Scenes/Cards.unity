@@ -783,18 +783,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestSystem
   handView: {fileID: 327496658}
   startingDeck:
-  - {fileID: 11400000, guid: 2ddc0d5b345600649a907006aedf9c6f, type: 2}
-  - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
-  - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
-  - {fileID: 11400000, guid: f141beecaf1960c4183ec1e32bde1d13, type: 2}
-  - {fileID: 11400000, guid: 2ddc0d5b345600649a907006aedf9c6f, type: 2}
-  - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
-  - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
-  - {fileID: 11400000, guid: f141beecaf1960c4183ec1e32bde1d13, type: 2}
   - {fileID: 11400000, guid: 29fd1668443eda14f8ba1349b9f8aa0c, type: 2}
-  - {fileID: 11400000, guid: 7795a10cebc18a04abae6088a381fc2b, type: 2}
+  - {fileID: 11400000, guid: 297f92d57963d8b49baf48f9033c83a7, type: 2}
+  - {fileID: 11400000, guid: 6735032789331fb4aa8d417d8601ba0d, type: 2}
+  - {fileID: 11400000, guid: 6735032789331fb4aa8d417d8601ba0d, type: 2}
   - {fileID: 11400000, guid: 3d64843d28779604aa815db3203fe4cb, type: 2}
+  - {fileID: 11400000, guid: 297f92d57963d8b49baf48f9033c83a7, type: 2}
+  - {fileID: 11400000, guid: 8e83cacf396671948bb7027d826a94c5, type: 2}
+  - {fileID: 11400000, guid: 59144d9408cd0dd4ba8c4b64bffd800c, type: 2}
+  - {fileID: 11400000, guid: f141beecaf1960c4183ec1e32bde1d13, type: 2}
   energy: {fileID: 5229071647962458151}
+  player: {fileID: 4635341865922517768}
 --- !u!4 &1405178030
 Transform:
   m_ObjectHideFlags: 0
@@ -1411,11 +1410,23 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7729841289297992770, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
+      propertyPath: resistanceProfile
+      value: 
+      objectReference: {fileID: 8543226526427798018}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5604138102663157157, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8543226526427798018}
   m_SourcePrefab: {fileID: 100100000, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
+--- !u!1 &882786868676538199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5604138102663157157, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
+  m_PrefabInstance: {fileID: 882786868676538198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1882690358007807179 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4937079638197842896, guid: 814d117617f463c47a5dd2b914eb6da8, type: 3}
@@ -1838,7 +1849,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7729841289297992770, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
   m_PrefabInstance: {fileID: 882786868676538198}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 882786868676538199}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a31eb9a8d33f9a4ba7fc29804a2f258, type: 3}
@@ -1860,6 +1871,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2268004319583125455, guid: 7b013f26129ffb947bbf9925adbdd0dc, type: 3}
   m_PrefabInstance: {fileID: 882786868676538198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8543226526427798018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882786868676538199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50084bdd98f04204b893f7467be76ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyResistanceProfile
+  modifiers:
+  - type: 0
+    multiplier: 2
+  - type: 1
+    multiplier: 0.5
+  - type: 2
+    multiplier: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

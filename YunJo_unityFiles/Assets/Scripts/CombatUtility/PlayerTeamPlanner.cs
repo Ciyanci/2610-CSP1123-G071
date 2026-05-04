@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerTeamPlanner : MonoBehaviour
 {
-    public List<CardDeck> decks;
+    public List<CharacterDeck> decks;
     public List<CharacterUnit> enemies;
     public BattleFlowController flow;
 

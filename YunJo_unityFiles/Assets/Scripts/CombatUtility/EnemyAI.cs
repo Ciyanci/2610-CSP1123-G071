@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
-    public CardDeck deck;
+    public CharacterDeck deck;
     public float thinkTime = 0.5f;
 
     CharacterUnit self;

@@ -2,69 +2,40 @@ using UnityEngine;
 
 public class CombatInputController : MonoBehaviour
 {
-    public static CombatInputController Instance;
-
-    public bool inputEnabled;
-
-    CharacterUnit selectedUnit;
-    Card selectedCard;
-
-    public ArrowController arrow;
-    public BattleFlowController battle;
+    Camera cam;
 
     void Awake()
     {
-        Instance = this;
+        cam = Camera.main;
     }
 
-    public void SetInput(bool state)
+    void Update()
     {
-        inputEnabled = state;
+        if (!CombatFlowController.Instance.inputEnabled)
+            return;
 
-        if (!state)
-            Cancel();
-    }
+        // LEFT CLICK → select unit
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
+            mouse.z = 0;
 
-    public void SelectUnit(CharacterUnit unit)
-    {
-        if (!inputEnabled) return;
+            Collider2D hit = Physics2D.OverlapPoint(mouse);
 
-        selectedUnit = unit;
-        unit.Highlight(true);
+            if (hit == null) return;
 
-        unit.GetComponentInChildren<CardDeck>()?.OpenDeck();
-    }
+            CharacterUnit unit = hit.GetComponent<CharacterUnit>();
 
-    public void SelectCard(Card card, CharacterUnit user)
-    {
-        if (!inputEnabled) return;
+            if (unit != null)
+            {
+                CombatFlowController.Instance.SelectUnit(unit);
+            }
+        }
 
-        selectedUnit = user;
-        selectedCard = card;
-
-        arrow.Begin(user, card);
-    }
-
-    public void SelectTarget(CharacterUnit target)
-    {
-        if (!inputEnabled) return;
-        if (selectedUnit == null || selectedCard == null) return;
-
-        battle.QueuePreview(selectedUnit, target, selectedCard);
-
-        arrow.End();
-
-        selectedCard = null;
-    }
-
-    public void Cancel()
-    {
-        arrow.End();
-
-        if (selectedUnit != null)
-            selectedUnit.Highlight(false);
-
-        selectedUnit = null;
-        selectedCard = null;
+        // RIGHT CLICK → cancel selection
+        if (Input.GetMouseButtonDown(1))
+        {
+            CombatFlowController.Instance.ResetAll();
+        }
     }
 }

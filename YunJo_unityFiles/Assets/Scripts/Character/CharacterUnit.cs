@@ -50,6 +50,17 @@ public class CharacterUnit : MonoBehaviour
         currentEnergy -= cost;
     }
 
+    public CharacterDeck deck;
+
+    void OnMouseDown()
+    {
+        if (!CombatFlowController.Instance.inputEnabled)
+            return;
+
+        CombatFlowController.Instance.SelectUnit(this);
+        Debug.Log($"[INPUT] Clicked unit: {name}");
+    }
+
     [Header("Highlight")]
     public bool isHighlighted;
 
@@ -107,7 +118,7 @@ public class CharacterUnit : MonoBehaviour
 // -----------------------------
 // POSITION RESET (RESTORED)
 // -----------------------------
-Vector3 startWorldPos;
+    Vector3 startWorldPos;
     public void ResetPosition()
     {
         StopAllCoroutines();
@@ -126,6 +137,14 @@ Vector3 startWorldPos;
         return visual != null
             ? visual.position + new Vector3(0, 1.0f, 0)
             : transform.position;
+    }
+
+    public void PlayWindup()
+    {
+        Debug.Log($"{name} windup");
+
+        // if using animator:
+        // animator.SetTrigger("Windup");
     }
 
     void Awake()
@@ -280,12 +299,6 @@ Vector3 startWorldPos;
     public void ShowSpeed()
     {
         speedDiceUI?.Show();
-    }
-
-    void OnMouseDown()
-    {
-        if (CombatInputController.Instance != null)
-            CombatInputController.Instance.SelectUnit(this);
     }
 
     //damage, modify how they take damage here

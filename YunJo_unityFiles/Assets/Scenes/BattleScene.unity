@@ -177,6 +177,7 @@ MonoBehaviour:
   speedDiceUI: {fileID: 0}
   maxEnergy: 5
   currentEnergy: 0
+  deck: {fileID: 0}
   isHighlighted: 0
   visual: {fileID: 1358998264}
   headAnchor: {fileID: 1424663874}
@@ -567,8 +568,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9124941fd0c52a3469182939498b3623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatCamera
-  zoomSize: 15
   moveSpeed: 2
+  defaultZoom: 70
+  clashZoom: 15
+  focusZoom: 10
+  unopposedZoom: 15
 --- !u!1 &248125089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,24 +1275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166dc05d68835149870a8d47b36e610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDeck
-  cards:
-  - name: Slap
-    min: 1
-    max: 6
-    damage: 10
-    data: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - name: SlapProMax
-    min: 2
-    max: 5
-    damage: 6
-    data: {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
-  - name: I Don't Consent
-    min: 1
-    max: 10
-    damage: 15
-    data: {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
-  handView: {fileID: 0}
   owner: {fileID: 934219605}
+  startingDeck: []
+  handSize: 3
 --- !u!4 &588782881
 Transform:
   m_ObjectHideFlags: 0
@@ -1348,14 +1337,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166dc05d68835149870a8d47b36e610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDeck
-  cards:
-  - name: Googoogaga
-    min: 1
-    max: 6
-    damage: 4
-    data: {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
-  handView: {fileID: 0}
   owner: {fileID: 15327794}
+  startingDeck: []
+  handSize: 3
 --- !u!1 &609602049
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,6 +1445,7 @@ MonoBehaviour:
   speedDiceUI: {fileID: 0}
   maxEnergy: 5
   currentEnergy: 0
+  deck: {fileID: 0}
   isHighlighted: 0
   visual: {fileID: 1863281977}
   headAnchor: {fileID: 781766433}
@@ -1980,6 +1965,7 @@ MonoBehaviour:
   speedDiceUI: {fileID: 0}
   maxEnergy: 5
   currentEnergy: 0
+  deck: {fileID: 0}
   isHighlighted: 0
   visual: {fileID: 982196524}
   headAnchor: {fileID: 323545231}
@@ -2275,9 +2261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202dca3d5a5250f4990cf4330fe415f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatInputController
-  inputEnabled: 0
-  arrow: {fileID: 2118297725}
-  battle: {fileID: 609602050}
 --- !u!4 &1145328596
 Transform:
   m_ObjectHideFlags: 0
@@ -2322,16 +2305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55507ccf0e25fd49b383e0fc24dfbc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatFlowController
-  selectedUnit: {fileID: 0}
-  selectedCard:
-    name: 
-    min: 0
-    max: 0
-    damage: 0
-    data: {fileID: 0}
-  battleFlow: {fileID: 609602050}
-  arrow: {fileID: 2118297725}
   inputEnabled: 0
+  arrow: {fileID: 2118297725}
 --- !u!4 &1270872967
 Transform:
   m_ObjectHideFlags: 0
@@ -2908,6 +2883,7 @@ MonoBehaviour:
   speedDiceUI: {fileID: 0}
   maxEnergy: 5
   currentEnergy: 0
+  deck: {fileID: 0}
   isHighlighted: 0
   visual: {fileID: 2058764437}
   headAnchor: {fileID: 511534237}
@@ -3150,24 +3126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166dc05d68835149870a8d47b36e610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDeck
-  cards:
-  - name: Slap
-    min: 1
-    max: 6
-    damage: 10
-    data: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - name: SlapProMax
-    min: 2
-    max: 5
-    damage: 6
-    data: {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
-  - name: I Don't Consent
-    min: 1
-    max: 10
-    damage: 15
-    data: {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
-  handView: {fileID: 0}
   owner: {fileID: 1443306778}
+  startingDeck: []
+  handSize: 3
 --- !u!1 &1545591148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3477,41 +3438,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f70a5677fd6cb540aaccb0d532becac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClashTestDriver
-  testIntents:
-  - user: {fileID: 934219605}
-    target: {fileID: 620646009}
-    card:
-      name: 
-      min: 1
-      max: 6
-      damage: 1
-      data: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - user: {fileID: 1443306778}
-    target: {fileID: 15327794}
-    card:
-      name: 
-      min: 1
-      max: 6
-      damage: 1
-      data: {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
-  - user: {fileID: 620646009}
-    target: {fileID: 934219605}
-    card:
-      name: 
-      min: 1
-      max: 6
-      damage: 1
-      data: {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
-  - user: {fileID: 15327794}
-    target: {fileID: 1443306778}
-    card:
-      name: 
-      min: 1
-      max: 6
-      damage: 1
-      data: {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
   flow: {fileID: 609602050}
-  turnSystem: {fileID: 1545591150}
+  plannedIntents:
+  - attacker: {fileID: 934219605}
+    target: {fileID: 620646009}
+    card: {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
+  - attacker: {fileID: 15327794}
+    target: {fileID: 934219605}
+    card: {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
+  - attacker: {fileID: 620646009}
+    target: {fileID: 934219605}
+    card: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
+  - attacker: {fileID: 1443306778}
+    target: {fileID: 15327794}
+    card: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
 --- !u!4 &1815010755
 Transform:
   m_ObjectHideFlags: 0
@@ -4227,14 +4167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6166dc05d68835149870a8d47b36e610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardDeck
-  cards:
-  - name: Googoogaga
-    min: 1
-    max: 6
-    damage: 4
-    data: {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
-  handView: {fileID: 0}
   owner: {fileID: 620646009}
+  startingDeck: []
+  handSize: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

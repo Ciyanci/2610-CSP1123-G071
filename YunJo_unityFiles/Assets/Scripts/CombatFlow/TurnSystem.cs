@@ -54,6 +54,8 @@ public class TurnSystem : MonoBehaviour
         // =========================
         yield return SetPhase(Phase.Start);
 
+        Debug.Log($"[TURN] Start Turn {turn}");
+
         turnText.text = "Turn " + turn;
         yield return Fade(1);
 
@@ -83,14 +85,24 @@ public class TurnSystem : MonoBehaviour
         yield return new WaitUntil(() =>
             CombatFlowController.Instance.inputEnabled == false);
 
+            Debug.Log("[TURN] Planning finished → resolving");
+
         // =========================
         // CLASH / RESOLVE
         // =========================
         yield return SetPhase(Phase.Clash);
 
         yield return SetPhase(Phase.Resolve);
+        Debug.Log("[COMBAT] Starting resolution");
 
         yield return SetPhase(Phase.End);
+        Debug.Log($"[TURN] End Turn → Next Turn {turn + 1}");
+
+        foreach (var unit in FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None))
+        {
+            if (unit.deck != null)
+                unit.deck.DiscardOne(); // Mahjong rule
+        }
 
         running = false;
     }
@@ -100,6 +112,8 @@ public class TurnSystem : MonoBehaviour
         currentPhase = p;
         yield return null;
     }
+
+    
 
     IEnumerator Fade(float target)
     {

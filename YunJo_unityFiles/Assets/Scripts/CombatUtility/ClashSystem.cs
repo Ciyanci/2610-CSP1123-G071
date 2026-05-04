@@ -32,6 +32,7 @@ public class ClashSystem : MonoBehaviour
 
         CharacterUnit A = a.user;
         CharacterUnit B = b.user;
+        Debug.Log($"[CLASH] {A.name} vs {B.name}");
 
         //hide speed dice
         A.HideSpeed();
@@ -143,6 +144,7 @@ public class ClashSystem : MonoBehaviour
                 rollB = r;
                 doneB = true;
             }));
+            Debug.Log($"[CLASH] Rolls → {A.name}: {rollA} | {B.name}: {rollB}");
 
             yield return new WaitUntil(() => doneA && doneB);
 
@@ -169,6 +171,7 @@ public class ClashSystem : MonoBehaviour
 
                 yield return A.MoveTo(aPoint);
                 yield return B.MoveTo(bPoint);
+                Debug.Log("[CLASH] Tie → retry");
 
                 continue;
             }
@@ -180,6 +183,7 @@ public class ClashSystem : MonoBehaviour
 
             CharacterUnit winner = aWins ? A : B;
             CharacterUnit loser = aWins ? B : A;
+            Debug.Log($"[CLASH] Winner: {winner.name}");
 
             winner.PlayAttack();
             loser.PlayHit();
@@ -198,6 +202,7 @@ public class ClashSystem : MonoBehaviour
             );
 
             loser.TakeDamage(dmg);
+            Debug.Log($"[CLASH] Damage dealt: {dmg} to {loser.name}");
 
             break;
         }
