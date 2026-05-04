@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     private List<StatusEffect> effects = new();
 
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, DamageType damageType)
     {
         float reduction = 0f;
         float vulnerability = 0f;
@@ -28,17 +28,36 @@ public class Enemy : MonoBehaviour
         }
 
         float multiplier = Mathf.Clamp01(1f - reduction + vulnerability);
-        float finalDamage = amount * multiplier;
+        float typeMultiplier = GetTypeMultiplier(damageType);
+        float finalDamage = amount * multiplier * typeMultiplier;
 
         finalDamage = Mathf.Max(1f, finalDamage);
 
         int dmg = Mathf.RoundToInt(finalDamage);
         health -= dmg;
-        Debug.Log($"Enemy took {dmg} damage (base: {amount}, multiplier: {multiplier}) HP left: {health}");
+        Debug.Log($"Enemy took {dmg} {damageType} damage (base: {amount}, type: x{typeMultiplier}) HP left: {health}");
 
         if (health <= 0)
         {
             Die();
+        }
+    }
+
+    float GetTypeMultiplier(DamageType type)
+    {
+        switch (type)
+        {
+            case DamageType.Slash:
+                return 1.2f;
+            
+            case DamageType.Pierce:
+                return 0.8f;
+
+            case DamageType.Blunt:
+                return 1f;
+
+            default:
+                return 1f;
         }
     }
 
