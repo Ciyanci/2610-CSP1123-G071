@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private EnemyResistanceProfile resistanceProfile;
     public float health = 100;
 
     private List<StatusEffect> effects = new();
@@ -28,14 +29,18 @@ public class Enemy : MonoBehaviour
         }
 
         float multiplier = Mathf.Clamp01(1f - reduction + vulnerability);
-        float typeMultiplier = GetTypeMultiplier(damageType);
+        float typeMultiplier = 1f;
+        if(resistanceProfile != null)
+        {
+            typeMultiplier = resistanceProfile.GetMultiplier(damageType);
+        }
         float finalDamage = amount * multiplier * typeMultiplier;
 
         finalDamage = Mathf.Max(1f, finalDamage);
 
         int dmg = Mathf.RoundToInt(finalDamage);
         health -= dmg;
-        Debug.Log($"Enemy took {dmg} {damageType} damage (base: {amount}, type: x{typeMultiplier}) HP left: {health}");
+        Debug.Log($"Enemy took {dmg} {damageType} damage (type: x{typeMultiplier}) HP left: {health}");
 
         if (health <= 0)
         {
@@ -43,23 +48,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    float GetTypeMultiplier(DamageType type)
-    {
-        switch (type)
-        {
-            case DamageType.Slash:
-                return 1.2f;
-            
-            case DamageType.Pierce:
-                return 0.8f;
-
-            case DamageType.Blunt:
-                return 1f;
-
-            default:
-                return 1f;
-        }
-    }
 
     public void AddEffect(StatusEffectType type, int stacks)
     {
