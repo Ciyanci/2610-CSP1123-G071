@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ClashSystem : MonoBehaviour
 {
@@ -32,104 +33,81 @@ public class ClashSystem : MonoBehaviour
 
         CharacterUnit A = a.user;
         CharacterUnit B = b.user;
+
         Debug.Log($"[CLASH] {A.name} vs {B.name}");
 
-        //hide speed dice
         A.HideSpeed();
         B.HideSpeed();
 
-        // positioning
+        // =========================
+        // POSITIONING
+        // =========================
+
         Vector3 mid = (A.GetClashPosition() + B.GetClashPosition()) / 2f;
-
-        float meleeDist = 8f;
-        float rangedDist = 14f;
-
-        float dist =
-            (A.unitType == UnitType.Ranged || B.unitType == UnitType.Ranged)
-                ? rangedDist
-                : meleeDist;
-
-        Vector3 dir = (B.GetClashPosition() - A.GetClashPosition()).normalized;
-
-        float spacing = 3.5f;
 
         bool meleeA = A.unitType == UnitType.Melee;
         bool meleeB = B.unitType == UnitType.Melee;
 
-        // melee vs melee
-        if (meleeA && meleeB)
-        {
-            spacing = 4.5f;
-        }
+        float spacing = 4.5f;
 
-        // ranged vs ranged
-        else if (!meleeA && !meleeB)
-        {
-            spacing = 6f;
-        }
-
-        // melee vs ranged
-        else
-        {
-            spacing = 4.5f;
-        }
+        if (!meleeA && !meleeB) spacing = 6f;
+        else if (meleeA && meleeB) spacing = 4.5f;
+        else spacing = 4.5f;
 
         Vector3 aPoint = mid + Vector3.left * spacing;
         Vector3 bPoint = mid + Vector3.right * spacing;
 
-        // melee vs melee
-        if (meleeA && meleeB)
-        {
-            yield return A.MoveTo(aPoint);
-            yield return B.MoveTo(bPoint);
-        }
-
-        // melee vs ranged
-        else if (meleeA && !meleeB)
-        {
-            yield return A.MoveTo(aPoint);
-
-            // slight reposition
-            yield return B.MoveTo(
-                B.visual.position + Vector3.right * 0.5f,
-                0.12f
-            );
-        }
-
-        // ranged vs melee
-        else if (!meleeA && meleeB)
-        {
-            yield return B.MoveTo(bPoint);
-
-            yield return A.MoveTo(
-                A.visual.position + Vector3.left * 0.5f,
-                0.12f
-            );
-        }
+        if (meleeA) yield return A.MoveTo(aPoint);
+        if (meleeB) yield return B.MoveTo(bPoint);
 
         yield return new WaitForSeconds(0.2f);
 
+        // =========================
+        // CAMERA OPEN
+        // =========================
+
+        List<CameraAction> openSeq = new();
+
         if (meleeA && meleeB)
         {
-            yield return cam.ClashCenter(mid);
+            openSeq.Add(new CameraAction
+            {
+                type = CameraActionType.MoveTo,
+                position = mid,
+                duration = 0.25f
+            });
+
+            openSeq.Add(new CameraAction
+            {
+                type = CameraActionType.Zoom,
+                zoom = 4.5f,
+                duration = 0.25f
+            });
         }
         else
         {
-            yield return cam.Reset();
+            openSeq.Add(new CameraAction
+            {
+                type = CameraActionType.Reset
+            });
         }
+
+        yield return cam.Play(openSeq);
+
+        // =========================
+        // CLASH LOOP
+        // =========================
 
         while (true)
         {
             int rollA = 0;
             int rollB = 0;
 
-            // 🎲 POSITION DICE
             diceA.Follow(A.headAnchor);
             diceB.Follow(B.headAnchor);
 
             yield return new WaitForSeconds(0.15f);
 
-            // 🎲 ROLL BOTH (TRUE PARALLEL)
             bool doneA = false;
             bool doneB = false;
 
@@ -144,25 +122,35 @@ public class ClashSystem : MonoBehaviour
                 rollB = r;
                 doneB = true;
             }));
-            Debug.Log($"[CLASH] Rolls → {A.name}: {rollA} | {B.name}: {rollB}");
 
             yield return new WaitUntil(() => doneA && doneB);
 
-            // 🎨 RESULT COLORS
+            Debug.Log($"[CLASH] Rolls → {A.name}:{rollA} | {B.name}:{rollB}");
+
             diceA.SetResult(rollA, rollB);
             diceB.SetResult(rollB, rollA);
 
             yield return new WaitForSeconds(0.25f);
 
-            // -----------------------------
-            // 🤝 TIE → SHAKE
-            // -----------------------------
+            // =========================
+            // TIE
+            // =========================
             if (rollA == rollB)
             {
+                Debug.Log("[CLASH] Tie → retry");
+
                 A.PlayHit();
                 B.PlayHit();
 
-                yield return cam.Shake(0.15f, 0.2f);
+                yield return cam.Play(new List<CameraAction>
+                {
+                    new CameraAction
+                    {
+                        type = CameraActionType.Shake,
+                        shakeIntensity = 0.2f,
+                        duration = 0.2f
+                    }
+                });
 
                 Vector3 recoilDir = (B.visual.position - A.visual.position).normalized;
 
@@ -171,25 +159,39 @@ public class ClashSystem : MonoBehaviour
 
                 yield return A.MoveTo(aPoint);
                 yield return B.MoveTo(bPoint);
-                Debug.Log("[CLASH] Tie → retry");
 
                 continue;
             }
 
-            // -----------------------------
-            // 🏆 WIN → FOLLOW LOSER
-            // -----------------------------
+            // =========================
+            // WIN
+            // =========================
             bool aWins = rollA > rollB;
 
             CharacterUnit winner = aWins ? A : B;
             CharacterUnit loser = aWins ? B : A;
+
             Debug.Log($"[CLASH] Winner: {winner.name}");
 
             winner.PlayAttack();
             loser.PlayHit();
 
-            // 🔥 SMOOTH FOLLOW (NOT INSTANT SNAP)
-            yield return cam.SmoothFollow(loser.visual, 0.25f);
+            // 🎬 CAMERA FOLLOW HIT
+            yield return cam.Play(new List<CameraAction>
+            {
+                new CameraAction
+                {
+                    type = CameraActionType.FocusTarget,
+                    target = loser.visual,
+                    duration = 0.2f
+                },
+                new CameraAction
+                {
+                    type = CameraActionType.Zoom,
+                    zoom = 3.2f,
+                    duration = 0.2f
+                }
+            });
 
             Vector3 hitDir = (loser.visual.position - winner.visual.position).normalized;
 
@@ -202,27 +204,31 @@ public class ClashSystem : MonoBehaviour
             );
 
             loser.TakeDamage(dmg);
-            Debug.Log($"[CLASH] Damage dealt: {dmg} to {loser.name}");
+
+            Debug.Log($"[CLASH] Damage → {loser.name}: {dmg}");
 
             break;
         }
 
-        // -----------------------------
-        // 🔄 CLEAN RESET
-        // -----------------------------
+        // =========================
+        // CLEANUP
+        // =========================
+
         yield return new WaitForSeconds(0.3f);
 
         A.ResetPosition();
         B.ResetPosition();
 
-        // ✅ RESTORE SPEED DICE
         A.ShowSpeed();
         B.ShowSpeed();
 
         diceA.Hide();
         diceB.Hide();
 
-        yield return cam.Reset();
+        yield return cam.Play(new List<CameraAction>
+        {
+            new CameraAction { type = CameraActionType.Reset }
+        });
 
         OnClashFinished?.Invoke();
     }

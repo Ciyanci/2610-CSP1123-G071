@@ -46,13 +46,14 @@ public class EnemyAI : MonoBehaviour
     {
         List<Card> valid = new();
 
-        foreach (var c in deck.cards)
+        foreach (var c in deck.GetHand())
+        {
             if (c.Cost <= self.currentEnergy)
                 valid.Add(c);
+        }
 
         return valid.Count > 0 ? valid[Random.Range(0, valid.Count)] : null;
     }
-
     CharacterUnit FindRandomPlayer()
     {
         var players = FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None);

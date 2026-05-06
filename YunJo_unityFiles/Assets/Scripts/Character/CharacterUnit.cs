@@ -54,11 +54,17 @@ public class CharacterUnit : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!CombatFlowController.Instance.inputEnabled)
-            return;
+        var flow = CombatFlowController.Instance;
+        if (flow == null) return;
 
-        CombatFlowController.Instance.SelectUnit(this);
+        flow.SelectUnit(this);
+
         Debug.Log($"[INPUT] Clicked unit: {name}");
+
+        if (deck != null)
+        {
+            HandUI.Instance.Show(deck); // 🔥 FORCE UI OPEN ALWAYS
+        }
     }
 
     [Header("Highlight")]
@@ -162,6 +168,9 @@ public class CharacterUnit : MonoBehaviour
 
         if (headAnchor != null)
             smoothHeadPos = headAnchor.position;
+            
+        if (deck == null)
+        deck = GetComponent<CharacterDeck>();
     }
 
     void Start()

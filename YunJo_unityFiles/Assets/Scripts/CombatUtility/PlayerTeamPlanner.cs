@@ -11,11 +11,17 @@ public class PlayerTeamPlanner : MonoBehaviour
     {
         foreach (var deck in decks)
         {
-            Card card = deck.Draw();
+            if (deck.GetHand().Count == 0)
+                continue;
+
+            // pick first available card (or later: UI-selected)
+            Card card = deck.GetHand()[0];
 
             CharacterUnit target = FindTargetFor(deck.owner);
 
             flow.QueuePreview(deck.owner, target, card);
+
+            deck.UseCard(card); // 🔥 IMPORTANT: now consumes properly
         }
     }
 

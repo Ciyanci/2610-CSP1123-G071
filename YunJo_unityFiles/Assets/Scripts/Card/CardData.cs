@@ -7,6 +7,7 @@ public class CardData : ScriptableObject
     public string Description;
 
     public Sprite Image;
+    public Sprite Artwork;
 
     public int Cost;
 

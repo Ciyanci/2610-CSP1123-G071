@@ -10,6 +10,9 @@ public class Card
     public int Max => Data.MaxRoll;
     public int Damage => Data.Damage;
 
+    // ✅ FIXED: instance access
+    public Sprite Artwork => Data.Artwork;
+
     // 🔥 BACKWARD COMPATIBILITY
     public int min => Min;
     public int max => Max;

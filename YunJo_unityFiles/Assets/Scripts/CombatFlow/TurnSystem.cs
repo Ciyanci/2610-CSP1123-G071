@@ -101,7 +101,7 @@ public class TurnSystem : MonoBehaviour
         foreach (var unit in FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None))
         {
             if (unit.deck != null)
-                unit.deck.DiscardOne(); // Mahjong rule
+                unit.deck.FillHandToLimit();
         }
 
         running = false;

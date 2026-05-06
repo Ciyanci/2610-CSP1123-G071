@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34651287d4e379447a1c19edeb301de8, type: 3}
   m_Name: SlapProMax
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  Name: 
-  Description: 
-  Image: {fileID: 0}
+  Name: Slap Pro Max
+  Description: slap but harder
+  Image: {fileID: 21300000, guid: 892131d9367a8be4e937ca4e50ca56c0, type: 3}
+  Artwork: {fileID: 21300000, guid: 35493b21e0871ab4092815ceab88daf1, type: 3}
   Cost: 0
   MinRoll: 1
   MaxRoll: 6
-  Damage: 0
-  prefab: {fileID: 0}
+  Damage: 7
+  prefab: {fileID: 445031347310594184, guid: a59bc0c60f7663e42834b359a9659159, type: 3}

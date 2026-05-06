@@ -2,40 +2,55 @@ using UnityEngine;
 
 public class CombatInputController : MonoBehaviour
 {
-    Camera cam;
-
-    void Awake()
-    {
-        cam = Camera.main;
-    }
-
     void Update()
     {
-        if (!CombatFlowController.Instance.inputEnabled)
+        var flow = CombatFlowController.Instance;
+
+        if (flow == null || !flow.inputEnabled)
             return;
 
-        // LEFT CLICK → select unit
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
-            mouse.z = 0;
-
-            Collider2D hit = Physics2D.OverlapPoint(mouse);
-
-            if (hit == null) return;
-
-            CharacterUnit unit = hit.GetComponent<CharacterUnit>();
-
-            if (unit != null)
-            {
-                CombatFlowController.Instance.SelectUnit(unit);
-            }
+            TryAssignTarget();
         }
+    }
 
-        // RIGHT CLICK → cancel selection
-        if (Input.GetMouseButtonDown(1))
-        {
-            CombatFlowController.Instance.ResetAll();
-        }
+    void TryAssignTarget()
+    {
+        var flow = CombatFlowController.Instance;
+
+        if (flow.selectedCard == null || flow.selectedUser == null)
+            return;
+
+        CharacterUnit target = GetUnitUnderMouse();
+
+        if (target == null || target == flow.selectedUser)
+            return;
+
+        BattleFlowController.Instance.QueuePreview(
+            flow.selectedUser,
+            target,
+            flow.selectedCard
+        );
+
+        var deck = flow.selectedUser.GetComponent<CharacterDeck>();
+        deck.UseCard(flow.selectedCard);
+
+        HandUI.Instance.Refresh(CombatFlowController.Instance.selectedUnit.deck);
+
+        Debug.Log($"[INTENT] {flow.selectedUser.name} → {target.name}");
+
+        flow.ClearSelection();
+    }
+
+    CharacterUnit GetUnitUnderMouse()
+    {
+        Vector2 world = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(world, Vector2.zero);
+
+        if (hit.collider != null)
+            return hit.collider.GetComponent<CharacterUnit>();
+
+        return null;
     }
 }

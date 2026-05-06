@@ -1,163 +1,182 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CombatCamera : MonoBehaviour
 {
-    public float moveSpeed = 2f;
-
-    [Header("Zoom Levels (LoR Style Tuning)")]
-    public float defaultZoom = 70f;
-    public float clashZoom = 15f;
-    public float focusZoom = 10f;
-    public float unopposedZoom = 15f;
-
     Camera cam;
 
     Vector3 defaultPos;
     float defaultSize;
 
-    Coroutine followRoutine;
+    [Header("Zoom Offset")]
+    [Tooltip("How much to zoom IN from default size")]
+    public float zoomOffset = 10f;
+
+    [Tooltip("Clamp so camera never over-zooms")]
+    public float minSize = 40f;
 
     void Awake()
     {
         cam = Camera.main;
-
         defaultPos = transform.position;
-        defaultSize = defaultZoom; // IMPORTANT: stable baseline
-        cam.orthographicSize = defaultZoom;
+        defaultSize = cam.orthographicSize;
     }
 
-    // -----------------------------
-    // CLASH ZOOM (center fight)
-    // -----------------------------
-    public IEnumerator ClashZoom(Vector3 focus)
+    // =========================
+    // MAIN PIPELINE
+    // =========================
+    public IEnumerator Play(List<CameraAction> sequence)
     {
-        Vector3 targetPos = new Vector3(focus.x, focus.y, transform.position.z);
-
-        Vector3 startPos = transform.position;
-        float startSize = cam.orthographicSize;
-
-        float t = 0;
-        float dur = 0.25f;
-
-        while (t < dur)
+        foreach (var action in sequence)
         {
-            float e = t / dur;
-            e = e * e * (3f - 2f * e); // smoothstep
-
-            transform.position = Vector3.Lerp(startPos, targetPos, e);
-            cam.orthographicSize = Mathf.Lerp(startSize, clashZoom, e);
-
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = targetPos;
-        cam.orthographicSize = clashZoom;
-    }
-
-    // -----------------------------
-    // CENTER CLASH (stable framing)
-    // -----------------------------
-    public IEnumerator ClashCenter(Vector3 point)
-    {
-        Vector3 target = new Vector3(point.x, point.y, transform.position.z);
-
-        Vector3 startPos = transform.position;
-        float startSize = cam.orthographicSize;
-
-        float t = 0;
-        float dur = 0.35f;
-
-        while (t < dur)
-        {
-            float e = t / dur;
-            e = e * e * (3f - 2f * e);
-
-            transform.position = Vector3.Lerp(startPos, target, e);
-            cam.orthographicSize = Mathf.Lerp(startSize, clashZoom, e);
-
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = target;
-        cam.orthographicSize = clashZoom;
-    }
-
-    // -----------------------------
-    // FOLLOW LOSER
-    // -----------------------------
-    public void FollowTarget(Transform target, float duration)
-    {
-        if (followRoutine != null)
-            StopCoroutine(followRoutine);
-
-        followRoutine = StartCoroutine(FollowRoutine(target, duration));
-    }
-
-    IEnumerator FollowRoutine(Transform target, float duration)
-    {
-        float t = 0;
-
-        while (t < duration && target != null)
-        {
-            Vector3 targetPos = new Vector3(
-                target.position.x,
-                target.position.y,
-                transform.position.z
-            );
-
-            transform.position = Vector3.Lerp(
-                transform.position,
-                targetPos,
-                Time.deltaTime * moveSpeed
-            );
-
-            t += Time.deltaTime;
-            yield return null;
+            yield return Execute(action);
         }
     }
 
-    // -----------------------------
-    // FOCUS (single unit / attack)
-    // -----------------------------
-    public IEnumerator Focus(Vector3 target, float zoom, float duration)
+    IEnumerator Execute(CameraAction a)
     {
-        Vector3 startPos = transform.position;
-        float startSize = cam.orthographicSize;
+        switch (a.type)
+        {
+            case CameraActionType.MoveTo:
+                yield return MoveAndZoom(transform.position, cam.orthographicSize, a.position, cam.orthographicSize, a.duration);
+                break;
 
-        Vector3 targetPos = new Vector3(target.x, target.y, transform.position.z);
+            case CameraActionType.FocusTarget:
+                if (a.target != null)
+                {
+                    yield return MoveAndZoom(
+                        transform.position,
+                        cam.orthographicSize,
+                        a.target.position,
+                        cam.orthographicSize,
+                        a.duration
+                    );
+                }
+                break;
+
+            case CameraActionType.Zoom:
+                yield return MoveAndZoom(
+                    transform.position,
+                    cam.orthographicSize,
+                    transform.position,
+                    GetZoom(a.zoom),
+                    a.duration
+                );
+                break;
+
+            case CameraActionType.Reset:
+                yield return MoveAndZoom(
+                    transform.position,
+                    cam.orthographicSize,
+                    defaultPos,
+                    defaultSize,
+                    a.duration <= 0 ? 0.3f : a.duration
+                );
+                break;
+
+            case CameraActionType.Shake:
+                yield return Shake(a.shakeIntensity, a.duration);
+                break;
+
+            case CameraActionType.FrameTargets:
+                if (a.targets != null && a.targets.Count >= 2)
+                {
+                    yield return FrameTargets(a.targets, a.duration);
+                }
+                break;
+        }
+    }
+
+    // =========================
+    // CORE
+    // =========================
+    IEnumerator MoveAndZoom(
+        Vector3 startPos,
+        float startZoom,
+        Vector3 targetPos,
+        float targetZoom,
+        float duration
+    )
+    {
+        Vector3 endPos = new Vector3(targetPos.x, targetPos.y, transform.position.z);
 
         float t = 0;
 
         while (t < duration)
         {
-            float e = t / duration;
-            e = e * e * (15f - 2f * e);
+            float e = Ease(t / duration);
 
-            transform.position = Vector3.Lerp(startPos, targetPos, e);
-            cam.orthographicSize = Mathf.Lerp(startSize, zoom, e);
+            transform.position = Vector3.Lerp(startPos, endPos, e);
+            cam.orthographicSize = Mathf.Lerp(startZoom, targetZoom, e);
 
             t += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = targetPos;
-        cam.orthographicSize = zoom;
+        transform.position = endPos;
+        cam.orthographicSize = targetZoom;
     }
 
-    // -----------------------------
-    // SHAKE (tie)
-    // -----------------------------
-    public IEnumerator Shake(float intensity, float duration)
+    // =========================
+    // 🔥 FIXED ZOOM SYSTEM
+    // =========================
+    float GetZoom(float requestedOffset)
+    {
+        float target = defaultSize - requestedOffset;
+
+        return Mathf.Clamp(target, minSize, defaultSize);
+    }
+
+    // =========================
+    // AUTO FRAME (SAFE)
+    // =========================
+  IEnumerator FrameTargets(List<Transform> targets, float duration)
+    {
+        if (targets == null || targets.Count == 0)
+            yield break;
+
+        Vector3 center = Vector3.zero;
+
+        foreach (var t in targets)
+            center += t.position;
+
+        center /= targets.Count;
+
+        float maxDist = 0f;
+
+        foreach (var t in targets)
+        {
+            float d = Vector3.Distance(center, t.position);
+            if (d > maxDist) maxDist = d;
+        }
+
+        float screenPadding = 2.5f;
+
+        float targetZoom = maxDist * screenPadding;
+
+        // clamp so it doesn't go insane
+        targetZoom = Mathf.Clamp(targetZoom, 15f, 70f);
+
+        yield return MoveAndZoom(
+            transform.position,
+            cam.orthographicSize,
+            center,
+            targetZoom,
+            duration
+        );
+}
+
+    // =========================
+    IEnumerator Shake(float intensity, float duration)
     {
         Vector3 original = transform.position;
+
         float t = 0;
 
         while (t < duration)
         {
-            Vector3 offset = Random.insideUnitCircle * intensity;
+            Vector2 offset = Random.insideUnitCircle * intensity;
             transform.position = original + new Vector3(offset.x, offset.y, 0);
 
             t += Time.deltaTime;
@@ -167,60 +186,8 @@ public class CombatCamera : MonoBehaviour
         transform.position = original;
     }
 
-    // -----------------------------
-    // RESET CAMERA
-    // -----------------------------
-    public IEnumerator Reset()
+    float Ease(float t)
     {
-        if (followRoutine != null)
-            StopCoroutine(followRoutine);
-
-        float t = 0;
-        float dur = 0.3f;
-
-        Vector3 startPos = transform.position;
-        float startSize = cam.orthographicSize;
-
-        while (t < dur)
-        {
-            float e = t / dur;
-            e = e * e * (3f - 2f * e);
-
-            transform.position = Vector3.Lerp(startPos, defaultPos, e);
-            cam.orthographicSize = Mathf.Lerp(startSize, defaultZoom, e);
-
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        transform.position = defaultPos;
-        cam.orthographicSize = defaultZoom;
-    }
-
-    // -----------------------------
-    // SMOOTH FOLLOW (optional utility)
-    // -----------------------------
-    public IEnumerator SmoothFollow(Transform target, float duration)
-    {
-        Vector3 start = transform.position;
-
-        float t = 0;
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime / duration;
-
-            float e = t * t * (3f - 2f * t);
-
-            Vector3 end = new Vector3(
-                target.position.x,
-                target.position.y,
-                transform.position.z
-            );
-
-            transform.position = Vector3.Lerp(start, end, e);
-
-            yield return null;
-        }
+        return t * t * (3f - 2f * t);
     }
 }

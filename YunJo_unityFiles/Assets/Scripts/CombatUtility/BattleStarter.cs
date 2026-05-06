@@ -5,17 +5,29 @@ public class BattleStarter : MonoBehaviour
 {
     public CharacterDeck playerDeck;
     public CharacterDeck enemyDeck;
+
     public BattleFlowController flow;
 
-    void Start(){}
+    void Start()
+    {
+        StartCoroutine(StartBattle());
+    }
+
     IEnumerator StartBattle()
     {
-        //give initial hand
-        for (int i = 0; i < 5; i++)
-        {
-            playerDeck.Draw();
-            enemyDeck.Draw();
-            yield return new WaitForSeconds(0.1f);
-        }
+        if (playerDeck == null || enemyDeck == null)
+            yield break;
+
+        // Initialize both decks properly
+        playerDeck.Init();
+        enemyDeck.Init();
+
+        // ensure starting hand is filled correctly
+        playerDeck.FillHandToLimit();
+        enemyDeck.FillHandToLimit();
+
+        Debug.Log("[BATTLE] Initialized decks");
+
+        yield return new WaitForSeconds(0.2f);
     }
 }

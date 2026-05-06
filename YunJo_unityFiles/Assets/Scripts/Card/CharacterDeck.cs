@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CharacterDeck : MonoBehaviour
 {
@@ -8,77 +9,97 @@ public class CharacterDeck : MonoBehaviour
     [Header("Deck Setup")]
     public List<CardData> startingDeck;
 
-    // 🔥 KEEP PUBLIC FOR OLD SCRIPTS (EnemyAI etc.)
-    public List<Card> cards = new();
+    [Header("Runtime")]
+    public List<Card> drawPile = new();
+    public List<Card> discardPile = new();
+    public List<Card> hand = new();
 
-    List<Card> drawPile = new();
-    List<Card> discard = new();
-
-    public int handSize = 3;
+    [Header("Rules")]
+    public int maxSelectableCards = 9;
+    public int maxUsableCards = 4;
 
     void Start()
     {
         Init();
     }
 
+    // =========================
+    // INIT
+    // =========================
     public void Init()
     {
         drawPile.Clear();
-        discard.Clear();
-        cards.Clear();
+        discardPile.Clear();
+        hand.Clear();
 
         foreach (var data in startingDeck)
-        {
-            Card c = new Card(data);
-            drawPile.Add(c);
-        }
+            drawPile.Add(new Card(data));
 
         Shuffle(drawPile);
-        DrawHand();
+
+        FillHandToLimit();
     }
 
-    // 🔥 FIX: Draw must be PUBLIC (your error)
-    public Card Draw()
+    // =========================
+    // CORE HAND SYSTEM
+    // =========================
+    public void FillHandToLimit()
+    {
+        while (hand.Count < maxSelectableCards)
+        {
+            Card next = DrawFromPile();
+
+            if (next == null)
+                break;
+
+            hand.Add(next);
+        }
+    }
+
+    Card DrawFromPile()
     {
         if (drawPile.Count == 0)
-            Reshuffle();
+            ReshuffleDiscardIntoDeck();
 
         if (drawPile.Count == 0)
             return null;
 
-        Card c = drawPile[0];
+        var card = drawPile[0];
         drawPile.RemoveAt(0);
-        cards.Add(c);
-        Debug.Log($"[DECK] {owner.name} drew {c.Data.Name}");
 
-        return c;
+        return card;
     }
 
-    public void DrawHand()
+    // =========================
+    // CARD USAGE (NO DISCARD FORCE)
+    // =========================
+    public void UseCard(Card c)
     {
-        for (int i = 0; i < handSize; i++)
-            Draw();
+        if (!hand.Contains(c)) return;
+
+        hand.Remove(c);
+        discardPile.Add(c);
+
+        Debug.Log($"[DECK] Used {c.Data.Name}");
+
+        // auto refill slot
+        FillHandToLimit();
     }
 
-    public List<Card> GetHand() => cards;
-
-    public void DiscardOne()
+    // =========================
+    // RESHUFFLE ONLY WHEN EMPTY
+    // =========================
+    void ReshuffleDiscardIntoDeck()
     {
-        if (cards.Count == 0) return;
+        drawPile.AddRange(discardPile);
+        discardPile.Clear();
 
-        Card c = cards[0];
-        cards.RemoveAt(0);
-        discard.Add(c);
-        Debug.Log($"[DECK] {owner.name} discarded a card");
-    }
-
-    void Reshuffle()
-    {
-        drawPile.AddRange(discard);
-        discard.Clear();
         Shuffle(drawPile);
     }
 
+    // =========================
+    // SHUFFLE
+    // =========================
     void Shuffle(List<Card> list)
     {
         for (int i = 0; i < list.Count; i++)
@@ -88,11 +109,16 @@ public class CharacterDeck : MonoBehaviour
         }
     }
 
-    // 🔥 COMPATIBILITY FIX
+    // =========================
+    // UI ACCESS
+    // =========================
+    public List<Card> GetHand()
+    {
+        return hand.Take(maxUsableCards).ToList();
+    }
+
     public void OpenDeck()
     {
-        var handUI = FindFirstObjectByType<HandUI>();
-        if (handUI != null)
-            handUI.Show(this);
+        HandUI.Instance.Show(this);
     }
 }

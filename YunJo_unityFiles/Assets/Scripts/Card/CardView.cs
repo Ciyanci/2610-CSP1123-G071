@@ -8,12 +8,15 @@ public class CardView : MonoBehaviour
     public TMP_Text desc;
     public TMP_Text cost;
     public TMP_Text dice;
+    public UnityEngine.UI.Image artwork;
 
     Card card;
     CharacterUnit owner;
 
     Vector3 baseScale;
-    Vector3 expandedScale = new Vector3(1.6f, 1f, 1f);
+    Vector3 expandedScale = new(1.6f, 1f, 1f);
+
+    bool dragging = false;
 
     public void Setup(Card c, CharacterUnit unit)
     {
@@ -24,6 +27,8 @@ public class CardView : MonoBehaviour
         desc.text = c.Data.Description;
         cost.text = c.Cost.ToString();
         dice.text = $"{c.Min}-{c.Max}";
+        artwork.sprite = c.Artwork;
+        artwork.preserveAspect = true;
 
         baseScale = transform.localScale;
     }
@@ -35,12 +40,20 @@ public class CardView : MonoBehaviour
 
     void OnMouseExit()
     {
-        transform.DOScale(baseScale, 0.15f);
+        if (!dragging)
+            transform.DOScale(baseScale, 0.15f);
     }
 
     void OnMouseDown()
     {
-        CombatFlowController.Instance.SelectCard(card, owner);
-        Debug.Log($"[CARD] Clicked: {card.Data.Name}");
+        CombatFlowController.Instance.StartTargeting(card, owner);
+
+        Debug.Log($"[CARD] Drag start: {card.Data.Name}");
+    }
+
+    void OnMouseUp()
+    {
+        dragging = false;
+        transform.DOScale(baseScale, 0.1f);
     }
 }

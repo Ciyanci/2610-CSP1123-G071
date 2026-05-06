@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 public class BattleFlowController : MonoBehaviour
 {
+    public static BattleFlowController Instance { get; private set; }
+    void Awake()
+    {
+        Instance = this;
+    }
     public CombatCamera cam;
     public ClashSystem clashSystem;
 
@@ -20,8 +25,11 @@ public class BattleFlowController : MonoBehaviour
 
     public void QueuePreview(CharacterUnit user, CharacterUnit target, Card card)
     {
+        if (user == null || target == null || card == null) return;
+
         ArrowController arrow = Instantiate(arrowPrefab, transform);
         arrow.Set(user.headAnchor, target.headAnchor);
+
         Debug.Log($"[PREVIEW] {user.name} → {target.name} using {card.Data.Name}");
 
         previewIntents.Add(new PreviewIntent
@@ -43,8 +51,15 @@ public class BattleFlowController : MonoBehaviour
         BuildClashes();
         HidePreview();
 
-        yield return cam.Reset();
+        // 🎥 RESET CAMERA
+        yield return cam.Play(new List<CameraAction>
+        {
+            new CameraAction { type = CameraActionType.Reset }
+        });
 
+        // -------------------------
+        // CLASHES
+        // -------------------------
         foreach (var c in clashes)
         {
             yield return clashSystem.Resolve(c.Item1, c.Item2);
@@ -52,6 +67,9 @@ public class BattleFlowController : MonoBehaviour
             c.Item2.resolved = true;
         }
 
+        // -------------------------
+        // UNOPPOSED
+        // -------------------------
         foreach (var i in intents)
         {
             if (!i.resolved)
@@ -81,6 +99,8 @@ public class BattleFlowController : MonoBehaviour
                 resolved = false
             });
         }
+
+        Debug.Log($"[COMBAT] Built {intents.Count} intents");
     }
 
     void BuildClashes()
@@ -103,55 +123,87 @@ public class BattleFlowController : MonoBehaviour
                     clashes.Add((a, b));
                     used.Add(a);
                     used.Add(b);
+
+                    Debug.Log($"[CLASH FOUND] {a.user.name} <-> {b.user.name}");
                     break;
                 }
-            Debug.Log($"[COMBAT] Building {previewIntents.Count} intents");
             }
         }
-        Debug.Log($"[COMBAT] Clashes found: {clashes.Count}");
+
+        Debug.Log($"[COMBAT] Total clashes: {clashes.Count}");
     }
 
-    // ======================
-    // UNOPPOSED
-    // ======================
+    //unopp atk
 
     IEnumerator ResolveSingle(CombatIntent i)
     {
         if (i.user == null || i.target == null)
             yield break;
 
-        var cam = this.cam;
-
         i.user.SetCombatStartPosition();
         i.target.SetCombatStartPosition();
 
-        Vector3 attackPos = i.target.clashAnchor.position;
+        //pos
+        Vector3 dir = (i.target.visual.position - i.user.visual.position).normalized;
 
-        // -------------------------
-        // MOVE INTO RANGE
-        // -------------------------
+        float offset = 5f;
+
+        Vector3 attackPos = i.target.clashAnchor.position - dir * offset;
+
         yield return i.user.MoveTo(attackPos);
 
-        // -------------------------
-        // 🎥 ZOOM IN ON ATTACK
-        // -------------------------
-        if (cam != null)
-            yield return cam.Focus(i.user.visual.position, 0.4f, 0.3f);
+        //camfoc
+        yield return cam.Play(new List<CameraAction>
+        {
+            new CameraAction
+            {
+                type = CameraActionType.FocusTarget,
+                target = i.user.visual,
+                duration = 0.25f
+            },
+            new CameraAction
+            {
+                type = CameraActionType.Zoom,
+                zoom = 3.2f,
+                duration = 0.25f
+            }
+        });
 
         // -------------------------
-        // 💥 WINDUP ANIMATION
+        // 🎲 WINDUP + ROLL (SYNCED)
         // -------------------------
-        i.user.PlayWindup();   // 🔥 you need to add this
-        yield return new WaitForSeconds(0.4f);
+        i.user.PlayWindup();
 
-        // -------------------------
-        // 🎲 ROLL DAMAGE DICE
-        // -------------------------
-        int roll = Random.Range(i.card.Min, i.card.Max + 1);
+        int roll = 0;
+        float rollTime = 0.45f;
+
+        float t = 0;
+
+        while (t < rollTime)
+        {
+            roll = Random.Range(i.card.Min, i.card.Max + 1);
+            t += Time.deltaTime;
+            yield return null;
+        }
 
         Debug.Log($"[UNOPPOSED] {i.user.name} rolled {roll}");
 
-        yield return new WaitForSeconds(0.2f);
+        // -------------------------
+        // 🎯 CINEMATIC PAUSE
+        // -------------------------
+        yield return new WaitForSeconds(0.15f);
+
+        // -------------------------
+        // 💥 DAMAGE CALCULATION
+        // -------------------------
+        float normalized = Mathf.InverseLerp(i.card.Min, i.card.Max, roll);
+
+        int finalDamage = Mathf.RoundToInt(
+            Mathf.Lerp(i.card.Min, i.card.Max, normalized)
+        );
+
+        // optional scaling boost
+        finalDamage = Mathf.Max(1, finalDamage);
 
         // -------------------------
         // 💥 ATTACK
@@ -159,18 +211,22 @@ public class BattleFlowController : MonoBehaviour
         i.user.PlayAttack();
         i.target.PlayHit();
 
-        i.target.TakeDamage(roll);
+        i.target.TakeDamage(finalDamage);
+
+        Debug.Log($"[UNOPPOSED] Damage dealt: {finalDamage}");
 
         yield return new WaitForSeconds(0.25f);
 
         // -------------------------
-        // 🎥 RESET CAMERA
+        // 🎥 CAMERA RESET
         // -------------------------
-        if (cam != null)
-            yield return cam.Reset();
+        yield return cam.Play(new List<CameraAction>
+        {
+            new CameraAction { type = CameraActionType.Reset }
+        });
 
         // -------------------------
-        // RESET POSITIONS
+        // 🔄 RESET POSITIONS
         // -------------------------
         i.user.ResetPosition();
         i.target.ResetPosition();

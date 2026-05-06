@@ -8,9 +8,6 @@ public class CombatStateMachine : MonoBehaviour
     public List<EnemyAI> enemies;
 
     public BattleFlowController flow;
-    public TurnSystem turnUI;
-    public TurnSystem turnSystem;
-    public CardInputHandler input;
 
     List<CharacterDeck> playerDecks;
 
@@ -42,15 +39,17 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator StartTurn()
     {
         phase = CombatPhase.StartTurn;
+        Debug.Log("[PHASE] Start Turn");
         yield return null;
     }
 
     IEnumerator DrawPhase()
     {
         phase = CombatPhase.Draw;
+        Debug.Log("[PHASE] Draw");
 
-        foreach (var deck in playerDecks)
-            deck.OpenDeck();
+        HandUI hand = FindFirstObjectByType<HandUI>();
+        hand.Hide();
 
         yield return new WaitForSeconds(0.2f);
     }
@@ -58,18 +57,21 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator PlanningPhase()
     {
         phase = CombatPhase.Planning;
+        Debug.Log("[PHASE] Planning");
 
         CombatFlowController.Instance.SetInputEnabled(true);
 
         foreach (var enemy in enemies)
             StartCoroutine(enemy.TakeTurn());
 
+        // Wait until resolve button disables input
         yield return new WaitUntil(() => !CombatFlowController.Instance.inputEnabled);
     }
 
     IEnumerator IntentPreview()
     {
         phase = CombatPhase.IntentPreview;
+        Debug.Log("[PHASE] Intent Preview");
 
         yield return new WaitForSeconds(1.0f);
     }
@@ -77,6 +79,7 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator ResolvePhase()
     {
         phase = CombatPhase.Resolve;
+        Debug.Log("[PHASE] Resolve");
 
         yield return flow.ResolveAll();
     }
@@ -84,6 +87,14 @@ public class CombatStateMachine : MonoBehaviour
     IEnumerator EndTurn()
     {
         phase = CombatPhase.EndTurn;
+        Debug.Log("[PHASE] End Turn");
+
+        // 🔥 Mahjong discard rule (your requirement)
+        foreach (var deck in playerDecks)
+        {
+            deck.FillHandToLimit(); // ensures empty slots refill
+        }
+
         yield return new WaitForSeconds(0.5f);
     }
 }

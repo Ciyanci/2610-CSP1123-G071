@@ -4,11 +4,14 @@ public class CombatFlowController : MonoBehaviour
 {
     public static CombatFlowController Instance;
 
+    [Header("State")]
     public bool inputEnabled;
 
-    CharacterUnit selectedUnit;
-    Card selectedCard;
+    public Card selectedCard;
+    public CharacterUnit selectedUser;
+    public CharacterUnit selectedUnit;
 
+    [Header("Visuals")]
     public ArrowController arrow;
 
     void Awake()
@@ -16,48 +19,106 @@ public class CombatFlowController : MonoBehaviour
         Instance = this;
     }
 
-    public void SetInputEnabled(bool value)
+    // =========================
+    // INPUT CONTROL
+    // =========================
+
+    public void SetInputEnabled(bool enabled)
     {
-        inputEnabled = value;
+        inputEnabled = enabled;
+        Debug.Log($"[FLOW] Input Enabled: {enabled}");
     }
+
+    // =========================
+    // UNIT SELECTION (CLICK CHARACTER)
+    // =========================
 
     public void SelectUnit(CharacterUnit unit)
     {
         selectedUnit = unit;
+
         Debug.Log($"[FLOW] Selected unit: {unit.name}");
 
-        var handUI = FindFirstObjectByType<HandUI>();
-        handUI.Show(unit.deck);
+        if (unit.deck != null)
+        {
+            HandUI.Instance.Show(unit.deck);
+        }
     }
+    // =========================
+    // CARD SELECTION
+    // =========================
 
     public void SelectCard(Card card, CharacterUnit user)
     {
-        if (!inputEnabled) return;
+        if (!inputEnabled || card == null || user == null)
+            return;
 
-        selectedUnit = user;
         selectedCard = card;
-        Debug.Log($"[FLOW] Selected card: {card.Data.Name} by {selectedUnit.name}");
+        selectedUser = user;
 
-        arrow.Begin(user, card);
+        Debug.Log($"[SELECT] {user.name} picked {card.Data.Name}");
+
+        // start arrow preview from user
+        if (arrow != null)
+        {
+            arrow.Begin(user, card);
+        }
     }
+
+    // (kept for compatibility with your other scripts)
+    public void StartTargeting(Card card, CharacterUnit user)
+    {
+        SelectCard(card, user);
+    }
+
+    // =========================
+    // TARGET CONFIRMATION (CLICK ENEMY)
+    // =========================
 
     public void ConfirmTarget(CharacterUnit target)
     {
-        if (!inputEnabled || selectedCard == null) return;
+        if (!inputEnabled || selectedCard == null || selectedUser == null)
+            return;
 
-        var flow = FindFirstObjectByType<BattleFlowController>();
+        if (target == null || target == selectedUser)
+            return;
 
-        flow.QueuePreview(selectedUnit, target, selectedCard);
-        Debug.Log($"[FLOW] Target selected: {target.name}");
-        Debug.Log($"[ARROW] Attempting target selection");
+        var flow = BattleFlowController.Instance;
 
-        arrow.End();
+        flow.QueuePreview(selectedUser, target, selectedCard);
+
+        Debug.Log($"[INTENT] {selectedUser.name} → {target.name}");
+
+        // consume card from deck
+        var deck = selectedUser.GetComponent<CharacterDeck>();
+        if (deck != null)
+            deck.UseCard(selectedCard);
+
+        // refresh UI
+        HandUI.Instance.Refresh(selectedUnit.deck);
+
+        // end arrow
+        if (arrow != null)
+            arrow.End();
+
+        ClearSelection();
+    }
+
+    // =========================
+    // RESET
+    // =========================
+
+    public void ClearSelection()
+    {
         selectedCard = null;
+        selectedUser = null;
     }
 
     public void ResetAll()
     {
-        arrow.End();
-        selectedCard = null;
+        if (arrow != null)
+            arrow.End();
+
+        ClearSelection();
     }
 }
