@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
 
         int dmg = Mathf.RoundToInt(finalDamage);
         health -= dmg;
-        Debug.Log($"Enemy took {dmg} {damageType} damage (type: x{typeMultiplier}) HP left: {health}");
+        Debug.Log($"Enemy took {dmg} {damageType} (multiplier: x{typeMultiplier}) HP left: {health}");
 
         if (health <= 0)
         {
