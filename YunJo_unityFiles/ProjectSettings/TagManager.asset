@@ -10,6 +10,7 @@ TagManager:
   - Hidden_Area_3
   - Cube_Spawn_Point_1
   - Cube_Spawn_Point_2
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -52,6 +53,15 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 1242368463
+    locked: 0
+  - name: Cards
+    uniqueID: 946254563
+    locked: 0
+  - name: UI
+    uniqueID: 3143983059
+    locked: 0
+  - name: FX
+    uniqueID: 48865623
     locked: 0
   m_RenderingLayers:
   - Default

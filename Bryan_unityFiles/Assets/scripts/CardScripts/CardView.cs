@@ -3,7 +3,6 @@ using TMPro;
 
 public class CardView : MonoBehaviour
 {
-    //to make it show in unity inspector
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
     [SerializeField] private TMP_Text cost;
@@ -11,6 +10,20 @@ public class CardView : MonoBehaviour
     [SerializeField] private GameObject wrapper;
     [SerializeField] private Player player;
 
+<<<<<<< HEAD
+    public Card Card { get; private set; }
+
+    public void Setup(Card card)
+    {
+        Card = card;
+
+        title.text = card.Title;
+        description.text = card.Description;
+        cost.text = card.Cost.ToString();
+
+        if (card.Image != null)
+            imageSR.sprite = card.Image;
+=======
 
     public CardData cardData {get; private set;}
     private TestSystem testSystem;
@@ -43,13 +56,30 @@ public class CardView : MonoBehaviour
     {
         CardViewHoverSystem.Instance.Hide();
         wrapper.SetActive(true);
+<<<<<<< HEAD
+>>>>>>> 2f72c6e5ee10f44ca8e6760df476034df3dc4dc5
+    }
+
+    void OnMouseDown()
+    {
+<<<<<<< HEAD
+        var flow = FindFirstObjectByType<BattleFlowController>();
+
+        if (flow != null)
+        {
+            flow.PlayCardFromUI(Card);
+=======
+        if (cardData != null)
+=======
     }*/
 
     void OnMouseDown()
     {
         if (testSystem != null && card != null)
+>>>>>>> 75e8017c02b66a7acdf8e63d8f1e357d7d064d27
         {
             testSystem.TryPlayCard(this, card);
+>>>>>>> 2f72c6e5ee10f44ca8e6760df476034df3dc4dc5
         }
     }
 }
