@@ -10,8 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf4e68bbb27d61242983c549078342a3, type: 3}
-  m_Name: Slash
+  m_Name: DamageUp
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  <Description>k__BackingField: Deal 5 damage to an enemy
-  <Cost>k__BackingField: 2
-  <Image>k__BackingField: {fileID: -6939695964637348897, guid: 2dccca5a8b9bb6f4784a44d157257859, type: 3}
+  <Name>k__BackingField: Damage Up
+  <Description>k__BackingField: Increases damage done to enemy
+  <Cost>k__BackingField: 0
+  <Image>k__BackingField: {fileID: -4550316174406117001, guid: a1ee5843b02e77240ac2b84f6c15a676, type: 3}
+  <Effects>k__BackingField:
+  - type: 5
+    value: 3
+  <CardPrefab>k__BackingField: {fileID: 0}

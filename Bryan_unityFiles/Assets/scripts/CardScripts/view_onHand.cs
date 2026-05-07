@@ -7,6 +7,7 @@ using DG.Tweening;
 public class HandView : MonoBehaviour
 {
    [SerializeField] private SplineContainer splineContainer;
+   
    private readonly List<CardView> cards = new();
    public IEnumerator AddCard(CardView cardView)
     {
@@ -25,11 +26,40 @@ public class HandView : MonoBehaviour
             Vector3 splinePosition = spline.EvaluatePosition(p);
             Vector3 forward = spline.EvaluateTangent(p);
             Vector3 up = spline.EvaluateUpVector(p);
-            Quaternion rotation = Quaternion.LookRotation(-up, Vector3.Cross(-up, forward).normalized);
+            Quaternion rotation = Quaternion.LookRotation(up, Vector3.Cross(up, forward).normalized);
             cards[i].transform.DOMove(splinePosition + transform.position + 0.01f * i * Vector3.back, duration);
             cards[i].transform.DORotate(rotation.eulerAngles, duration);
         }
         yield return new WaitForSeconds(duration);
+
+        //i used a guide for this it looks horrible and i dont understand 100% fully how it works yet
     }
+
+    public void ClearHand()
+    {
+        foreach (var c in cards)
+        {
+            Destroy(c.gameObject);
+        }
+        cards.Clear();
+    }
+
+    public void RemoveFirstCard()
+    {
+        if(cards.Count == 0) return;
+        cards.RemoveAt(0);
+    }
+
+    public void RemoveCard(CardView view)
+    {
+        if (view == null) return;
+
+        if (cards.Contains(view))
+        {
+            cards.Remove(view);
+        }
+        Destroy(view.gameObject);
+    }
+
 }
 

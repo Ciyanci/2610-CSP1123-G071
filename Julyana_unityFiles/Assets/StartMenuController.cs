@@ -6,7 +6,7 @@ public class StartMenuController : MonoBehaviour
     public void OnStartClick()
     {
         Debug.Log("Start button clicked");
-        SceneManager.LoadScene("MenuScreen");
+        SceneManager.LoadScene("MenuSelectionScreen");
     }
 
     public void OnExitClick()
