@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using System;
 
 public class AudioSettingsManager : MonoBehaviour
 {
@@ -29,8 +30,8 @@ public class AudioSettingsManager : MonoBehaviour
         float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-        mixer.SetFloat("MasterVolume", Math.Log10(master) * 20);
-        mixer.SetFloat("MasterVolume", Math.Log10(music) * 20);
-        mixer.SetFloat("MasterVolume", Math.Log10(sfx) * 20);
+        mixer.SetFloat("MasterVolume", (float)Math.Log10(master) * 20);
+        mixer.SetFloat("MasterVolume", (float)Math.Log10(music) * 20);
+        mixer.SetFloat("MasterVolume", (float)Math.Log10(sfx) * 20);
     }
 }
