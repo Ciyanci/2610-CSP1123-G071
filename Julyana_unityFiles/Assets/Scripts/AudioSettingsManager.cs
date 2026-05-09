@@ -13,10 +13,6 @@ public class AudioSettingsManager : MonoBehaviour
     float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
     float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
 
-    master = Mathf.Max(master, 0.2f);
-    music = Mathf.Max(music, 0.2f);
-    sfx = Mathf.Max(sfx, 0.2f);
-
     SetMasterVolume(master);
     SetMusicVolume(music);
     SetSFXVolume(sfx);
