@@ -1,37 +1,49 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using System;
 
 public class AudioSettingsManager : MonoBehaviour
 {
     [SerializeField] private AudioMixer mixer;
 
+    private void Start()
+{
+
+
+    float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
+    float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
+    float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+    master = Mathf.Max(master, 0.2f);
+    music = Mathf.Max(music, 0.2f);
+    sfx = Mathf.Max(sfx, 0.2f);
+
+    SetMasterVolume(master);
+    SetMusicVolume(music);
+    SetSFXVolume(sfx);
+}
+
     public void SetMasterVolume(float volume)
     {
+        Debug.Log(volume);
+        volume = Mathf.Clamp(volume, 0.0001f, 1f);
         mixer.SetFloat("MasterVolume", Mathf.Log10(volume)*20);
         PlayerPrefs.SetFloat("MasterVolume", volume);
     }
 
     public void SetMusicVolume(float volume)
     {
+        Debug.Log(volume);
+        volume = Mathf.Clamp(volume, 0.0001f, 1f);
         mixer.SetFloat("MusicVolume", Mathf.Log10(volume)*20);
-        PlayerPrefs.SetFloat("MasterVolume", volume);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
     }
 
     public void SetSFXVolume(float volume)
     {
+        Debug.Log(volume);
+        volume = Mathf.Clamp(volume, 0.0001f, 1f);
         mixer.SetFloat("SFXVolume", Mathf.Log10(volume)*20);
         PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
-    private void START()
-    {
-        float master = PlayerPrefs.GetFloat("MasterVolume", 1f);
-        float music = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        float sfx = PlayerPrefs.GetFloat("SFXVolume", 1f);
-
-        mixer.SetFloat("MasterVolume", (float)Math.Log10(master) * 20);
-        mixer.SetFloat("MasterVolume", (float)Math.Log10(music) * 20);
-        mixer.SetFloat("MasterVolume", (float)Math.Log10(sfx) * 20);
-    }
 }
