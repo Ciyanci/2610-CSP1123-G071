@@ -45,13 +45,12 @@ public class ClashSystem : MonoBehaviour
 
         Vector3 mid = (A.GetClashPosition() + B.GetClashPosition()) / 2f;
 
+        float spacing = 4.5f;
+
         bool meleeA = A.unitType == UnitType.Melee;
         bool meleeB = B.unitType == UnitType.Melee;
 
-        float spacing = 4.5f;
-
         if (!meleeA && !meleeB) spacing = 6f;
-        else if (meleeA && meleeB) spacing = 4.5f;
         else spacing = 4.5f;
 
         Vector3 aPoint = mid + Vector3.left * spacing;
@@ -100,9 +99,6 @@ public class ClashSystem : MonoBehaviour
 
         while (true)
         {
-            int rollA = 0;
-            int rollB = 0;
-
             diceA.Follow(A.headAnchor);
             diceB.Follow(B.headAnchor);
 
@@ -111,17 +107,23 @@ public class ClashSystem : MonoBehaviour
             bool doneA = false;
             bool doneB = false;
 
-            StartCoroutine(diceA.Roll(a.card.min, a.card.max, r =>
-            {
-                rollA = r;
-                doneA = true;
-            }));
+            DiceData diceAData = a.card.GetDice()[0].data;
+            DiceData diceBData = b.card.GetDice()[0].data;
 
-            StartCoroutine(diceB.Roll(b.card.min, b.card.max, r =>
-            {
-                rollB = r;
-                doneB = true;
-            }));
+            int rollA = 0;
+            int rollB = 0;
+
+            StartCoroutine(diceA.Roll(
+                diceAData.minRoll,
+                diceAData.maxRoll,
+                r => { rollA = r; doneA = true; }
+            ));
+
+            StartCoroutine(diceB.Roll(
+                diceBData.minRoll,
+                diceBData.maxRoll,
+                r => { rollB = r; doneB = true; }
+            ));
 
             yield return new WaitUntil(() => doneA && doneB);
 
@@ -164,8 +166,9 @@ public class ClashSystem : MonoBehaviour
             }
 
             // =========================
-            // WIN
+            // WIN (NO DAMAGE HERE)
             // =========================
+
             bool aWins = rollA > rollB;
 
             CharacterUnit winner = aWins ? A : B;
@@ -176,7 +179,6 @@ public class ClashSystem : MonoBehaviour
             winner.PlayAttack();
             loser.PlayHit();
 
-            // 🎬 CAMERA FOLLOW HIT
             yield return cam.Play(new List<CameraAction>
             {
                 new CameraAction
@@ -194,18 +196,13 @@ public class ClashSystem : MonoBehaviour
             });
 
             Vector3 hitDir = (loser.visual.position - winner.visual.position).normalized;
-
             yield return loser.Recoil(hitDir, 1.2f, 0.15f);
 
-            int dmg = Mathf.RoundToInt(
-                aWins
-                    ? a.card.damage * (rollA / (float)a.card.max)
-                    : b.card.damage * (rollB / (float)b.card.max)
-            );
+            // 🔥 IMPORTANT CHANGE:
+            // Instead of damage → we only store outcome
 
-            loser.TakeDamage(dmg);
-
-            Debug.Log($"[CLASH] Damage → {loser.name}: {dmg}");
+            a.isClashWinner = aWins;
+            b.isClashWinner = !aWins;
 
             break;
         }

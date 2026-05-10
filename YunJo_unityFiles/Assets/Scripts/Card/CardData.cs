@@ -1,22 +1,35 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 [CreateAssetMenu(menuName = "Combat/Card")]
 public class CardData : ScriptableObject
 {
+    [Header("Info")]
     public string Name;
+
+    [TextArea]
     public string Description;
 
-    public Sprite Image;
+    [TextArea]
+    public string Effects;
+
     public Sprite Artwork;
 
+    [Header("Combat")]
     public int Cost;
 
     [Header("Dice")]
-    public int MinRoll;
-    public int MaxRoll;
+    public List<DiceData> dice = new();
 
-    [Header("Damage")]
-    public int Damage;
+    [Header("Rarity")]
+    public CardRarity rarity;
+}
 
-    public CardView prefab;
+public enum CardRarity
+{
+    Common,
+    Uncommon,
+    Rare,
+    Epic,
+    Legendary
 }

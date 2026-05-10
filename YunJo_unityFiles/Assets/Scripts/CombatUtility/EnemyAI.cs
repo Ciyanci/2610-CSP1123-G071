@@ -18,11 +18,11 @@ public class EnemyAI : MonoBehaviour
     {
         yield return new WaitForSeconds(thinkTime);
 
-        self.RefreshEnergy();
+        self.RefreshLight();
 
         int safety = 10;
 
-        while (self.currentEnergy > 0 && safety-- > 0)
+        while (self.currentLight > 0 && safety-- > 0)
         {
             Card card = GetPlayableCard();
             if (card == null) yield break;
@@ -33,10 +33,9 @@ public class EnemyAI : MonoBehaviour
             CharacterUnit target = FindRandomPlayer();
             if (target == null) yield break;
 
-            self.Spend(card.Cost);
+            self.SpendLight(card.Cost);
 
-            FindFirstObjectByType<BattleFlowController>()
-                .QueuePreview(self, target, card);
+            BattleFlowController.Instance.QueuePreview(self, target, card);
 
             yield return new WaitForSeconds(0.2f);
         }
@@ -48,21 +47,27 @@ public class EnemyAI : MonoBehaviour
 
         foreach (var c in deck.GetHand())
         {
-            if (c.Cost <= self.currentEnergy)
+            if (c.Cost <= self.currentLight)
                 valid.Add(c);
         }
 
-        return valid.Count > 0 ? valid[Random.Range(0, valid.Count)] : null;
+        return valid.Count > 0
+            ? valid[Random.Range(0, valid.Count)]
+            : null;
     }
+
     CharacterUnit FindRandomPlayer()
     {
         var players = FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None);
+
         List<CharacterUnit> valid = new();
 
         foreach (var p in players)
             if (p.CompareTag("Player"))
                 valid.Add(p);
 
-        return valid.Count > 0 ? valid[Random.Range(0, valid.Count)] : null;
+        return valid.Count > 0
+            ? valid[Random.Range(0, valid.Count)]
+            : null;
     }
 }

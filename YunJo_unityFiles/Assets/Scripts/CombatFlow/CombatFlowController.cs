@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class CombatFlowController : MonoBehaviour
 {
@@ -7,9 +9,10 @@ public class CombatFlowController : MonoBehaviour
     [Header("State")]
     public bool inputEnabled;
 
-    public Card selectedCard;
-    public CharacterUnit selectedUser;
-    public CharacterUnit selectedUnit;
+    Card selectedCard;
+
+    CharacterUnit selectedUser;
+    CharacterUnit selectedUnit;
 
     [Header("Visuals")]
     public ArrowController arrow;
@@ -19,34 +22,22 @@ public class CombatFlowController : MonoBehaviour
         Instance = this;
     }
 
-    // =========================
-    // INPUT CONTROL
-    // =========================
-
     public void SetInputEnabled(bool enabled)
     {
         inputEnabled = enabled;
+
         Debug.Log($"[FLOW] Input Enabled: {enabled}");
     }
-
-    // =========================
-    // UNIT SELECTION (CLICK CHARACTER)
-    // =========================
 
     public void SelectUnit(CharacterUnit unit)
     {
         selectedUnit = unit;
-
-        Debug.Log($"[FLOW] Selected unit: {unit.name}");
 
         if (unit.deck != null)
         {
             HandUI.Instance.Show(unit.deck);
         }
     }
-    // =========================
-    // CARD SELECTION
-    // =========================
 
     public void SelectCard(Card card, CharacterUnit user)
     {
@@ -56,57 +47,91 @@ public class CombatFlowController : MonoBehaviour
         selectedCard = card;
         selectedUser = user;
 
-        Debug.Log($"[SELECT] {user.name} picked {card.Data.Name}");
+        Debug.Log($"[SELECT] {user.unitName} selected {card.Name}");
 
-        // start arrow preview from user
-        if (arrow != null)
-        {
-            arrow.Begin(user, card);
-        }
+        arrow?.Begin(user, card);
     }
 
-    // (kept for compatibility with your other scripts)
-    public void StartTargeting(Card card, CharacterUnit user)
+    public void StartTargeting(
+        Card card,
+        CharacterUnit user)
     {
         SelectCard(card, user);
     }
 
-    // =========================
-    // TARGET CONFIRMATION (CLICK ENEMY)
-    // =========================
-
     public void ConfirmTarget(CharacterUnit target)
     {
-        if (!inputEnabled || selectedCard == null || selectedUser == null)
+        if (!inputEnabled ||
+            selectedCard == null ||
+            selectedUser == null ||
+            target == null ||
+            target == selectedUser)
             return;
 
-        if (target == null || target == selectedUser)
-            return;
+        PreviewManager.Instance.QueuePreview(
+            selectedUser,
+            target,
+            selectedCard
+        );
 
-        var flow = BattleFlowController.Instance;
+        selectedUser.deck.UseCard(selectedCard);
 
-        flow.QueuePreview(selectedUser, target, selectedCard);
+        HandUI.Instance.Refresh(selectedUser.deck);
 
-        Debug.Log($"[INTENT] {selectedUser.name} → {target.name}");
-
-        // consume card from deck
-        var deck = selectedUser.GetComponent<CharacterDeck>();
-        if (deck != null)
-            deck.UseCard(selectedCard);
-
-        // refresh UI
-        HandUI.Instance.Refresh(selectedUnit.deck);
-
-        // end arrow
-        if (arrow != null)
-            arrow.End();
+        arrow?.End();
 
         ClearSelection();
     }
 
-    // =========================
-    // RESET
-    // =========================
+    public void ConfirmPlanning()
+    {
+        if (!inputEnabled)
+            return;
+
+        StartCoroutine(
+            BattleFlowController.Instance.ResolveTurn()
+        );
+
+        SetInputEnabled(false);
+    }
+
+    public void AutoAssignPlayerActions()
+    {
+        foreach (var player in UnitRegistry.Instance.players)
+        {
+            if (player.deck == null)
+                continue;
+
+            List<Card> hand = player.deck.GetHand();
+
+            if (hand.Count == 0)
+                continue;
+
+            Card randomCard =
+                hand[Random.Range(0, hand.Count)];
+
+            if (UnitRegistry.Instance.enemies.Count == 0)
+                continue;
+
+            CharacterUnit target =
+                UnitRegistry.Instance.enemies[
+                    Random.Range(
+                        0,
+                        UnitRegistry.Instance.enemies.Count
+                    )
+                ];
+
+            PreviewManager.Instance.QueuePreview(
+                player,
+                target,
+                randomCard
+            );
+
+            player.deck.UseCard(randomCard);
+        }
+
+        HandUI.Instance.Refresh(selectedUnit.deck);
+    }
 
     public void ClearSelection()
     {
@@ -117,7 +142,9 @@ public class CombatFlowController : MonoBehaviour
     public void ResetAll()
     {
         if (arrow != null)
+        {
             arrow.End();
+        }
 
         ClearSelection();
     }

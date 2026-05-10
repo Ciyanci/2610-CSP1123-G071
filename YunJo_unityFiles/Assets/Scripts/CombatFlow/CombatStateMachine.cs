@@ -49,7 +49,8 @@ public class CombatStateMachine : MonoBehaviour
         Debug.Log("[PHASE] Draw");
 
         HandUI hand = FindFirstObjectByType<HandUI>();
-        hand.Hide();
+        if (hand != null)
+            hand.Hide();
 
         yield return new WaitForSeconds(0.2f);
     }
@@ -64,8 +65,9 @@ public class CombatStateMachine : MonoBehaviour
         foreach (var enemy in enemies)
             StartCoroutine(enemy.TakeTurn());
 
-        // Wait until resolve button disables input
-        yield return new WaitUntil(() => !CombatFlowController.Instance.inputEnabled);
+        yield return new WaitUntil(() =>
+            !CombatFlowController.Instance.inputEnabled
+        );
     }
 
     IEnumerator IntentPreview()
@@ -81,7 +83,8 @@ public class CombatStateMachine : MonoBehaviour
         phase = CombatPhase.Resolve;
         Debug.Log("[PHASE] Resolve");
 
-        yield return flow.ResolveAll();
+        // ✅ FIXED LINE
+        yield return BattleFlowController.Instance.ResolveTurn();
     }
 
     IEnumerator EndTurn()
@@ -89,10 +92,10 @@ public class CombatStateMachine : MonoBehaviour
         phase = CombatPhase.EndTurn;
         Debug.Log("[PHASE] End Turn");
 
-        // 🔥 Mahjong discard rule (your requirement)
         foreach (var deck in playerDecks)
         {
-            deck.FillHandToLimit(); // ensures empty slots refill
+            if (deck != null)
+                deck.FillHandToLimit();
         }
 
         yield return new WaitForSeconds(0.5f);

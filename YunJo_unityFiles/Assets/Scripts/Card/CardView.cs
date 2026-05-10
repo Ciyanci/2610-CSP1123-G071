@@ -1,59 +1,238 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.EventSystems;
 
-public class CardView : MonoBehaviour
+public class CardView : MonoBehaviour,
+    IPointerEnterHandler,
+    IPointerExitHandler,
+    IPointerDownHandler
 {
+    [Header("Compact UI")]
     public TMP_Text title;
-    public TMP_Text desc;
     public TMP_Text cost;
-    public TMP_Text dice;
-    public UnityEngine.UI.Image artwork;
+    public Image artwork;
+
+    [Header("Compact Dice Icons")]
+    public Transform diceIconsRow;
+    public DiceIconUI diceIconPrefab;
+
+    [Header("Expanded UI")]
+    public GameObject expandedPanel;
+
+    public RectTransform expandRoot;
+
+    public TMP_Text desc;
+    public TMP_Text effects;
+
+    [Header("Expanded Dice List")]
+    public Transform expandedDiceList;
+
+    public ExpandedDiceRowUI expandedDicePrefab;
+
+    [Header("Animation")]
+    public float hoverHeight = 60f;
+    public float expandOffset = -250f;
+    public float animDuration = 0.18f;
+
+    RectTransform rect;
+
+    Vector2 originalPos;
 
     Card card;
     CharacterUnit owner;
 
-    Vector3 baseScale;
-    Vector3 expandedScale = new(1.6f, 1f, 1f);
+    public CardFrameVisual frameVisual;
 
-    bool dragging = false;
+    bool hovered;
+
+    void Awake()
+    {
+        rect = GetComponent<RectTransform>();
+
+        if (expandedPanel != null)
+            expandedPanel.SetActive(false);
+    }
+
+    void Start()
+    {
+        originalPos = rect.anchoredPosition;
+    }
 
     public void Setup(Card c, CharacterUnit unit)
     {
         card = c;
         owner = unit;
 
-        title.text = c.Data.Name;
-        desc.text = c.Data.Description;
-        cost.text = c.Cost.ToString();
-        dice.text = $"{c.Min}-{c.Max}";
-        artwork.sprite = c.Artwork;
-        artwork.preserveAspect = true;
+        if (title != null)
+            title.text = c.Data.Name;
 
-        baseScale = transform.localScale;
+        if (cost != null)
+            cost.text = c.Cost.ToString();
+
+        if (artwork != null)
+        {
+            artwork.sprite = c.Artwork;
+            artwork.preserveAspect = true;
+        }
+
+        if (desc != null)
+            desc.text = c.Data.Description;
+
+        if (effects != null)
+            effects.text = c.Data.Effects;
+
+        BuildCompactDiceIcons();
+        BuildExpandedDiceRows();
+
+        if (frameVisual != null)
+        {
+            frameVisual.SetRarity(c.Data.rarity);
+        }
     }
 
-    void OnMouseEnter()
+    void BuildCompactDiceIcons()
     {
-        transform.DOScale(expandedScale, 0.15f);
+        if (diceIconsRow == null ||
+            diceIconPrefab == null)
+            return;
+
+        foreach (Transform child in diceIconsRow)
+            Destroy(child.gameObject);
+
+        foreach (var d in card.Data.dice)
+        {
+            DiceIconUI icon =
+                Instantiate(
+                    diceIconPrefab,
+                    diceIconsRow
+                );
+
+            icon.Setup(d.damageType);
+        }
     }
 
-    void OnMouseExit()
+    void BuildExpandedDiceRows()
     {
-        if (!dragging)
-            transform.DOScale(baseScale, 0.15f);
+        if (expandedDiceList == null ||
+            expandedDicePrefab == null)
+            return;
+
+        foreach (Transform child in expandedDiceList)
+            Destroy(child.gameObject);
+
+        foreach (var d in card.Data.dice)
+        {
+            ExpandedDiceRowUI row =
+                Instantiate(
+                    expandedDicePrefab,
+                    expandedDiceList
+                );
+
+            row.Setup(d);
+        }
     }
 
-    void OnMouseDown()
+    public void OnPointerEnter(
+        PointerEventData eventData
+    )
     {
-        CombatFlowController.Instance.StartTargeting(card, owner);
+        if (hovered)
+            return;
 
-        Debug.Log($"[CARD] Drag start: {card.Data.Name}");
+        hovered = true;
+
+        rect.DOKill();
+
+        rect.DOAnchorPosY(
+            originalPos.y + hoverHeight,
+            animDuration
+        ).SetEase(Ease.OutCubic);
+
+        if (expandRoot != null)
+        {
+            expandRoot.DOKill();
+
+            expandRoot.DOAnchorPosX(
+                expandOffset,
+                animDuration
+            ).SetEase(Ease.OutCubic);
+        }
+
+        if (expandedPanel != null)
+            expandedPanel.SetActive(true);
+
+        HandUI.Instance?.OnCardHovered(this);
     }
 
-    void OnMouseUp()
+    public void OnPointerExit(
+        PointerEventData eventData
+    )
     {
-        dragging = false;
-        transform.DOScale(baseScale, 0.1f);
+        Collapse();
+
+        HandUI.Instance?.ResetHover();
+    }
+
+    public void OnPointerDown(
+        PointerEventData eventData
+    )
+    {
+        CombatFlowController.Instance
+            .StartTargeting(card, owner);
+    }
+
+    public void Collapse()
+    {
+        hovered = false;
+
+        rect.DOKill();
+
+        rect.DOAnchorPosY(
+            originalPos.y,
+            animDuration
+        ).SetEase(Ease.OutCubic);
+
+        if (expandRoot != null)
+        {
+            expandRoot.DOKill();
+
+            expandRoot.DOAnchorPosX(
+                0,
+                animDuration
+            ).SetEase(Ease.OutCubic);
+        }
+
+        if (expandedPanel != null)
+            expandedPanel.SetActive(false);
+    }
+
+    public void Shift(float amount)
+    {
+        rect.DOKill();
+
+        rect.DOAnchorPosX(
+            originalPos.x + amount,
+            animDuration
+        ).SetEase(Ease.OutCubic);
+    }
+
+    public void ResetShift()
+    {
+        if (hovered)
+            return;
+
+        rect.DOKill();
+
+        rect.DOAnchorPosX(
+            originalPos.x,
+            animDuration
+        ).SetEase(Ease.OutCubic);
+    }
+
+    public void ResetCard()
+    {
+        Collapse();
     }
 }

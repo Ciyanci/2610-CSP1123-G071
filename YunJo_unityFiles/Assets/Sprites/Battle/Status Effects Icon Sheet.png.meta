@@ -1,0 +1,6664 @@
+fileFormatVersion: 2
+guid: 8cdab18cbbec9854c86fa62a03cae3af
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 1931
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69371f61264176341aea7bc801f40eeb
+      internalID: 495535897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 1952
+        width: 62
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d47c0642fe1819346bae23076ed4ccbe
+      internalID: 439008254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 1920
+        width: 118
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e20807185e0d72a4889f373e21edae4b
+      internalID: 763906817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 1941
+        width: 30
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e97eefd4273d24c8face4f6780122e
+      internalID: 1322914095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 1931
+        width: 99
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a8d9dfd45dade64085e884e1199fc07
+      internalID: -1893201659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1926
+        width: 125
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 261266168fe60c9449ebe2d9209a7e61
+      internalID: -1256517068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 1932
+        width: 86
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c63b63902e9aad147a3c50ec76e9586c
+      internalID: 691052234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 1930
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5fc76d1757e6d74e95ed4c93f0bcafa
+      internalID: 1683136788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 1932
+        width: 96
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33dc62b39ad20fc4db9e5ba1ea250756
+      internalID: -698761871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 1927
+        width: 108
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ab3889e3a4f1845b40de0c58da3f46
+      internalID: 397996040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 1922
+        width: 93
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f2f92a7079e7384f9182e6761321a47
+      internalID: 626666472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 1920
+        width: 110
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eece663df07a33241b01b6b7dec68709
+      internalID: -206133495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 1947
+        width: 126
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526979099dbf5054d943068df25ac351
+      internalID: 7184302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 1924
+        width: 115
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0809301944c8ac458989ce8eb0cceda
+      internalID: -1519030863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 1924
+        width: 78
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93a171f92e5c4b340a96b513a21c0358
+      internalID: -80724203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1921
+        y: 1949
+        width: 127
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 819cdf5b77b317349811ebe4bf72d7af
+      internalID: 510012025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 1796
+        width: 117
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db827236a98a8874ba62695178fb4175
+      internalID: -1152367461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 1803
+        width: 70
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723d3300006fb274b8e24dbb22b3ec52
+      internalID: 1518163590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 1801
+        width: 104
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94bab9c219fe2c14890ce173e734f647
+      internalID: -396211678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 1799
+        width: 71
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fcdd89359f5743419046e2ace2a6f61
+      internalID: 18217251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1861
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3032fafac52f346408bc19590f27c5fb
+      internalID: 1218291651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 1862
+        width: 10
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e2ada63d127834daae423980709452
+      internalID: -1862439688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 1861
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c0b13a74981b7b4aae7b2270e883ca2
+      internalID: 1844646559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 1793
+        width: 61
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0bb8a7d929bdba4cbb7b5ef19e7e83a
+      internalID: -1946238350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 1794
+        width: 107
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd7da3c4d9889324aac842f1b4bfb9c2
+      internalID: 1077904059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 1792
+        width: 118
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9ff75e5712f8b742a86f2e7a34ff450
+      internalID: -642678147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 1793
+        width: 118
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f8c2487c9056044956e4d7bac49eb8
+      internalID: 1416996766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 1807
+        width: 106
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e792ed35626c98145a1ce86db3055e50
+      internalID: 380025626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 1805
+        width: 77
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecc02abd915ffa44dbe840f48179a7cc
+      internalID: 1855096350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_29
+      rect:
+        serializedVersion: 2
+        x: 1439
+        y: 1802
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c52ae63a6b92e14196ad326361d45e2
+      internalID: -230030023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_30
+      rect:
+        serializedVersion: 2
+        x: 1551
+        y: 1803
+        width: 97
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ef5f3b4e15b96745ad07a10e42756a3
+      internalID: 2118662532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_31
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 1794
+        width: 106
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e0d24176ce3e949ac8ee084f95cfba
+      internalID: -1353288919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_32
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 1802
+        width: 105
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 215ed4499a397cf458d03bb6c731fb7f
+      internalID: 281092486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_33
+      rect:
+        serializedVersion: 2
+        x: 1941
+        y: 1792
+        width: 85
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b8413d53bc24344a06fc47d0f37e2f
+      internalID: 622507698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_34
+      rect:
+        serializedVersion: 2
+        x: 529
+        y: 1851
+        width: 41
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 095de542934111d46a75fe48071102a1
+      internalID: -1581330905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_35
+      rect:
+        serializedVersion: 2
+        x: 573
+        y: 1853
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c598914f534ca964e8b9f7c6d1cdb8d4
+      internalID: 225144274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_36
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 1851
+        width: 41
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1035a6fc6a2f9d64a8e1312ed5c85588
+      internalID: 2000684860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_37
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 1823
+        width: 9
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f93c37f3945d7da4eb36c7e47d9cf826
+      internalID: 440125035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_38
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 1836
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f1b564873509f548ba622a7ef9a071b
+      internalID: -937204615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_39
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 1809
+        width: 10
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18bb24fbc29b8b342abd05a574a30e4e
+      internalID: -314438268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_40
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 1836
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cae8a2a047c43ee448413a774cdde3cd
+      internalID: -1050753672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_41
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1664
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d40437ea3da24aa47a4bac77257c3f25
+      internalID: 633656323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_42
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 1792
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f48426e9ce79e24458242a038aceb60c
+      internalID: -444598074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_43
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 1664
+        width: 125
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11aa27e34b317548968d76c55aab163
+      internalID: 346258615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_44
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1677
+        width: 79
+        height: 102
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a4f1eeef3ef704aaa876368e87f318
+      internalID: -1852689986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_45
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 1673
+        width: 106
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d1d7d4b6c0d8d04984ad2505d4218ec
+      internalID: 922311235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_46
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 1675
+        width: 87
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fafff7f498b5531449e8d08417d9a3fc
+      internalID: 2082979471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_47
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 1666
+        width: 119
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c65ddfb96721fb840b8f9d57a3514b80
+      internalID: 1961187248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_48
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1673
+        width: 124
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1176a8587579a8f41a28c015c9295f2e
+      internalID: -389793829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_49
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 1682
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceaa641d12fe3e145a49130a78125f83
+      internalID: -1148926741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_50
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 1674
+        width: 82
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4642e2232bfc5174bb82629891fb77ca
+      internalID: -1123909560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_51
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 1681
+        width: 111
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89697c4e9be997043a17abd72aa9079b
+      internalID: 219519732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_52
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 1675
+        width: 99
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42d3bbdd63f3dca4dbcb992ee1a2fc80
+      internalID: -326080635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_53
+      rect:
+        serializedVersion: 2
+        x: 1422
+        y: 1675
+        width: 99
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b95a90a52f592b1419e4edee26a3363b
+      internalID: -1942159718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_54
+      rect:
+        serializedVersion: 2
+        x: 1548
+        y: 1679
+        width: 104
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c93403bf0a8184f8d8e95ea2417769
+      internalID: -1713185261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_55
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 1679
+        width: 118
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af9b3c5fca4fba047a6d1e518b8b1487
+      internalID: -897697899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_56
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 1679
+        width: 112
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49cf5d8a7c16fe946bc8bbb8ed190c40
+      internalID: 532524355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_57
+      rect:
+        serializedVersion: 2
+        x: 1932
+        y: 1679
+        width: 104
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54f60dab18309b84c82e229c2053f48c
+      internalID: -2041606498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_58
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 1538
+        width: 120
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51ba4696e02ebc14ebc46248fe320200
+      internalID: 381402918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_59
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1408
+        width: 128
+        height: 253
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 380c06548e29990448407dc8969c0852
+      internalID: -1196744142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_60
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 1536
+        width: 93
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c5125a9abc3574191f16663ba2b031
+      internalID: -286362113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_61
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1547
+        width: 128
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a90ac4b0e0314540adffa3a6299b38e
+      internalID: -1305198906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_62
+      rect:
+        serializedVersion: 2
+        x: 1271
+        y: 1659
+        width: 9
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d13fef020c0f6034b9c0d1bcfb64f6c7
+      internalID: -1378773415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_63
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 1538
+        width: 119
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a143b2ad6c92346448b06a65d1cf5d2c
+      internalID: 1067963677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_64
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 1536
+        width: 256
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3323d61b91d437740a9507a3b0a2b471
+      internalID: -626210795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_65
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 1536
+        width: 125
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5e4a68cac8fa204d87f6ac06ea5efaa
+      internalID: -874981609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_66
+      rect:
+        serializedVersion: 2
+        x: 1924
+        y: 1536
+        width: 120
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11e817ce60d16224187c9689c01b805a
+      internalID: 1832600330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_67
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1551
+        width: 118
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e64d98b440a66438961ac6917e3062
+      internalID: 1645930206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_68
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 1551
+        width: 112
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21fb333a81e08eb499b882332a9d1aa4
+      internalID: -499610987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_69
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 1554
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccaf426b407fa644bbc66e96096f7c49
+      internalID: 618180087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_70
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 1547
+        width: 70
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dccd06f19dea3745ba36858b20ad5bd
+      internalID: 269681045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_71
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 1547
+        width: 69
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e6d9676e0ad1949b845cd42197bcc5
+      internalID: 1862029275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_72
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 1554
+        width: 98
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaefd48443056c34da38cde0d8ae2d79
+      internalID: 193594266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_73
+      rect:
+        serializedVersion: 2
+        x: 1201
+        y: 1626
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d7e1e9fcd07dec4d83e263a78df7917
+      internalID: -177028525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_74
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 1544
+        width: 106
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 988cd23781dd94245856ddec6968f3fb
+      internalID: -303171958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_75
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1419
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ada3df1a9c2580b41b6b3d39e8b10d75
+      internalID: 1146157528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_76
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 1409
+        width: 106
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 073f59160bef3394c87263631d424d4b
+      internalID: 1248939725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_77
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 1409
+        width: 106
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b05c9a045c68f1644b48cc1b0e2917f2
+      internalID: -150671202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_78
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1409
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9573daa0a7a4630459a35c74357a04d0
+      internalID: 542834813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_79
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1441
+        width: 125
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e25df759a148374e8c8bb23eb1d7201
+      internalID: 1623427009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_80
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 1413
+        width: 49
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed26bd810fdd5f7479072922734db57f
+      internalID: -1870292190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_81
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 1416
+        width: 57
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 712aface42b902449ad0bd04efe0b12f
+      internalID: 1369726108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_82
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 1417
+        width: 101
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d3f86e29c101b441b4d860896719a29
+      internalID: -2034108713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_83
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 1412
+        width: 102
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e43b0b136c0a08340b6514c5533e5771
+      internalID: 872909813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_84
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 1419
+        width: 256
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe98122e7271eab418ba98e904ee7326
+      internalID: -732179599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_85
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 1452
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d03dd917dcbd6040898b68a7a217891
+      internalID: -1731383390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_86
+      rect:
+        serializedVersion: 2
+        x: 1436
+        y: 1435
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32bde5a9192a0044f8eb28c4265093f7
+      internalID: -1068187393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_87
+      rect:
+        serializedVersion: 2
+        x: 1453
+        y: 1418
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f703afc35e54cb4bae19929dc22d350
+      internalID: -1910329427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_88
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 1452
+        width: 40
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f42106f4305a6394bb75eeeefcec101c
+      internalID: 501744048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_89
+      rect:
+        serializedVersion: 2
+        x: 1579
+        y: 1485
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b6d022942c64bb438aaa7173aa8154b
+      internalID: -908846914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_90
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 1468
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecb5e6856fd329643bd4793cfa215ffd
+      internalID: 1299602872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_91
+      rect:
+        serializedVersion: 2
+        x: 1614
+        y: 1451
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99b7c1153bda67843bd6a45efeee8683
+      internalID: -134867450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_92
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 1451
+        width: 39
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cab81999b4dbf1d46bed41218ef7dacc
+      internalID: 427012593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_93
+      rect:
+        serializedVersion: 2
+        x: 1691
+        y: 1435
+        width: 73
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb083768bbbdcb74ead28eebd3bedafe
+      internalID: 1030376371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_94
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1486
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e89be445377f9d43a8597e3477d6b1b
+      internalID: -1156792689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_95
+      rect:
+        serializedVersion: 2
+        x: 1742
+        y: 1453
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e03a752e0635e74b8247d58faf881e6
+      internalID: -1841549684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_96
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 1417
+        width: 72
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9775a44da295bf143b38e26858d72645
+      internalID: 2080217397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_97
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 1468
+        width: 39
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cd444d78575d664983c2e3020b25a8b
+      internalID: 1261298483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_98
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 1453
+        width: 74
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a10fa9a0cc67ef46875a8b2c6ef3dd3
+      internalID: -542301126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_99
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 1428
+        width: 90
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d59d692bd199dc48952a618c963aacc
+      internalID: -435142520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_100
+      rect:
+        serializedVersion: 2
+        x: 1564
+        y: 1435
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58ebb8d140ed48b439b7af48edc0d2fc
+      internalID: 986901684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_101
+      rect:
+        serializedVersion: 2
+        x: 1581
+        y: 1418
+        width: 41
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e590563e887284e8df332dde7d9bba
+      internalID: -1738071688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_102
+      rect:
+        serializedVersion: 2
+        x: 1708
+        y: 1417
+        width: 39
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff3a90a39f5f9e54f9422ef5cff76bba
+      internalID: 636590981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_103
+      rect:
+        serializedVersion: 2
+        x: 1853
+        y: 1435
+        width: 39
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd72e2d9e1df6a049823e40a485b3d2c
+      internalID: -499582642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_104
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1292
+        width: 111
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30caeaab80c32bd4ca7de94a3cc1ffdf
+      internalID: -871775808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_blunt
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1285
+        width: 122
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8df2813833c2c0a42abfcc88bae98378
+      internalID: -1199157342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_106
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 1286
+        width: 115
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dec797464ceb3ef4fbeb537a091def44
+      internalID: -1948006322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_107
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 1280
+        width: 73
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88f9cbeef02d94541952f53baab39420
+      internalID: 74002440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_108
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 1280
+        width: 71
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61de97e2170c230449886ee7ede241f8
+      internalID: 1140636693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_109
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 1297
+        width: 121
+        height: 95
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21241ef92000e574ca286177fc814671
+      internalID: -685427237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_110
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 1302
+        width: 83
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b39ddad3cdde88478d3684982cc428a
+      internalID: -1883661918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_111
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 1290
+        width: 101
+        height: 109
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c506762ac94e3a64380ce8d9ccc366bb
+      internalID: 1950853147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_112
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 1283
+        width: 97
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68904343170e5eb46bcb278d3107926d
+      internalID: -1373077934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_113
+      rect:
+        serializedVersion: 2
+        x: 1172
+        y: 1291
+        width: 88
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94a9b30791188a740836f16a8d003715
+      internalID: -924451756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_114
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 1357
+        width: 52
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac6d82c64bb91be4aae895af76cdcd8e
+      internalID: -2102186077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_115
+      rect:
+        serializedVersion: 2
+        x: 1303
+        y: 1296
+        width: 81
+        height: 78
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 774e03c87dbd7e84dbf7bf7c03857664
+      internalID: 1609855085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_116
+      rect:
+        serializedVersion: 2
+        x: 1416
+        y: 1293
+        width: 115
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d749b242f78567941bfd75e3ffec1abf
+      internalID: 710964268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_117
+      rect:
+        serializedVersion: 2
+        x: 1550
+        y: 1284
+        width: 100
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e3b037b555faf4eafb01179238e993
+      internalID: -1364833150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_118
+      rect:
+        serializedVersion: 2
+        x: 1682
+        y: 1288
+        width: 92
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f24497d7955e2f14e9ccee9e77917276
+      internalID: 1030282123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_119
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 1300
+        width: 90
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b572c61c95c37f4681451d46f90d35d
+      internalID: -1205986694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_120
+      rect:
+        serializedVersion: 2
+        x: 1943
+        y: 1297
+        width: 86
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ed61e46ded00744c9e02c707296e1fc
+      internalID: -1114841987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_121
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 1172
+        width: 127
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33ad8e75638804646b015a5f88126975
+      internalID: -299595305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_122
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 1152
+        width: 116
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e3e9f8a42f44a4781dd282aa2e9e44
+      internalID: -139605056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_123
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 1161
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9700ed60c629aae4aada841caf300327
+      internalID: -850747671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_124
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 1161
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52c5796d7407ca41a5c03e53ea4a3ec
+      internalID: -1310842887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_125
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 1161
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d6727d61358e540b5604a6dab54f06
+      internalID: -935220001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_126
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 1161
+        width: 116
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c03d276bff43a41b2c1ef120dd594e
+      internalID: 623644158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_127
+      rect:
+        serializedVersion: 2
+        x: 791
+        y: 1158
+        width: 84
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d82494728fcc134ebfc58916c0ba2a2
+      internalID: 1561070262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_128
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 1158
+        width: 84
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19594663bff637140a31d99aad9dd843
+      internalID: -1454574036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_129
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 1189
+        width: 94
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae1a3924c2e0a64caa573aa8913b2ac
+      internalID: -213635008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_130
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 1189
+        width: 94
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c46ff5ecc2c43a4991a48c5819d2586
+      internalID: -1203830055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_131
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 1189
+        width: 94
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f047e96caae784468d36c53e9fecb57
+      internalID: -2079238108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_132
+      rect:
+        serializedVersion: 2
+        x: 1409
+        y: 1179
+        width: 127
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b378c9e99335ce4190709da682fcb7b
+      internalID: 2099239534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_133
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1157
+        width: 94
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d393aaa4d2ccf647813b654780384c8
+      internalID: 376937798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_134
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 1159
+        width: 22
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ab05479f03c5fb4c9e74ea4f85133e2
+      internalID: 1893271319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_135
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 1163
+        width: 109
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aa94719471ad8c4bae95fbd150cd568
+      internalID: -1651360140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_136
+      rect:
+        serializedVersion: 2
+        x: 1817
+        y: 1225
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86abf389755460e429b188e8848a2f5d
+      internalID: -502238907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_137
+      rect:
+        serializedVersion: 2
+        x: 1921
+        y: 1156
+        width: 125
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f9df3b7243659149aab0da537ab7859
+      internalID: 780329064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_138
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb0891bf8445d24e803be3a66faeae3
+      internalID: 654812315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_139
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1035
+        width: 126
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87178a157d7b71042af47cd2c8be4632
+      internalID: 532907041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_140
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1041
+        width: 124
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cca6293d0a086444a97f42f36a5bda7c
+      internalID: 167735800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_141
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1025
+        width: 80
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 172a770e81dde514ea485f60a01aee1a
+      internalID: -750065911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_142
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 1042
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 996e97e0a510d064ca9285c86117f9ef
+      internalID: 741516837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_143
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 1035
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65abebca0917ac64c9af88dd72c08391
+      internalID: -526812731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_144
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 1040
+        width: 121
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43d78dd33179fdc4990c159f87b3cba2
+      internalID: 2147170130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_145
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 1038
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46c69ef5177c9664b8977875ff0c879e
+      internalID: -1883450659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_146
+      rect:
+        serializedVersion: 2
+        x: 1028
+        y: 1024
+        width: 120
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0a9a789b364b974586c343476bd956e
+      internalID: 409553182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_147
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 1034
+        width: 66
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89d0c1ab3acb2264298bdbc7ae57f000
+      internalID: 386079107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_148
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 1034
+        width: 119
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40a9c60bf266ab44bc48f09e9f131a3
+      internalID: -1613661234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_149
+      rect:
+        serializedVersion: 2
+        x: 1450
+        y: 1039
+        width: 49
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 617d52547bb27e94bbb0160f1e874c07
+      internalID: -1830782921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_150
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 1039
+        width: 105
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 933a3e25b6df0264fbd2ecd66ca9b601
+      internalID: 447536435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_151
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 1054
+        width: 112
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b978c547a0d9aa43bfe9727331babd8
+      internalID: 1671082362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_152
+      rect:
+        serializedVersion: 2
+        x: 1801
+        y: 1041
+        width: 111
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39404217120016d4ba8eeadfadea854b
+      internalID: -614492757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_153
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 1035
+        width: 101
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92114ace57cf31d459bf52f0a669c50a
+      internalID: -1380864613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_154
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 907
+        width: 101
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b4c0e8df9c44540b53c804bec46ce8
+      internalID: 1715811931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_155
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 899
+        width: 63
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9872566f73709f1469f1d045c5e6bbe2
+      internalID: -1988954368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_156
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 966
+        width: 40
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 220f2f6d825f3fe40a4a57250f637e30
+      internalID: -667341134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_157
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 896
+        width: 109
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 307a9afd21624ef4fa4f27a6136d27ee
+      internalID: -1756899913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_158
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 903
+        width: 114
+        height: 115
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9c6a1b6ad13de542b0141cf84f9e557
+      internalID: 610609876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_159
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 914
+        width: 99
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e37b3baf69a4d534baaf651735658808
+      internalID: 1134083660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_160
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 899
+        width: 106
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1239dcba1fd9d9a44ae98fdb7a13fd1d
+      internalID: -1649981105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_161
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 899
+        width: 112
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54acf2e8be7fd5c41b1f6108374ff208
+      internalID: -944218684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_162
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 899
+        width: 112
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f60d7f985b6e7643ba427f589ae256f
+      internalID: -443722581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_163
+      rect:
+        serializedVersion: 2
+        x: 1051
+        y: 908
+        width: 74
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8dd6f746753e04418ac193a8825baf1
+      internalID: -169702920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_pierce
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 911
+        width: 118
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 753f14b1beaaa744097e155f93b52e9c
+      internalID: 274890857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_165
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 904
+        width: 113
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb330de04528d104488e696944e95a6b
+      internalID: 1589848072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_166
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 896
+        width: 121
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d4c7847671b3034dacc2e6a7491a384
+      internalID: -972602656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_167
+      rect:
+        serializedVersion: 2
+        x: 1544
+        y: 896
+        width: 111
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc993f74464c879498ec0fbcd4f5e689
+      internalID: -637644765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_168
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 904
+        width: 107
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 293d669d123122643b6904e6faf96e4a
+      internalID: -1393821341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_169
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 945
+        width: 107
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 827233c0d13dbdf49b2c3f95127d3f3b
+      internalID: -1733973719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_170
+      rect:
+        serializedVersion: 2
+        x: 1926
+        y: 902
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2080839f843f1442954fd68c5eb66ed
+      internalID: 597498160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_171
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 922
+        width: 55
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcabf1fa2fd4df74c9ee2974249952d1
+      internalID: -1930986129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_172
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 768
+        width: 124
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1645e227ac17f1d4e8e03e2aeacf2b62
+      internalID: 1967297759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_173
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 644
+        width: 128
+        height: 250
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2c1e4f519cdbcb42b896a8abfa755a8
+      internalID: 1837629850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_174
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 770
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd29431596dd97543b7b30b4f39639ce
+      internalID: -53709098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_175
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 768
+        width: 124
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe43b524b47768e4b8af325c8e735dc5
+      internalID: 964790799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_176
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 640
+        width: 124
+        height: 254
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44535c4b6ad3274087bd6e05a0300fe
+      internalID: 1551284599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_177
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 768
+        width: 124
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b504ed60d1f1d3f48a2b5ee3b424b270
+      internalID: 38167873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_178
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 776
+        width: 115
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b874077743370408efff5018bf5084
+      internalID: 1914051673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_179
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 776
+        width: 115
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a443437e35306045bb8ec1e6f0de95c
+      internalID: 61612445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_180
+      rect:
+        serializedVersion: 2
+        x: 1030
+        y: 776
+        width: 115
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8cba80ec69d7e468e24365d5d87d0c
+      internalID: -584740313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_181
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 779
+        width: 110
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f80917c521b1b45bd5423514d7e517
+      internalID: 1241941808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_182
+      rect:
+        serializedVersion: 2
+        x: 1295
+        y: 779
+        width: 97
+        height: 106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb78bfd1375bec4384d45929eb8f5d5
+      internalID: 2140894237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_183
+      rect:
+        serializedVersion: 2
+        x: 1408
+        y: 770
+        width: 128
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6a1278e17c0934e8fdb6595b01fd17
+      internalID: -626869940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_184
+      rect:
+        serializedVersion: 2
+        x: 1539
+        y: 770
+        width: 122
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43ade9e44a5cfd740b6fdb095bb4ca37
+      internalID: 1272541765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_185
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 768
+        width: 120
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21bc164bfcabbc641a8599e648eddea1
+      internalID: 912611396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_186
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 768
+        width: 105
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d6fb0a02a92b1a47a6c9ec1483e6096
+      internalID: 1606042990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_187
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 779
+        width: 70
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: beb4a7a733e91f84992c6b7f021a6876
+      internalID: -638207471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_188
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 644
+        width: 121
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fce563f6f902476458a6e66de39cb4ab
+      internalID: 1852979691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_189
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 644
+        width: 125
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfa944ad6e41e9b4082e4e27e245de9a
+      internalID: -113068615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_190
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 647
+        width: 115
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da3d4e69a3eb92941bcae99c8d70c9a0
+      internalID: 721705078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_191
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 652
+        width: 103
+        height: 103
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ea10834dc22be54f8291e967e983af4
+      internalID: -1372762395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_192
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d74887d23517fda44b1be041f2662a96
+      internalID: -1148420335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_193
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 650
+        width: 115
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c51cf1d894cc54d8c0f03788c68fa5
+      internalID: 266136265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_194
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 650
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3350957f0faae3a49a9bcfe9c44dc09d
+      internalID: -1870161114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_195
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 653
+        width: 115
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b18a4cb1726aa4c81435d58bcc11b1
+      internalID: -1537271781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_196
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 643
+        width: 116
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3b9599bbc6a221448ee0e909efebbbb
+      internalID: -1152052673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_197
+      rect:
+        serializedVersion: 2
+        x: 1414
+        y: 643
+        width: 116
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf49fcdbaa4c514a8ceb235f64ed522
+      internalID: -1833873310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_198
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 643
+        width: 116
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af5c93155f3379428f7ddd76967d383
+      internalID: 730611433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_199
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 668
+        width: 94
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e255928acd1a240b84a6824340e64e
+      internalID: -1409141066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_200
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 659
+        width: 94
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c202fd1626d5c1e47a3ba120c55d6721
+      internalID: -1343372751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_201
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 658
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74971356bf46d4b468ed1d83d2e40dce
+      internalID: -1251708285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_202
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 517
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8c56a1b571007846ac5326de0fd6ca6
+      internalID: 1617998791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_203
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 513
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8306494f14a0f3546ad5c64adebce323
+      internalID: 2101641194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_204
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 513
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b447ec0abfc685e4fb8164ab21ca24e4
+      internalID: -462152883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_205
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 517
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3167e4cd2d078104e92e57ac38b20744
+      internalID: 549276528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_206
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 517
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2498397524310c1428de6e40ec4f7e87
+      internalID: -1591233348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_207
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 513
+        width: 118
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5e9c919cf91fb4d8609aa9b2571b9b
+      internalID: -116146030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_208
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 514
+        width: 97
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b0592b7a82a3824e97e0ddc44cc72bd
+      internalID: -693351998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_209
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 519
+        width: 108
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bf670058ec7b4d408180e05f95a0f00
+      internalID: 2112422323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_210
+      rect:
+        serializedVersion: 2
+        x: 1048
+        y: 528
+        width: 80
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc10947a7fd21a3439127ab0df0cb3cd
+      internalID: -943261262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: icon_slash
+      rect:
+        serializedVersion: 2
+        x: 1160
+        y: 527
+        width: 112
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b856fa1a0181947b77375d0ebaf940
+      internalID: 1122395297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_212
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 584
+        width: 56
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7bc711b673fe30468fea2bdf5dfc81a
+      internalID: -1611793212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_213
+      rect:
+        serializedVersion: 2
+        x: 1319
+        y: 522
+        width: 82
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a568c8979cdbdb74b85b274083e1666f
+      internalID: -521570372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_214
+      rect:
+        serializedVersion: 2
+        x: 1428
+        y: 523
+        width: 96
+        height: 105
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e29e5b2271c15b48843238f28e42214
+      internalID: -483022228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_215
+      rect:
+        serializedVersion: 2
+        x: 1544
+        y: 513
+        width: 101
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ea6d860bf8ecb41b4c8f1461380b00
+      internalID: 1239802384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_216
+      rect:
+        serializedVersion: 2
+        x: 1664
+        y: 512
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b523d501cdf7ff42ac7b80e4e9de313
+      internalID: 520125689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_217
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 548
+        width: 66
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3403e8b29f72fe4b88bdc399febc6f3
+      internalID: -1116377834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_218
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 515
+        width: 114
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06474a024b8947e4186b944c0d9853b3
+      internalID: -122880943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_219
+      rect:
+        serializedVersion: 2
+        x: 1934
+        y: 527
+        width: 99
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f45f97099421024c82c49f66257a422
+      internalID: -821417885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_220
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 399
+        width: 70
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccd497b653fdf144b8ab78e24be9c344
+      internalID: 545765746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_221
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 384
+        width: 70
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed54fb33e4af9f74a81c7031a793fca8
+      internalID: 321483008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_222
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 410
+        width: 128
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4752331d10a1d4e8d060c2ea4c829a
+      internalID: 486815904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_223
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 419
+        width: 26
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 364bc40bea19a534fbb4345494910082
+      internalID: -895702933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_224
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 419
+        width: 93
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9af022970bf38d94aa206034970c5a4c
+      internalID: 1855661878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_225
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 386
+        width: 120
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 442ce503f53a68b49aa214961a7419e2
+      internalID: 1542108911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_226
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 399
+        width: 104
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 758d2e287b41aa649b10206d240ae67e
+      internalID: -949715501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_227
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 399
+        width: 118
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b37aa72ee73c05449380926f8284066
+      internalID: -744435086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_228
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 399
+        width: 112
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6e9f112794cd1448b17c589f5b882ba
+      internalID: -1190644172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_229
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 395
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b1be0293f115c74ba6d50efa0675d52
+      internalID: -1630873654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_230
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 402
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 396cf3071735284448f81121637a3fc2
+      internalID: -424744972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_231
+      rect:
+        serializedVersion: 2
+        x: 1291
+        y: 385
+        width: 106
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 533e6c53f3d3cfd44868253858eb1ebc
+      internalID: 68881935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_232
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 395
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e66fe710474460e479ea7e4770123e5c
+      internalID: 1171616398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_233
+      rect:
+        serializedVersion: 2
+        x: 1557
+        y: 384
+        width: 98
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7e49d4e372c9274b9d752fc884c442a
+      internalID: -1330105257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_234
+      rect:
+        serializedVersion: 2
+        x: 1670
+        y: 387
+        width: 116
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62df8cfb1e36a2c4c9a3fd1260964d62
+      internalID: 1205623765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_235
+      rect:
+        serializedVersion: 2
+        x: 1806
+        y: 403
+        width: 99
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a21b423c542615a4a85dce3cd2c99e2b
+      internalID: 929254864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_236
+      rect:
+        serializedVersion: 2
+        x: 1922
+        y: 384
+        width: 124
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bb1402541090f64a92dbf0cfc220e48
+      internalID: -1624646988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_237
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 256
+        width: 124
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b013b258e620d74459ef9cc1f811d7cf
+      internalID: -1053242089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_238
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 258
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bcaf4fc4cc72c34bb4d8c16ea89b96b
+      internalID: 1805996635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_239
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 266
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62560488afe9ad44db79c1bc5cb64fec
+      internalID: -1794538976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_240
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 266
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87cd70ef9bd3849488bf318ce1df010e
+      internalID: 1872510335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_241
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 258
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d154920496317140bc7d4f9018e3a69
+      internalID: -443531188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_242
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 273
+        width: 82
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d49ec53fc25a414458c7059201466ff1
+      internalID: 1791736996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_243
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 267
+        width: 99
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d2ffd19c8a0924b9a6a454a527b622
+      internalID: -1586582140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_244
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 267
+        width: 99
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19a18556c358f6a468e03186bb635451
+      internalID: 1015352404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_245
+      rect:
+        serializedVersion: 2
+        x: 1034
+        y: 282
+        width: 118
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29a86390f3c876b48a1e7297c98e618b
+      internalID: -847104711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_246
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 282
+        width: 118
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9e74f34db6bc3547b5f4e89e6cb9432
+      internalID: 1434347596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_247
+      rect:
+        serializedVersion: 2
+        x: 1283
+        y: 279
+        width: 120
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf5425e7d440a5443b372f271154acfd
+      internalID: -556309068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_248
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 294
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c39242900049cc40acd544b52662606
+      internalID: 487674966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_249
+      rect:
+        serializedVersion: 2
+        x: 1418
+        y: 256
+        width: 116
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f3e0968284ef27498340b168b9cb119
+      internalID: 1749648935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_250
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 261
+        width: 108
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9355c3feba3a3a545bfdbf874841ec7a
+      internalID: -1907810077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_251
+      rect:
+        serializedVersion: 2
+        x: 1677
+        y: 262
+        width: 108
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f362ddaf706e1f46bf6b8ba4643322f
+      internalID: -256278194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_252
+      rect:
+        serializedVersion: 2
+        x: 1809
+        y: 256
+        width: 92
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d7829f44cc97241816373ce5f7139b
+      internalID: -411460274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_253
+      rect:
+        serializedVersion: 2
+        x: 1949
+        y: 267
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d53b1363664527f40a0b3685ef10f056
+      internalID: 316017449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_254
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 270
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f2d7d522f1527441892c3c56ef2f040
+      internalID: -2002488071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_255
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 128
+        width: 122
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 008fd4f17fc9702489e63fe3d5b6786c
+      internalID: 1827338154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_256
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 138
+        width: 57
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fd1ed42b43479342b7d4082deed649d
+      internalID: 1982708318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_257
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f83ea6226383cc4c8dd3b9daf322e5b
+      internalID: -935400605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_258
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 153
+        width: 62
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d21e11be7ae89174b8592e535f7c2ef8
+      internalID: -904711156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_259
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 183
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0dea903a6d28ca4b98f8ba95015e0b8
+      internalID: -751218994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_260
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 168
+        width: 22
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 975ea2eaf14cf654aaad009fd723b7de
+      internalID: -1421223291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_261
+      rect:
+        serializedVersion: 2
+        x: 541
+        y: 128
+        width: 70
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a37a7f6801890cf419fd27cc78944c6a
+      internalID: 506414312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_262
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 139
+        width: 126
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 749990ef73924664ca9ae8be0d4d16ea
+      internalID: -484325760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_263
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 161
+        width: 120
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c0bf8c6511c3344e8dcde3a6b709016
+      internalID: -1843892280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_264
+      rect:
+        serializedVersion: 2
+        x: 909
+        y: 146
+        width: 101
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efdc4dab6c1b405448bd38fa5a5fdae2
+      internalID: -221779087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_265
+      rect:
+        serializedVersion: 2
+        x: 1053
+        y: 139
+        width: 69
+        height: 107
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eed5a76748387c14ea4bb89a79b2ff96
+      internalID: -2141340317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_266
+      rect:
+        serializedVersion: 2
+        x: 1169
+        y: 129
+        width: 94
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f79e33142d61e1f42bf0e52a1ff75ab9
+      internalID: -1903827870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_267
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 128
+        width: 116
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fb46d4d9181b934ab1f39c2732dfc5d
+      internalID: -1746994732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_268
+      rect:
+        serializedVersion: 2
+        x: 1425
+        y: 129
+        width: 94
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 723400ec747226242a9dd4d7bef64d2d
+      internalID: 1965414973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_269
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 150
+        width: 121
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a6254e2e7dea644db1f7c196c0cdb16
+      internalID: -1721814850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_270
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 131
+        width: 112
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa992a5c69e218b4a8a9802ba973977c
+      internalID: -1769193947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_271
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 130
+        width: 124
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814c3bcdb945ee84ca10f603de37531d
+      internalID: 866175490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_272
+      rect:
+        serializedVersion: 2
+        x: 1922
+        y: 149
+        width: 124
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b4093e03c1d9a468a0b174573110cb
+      internalID: -1400903641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_273
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 165
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58cd7e9f1eedb64409ee3d3b5a80189c
+      internalID: 1292419669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_274
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 141
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c5726acb95dc04282bdc13d986cb1e
+      internalID: 94148558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_275
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 3
+        width: 108
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba94e4f583464cf4bbd8eedc2a46a2d2
+      internalID: 1413583986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_276
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 5
+        width: 108
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444d697de5e147842b3167153113dce7
+      internalID: -1456988349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_277
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 1
+        width: 99
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47a6f918ae6ddff458ee640d8ae1440c
+      internalID: -948721729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_278
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 15
+        width: 84
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3670632be64f77c4695675f7eb55d1b7
+      internalID: -489611303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_279
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 1
+        width: 61
+        height: 127
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18d072ba1e8c6644198c70ccb895db99
+      internalID: 528523906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_280
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 31
+        width: 9
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8634cf05c769ddd43b46d74199d42540
+      internalID: -1448583118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_281
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 22
+        width: 80
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b58d0268e2c680848b7c390bf243fd97
+      internalID: -248245714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_282
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 0
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13ee24799625f484fb4f56064073b451
+      internalID: -999164805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Status Effects Icon Sheet_283
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1444
+        width: 2042
+        height: 604
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c3187d2957eba849a9589e453d0de40
+      internalID: -1188347294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9ca9fd51111268c4ab0df6f710f54575
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Status Effects Icon Sheet_0: 495535897
+      Status Effects Icon Sheet_1: 439008254
+      Status Effects Icon Sheet_10: 626666472
+      Status Effects Icon Sheet_100: 986901684
+      Status Effects Icon Sheet_101: -1738071688
+      Status Effects Icon Sheet_102: 636590981
+      Status Effects Icon Sheet_103: -499582642
+      Status Effects Icon Sheet_104: -871775808
+      Status Effects Icon Sheet_106: -1948006322
+      Status Effects Icon Sheet_107: 74002440
+      Status Effects Icon Sheet_108: 1140636693
+      Status Effects Icon Sheet_109: -685427237
+      Status Effects Icon Sheet_11: -206133495
+      Status Effects Icon Sheet_110: -1883661918
+      Status Effects Icon Sheet_111: 1950853147
+      Status Effects Icon Sheet_112: -1373077934
+      Status Effects Icon Sheet_113: -924451756
+      Status Effects Icon Sheet_114: -2102186077
+      Status Effects Icon Sheet_115: 1609855085
+      Status Effects Icon Sheet_116: 710964268
+      Status Effects Icon Sheet_117: -1364833150
+      Status Effects Icon Sheet_118: 1030282123
+      Status Effects Icon Sheet_119: -1205986694
+      Status Effects Icon Sheet_12: 7184302
+      Status Effects Icon Sheet_120: -1114841987
+      Status Effects Icon Sheet_121: -299595305
+      Status Effects Icon Sheet_122: -139605056
+      Status Effects Icon Sheet_123: -850747671
+      Status Effects Icon Sheet_124: -1310842887
+      Status Effects Icon Sheet_125: -935220001
+      Status Effects Icon Sheet_126: 623644158
+      Status Effects Icon Sheet_127: 1561070262
+      Status Effects Icon Sheet_128: -1454574036
+      Status Effects Icon Sheet_129: -213635008
+      Status Effects Icon Sheet_13: -1519030863
+      Status Effects Icon Sheet_130: -1203830055
+      Status Effects Icon Sheet_131: -2079238108
+      Status Effects Icon Sheet_132: 2099239534
+      Status Effects Icon Sheet_133: 376937798
+      Status Effects Icon Sheet_134: 1893271319
+      Status Effects Icon Sheet_135: -1651360140
+      Status Effects Icon Sheet_136: -502238907
+      Status Effects Icon Sheet_137: 780329064
+      Status Effects Icon Sheet_138: 654812315
+      Status Effects Icon Sheet_139: 532907041
+      Status Effects Icon Sheet_14: -80724203
+      Status Effects Icon Sheet_140: 167735800
+      Status Effects Icon Sheet_141: -750065911
+      Status Effects Icon Sheet_142: 741516837
+      Status Effects Icon Sheet_143: -526812731
+      Status Effects Icon Sheet_144: 2147170130
+      Status Effects Icon Sheet_145: -1883450659
+      Status Effects Icon Sheet_146: 409553182
+      Status Effects Icon Sheet_147: 386079107
+      Status Effects Icon Sheet_148: -1613661234
+      Status Effects Icon Sheet_149: -1830782921
+      Status Effects Icon Sheet_15: 510012025
+      Status Effects Icon Sheet_150: 447536435
+      Status Effects Icon Sheet_151: 1671082362
+      Status Effects Icon Sheet_152: -614492757
+      Status Effects Icon Sheet_153: -1380864613
+      Status Effects Icon Sheet_154: 1715811931
+      Status Effects Icon Sheet_155: -1988954368
+      Status Effects Icon Sheet_156: -667341134
+      Status Effects Icon Sheet_157: -1756899913
+      Status Effects Icon Sheet_158: 610609876
+      Status Effects Icon Sheet_159: 1134083660
+      Status Effects Icon Sheet_16: -1152367461
+      Status Effects Icon Sheet_160: -1649981105
+      Status Effects Icon Sheet_161: -944218684
+      Status Effects Icon Sheet_162: -443722581
+      Status Effects Icon Sheet_163: -169702920
+      Status Effects Icon Sheet_165: 1589848072
+      Status Effects Icon Sheet_166: -972602656
+      Status Effects Icon Sheet_167: -637644765
+      Status Effects Icon Sheet_168: -1393821341
+      Status Effects Icon Sheet_169: -1733973719
+      Status Effects Icon Sheet_17: 1518163590
+      Status Effects Icon Sheet_170: 597498160
+      Status Effects Icon Sheet_171: -1930986129
+      Status Effects Icon Sheet_172: 1967297759
+      Status Effects Icon Sheet_173: 1837629850
+      Status Effects Icon Sheet_174: -53709098
+      Status Effects Icon Sheet_175: 964790799
+      Status Effects Icon Sheet_176: 1551284599
+      Status Effects Icon Sheet_177: 38167873
+      Status Effects Icon Sheet_178: 1914051673
+      Status Effects Icon Sheet_179: 61612445
+      Status Effects Icon Sheet_18: -396211678
+      Status Effects Icon Sheet_180: -584740313
+      Status Effects Icon Sheet_181: 1241941808
+      Status Effects Icon Sheet_182: 2140894237
+      Status Effects Icon Sheet_183: -626869940
+      Status Effects Icon Sheet_184: 1272541765
+      Status Effects Icon Sheet_185: 912611396
+      Status Effects Icon Sheet_186: 1606042990
+      Status Effects Icon Sheet_187: -638207471
+      Status Effects Icon Sheet_188: 1852979691
+      Status Effects Icon Sheet_189: -113068615
+      Status Effects Icon Sheet_19: 18217251
+      Status Effects Icon Sheet_190: 721705078
+      Status Effects Icon Sheet_191: -1372762395
+      Status Effects Icon Sheet_192: -1148420335
+      Status Effects Icon Sheet_193: 266136265
+      Status Effects Icon Sheet_194: -1870161114
+      Status Effects Icon Sheet_195: -1537271781
+      Status Effects Icon Sheet_196: -1152052673
+      Status Effects Icon Sheet_197: -1833873310
+      Status Effects Icon Sheet_198: 730611433
+      Status Effects Icon Sheet_199: -1409141066
+      Status Effects Icon Sheet_2: 763906817
+      Status Effects Icon Sheet_20: 1218291651
+      Status Effects Icon Sheet_200: -1343372751
+      Status Effects Icon Sheet_201: -1251708285
+      Status Effects Icon Sheet_202: 1617998791
+      Status Effects Icon Sheet_203: 2101641194
+      Status Effects Icon Sheet_204: -462152883
+      Status Effects Icon Sheet_205: 549276528
+      Status Effects Icon Sheet_206: -1591233348
+      Status Effects Icon Sheet_207: -116146030
+      Status Effects Icon Sheet_208: -693351998
+      Status Effects Icon Sheet_209: 2112422323
+      Status Effects Icon Sheet_21: -1862439688
+      Status Effects Icon Sheet_210: -943261262
+      Status Effects Icon Sheet_212: -1611793212
+      Status Effects Icon Sheet_213: -521570372
+      Status Effects Icon Sheet_214: -483022228
+      Status Effects Icon Sheet_215: 1239802384
+      Status Effects Icon Sheet_216: 520125689
+      Status Effects Icon Sheet_217: -1116377834
+      Status Effects Icon Sheet_218: -122880943
+      Status Effects Icon Sheet_219: -821417885
+      Status Effects Icon Sheet_22: 1844646559
+      Status Effects Icon Sheet_220: 545765746
+      Status Effects Icon Sheet_221: 321483008
+      Status Effects Icon Sheet_222: 486815904
+      Status Effects Icon Sheet_223: -895702933
+      Status Effects Icon Sheet_224: 1855661878
+      Status Effects Icon Sheet_225: 1542108911
+      Status Effects Icon Sheet_226: -949715501
+      Status Effects Icon Sheet_227: -744435086
+      Status Effects Icon Sheet_228: -1190644172
+      Status Effects Icon Sheet_229: -1630873654
+      Status Effects Icon Sheet_23: -1946238350
+      Status Effects Icon Sheet_230: -424744972
+      Status Effects Icon Sheet_231: 68881935
+      Status Effects Icon Sheet_232: 1171616398
+      Status Effects Icon Sheet_233: -1330105257
+      Status Effects Icon Sheet_234: 1205623765
+      Status Effects Icon Sheet_235: 929254864
+      Status Effects Icon Sheet_236: -1624646988
+      Status Effects Icon Sheet_237: -1053242089
+      Status Effects Icon Sheet_238: 1805996635
+      Status Effects Icon Sheet_239: -1794538976
+      Status Effects Icon Sheet_24: 1077904059
+      Status Effects Icon Sheet_240: 1872510335
+      Status Effects Icon Sheet_241: -443531188
+      Status Effects Icon Sheet_242: 1791736996
+      Status Effects Icon Sheet_243: -1586582140
+      Status Effects Icon Sheet_244: 1015352404
+      Status Effects Icon Sheet_245: -847104711
+      Status Effects Icon Sheet_246: 1434347596
+      Status Effects Icon Sheet_247: -556309068
+      Status Effects Icon Sheet_248: 487674966
+      Status Effects Icon Sheet_249: 1749648935
+      Status Effects Icon Sheet_25: -642678147
+      Status Effects Icon Sheet_250: -1907810077
+      Status Effects Icon Sheet_251: -256278194
+      Status Effects Icon Sheet_252: -411460274
+      Status Effects Icon Sheet_253: 316017449
+      Status Effects Icon Sheet_254: -2002488071
+      Status Effects Icon Sheet_255: 1827338154
+      Status Effects Icon Sheet_256: 1982708318
+      Status Effects Icon Sheet_257: -935400605
+      Status Effects Icon Sheet_258: -904711156
+      Status Effects Icon Sheet_259: -751218994
+      Status Effects Icon Sheet_26: 1416996766
+      Status Effects Icon Sheet_260: -1421223291
+      Status Effects Icon Sheet_261: 506414312
+      Status Effects Icon Sheet_262: -484325760
+      Status Effects Icon Sheet_263: -1843892280
+      Status Effects Icon Sheet_264: -221779087
+      Status Effects Icon Sheet_265: -2141340317
+      Status Effects Icon Sheet_266: -1903827870
+      Status Effects Icon Sheet_267: -1746994732
+      Status Effects Icon Sheet_268: 1965414973
+      Status Effects Icon Sheet_269: -1721814850
+      Status Effects Icon Sheet_27: 380025626
+      Status Effects Icon Sheet_270: -1769193947
+      Status Effects Icon Sheet_271: 866175490
+      Status Effects Icon Sheet_272: -1400903641
+      Status Effects Icon Sheet_273: 1292419669
+      Status Effects Icon Sheet_274: 94148558
+      Status Effects Icon Sheet_275: 1413583986
+      Status Effects Icon Sheet_276: -1456988349
+      Status Effects Icon Sheet_277: -948721729
+      Status Effects Icon Sheet_278: -489611303
+      Status Effects Icon Sheet_279: 528523906
+      Status Effects Icon Sheet_28: 1855096350
+      Status Effects Icon Sheet_280: -1448583118
+      Status Effects Icon Sheet_281: -248245714
+      Status Effects Icon Sheet_282: -999164805
+      Status Effects Icon Sheet_283: -1188347294
+      Status Effects Icon Sheet_29: -230030023
+      Status Effects Icon Sheet_3: 1322914095
+      Status Effects Icon Sheet_30: 2118662532
+      Status Effects Icon Sheet_31: -1353288919
+      Status Effects Icon Sheet_32: 281092486
+      Status Effects Icon Sheet_33: 622507698
+      Status Effects Icon Sheet_34: -1581330905
+      Status Effects Icon Sheet_35: 225144274
+      Status Effects Icon Sheet_36: 2000684860
+      Status Effects Icon Sheet_37: 440125035
+      Status Effects Icon Sheet_38: -937204615
+      Status Effects Icon Sheet_39: -314438268
+      Status Effects Icon Sheet_4: -1893201659
+      Status Effects Icon Sheet_40: -1050753672
+      Status Effects Icon Sheet_41: 633656323
+      Status Effects Icon Sheet_42: -444598074
+      Status Effects Icon Sheet_43: 346258615
+      Status Effects Icon Sheet_44: -1852689986
+      Status Effects Icon Sheet_45: 922311235
+      Status Effects Icon Sheet_46: 2082979471
+      Status Effects Icon Sheet_47: 1961187248
+      Status Effects Icon Sheet_48: -389793829
+      Status Effects Icon Sheet_49: -1148926741
+      Status Effects Icon Sheet_5: -1256517068
+      Status Effects Icon Sheet_50: -1123909560
+      Status Effects Icon Sheet_51: 219519732
+      Status Effects Icon Sheet_52: -326080635
+      Status Effects Icon Sheet_53: -1942159718
+      Status Effects Icon Sheet_54: -1713185261
+      Status Effects Icon Sheet_55: -897697899
+      Status Effects Icon Sheet_56: 532524355
+      Status Effects Icon Sheet_57: -2041606498
+      Status Effects Icon Sheet_58: 381402918
+      Status Effects Icon Sheet_59: -1196744142
+      Status Effects Icon Sheet_6: 691052234
+      Status Effects Icon Sheet_60: -286362113
+      Status Effects Icon Sheet_61: -1305198906
+      Status Effects Icon Sheet_62: -1378773415
+      Status Effects Icon Sheet_63: 1067963677
+      Status Effects Icon Sheet_64: -626210795
+      Status Effects Icon Sheet_65: -874981609
+      Status Effects Icon Sheet_66: 1832600330
+      Status Effects Icon Sheet_67: 1645930206
+      Status Effects Icon Sheet_68: -499610987
+      Status Effects Icon Sheet_69: 618180087
+      Status Effects Icon Sheet_7: 1683136788
+      Status Effects Icon Sheet_70: 269681045
+      Status Effects Icon Sheet_71: 1862029275
+      Status Effects Icon Sheet_72: 193594266
+      Status Effects Icon Sheet_73: -177028525
+      Status Effects Icon Sheet_74: -303171958
+      Status Effects Icon Sheet_75: 1146157528
+      Status Effects Icon Sheet_76: 1248939725
+      Status Effects Icon Sheet_77: -150671202
+      Status Effects Icon Sheet_78: 542834813
+      Status Effects Icon Sheet_79: 1623427009
+      Status Effects Icon Sheet_8: -698761871
+      Status Effects Icon Sheet_80: -1870292190
+      Status Effects Icon Sheet_81: 1369726108
+      Status Effects Icon Sheet_82: -2034108713
+      Status Effects Icon Sheet_83: 872909813
+      Status Effects Icon Sheet_84: -732179599
+      Status Effects Icon Sheet_85: -1731383390
+      Status Effects Icon Sheet_86: -1068187393
+      Status Effects Icon Sheet_87: -1910329427
+      Status Effects Icon Sheet_88: 501744048
+      Status Effects Icon Sheet_89: -908846914
+      Status Effects Icon Sheet_9: 397996040
+      Status Effects Icon Sheet_90: 1299602872
+      Status Effects Icon Sheet_91: -134867450
+      Status Effects Icon Sheet_92: 427012593
+      Status Effects Icon Sheet_93: 1030376371
+      Status Effects Icon Sheet_94: -1156792689
+      Status Effects Icon Sheet_95: -1841549684
+      Status Effects Icon Sheet_96: 2080217397
+      Status Effects Icon Sheet_97: 1261298483
+      Status Effects Icon Sheet_98: -542301126
+      Status Effects Icon Sheet_99: -435142520
+      icon_blunt: -1199157342
+      icon_pierce: 274890857
+      icon_slash: 1122395297
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
