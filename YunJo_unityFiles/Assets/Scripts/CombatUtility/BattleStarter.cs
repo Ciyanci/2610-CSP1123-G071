@@ -6,7 +6,6 @@ public class BattleStarter : MonoBehaviour
     public CharacterDeck playerDeck;
     public CharacterDeck enemyDeck;
 
-    public BattleFlowController flow;
 
     void Start()
     {

@@ -33,11 +33,14 @@ public class EnemyAI : MonoBehaviour
             CharacterUnit target = FindRandomPlayer();
             if (target == null) yield break;
 
+            SpeedSlot slot = self.GetHighestAvailableSlot();
+            if (slot == null) yield break;
+
             self.SpendLight(card.Cost);
 
-            BattleFlowController.Instance.QueuePreview(self, target, card);
+            slot.Assign(card, target, self);
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.15f);
         }
     }
 

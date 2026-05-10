@@ -7,8 +7,6 @@ public class CombatStateMachine : MonoBehaviour
     public CombatPhase phase;
     public List<EnemyAI> enemies;
 
-    public BattleFlowController flow;
-
     List<CharacterDeck> playerDecks;
 
     void Awake()
@@ -40,6 +38,13 @@ public class CombatStateMachine : MonoBehaviour
     {
         phase = CombatPhase.StartTurn;
         Debug.Log("[PHASE] Start Turn");
+
+        foreach (var unit in UnitRegistry.Instance.players)
+            unit.ResetSpeedSlots();
+
+        foreach (var unit in UnitRegistry.Instance.enemies)
+            unit.ResetSpeedSlots();
+
         yield return null;
     }
 
@@ -83,10 +88,8 @@ public class CombatStateMachine : MonoBehaviour
         phase = CombatPhase.Resolve;
         Debug.Log("[PHASE] Resolve");
 
-        // ✅ FIXED LINE
-        yield return BattleFlowController.Instance.ResolveTurn();
+        yield return CombatPipeline.Instance.ResolveTurn();
     }
-
     IEnumerator EndTurn()
     {
         phase = CombatPhase.EndTurn;

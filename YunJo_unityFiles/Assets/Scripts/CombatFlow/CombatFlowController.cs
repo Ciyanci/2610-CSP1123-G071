@@ -68,12 +68,6 @@ public class CombatFlowController : MonoBehaviour
             target == selectedUser)
             return;
 
-        PreviewManager.Instance.QueuePreview(
-            selectedUser,
-            target,
-            selectedCard
-        );
-
         selectedUser.deck.UseCard(selectedCard);
 
         HandUI.Instance.Refresh(selectedUser.deck);
@@ -89,10 +83,27 @@ public class CombatFlowController : MonoBehaviour
             return;
 
         StartCoroutine(
-            BattleFlowController.Instance.ResolveTurn()
+            CombatPipeline.Instance.ResolveTurn()
         );
 
         SetInputEnabled(false);
+    }
+
+    public void CommitPlanning()
+    {
+        if (!inputEnabled)
+            return;
+
+        foreach (var unit in UnitRegistry.Instance.players)
+            unit.CommitAllSlots();
+
+        foreach (var unit in UnitRegistry.Instance.enemies)
+            unit.CommitAllSlots();
+
+        // lock input globally
+        inputEnabled = false;
+
+        Debug.Log("[FLOW] Combat Locked In");
     }
 
     public void AutoAssignPlayerActions()
@@ -120,12 +131,6 @@ public class CombatFlowController : MonoBehaviour
                         UnitRegistry.Instance.enemies.Count
                     )
                 ];
-
-            PreviewManager.Instance.QueuePreview(
-                player,
-                target,
-                randomCard
-            );
 
             player.deck.UseCard(randomCard);
         }

@@ -7,60 +7,50 @@ public class PreviewManager : MonoBehaviour
 
     public ArrowController arrowPrefab;
 
-    public List<PreviewIntent> previews = new();
+    Dictionary<SpeedSlot, ArrowController> arrows = new();
 
     void Awake()
     {
         Instance = this;
     }
 
-    public void QueuePreview(
-        CharacterUnit user,
-        CharacterUnit target,
-        Card card)
+    public void Bind(CharacterUnit unit)
     {
-        if (user == null || target == null || card == null)
-            return;
-
-        ArrowController arrow =
-            Instantiate(
-                arrowPrefab,
-                transform
-            );
-
-        arrow.Set(
-            user.headAnchor,
-            target.headAnchor
-        );
-
-        previews.Add(new PreviewIntent
+        foreach (var slot in unit.speedSlots)
         {
-            user = user,
-            target = target,
-            card = card,
-            arrow = arrow
-        });
-
-        Debug.Log($"[PREVIEW] {user.name} -> {target.name}");
+            slot.onChanged += HandleSlotChanged;
+        }
     }
 
-    public void HideAll()
+    void HandleSlotChanged(SpeedSlot slot)
     {
-        foreach (var p in previews)
+        if (slot == null || slot.target == null || slot.assignedCard == null)
+            return;
+
+        if (!arrows.TryGetValue(slot, out ArrowController arrow))
         {
-            if (p.arrow != null)
-                p.arrow.gameObject.SetActive(false);
+            arrow = Instantiate(arrowPrefab, transform);
+            arrows[slot] = arrow;
+        }
+
+        arrow.Set(slot.target.headAnchor, slot.target.headAnchor);
+        arrow.SetPriority(slot.value);
+    }
+
+    public void RemoveSlot(SpeedSlot slot)
+    {
+        if (arrows.TryGetValue(slot, out var arrow))
+        {
+            Destroy(arrow.gameObject);
+            arrows.Remove(slot);
         }
     }
 
     public void Clear()
     {
-        foreach (var p in previews)
-        {
-            if (p.arrow != null)
-                Destroy(p.arrow.gameObject);
-        }
+        foreach (var a in arrows.Values)
+            Destroy(a.gameObject);
 
-        previews.Clear();
+        arrows.Clear();
     }
 }

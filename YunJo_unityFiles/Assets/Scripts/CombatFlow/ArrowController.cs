@@ -8,7 +8,6 @@ public class ArrowController : MonoBehaviour
     Transform start;
     Transform end;
 
-    // 🔥 FIX: store card + user for future logic (preview, clash, UI)
     Card currentCard;
     CharacterUnit owner;
 
@@ -19,9 +18,6 @@ public class ArrowController : MonoBehaviour
         cam = Camera.main;
     }
 
-    // =========================
-    // BEGIN (FROM CARD SELECT)
-    // =========================
     public void Begin(CharacterUnit user, Card card)
     {
         owner = user;
@@ -33,13 +29,15 @@ public class ArrowController : MonoBehaviour
         Debug.Log($"[ARROW] Begin from {user.name} using {card.Data.Name}");
     }
 
-    // =========================
-    // SET TARGET (OPTIONAL USE)
-    // =========================
     public void Set(Transform from, Transform to)
     {
         start = from;
         end = to;
+    }
+
+    public void SetPriority(int value)
+    {
+        lr.widthMultiplier = Mathf.Lerp(0.05f, 0.2f, value / 10f);
     }
 
     public void SetTarget(CharacterUnit target)
@@ -61,29 +59,17 @@ public class ArrowController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // =========================
-    // HELPERS
-    // =========================
-    CharacterUnit GetStartUnit()
-    {
-        return owner;
-    }
-
     CharacterUnit GetTargetUnit()
     {
         return end != null ? end.GetComponentInParent<CharacterUnit>() : null;
     }
 
-    // =========================
-    // UPDATE (DRAW + CLASH PREVIEW)
-    // =========================
     void Update()
     {
         if (start == null) return;
 
         Vector3 startPos = start.position + Vector3.up * 0.2f;
 
-        // 🔥 FOLLOW MOUSE IF NO TARGET YET
         Vector3 endPos;
 
         if (end == null)
@@ -100,31 +86,24 @@ public class ArrowController : MonoBehaviour
         Vector3 finalEnd = endPos;
 
         // =========================
-        // CLASH DETECTION (PREVIEW)
+        // CLEAN CLASH PREVIEW (NO SCENE SCAN)
         // =========================
-        var flow = FindFirstObjectByType<BattleFlowController>();
+        CharacterUnit myTarget = GetTargetUnit();
 
-        if (flow != null && owner != null)
+        if (owner != null && myTarget != null)
         {
-            foreach (var p in flow.previewIntents)
+            foreach (var slot in owner.speedSlots)
             {
-                if (p.user == null || p.target == null) continue;
+                if (slot.target == null || slot.assignedCard == null)
+                    continue;
 
-                bool clash =
-                    p.user == GetTargetUnit() &&
-                    p.target == owner;
-
-                if (clash)
+                if (slot.target == myTarget && slot.state == SlotState.Planned || slot.state == SlotState.Committed)
                 {
-                    // 🔥 midpoint collision (LoR style)
                     finalEnd = (startPos + endPos) * 0.5f;
-
-                    Debug.Log("[ARROW] Clash preview detected");
                     break;
                 }
             }
         }
-
         // =========================
         // DRAW LINE
         // =========================
@@ -132,7 +111,7 @@ public class ArrowController : MonoBehaviour
         lr.SetPosition(1, finalEnd);
 
         // =========================
-        // TIP ROTATION
+        // TIP
         // =========================
         if (tip != null)
         {

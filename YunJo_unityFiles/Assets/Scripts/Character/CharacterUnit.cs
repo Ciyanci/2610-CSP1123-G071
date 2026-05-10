@@ -27,7 +27,8 @@ public class CharacterUnit : MonoBehaviour
     public CharacterDeck deck;
 
     [Header("Speed Dice")]
-    public List<SpeedDie> speedDice = new();
+    public List<SpeedSlot> speedSlots = new();
+    public SpeedSlotRowUI slotRowUI;
 
     [Header("Visual")]
     public Transform visual;
@@ -50,6 +51,9 @@ public class CharacterUnit : MonoBehaviour
 
         if (deck == null)
             deck = GetComponent<CharacterDeck>();
+
+        if (slotRowUI != null)
+            slotRowUI.Bind(this);
     }
 
     public void RefreshLight()
@@ -67,26 +71,57 @@ public class CharacterUnit : MonoBehaviour
         currentLight -= amount;
     }
 
-    public void RollSpeedDice()
+    public void RollSpeedSlots()
     {
-        foreach (var die in speedDice)
-            die.Roll();
+        foreach (var slot in speedSlots)
+            slot.Roll();
+
+        SortSlots();
     }
 
-    public SpeedDie GetHighestAvailableDie()
+    public void ResetSpeedSlots()
     {
-        SpeedDie best = null;
-
-        foreach (var die in speedDice)
+        foreach (var slot in speedSlots)
         {
-            if (die.used)
+            slot.ResetTurn();
+            slot.Roll(); // optional: reroll each turn
+        }
+    }
+
+    public void SortSlots()
+    {
+        speedSlots.Sort((a, b) => b.value.CompareTo(a.value));
+    }
+
+    public void CommitAllSlots()
+    {
+        foreach (var slot in speedSlots)
+        {
+            slot.Commit();
+        }
+    }
+
+    public bool isLockedInCombat;
+
+    public SpeedSlot GetHighestAvailableSlot()
+    {
+        SpeedSlot best = null;
+
+        foreach (var slot in speedSlots)
+        {
+            if (slot.state == SlotState.Executed || slot.state == SlotState.Committed)
                 continue;
 
-            if (best == null || die.value > best.value)
-                best = die;
+            if (best == null || slot.value > best.value)
+                best = slot;
         }
 
         return best;
+    }
+
+    bool IsSlotAvailable(SpeedSlot slot)
+    {
+        return slot.state == SlotState.Empty;
     }
 
     public void TakeDamage(
@@ -184,19 +219,19 @@ public class CharacterUnit : MonoBehaviour
 
     public void HideSpeed()
     {
-        foreach (var die in speedDice)
+        foreach (var slot in speedSlots)
         {
-            if (die.ui != null)
-                die.ui.Hide();
+            if (slot.ui != null)
+                slot.ui.Hide();
         }
     }
 
     public void ShowSpeed()
     {
-        foreach (var die in speedDice)
+        foreach (var slot in speedSlots)
         {
-            if (die.ui != null)
-                die.ui.Show();
+            if (slot.ui != null)
+                slot.ui.Show();
         }
     }
 }

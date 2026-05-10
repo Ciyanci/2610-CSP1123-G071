@@ -15,15 +15,20 @@ public class CombatResolver : MonoBehaviour
 
         HashSet<CombatIntent> resolved = new();
 
+        // =========================
         // CLASHES
+        // =========================
         foreach (var clash in ctx.clashes)
         {
             yield return ResolveClash(clash.a, clash.b);
+
             resolved.Add(clash.a);
             resolved.Add(clash.b);
         }
 
+        // =========================
         // UNOPPOSED
+        // =========================
         foreach (var intent in ordered)
         {
             if (resolved.Contains(intent))
@@ -52,6 +57,7 @@ public class CombatResolver : MonoBehaviour
 
             int dmg = Mathf.Max(1, roll + die.Data.power);
 
+            // ✔ Still OK here ONLY because PageCombatResolver is not involved
             intent.target.TakeDamage(dmg, die.Data.damageType);
 
             page.Advance();

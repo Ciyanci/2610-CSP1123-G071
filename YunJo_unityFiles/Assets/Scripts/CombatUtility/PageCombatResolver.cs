@@ -9,73 +9,58 @@ public class PageCombatResolver : MonoBehaviour
     {
         while (!a.IsFinished && !b.IsFinished)
         {
-            CombatDiceRuntime dieA =
-                a.GetCurrentDie();
+            CombatDiceRuntime dieA = a.GetCurrentDie();
+            CombatDiceRuntime dieB = b.GetCurrentDie();
 
-            CombatDiceRuntime dieB =
-                b.GetCurrentDie();
+            if (dieA == null || dieB == null)
+                yield break;
 
-            var result =
-                DiceClashResolver.Resolve(
-                    dieA,
-                    dieB);
+            var result = DiceClashResolver.Resolve(dieA, dieB);
 
             yield return new WaitForSeconds(0.4f);
 
             switch (result)
             {
                 case DiceClashResult.Win:
-
-                    ApplyDamage(
-                        a.owner,
-                        b.owner,
-                        dieA);
-
+                    ApplyDamage(a.owner, b.owner, dieA);
                     b.Advance();
                     break;
 
                 case DiceClashResult.Lose:
-
-                    ApplyDamage(
-                        b.owner,
-                        a.owner,
-                        dieB);
-
+                    ApplyDamage(b.owner, a.owner, dieB);
                     a.Advance();
                     break;
 
                 case DiceClashResult.Draw:
-
                     a.Advance();
                     b.Advance();
                     break;
             }
         }
 
-        // remaining dice become unopposed
+        // =========================
+        // UNOPPOSED A
+        // =========================
         while (!a.IsFinished)
         {
             var die = a.GetCurrentDie();
+            if (die == null) break;
 
-            ApplyDamage(
-                a.owner,
-                b.owner,
-                die);
-
+            ApplyDamage(a.owner, b.owner, die);
             a.Advance();
 
             yield return new WaitForSeconds(0.2f);
         }
 
+        // =========================
+        // UNOPPOSED B
+        // =========================
         while (!b.IsFinished)
         {
             var die = b.GetCurrentDie();
+            if (die == null) break;
 
-            ApplyDamage(
-                b.owner,
-                a.owner,
-                die);
-
+            ApplyDamage(b.owner, a.owner, die);
             b.Advance();
 
             yield return new WaitForSeconds(0.2f);
@@ -87,17 +72,13 @@ public class PageCombatResolver : MonoBehaviour
         CharacterUnit target,
         CombatDiceRuntime die)
     {
-        int dmg =
-            Mathf.Max(
-                1,
-                die.lastRoll + die.Data.power
-            );
+        if (target == null || die == null)
+            return;
 
-        target.TakeDamage(
-            dmg,
-            die.Data.damageType);
+        int dmg = Mathf.Max(1, die.lastRoll + die.Data.power);
 
-        Debug.Log(
-            $"[PAGE] {attacker.name} dealt {dmg}");
+        target.TakeDamage(dmg, die.Data.damageType);
+
+        Debug.Log($"[PAGE] {attacker.name} dealt {dmg}");
     }
 }

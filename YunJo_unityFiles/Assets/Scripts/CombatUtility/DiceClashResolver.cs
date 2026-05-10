@@ -12,16 +12,10 @@ public static class DiceClashResolver
         Debug.Log($"[DICE CLASH] {rollA} vs {rollB}");
 
         if (rollA > rollB)
-        {
-            b.destroyed = true;
             return DiceClashResult.Win;
-        }
 
         if (rollB > rollA)
-        {
-            a.destroyed = true;
             return DiceClashResult.Lose;
-        }
 
         return DiceClashResult.Draw;
     }

@@ -169,28 +169,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterUnit
   unitName: Honglu
+  unitType: 1
+  maxHP: 100
   hp: 100
-  currentState: 0
-  headOffset: {x: 0, y: 1.2, z: 0}
-  diceUI: {fileID: 381836575}
-  currentSpeedRoll: 0
-  speedDiceUI: {fileID: 1978591306}
-  maxEnergy: 5
-  currentEnergy: 0
+  maxStagger: 50
+  stagger: 50
+  maxLight: 3
+  currentLight: 3
+  resistances:
+    slash: 2
+    pierce: 2
+    blunt: 2
   deck: {fileID: 606892909}
-  isHighlighted: 0
+  speedSlots: []
+  slotRowUI: {fileID: 0}
   visual: {fileID: 1358998264}
   headAnchor: {fileID: 1424663874}
   clashAnchor: {fileID: 1065456148}
-  weaponAnchor: {fileID: 320486243}
+  sr: {fileID: 1358998263}
   idle: {fileID: 21300000, guid: cdb24a93e7d91664cb13fef0152ddff3, type: 3}
-  move: {fileID: 21300000, guid: e29be83febce76946b1ed9cdc7cc36ae, type: 3}
-  windup: {fileID: 21300000, guid: d70c6d345e212f34189297c579b63cb7, type: 3}
   attack: {fileID: 21300000, guid: 8cf1d9c6c795fea4d93d38c436f1fc18, type: 3}
   hit: {fileID: 21300000, guid: b5971de5407c5004ba33ad82f16cf515, type: 3}
-  currentSpeed: 5
-  unitType: 1
-  sr: {fileID: 1358998263}
+  windup: {fileID: 21300000, guid: d70c6d345e212f34189297c579b63cb7, type: 3}
+  isLockedInCombat: 0
 --- !u!61 &15327795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -901,13 +902,14 @@ GameObject:
   - component: {fileID: 209397728}
   - component: {fileID: 209397727}
   - component: {fileID: 209397729}
+  - component: {fileID: 209397730}
   m_Layer: 5
   m_Name: CardRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &209397726
 RectTransform:
   m_ObjectHideFlags: 0
@@ -980,17 +982,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardView
   title: {fileID: 1427140593}
   cost: {fileID: 1254237639}
-  damageType: {fileID: 0}
-  artwork: {fileID: 0}
-  expandedPanel: {fileID: 0}
-  expandRoot: {fileID: 0}
+  artwork: {fileID: 110086803}
+  diceIconsRow: {fileID: 1796557632}
+  diceIconPrefab: {fileID: 0}
+  expandedPanel: {fileID: 74559967}
+  expandRoot: {fileID: 1707844589}
   desc: {fileID: 0}
   effects: {fileID: 0}
-  damage: {fileID: 0}
-  dice: {fileID: 0}
+  expandedDiceList: {fileID: 774468045}
+  expandedDicePrefab: {fileID: 0}
   hoverHeight: 60
   expandOffset: -250
   animDuration: 0.18
+  frameVisual: {fileID: 0}
+--- !u!114 &209397730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209397725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965e07e6b3636a04fab0b2054330044b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExpandedDiceRowUI
+  icon: {fileID: 1653631350}
+  rangeText: {fileID: 24274917}
+  effectText: {fileID: 1328109220}
+  slashSprite: {fileID: 1122395297, guid: 8cdab18cbbec9854c86fa62a03cae3af, type: 3}
+  pierceSprite: {fileID: 274890857, guid: 8cdab18cbbec9854c86fa62a03cae3af, type: 3}
+  bluntSprite: {fileID: -1199157342, guid: 8cdab18cbbec9854c86fa62a03cae3af, type: 3}
 --- !u!1 &248125089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,53 +1730,6 @@ Transform:
   - {fileID: 1443306777}
   m_Father: {fileID: 957219447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &471948244
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 471948246}
-  - component: {fileID: 471948245}
-  m_Layer: 0
-  m_Name: ClashSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &471948245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471948244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe99354bfefbb654aa34c4ae0a3d8b13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClashSystem
-  diceA: {fileID: 381836575}
-  diceB: {fileID: 1696069864}
-  cam: {fileID: 198258396}
---- !u!4 &471948246
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471948244}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.22027, y: -12.61809, z: 35.83328}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &497772304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,8 +1970,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
-  maxSelectableCards: 9
-  maxUsableCards: 4
+  handSize: 9
 --- !u!4 &588782881
 Transform:
   m_ObjectHideFlags: 0
@@ -2068,73 +2042,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  maxSelectableCards: 9
-  maxUsableCards: 4
---- !u!1 &609602049
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 609602051}
-  - component: {fileID: 609602050}
-  - component: {fileID: 609602052}
-  m_Layer: 0
-  m_Name: BattleFlowController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &609602050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609602049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5470a23aa1126a47be0f1e58f95ab3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleFlowController
-  cam: {fileID: 198258396}
-  clashSystem: {fileID: 471948245}
-  arrowPrefab: {fileID: 4225520342438927804, guid: d25a61fbaba21fe43af04baf34531794, type: 3}
-  previewIntents: []
-  intents: []
---- !u!4 &609602051
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609602049}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.66604, y: 2.66401, z: 10.46748}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &609602052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609602049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23798225939b07c45b0bd529bea678ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnSystem
-  fade: {fileID: 1804607628}
-  turnText: {fileID: 497772306}
-  currentPhase: 0
+  handSize: 9
 --- !u!1 &620646008
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,28 +2075,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterUnit
   unitName: Honglu
+  unitType: 0
+  maxHP: 100
   hp: 100
-  currentState: 0
-  headOffset: {x: 0, y: 1.2, z: 0}
-  diceUI: {fileID: 381836575}
-  currentSpeedRoll: 0
-  speedDiceUI: {fileID: 1715483605}
-  maxEnergy: 5
-  currentEnergy: 0
+  maxStagger: 50
+  stagger: 50
+  maxLight: 3
+  currentLight: 3
+  resistances:
+    slash: 2
+    pierce: 2
+    blunt: 2
   deck: {fileID: 2129682437}
-  isHighlighted: 0
+  speedSlots: []
+  slotRowUI: {fileID: 0}
   visual: {fileID: 1863281977}
   headAnchor: {fileID: 781766433}
   clashAnchor: {fileID: 279066269}
-  weaponAnchor: {fileID: 571510463}
+  sr: {fileID: 1863281976}
   idle: {fileID: 21300000, guid: cdb24a93e7d91664cb13fef0152ddff3, type: 3}
-  move: {fileID: 21300000, guid: e29be83febce76946b1ed9cdc7cc36ae, type: 3}
-  windup: {fileID: 21300000, guid: d70c6d345e212f34189297c579b63cb7, type: 3}
   attack: {fileID: 21300000, guid: 8cf1d9c6c795fea4d93d38c436f1fc18, type: 3}
   hit: {fileID: 21300000, guid: b5971de5407c5004ba33ad82f16cf515, type: 3}
-  currentSpeed: 5
-  unitType: 0
-  sr: {fileID: 1863281976}
+  windup: {fileID: 21300000, guid: d70c6d345e212f34189297c579b63cb7, type: 3}
+  isLockedInCombat: 0
 --- !u!4 &620646010
 Transform:
   m_ObjectHideFlags: 0
@@ -2452,7 +2361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CombatStateMachine
   phase: 0
   enemies: []
-  flow: {fileID: 609602050}
 --- !u!1 &774468044
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,7 +2397,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -125}
-  m_SizeDelta: {x: 42, y: 0}
+  m_SizeDelta: {x: 42, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774468046
 MonoBehaviour:
@@ -2974,28 +2882,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterUnit
   unitName: Yisang
+  unitType: 0
+  maxHP: 100
   hp: 100
-  currentState: 0
-  headOffset: {x: 0, y: 1.2, z: 0}
-  diceUI: {fileID: 381836575}
-  currentSpeedRoll: 0
-  speedDiceUI: {fileID: 425875119}
-  maxEnergy: 5
-  currentEnergy: 0
+  maxStagger: 50
+  stagger: 50
+  maxLight: 3
+  currentLight: 3
+  resistances:
+    slash: 2
+    pierce: 2
+    blunt: 2
   deck: {fileID: 588782880}
-  isHighlighted: 0
+  speedSlots: []
+  slotRowUI: {fileID: 0}
   visual: {fileID: 982196524}
   headAnchor: {fileID: 323545231}
   clashAnchor: {fileID: 882647863}
-  weaponAnchor: {fileID: 889976304}
+  sr: {fileID: 982196523}
   idle: {fileID: 21300000, guid: d87a9a2eabdd64b46a9ee2f470ad87eb, type: 3}
-  move: {fileID: 21300000, guid: 6177c36cf4118e34e92c7088ac582338, type: 3}
-  windup: {fileID: 21300000, guid: 0ee45bbdb625b2f41a213493d3f7d10b, type: 3}
   attack: {fileID: 21300000, guid: 62f34766b170fa54d8433213a407bd05, type: 3}
   hit: {fileID: 21300000, guid: 9fe434e46fd7e9f459689be18b356181, type: 3}
-  currentSpeed: 5
-  unitType: 0
-  sr: {fileID: 982196523}
+  windup: {fileID: 21300000, guid: 0ee45bbdb625b2f41a213493d3f7d10b, type: 3}
+  isLockedInCombat: 0
 --- !u!4 &934219606
 Transform:
   m_ObjectHideFlags: 0
@@ -3297,10 +3206,10 @@ RectTransform:
   - {fileID: 1647804914}
   m_Father: {fileID: 774468045}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 21, y: -50}
+  m_SizeDelta: {x: 272, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1014383840
 MonoBehaviour:
@@ -3593,50 +3502,6 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!1 &1145328594
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1145328596}
-  - component: {fileID: 1145328595}
-  m_Layer: 0
-  m_Name: CombatInputController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1145328595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145328594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 202dca3d5a5250f4990cf4330fe415f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CombatInputController
---- !u!4 &1145328596
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1145328594}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.06163, y: -1.78491, z: 34.91594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1216869797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3857,8 +3722,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatFlowController
   inputEnabled: 0
-  selectedUser: {fileID: 0}
-  selectedUnit: {fileID: 0}
   arrow: {fileID: 2118297725}
 --- !u!4 &1270872967
 Transform:
@@ -4781,28 +4644,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterUnit
   unitName: Yisang
+  unitType: 0
+  maxHP: 100
   hp: 100
-  currentState: 0
-  headOffset: {x: 0, y: 1.2, z: 0}
-  diceUI: {fileID: 381836575}
-  currentSpeedRoll: 0
-  speedDiceUI: {fileID: 1115358291}
-  maxEnergy: 5
-  currentEnergy: 0
+  maxStagger: 50
+  stagger: 50
+  maxLight: 3
+  currentLight: 3
+  resistances:
+    slash: 2
+    pierce: 2
+    blunt: 2
   deck: {fileID: 1537152391}
-  isHighlighted: 0
+  speedSlots: []
+  slotRowUI: {fileID: 0}
   visual: {fileID: 2058764437}
   headAnchor: {fileID: 511534237}
   clashAnchor: {fileID: 1911203415}
-  weaponAnchor: {fileID: 1030585738}
+  sr: {fileID: 2058764436}
   idle: {fileID: 21300000, guid: d87a9a2eabdd64b46a9ee2f470ad87eb, type: 3}
-  move: {fileID: 21300000, guid: 6177c36cf4118e34e92c7088ac582338, type: 3}
-  windup: {fileID: 21300000, guid: 0ee45bbdb625b2f41a213493d3f7d10b, type: 3}
   attack: {fileID: 21300000, guid: 62f34766b170fa54d8433213a407bd05, type: 3}
   hit: {fileID: 21300000, guid: 9fe434e46fd7e9f459689be18b356181, type: 3}
-  currentSpeed: 5
-  unitType: 0
-  sr: {fileID: 2058764436}
+  windup: {fileID: 21300000, guid: 0ee45bbdb625b2f41a213493d3f7d10b, type: 3}
+  isLockedInCombat: 0
 --- !u!61 &1443306779
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5044,55 +4908,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
   - {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
   - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
-  maxSelectableCards: 9
-  maxUsableCards: 4
---- !u!1 &1545591148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1545591149}
-  - component: {fileID: 1545591150}
-  m_Layer: 0
-  m_Name: TurnSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1545591149
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545591148}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.42019, y: -11.38157, z: 8.76179}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1545591150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545591148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23798225939b07c45b0bd529bea678ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnSystem
-  fade: {fileID: 1804607628}
-  turnText: {fileID: 497772306}
-  currentPhase: 0
+  handSize: 9
 --- !u!1 &1571502763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5247,9 +5063,9 @@ RectTransform:
   - {fileID: 1328109219}
   m_Father: {fileID: 1014383839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 222, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1653631348
@@ -5284,9 +5100,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1014383839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 21, y: -50}
   m_SizeDelta: {x: 42, y: 42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1653631350
@@ -5604,9 +5420,9 @@ RectTransform:
   - {fileID: 24274916}
   m_Father: {fileID: 1014383839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 107, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1777659389
@@ -5681,7 +5497,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -175}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -350, y: -520}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1796557633
 MonoBehaviour:
@@ -5811,64 +5627,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804607626}
   m_CullTransparentMesh: 1
---- !u!1 &1815010753
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1815010755}
-  - component: {fileID: 1815010754}
-  m_Layer: 0
-  m_Name: ClashTestDriver
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1815010754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815010753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f70a5677fd6cb540aaccb0d532becac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClashTestDriver
-  flow: {fileID: 609602050}
-  plannedIntents:
-  - attacker: {fileID: 934219605}
-    target: {fileID: 620646009}
-    card: {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
-  - attacker: {fileID: 15327794}
-    target: {fileID: 934219605}
-    card: {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
-  - attacker: {fileID: 620646009}
-    target: {fileID: 934219605}
-    card: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - attacker: {fileID: 1443306778}
-    target: {fileID: 15327794}
-    card: {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
---- !u!4 &1815010755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815010753}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.06163, y: -1.78491, z: 34.91594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1851916045
 GameObject:
   m_ObjectHideFlags: 0
@@ -5915,7 +5673,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleStarter
   playerDeck: {fileID: 588782880}
   enemyDeck: {fileID: 588782880}
-  flow: {fileID: 609602050}
 --- !u!1 &1863281975
 GameObject:
   m_ObjectHideFlags: 0
@@ -6614,8 +6371,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  maxSelectableCards: 9
-  maxUsableCards: 4
+  handSize: 9
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -6623,17 +6379,12 @@ SceneRoots:
   - {fileID: 1412281178}
   - {fileID: 2020259766}
   - {fileID: 764852644}
-  - {fileID: 609602051}
   - {fileID: 1270872967}
   - {fileID: 198258395}
   - {fileID: 904654910}
-  - {fileID: 1145328596}
-  - {fileID: 471948246}
-  - {fileID: 1545591149}
   - {fileID: 248125092}
   - {fileID: 1571502764}
   - {fileID: 957219447}
   - {fileID: 1306567902}
-  - {fileID: 1815010755}
   - {fileID: 781327823}
   - {fileID: 2118297727}
