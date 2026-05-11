@@ -8,7 +8,13 @@ public static class ActionPlanner
         Card card,
         CharacterUnit target)
     {
-        if (slot == null || card == null || target == null)
+        if (user == null || slot == null || card == null || target == null)
+            return;
+
+        if (!user.CanAct)
+            return;
+
+        if (target.IsDead)
             return;
 
         slot.Assign(card, target, user);

@@ -2,9 +2,9 @@ using UnityEngine;
 
 public static class DiceClashResolver
 {
-    public static DiceClashResult Resolve(
-        CombatDiceRuntime a,
-        CombatDiceRuntime b)
+    public static DiceOutcome Resolve(
+        PageDie a,
+        PageDie b)
     {
         int rollA = a.Roll();
         int rollB = b.Roll();
@@ -12,11 +12,11 @@ public static class DiceClashResolver
         Debug.Log($"[DICE CLASH] {rollA} vs {rollB}");
 
         if (rollA > rollB)
-            return DiceClashResult.Win;
+            return DiceOutcome.Win;
 
         if (rollB > rollA)
-            return DiceClashResult.Lose;
+            return DiceOutcome.Lose;
 
-        return DiceClashResult.Draw;
+        return DiceOutcome.Draw;
     }
 }

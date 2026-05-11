@@ -5,10 +5,9 @@ public class CombatPageRuntime
 {
     public CharacterUnit owner;
     public CharacterUnit target;
-
     public Card card;
 
-    public List<CombatDiceRuntime> dice = new();
+    public List<PageDie> dice = new();
 
     public int currentIndex;
 
@@ -26,11 +25,15 @@ public class CombatPageRuntime
 
         foreach (var d in card.GetDice())
         {
-            dice.Add(new CombatDiceRuntime(d));
+            dice.Add(new PageDie
+            {
+                data = d,   // ✔ direct assignment
+                owner = null
+            });
         }
     }
 
-    public CombatDiceRuntime GetCurrentDie()
+    public PageDie GetCurrentDie()
     {
         if (IsFinished)
             return null;

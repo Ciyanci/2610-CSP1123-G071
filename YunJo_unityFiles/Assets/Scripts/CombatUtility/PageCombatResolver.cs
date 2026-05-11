@@ -9,8 +9,8 @@ public class PageCombatResolver : MonoBehaviour
     {
         while (!a.IsFinished && !b.IsFinished)
         {
-            CombatDiceRuntime dieA = a.GetCurrentDie();
-            CombatDiceRuntime dieB = b.GetCurrentDie();
+            var dieA = a.GetCurrentDie();
+            var dieB = b.GetCurrentDie();
 
             if (dieA == null || dieB == null)
                 yield break;
@@ -21,17 +21,17 @@ public class PageCombatResolver : MonoBehaviour
 
             switch (result)
             {
-                case DiceClashResult.Win:
+                case DiceOutcome.Win:
                     ApplyDamage(a.owner, b.owner, dieA);
                     b.Advance();
                     break;
 
-                case DiceClashResult.Lose:
+                case DiceOutcome.Lose:
                     ApplyDamage(b.owner, a.owner, dieB);
                     a.Advance();
                     break;
 
-                case DiceClashResult.Draw:
+                case DiceOutcome.Draw:
                     a.Advance();
                     b.Advance();
                     break;
@@ -70,15 +70,15 @@ public class PageCombatResolver : MonoBehaviour
     void ApplyDamage(
         CharacterUnit attacker,
         CharacterUnit target,
-        CombatDiceRuntime die)
+        PageDie die)
     {
         if (target == null || die == null)
             return;
 
-        int dmg = Mathf.Max(1, die.lastRoll + die.Data.power);
+        int dmg = Mathf.Max(1, die.roll + die.Power);
 
-        target.TakeDamage(dmg, die.Data.damageType);
+        target.TakeDamage(dmg, die.damageType);
 
-        Debug.Log($"[PAGE] {attacker.name} dealt {dmg}");
+        Debug.Log($"[PAGE] {attacker.unitName} dealt {dmg}");
     }
 }

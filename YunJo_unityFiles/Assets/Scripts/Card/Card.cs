@@ -5,8 +5,6 @@ public class Card
 {
     public CardData Data { get; private set; }
 
-    List<CombatDice> runtimeDice = new();
-
     public int Cost => Data.Cost;
     public string Name => Data.Name;
     public Sprite Artwork => Data.Artwork;
@@ -14,22 +12,23 @@ public class Card
     public Card(CardData data)
     {
         Data = data;
-
-        foreach (var d in data.dice)
-        {
-            runtimeDice.Add(new CombatDice(d));
-        }
     }
 
-    public List<CombatDice> GetDice() => runtimeDice;
-
-    public CombatDice GetDice(int index)
+    // =========================
+    // SOURCE OF TRUTH
+    // =========================
+    public List<DiceData> GetDice()
     {
-        if (index < 0 || index >= runtimeDice.Count)
+        return Data.dice;
+    }
+
+    public int DiceCount => Data.dice.Count;
+
+    public DiceData GetDiceSafe(int index)
+    {
+        if (index < 0 || index >= Data.dice.Count)
             return null;
 
-        return runtimeDice[index];
+        return Data.dice[index];
     }
-
-    public int DiceCount => runtimeDice.Count;
 }

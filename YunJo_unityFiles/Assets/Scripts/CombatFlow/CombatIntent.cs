@@ -9,8 +9,14 @@ public class CombatIntent
 
     public int priority;
 
+    // ✔ NOW RETURNS RUNTIME PAGE (correct system)
     public CombatPageRuntime CreatePage()
     {
-        return new CombatPageRuntime(user, target, card);
+        return PageBuilder.Build(this);
     }
+
+    public bool IsValid =>
+        user != null &&
+        target != null &&
+        card != null;
 }

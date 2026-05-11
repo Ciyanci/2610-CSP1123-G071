@@ -16,6 +16,9 @@ public class EnemyAI : MonoBehaviour
 
     public IEnumerator TakeTurn()
     {
+        if (!self.CanAct)
+            yield break;
+
         yield return new WaitForSeconds(thinkTime);
 
         self.RefreshLight();
@@ -38,9 +41,20 @@ public class EnemyAI : MonoBehaviour
 
             self.SpendLight(card.Cost);
 
-            slot.Assign(card, target, self);
+            ActionPlanner.AssignToSlot(
+                self,
+                slot,
+                card,
+                target
+            );
 
             yield return new WaitForSeconds(0.15f);
+        }
+
+        // finalize enemy planning
+        foreach (var slot in self.speedSlots)
+        {
+            slot.Commit();
         }
     }
 
@@ -66,9 +80,15 @@ public class EnemyAI : MonoBehaviour
         List<CharacterUnit> valid = new();
 
         foreach (var p in players)
-            if (p.CompareTag("Player"))
-                valid.Add(p);
+        {
+            if (!p.CompareTag("Player"))
+                continue;
 
+            if (p.IsDead)
+                continue;
+
+            valid.Add(p);
+        }
         return valid.Count > 0
             ? valid[Random.Range(0, valid.Count)]
             : null;

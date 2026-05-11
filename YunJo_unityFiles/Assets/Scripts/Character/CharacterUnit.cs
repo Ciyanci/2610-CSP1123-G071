@@ -6,7 +6,6 @@ public class CharacterUnit : MonoBehaviour
 {
     [Header("Identity")]
     public string unitName;
-
     public UnitType unitType;
 
     [Header("Stats")]
@@ -16,6 +15,13 @@ public class CharacterUnit : MonoBehaviour
     public int maxStagger = 50;
     public int stagger = 50;
 
+    [Header("State")]
+    public UnitState state = UnitState.Normal;
+
+    public bool IsDead => state == UnitState.Dead;
+    public bool IsStaggered => state == UnitState.Staggered;
+    public bool CanAct => state == UnitState.Normal;
+
     [Header("Resources")]
     public int maxLight = 3;
     public int currentLight = 3;
@@ -23,12 +29,18 @@ public class CharacterUnit : MonoBehaviour
     [Header("Resistances")]
     public DamageResistance resistances;
 
+    [Header("Defensive Dice")]
+    public List<DefensiveDie> defensiveDice = new();
+
     [Header("Deck")]
     public CharacterDeck deck;
 
     [Header("Speed Dice")]
     public List<SpeedSlot> speedSlots = new();
     public SpeedSlotRowUI slotRowUI;
+
+    [Header("Combat Control")]
+    public bool isInterrupted;
 
     [Header("Visual")]
     public Transform visual;
@@ -56,21 +68,18 @@ public class CharacterUnit : MonoBehaviour
             slotRowUI.Bind(this);
     }
 
-    public void RefreshLight()
-    {
-        currentLight = maxLight;
-    }
+    // =========================
+    // LIGHT SYSTEM
+    // =========================
+    public void RefreshLight() => currentLight = maxLight;
 
-    public bool CanPay(int amount)
-    {
-        return currentLight >= amount;
-    }
+    public bool CanPay(int amount) => currentLight >= amount;
 
-    public void SpendLight(int amount)
-    {
-        currentLight -= amount;
-    }
+    public void SpendLight(int amount) => currentLight -= amount;
 
+    // =========================
+    // SPEED SLOTS
+    // =========================
     public void RollSpeedSlots()
     {
         foreach (var slot in speedSlots)
@@ -81,11 +90,23 @@ public class CharacterUnit : MonoBehaviour
 
     public void ResetSpeedSlots()
     {
+        // recover stagger state at start of next turn
+        if (state == UnitState.Staggered)
+        {
+            stagger = maxStagger;
+            state = UnitState.Normal;
+        }
+
+        isInterrupted = false;
+
         foreach (var slot in speedSlots)
         {
             slot.ResetTurn();
-            slot.Roll(); // optional: reroll each turn
+            slot.Roll();
         }
+
+        defensiveDice.Clear();
+        SortSlots();
     }
 
     public void SortSlots()
@@ -97,19 +118,22 @@ public class CharacterUnit : MonoBehaviour
     {
         foreach (var slot in speedSlots)
         {
-            slot.Commit();
+            if (slot.state == SlotState.Planned)
+                slot.Commit();
         }
     }
 
-    public bool isLockedInCombat;
-
     public SpeedSlot GetHighestAvailableSlot()
     {
+        if (!CanAct)
+            return null;
+
         SpeedSlot best = null;
 
         foreach (var slot in speedSlots)
         {
-            if (slot.state == SlotState.Executed || slot.state == SlotState.Committed)
+            if (slot.state == SlotState.Executed ||
+                slot.state == SlotState.Committed)
                 continue;
 
             if (best == null || slot.value > best.value)
@@ -119,44 +143,134 @@ public class CharacterUnit : MonoBehaviour
         return best;
     }
 
-    bool IsSlotAvailable(SpeedSlot slot)
+    public void ClearCombatAssignments()
     {
-        return slot.state == SlotState.Empty;
+        foreach (var slot in speedSlots)
+            slot.Unassign(this);
     }
 
-    public void TakeDamage(
-        int amount,
-        DamageType type)
+    public bool CanResolveAction()
     {
-        int final =
-            DamageCalculator.Calculate(
-                amount,
-                type,
-                this
-            );
+        if (IsDead)
+            return false;
+
+        if (isInterrupted)
+            return false;
+
+        return true;
+    }
+
+    //DEFENSIVE QUERY SYSTEM
+    public DefensiveDie GetAvailableDefense()
+    {
+        if (IsDead || isInterrupted)
+            return null;
+
+        if (defensiveDice == null || defensiveDice.Count == 0)
+            return null;
+
+        return defensiveDice[0];
+    }
+
+    // =========================
+    // DAMAGE SYSTEM
+    // =========================
+    public void TakeDamage(int amount, DamageType type)
+    {
+        if (IsDead) return;
+
+        int final = DamageCalculator.Calculate(amount, type, this);
 
         hp -= final;
 
-        Debug.Log($"{unitName} took {final}");
+        Debug.Log($"{unitName} took {final} HP");
+
+        EvaluateState();
     }
 
-    public IEnumerator MoveTo(
-        Vector3 target,
-        float duration = 0.2f)
+    public void TakeStaggerDamage(int amount)
+    {
+        if (IsDead) return;
+
+        stagger -= amount;
+
+        Debug.Log($"{unitName} took {amount} Stagger");
+
+        EvaluateState();
+    }
+
+    // =========================
+    // STATE RESOLUTION (CORE)
+    // =========================
+    public void EvaluateState()
+    {
+        if (hp <= 0)
+        {
+            Die();
+            return;
+        }
+
+        if (stagger <= 0)
+        {
+            Stagger();
+            return;
+        }
+
+        state = UnitState.Normal;
+    }
+
+    public void Stagger()
+    {
+        if (state == UnitState.Dead) return;
+
+        state = UnitState.Staggered;
+
+        Debug.Log($"{unitName} staggered");
+
+        ClearCombatAssignments();
+    }
+
+    public void ApplyStagger()
+    {
+        if (state == UnitState.Dead)
+            return;
+
+        if (state == UnitState.Staggered)
+            return;
+
+        state = UnitState.Staggered;
+        isInterrupted = true;
+
+        Debug.Log($"{unitName} staggered (INTERRUPT)");
+
+        ClearCombatAssignments();
+    }
+
+    public void Die()
+    {
+        if (state == UnitState.Dead)
+            return;
+
+        state = UnitState.Dead;
+
+        Debug.Log($"{unitName} died");
+
+        ClearCombatAssignments();
+
+        gameObject.SetActive(false);
+    }
+
+    // =========================
+    // VISUALS
+    // =========================
+    public IEnumerator MoveTo(Vector3 target, float duration = 0.2f)
     {
         Vector3 start = visual.position;
-
         float t = 0;
 
         while (t < duration)
         {
-            visual.position =
-                Vector3.Lerp(
-                    start,
-                    target,
-                    t / duration
-                );
-
+            visual.position = Vector3.Lerp(start, target, t / duration);
             t += Time.deltaTime;
             yield return null;
         }
@@ -164,26 +278,16 @@ public class CharacterUnit : MonoBehaviour
         visual.position = target;
     }
 
-    public IEnumerator Recoil(
-        Vector3 dir,
-        float distance,
-        float duration)
+    public IEnumerator Recoil(Vector3 dir, float distance, float duration)
     {
         Vector3 start = visual.position;
-        Vector3 target =
-            start + dir * distance;
+        Vector3 target = start + dir * distance;
 
         float t = 0;
 
         while (t < duration)
         {
-            visual.position =
-                Vector3.Lerp(
-                    start,
-                    target,
-                    t / duration
-                );
-
+            visual.position = Vector3.Lerp(start, target, t / duration);
             t += Time.deltaTime;
             yield return null;
         }
@@ -199,39 +303,19 @@ public class CharacterUnit : MonoBehaviour
         return clashAnchor.position;
     }
 
-    public void PlayAttack()
-    {
-        if (attack != null)
-            sr.sprite = attack;
-    }
-
-    public void PlayHit()
-    {
-        if (hit != null)
-            sr.sprite = hit;
-    }
-
-    public void PlayWindup()
-    {
-        if (windup != null)
-            sr.sprite = windup;
-    }
+    public void PlayAttack() => sr.sprite = attack;
+    public void PlayHit() => sr.sprite = hit;
+    public void PlayWindup() => sr.sprite = windup;
 
     public void HideSpeed()
     {
         foreach (var slot in speedSlots)
-        {
-            if (slot.ui != null)
-                slot.ui.Hide();
-        }
+            slot.ui?.Hide();
     }
 
     public void ShowSpeed()
     {
         foreach (var slot in speedSlots)
-        {
-            if (slot.ui != null)
-                slot.ui.Show();
-        }
+            slot.ui?.Show();
     }
 }
