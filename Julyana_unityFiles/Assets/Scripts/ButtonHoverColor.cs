@@ -25,6 +25,8 @@ public class ButtonHoverColor : MonoBehaviour
 
             AddTrigger(trigger, EventTriggerType.PointerEnter, () => capturedText.color = hover);
             AddTrigger(trigger, EventTriggerType.PointerExit, () => capturedText.color = normal);
+            AddTrigger(trigger,EventTriggerType.Select, () => capturedText.color = hoverColor);
+            AddTrigger(trigger,EventTriggerType.Deselect, () => capturedText.color = normalColor);
         }
     }
 
