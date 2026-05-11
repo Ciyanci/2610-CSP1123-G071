@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 163236757}
   - component: {fileID: 163236756}
   - component: {fileID: 163236760}
+  - component: {fileID: 163236761}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -557,6 +558,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5199de5ce6b8934aadeb9ada19d6fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &163236761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163236754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f283b410c527b6044b1ea8e19a2ef638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
 --- !u!1 &300873118
@@ -2248,7 +2261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1528568638}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163236761}
+        m_TargetAssemblyTypeName: EnterGameScript, Assembly-CSharp
+        m_MethodName: EnterGameClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1528568638
 MonoBehaviour:
   m_ObjectHideFlags: 0

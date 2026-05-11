@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: 379e2a75c292c7946ac9c675d664c4dc
+  - enabled: 1
+    path: Assets/Scenes/DeckBuildingScreen.unity
+    guid: 1d3b03ba678051c4a884a8966219e3c0
   m_configObjects: {}
