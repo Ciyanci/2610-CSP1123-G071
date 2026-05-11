@@ -1,86 +1,158 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
-public class CombatPipeline : MonoBehaviour
+using System.Linq;
+public partial class CombatPipeline : MonoBehaviour
 {
+    public CombatPipelinePhase CurrentPhase;
     public static CombatPipeline Instance;
-
-    public CombatResolver resolver;
-
+    // FIX #2/#3: wire PageCombatResolver in the Inspector
+    [SerializeField] PageCombatResolver pageResolver;
+    List<CombatIntent> intents = new();
+    List<CharacterUnit> allUnits = new();
     void Awake()
     {
         Instance = this;
     }
-
-    void CommitAllSlots()
+    void CacheUnits()
     {
-        var allUnits = new List<CharacterUnit>();
+        allUnits.Clear();
+        if (UnitRegistry.Instance == null)
+            return;
         allUnits.AddRange(UnitRegistry.Instance.players);
         allUnits.AddRange(UnitRegistry.Instance.enemies);
-
-        foreach (var unit in allUnits)
-        {
-            foreach (var slot in unit.speedSlots)
-            {
-                if (slot.state == SlotState.Planned)
-                    slot.Commit();
-            }
-        }
     }
-
+    // =========================
+    // ENTRY
+    // =========================
     public IEnumerator ResolveTurn()
     {
-        // 🔥 LOCK PHASE (CRITICAL)
-        CommitAllSlots();
-
-        var intents = BuildIntentsFromSlots();
-        var clashes = ClashDetector.Build(intents);
-
-        yield return resolver.Resolve(new CombatTurnContext
-        {
-            intents = intents,
-            clashes = clashes
-        });
-
-        PreviewManager.Instance.Clear();
+        CacheUnits();
+        CurrentPhase = CombatPipelinePhase.Resolve;
+        yield return BuildIntents();
+        yield return ResolveIntents();
+        yield return CleanupPhase();
     }
-
     // =========================
-    // SLOT-DRIVEN BUILD (FINAL FORM)
+    // 1. BUILD INTENTS
     // =========================
-    List<CombatIntent> BuildIntentsFromSlots()
+    IEnumerator BuildIntents()
     {
-        List<CombatIntent> result = new();
-
-        var allUnits = new List<CharacterUnit>();
-        allUnits.AddRange(UnitRegistry.Instance.players);
-        allUnits.AddRange(UnitRegistry.Instance.enemies);
-
-        foreach (var unit in allUnits)
+        intents.Clear();
+        foreach (var u in allUnits)
         {
-            foreach (var slot in unit.speedSlots)
+            if (u == null || u.IsDead)
+                continue;
+            foreach (var slot in u.speedSlots)
             {
-                if (slot == null) continue;
-                if (slot.assignedCard == null) continue;
-                if (slot.target == null) continue;
-                if (slot.state != SlotState.Committed) continue;
-
-                // 🔥 ensure state consistency (safe guard)
-                slot.state = SlotState.Executed;
-
-                result.Add(new CombatIntent
+                if (slot == null)
+                    continue;
+                if (slot.state != SlotState.Committed)
+                    continue;
+                if (slot.assignedCard == null || slot.target == null)
+                    continue;
+                intents.Add(new CombatIntent
                 {
-                    user = unit,
-                    target = slot.target,
-                    card = slot.assignedCard,
+                    user     = u,
+                    target   = slot.target,
                     speedSlot = slot,
+                    card     = slot.assignedCard,
                     priority = slot.value
                 });
             }
         }
-
-        result.Sort((a, b) => b.priority.CompareTo(a.priority));
-        return result;
+        // Highest speed acts first
+        intents = intents
+            .OrderByDescending(i => i.priority)
+            .ToList();
+        yield return null;
+    }
+    // =========================
+    // 2. RESOLVE INTENTS
+    // =========================
+    IEnumerator ResolveIntents()
+    {
+        HashSet<CombatIntent> resolved = new();
+        foreach (var intent in intents)
+        {
+            if (intent == null || !intent.IsValid)
+                continue;
+            if (resolved.Contains(intent))
+                continue;
+            var counter = FindCounterIntent(intent);
+            if (counter != null && !resolved.Contains(counter))
+            {
+                resolved.Add(intent);
+                resolved.Add(counter);
+                yield return ResolveClash(intent, counter);
+            }
+            else
+            {
+                resolved.Add(intent);
+                yield return ResolveUnopposed(intent);
+            }
+        }
+    }
+    // =========================
+    // UNOPPOSED
+    // FIX #3: actually apply damage die-by-die
+    // =========================
+    IEnumerator ResolveUnopposed(CombatIntent intent)
+    {
+        if (!intent.IsValid)
+            yield break;
+        var page = intent.CreatePage();
+        yield return pageResolver.ResolveSinglePage(page);
+        FinalizeIntent(intent);
+    }
+    // =========================
+    // CLASH
+    // FIX #2: delegate to PageCombatResolver which actually rolls and damages
+    // =========================
+    IEnumerator ResolveClash(CombatIntent a, CombatIntent b)
+    {
+        if (!a.IsValid || !b.IsValid)
+            yield break;
+        Debug.Log($"[CLASH] {a.user.unitName} vs {b.user.unitName}");
+        var pageA = a.CreatePage();
+        var pageB = b.CreatePage();
+        // PageCombatResolver handles the full clash loop:
+        // win → attacker deals damage, loser advances
+        // draw → both advance (cancelled)
+        // then flushes any remaining dice unopposed
+        yield return pageResolver.ResolvePages(pageA, pageB);
+        FinalizeIntent(a);
+        FinalizeIntent(b);
+    }
+    // =========================
+    // FINALIZE
+    // =========================
+    void FinalizeIntent(CombatIntent intent)
+    {
+        if (intent?.speedSlot == null)
+            return;
+        intent.speedSlot.Clear();
+    }
+    CombatIntent FindCounterIntent(CombatIntent intent)
+    {
+        return intents.FirstOrDefault(i =>
+            i != intent &&
+            i.user   == intent.target &&
+            i.target == intent.user   &&
+            i.speedSlot != null       &&
+            i.speedSlot.state == SlotState.Committed
+        );
+    }
+    // =========================
+    // CLEANUP
+    // FIX #9: removed redundant slot.Clear() loop.
+    // StartTurn → ResetSpeedSlots() is the single authoritative reset.
+    // CleanupPhase only needs to set the phase flag and pause.
+    // =========================
+    IEnumerator CleanupPhase()
+    {
+        CurrentPhase = CombatPipelinePhase.Cleanup;
+        Debug.Log("[PHASE] Cleanup");
+        yield return new WaitForSeconds(0.3f);
     }
 }

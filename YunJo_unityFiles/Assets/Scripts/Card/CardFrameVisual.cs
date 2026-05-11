@@ -1,18 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class CardFrameVisual : MonoBehaviour
 {
-    public Image frameImage;
+    [Header("All Images Affected By Rarity")]
+    public List<Image> frameImages = new();
 
-    Material runtimeMat;
+    List<Material> runtimeMaterials = new();
 
     void Awake()
     {
-        runtimeMat =
-            Instantiate(frameImage.material);
+        runtimeMaterials.Clear();
 
-        frameImage.material = runtimeMat;
+        foreach (var img in frameImages)
+        {
+            if (img == null)
+                continue;
+
+            Material mat =
+                Instantiate(img.material);
+
+            img.material = mat;
+
+            runtimeMaterials.Add(mat);
+        }
     }
 
     public void SetRarity(CardRarity rarity)
@@ -20,40 +32,68 @@ public class CardFrameVisual : MonoBehaviour
         switch (rarity)
         {
             case CardRarity.Common:
-                SetHue(0f);
-                SetGlow(Color.white, 0f);
+                ApplyStyle(
+                    0f,
+                    Color.white,
+                    0f
+                );
                 break;
 
             case CardRarity.Uncommon:
-                SetHue(0.33f); // green
-                SetGlow(Color.green, 0.2f);
+                ApplyStyle(
+                    0.33f,
+                    Color.green,
+                    0.2f
+                );
                 break;
 
             case CardRarity.Rare:
-                SetHue(0.58f); // blue
-                SetGlow(Color.cyan, 0.4f);
+                ApplyStyle(
+                    0.58f,
+                    Color.cyan,
+                    0.4f
+                );
                 break;
 
             case CardRarity.Epic:
-                SetHue(0.78f); // purple
-                SetGlow(new Color(0.7f, 0.2f, 1f), 0.7f);
+                ApplyStyle(
+                    0.78f,
+                    new Color(0.7f, 0.2f, 1f),
+                    0.7f
+                );
                 break;
 
             case CardRarity.Legendary:
-                SetHue(0.12f); // gold
-                SetGlow(Color.yellow, 1.2f);
+                ApplyStyle(
+                    0.12f,
+                    Color.yellow,
+                    1.2f
+                );
                 break;
         }
     }
 
-    void SetHue(float value)
+    void ApplyStyle(
+        float hue,
+        Color glow,
+        float glowStrength)
     {
-        runtimeMat.SetFloat("_Hue", value);
-    }
+        foreach (var mat in runtimeMaterials)
+        {
+            if (mat == null)
+                continue;
 
-    void SetGlow(Color c, float strength)
-    {
-        runtimeMat.SetColor("_GlowColor", c);
-        runtimeMat.SetFloat("_GlowStrength", strength);
+            mat.SetFloat("_Hue", hue);
+
+            mat.SetColor(
+                "_GlowColor",
+                glow
+            );
+
+            mat.SetFloat(
+                "_GlowStrength",
+                glowStrength
+            );
+        }
     }
 }

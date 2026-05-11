@@ -10,7 +10,14 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         CombatFlowController.Instance.StartTargeting(card, null);
     }
 
-    public void OnDrag(PointerEventData eventData) { }
+    // ✅ REQUIRED (even if unused)
+    public void OnDrag(PointerEventData eventData)
+    {
+        // Intentionally empty
+    }
 
-    public void OnEndDrag(PointerEventData eventData) { }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        CombatFlowController.Instance.EndTargeting();
+    }
 }

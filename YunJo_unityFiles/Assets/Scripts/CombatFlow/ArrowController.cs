@@ -5,118 +5,57 @@ public class ArrowController : MonoBehaviour
     public LineRenderer lr;
     public Transform tip;
 
-    Transform start;
-    Transform end;
-
-    Card currentCard;
-    CharacterUnit owner;
+    RectTransform startUI;
+    RectTransform endUI;
 
     Camera cam;
 
     void Awake()
     {
         cam = Camera.main;
+        lr.positionCount = 2;
     }
 
-    public void Begin(CharacterUnit user, Card card)
+    public void Begin(RectTransform cardUI)
     {
-        owner = user;
-        start = user.headAnchor;
-        currentCard = card;
+        startUI = cardUI;
+        endUI = null;
 
         gameObject.SetActive(true);
-
-        Debug.Log($"[ARROW] Begin from {user.name} using {card.Data.Name}");
     }
 
-    public void Set(Transform from, Transform to)
+    public void SetTarget(SpeedSlot slot)
     {
-        start = from;
-        end = to;
-    }
+        if (slot?.ui == null) return;
 
-    public void SetPriority(int value)
-    {
-        lr.widthMultiplier = Mathf.Lerp(0.05f, 0.2f, value / 10f);
-    }
-
-    public void SetTarget(CharacterUnit target)
-    {
-        if (target == null) return;
-
-        end = target.headAnchor;
-
-        Debug.Log($"[ARROW] Target set: {target.name}");
+        endUI = slot.ui.GetComponent<RectTransform>();
     }
 
     public void End()
     {
-        start = null;
-        end = null;
-        currentCard = null;
-        owner = null;
-
+        startUI = null;
+        endUI = null;
         gameObject.SetActive(false);
-    }
-
-    CharacterUnit GetTargetUnit()
-    {
-        return end != null ? end.GetComponentInParent<CharacterUnit>() : null;
     }
 
     void Update()
     {
-        if (start == null) return;
+        if (startUI == null) return;
 
-        Vector3 startPos = start.position + Vector3.up * 0.2f;
+        Vector3 start = startUI.position;
+        Vector3 end = endUI != null
+            ? endUI.position
+            : cam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 endPos;
+        end.z = 0;
 
-        if (end == null)
-        {
-            Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
-            mouse.z = 0;
-            endPos = mouse;
-        }
-        else
-        {
-            endPos = end.position + Vector3.up * 0.2f;
-        }
+        lr.SetPosition(0, start);
+        lr.SetPosition(1, end);
 
-        Vector3 finalEnd = endPos;
-
-        // =========================
-        // CLEAN CLASH PREVIEW (NO SCENE SCAN)
-        // =========================
-        CharacterUnit myTarget = GetTargetUnit();
-
-        if (owner != null && myTarget != null)
-        {
-            foreach (var slot in owner.speedSlots)
-            {
-                if (slot.target == null || slot.assignedCard == null)
-                    continue;
-
-                if (slot.target == myTarget && slot.state == SlotState.Planned || slot.state == SlotState.Committed)
-                {
-                    finalEnd = (startPos + endPos) * 0.5f;
-                    break;
-                }
-            }
-        }
-        // =========================
-        // DRAW LINE
-        // =========================
-        lr.SetPosition(0, startPos);
-        lr.SetPosition(1, finalEnd);
-
-        // =========================
-        // TIP
-        // =========================
         if (tip != null)
         {
-            tip.position = finalEnd;
-            tip.right = (finalEnd - startPos).normalized;
+            tip.position = end;
+            tip.right = (end - start).normalized;
         }
     }
 }

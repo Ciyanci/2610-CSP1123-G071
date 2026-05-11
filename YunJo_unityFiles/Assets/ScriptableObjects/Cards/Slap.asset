@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   Name: Slap
   Description: Slap them
-  Image: {fileID: 21300000, guid: 892131d9367a8be4e937ca4e50ca56c0, type: 3}
+  Effects: 'On Clash Win : slap the shit out of them'
   Artwork: {fileID: 21300000, guid: 3e3f55fe1f64b304da130128b769baca, type: 3}
   Cost: 0
-  MinRoll: 1
-  MaxRoll: 6
-  Damage: 6
-  prefab: {fileID: 445031347310594184, guid: a59bc0c60f7663e42834b359a9659159, type: 3}
+  dice:
+  - minRoll: 1
+    maxRoll: 6
+    power: 6
+    damageType: 2
+    effect: 0
+  rarity: 0

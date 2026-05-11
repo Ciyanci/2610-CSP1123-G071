@@ -57,6 +57,36 @@ public class CharacterUnit : MonoBehaviour
 
     Vector3 startPos;
 
+    void Start()
+    {
+        ResetSpeedSlots();
+    }
+
+    public void InitializeSpeedSlots()
+    {
+        if (speedSlots == null)
+            speedSlots = new List<SpeedSlot>();
+
+        speedSlots.Clear();
+
+        int diceCount = GetSpeedDiceCount();
+
+        for (int i = 0; i < diceCount; i++)
+        {
+            SpeedSlot slot = new SpeedSlot
+            {
+                owner = this
+            };
+
+            speedSlots.Add(slot);
+        }
+
+        SortSlots();
+
+        if (slotRowUI != null)
+            slotRowUI.Bind(this);
+    }
+
     void Awake()
     {
         startPos = visual.position;
@@ -86,11 +116,14 @@ public class CharacterUnit : MonoBehaviour
             slot.Roll();
 
         SortSlots();
+
+        // 🔥 CRITICAL: update UI immediately
+        if (slotRowUI != null)
+            slotRowUI.Refresh();
     }
 
     public void ResetSpeedSlots()
     {
-        // recover stagger state at start of next turn
         if (state == UnitState.Staggered)
         {
             stagger = maxStagger;
@@ -99,14 +132,30 @@ public class CharacterUnit : MonoBehaviour
 
         isInterrupted = false;
 
-        foreach (var slot in speedSlots)
-        {
-            slot.ResetTurn();
-            slot.Roll();
-        }
+        // Rebuild slots fresh every turn
+        InitializeSpeedSlots();
+
+        // Roll immediately
+        RollSpeedSlots();
 
         defensiveDice.Clear();
-        SortSlots();
+
+        slotRowUI?.Refresh();
+    }
+
+    public int GetSpeedDiceCount()
+    {
+        int count = 1;
+
+        // example progression thresholds
+        if (maxHP >= 60)
+            count++;
+
+        if (maxHP >= 120)
+            count++;
+
+        //clamp because clamping is cool
+        return Mathf.Clamp(count, 1, 4);
     }
 
     public void SortSlots()
@@ -146,7 +195,7 @@ public class CharacterUnit : MonoBehaviour
     public void ClearCombatAssignments()
     {
         foreach (var slot in speedSlots)
-            slot.Unassign(this);
+            slot.Clear();
     }
 
     public bool CanResolveAction()
@@ -317,5 +366,15 @@ public class CharacterUnit : MonoBehaviour
     {
         foreach (var slot in speedSlots)
             slot.ui?.Show();
+    }
+
+    void OnMouseDown()
+    {
+        if (CombatFlowController.Instance.IsTargeting)
+        {
+            CombatFlowController.Instance.ConfirmTarget(this);
+            return;
+        }
+        CombatFlowController.Instance.SelectUnit(this);
     }
 }

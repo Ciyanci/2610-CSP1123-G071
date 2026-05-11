@@ -3,89 +3,60 @@ using UnityEngine;
 [System.Serializable]
 public class SpeedSlot
 {
-    public int value;
+    public CharacterUnit owner;
 
-    public SlotState state;
-    public System.Action<SpeedSlot> onChanged;
+    public int value;
 
     public Card assignedCard;
     public CharacterUnit target;
-    public CharacterUnit owner;
 
-    public SpeedDiceUI ui;
+    public SlotState state = SlotState.Empty;
 
-    public bool IsEmpty => assignedCard == null;
+    public SpeedSlotUIElement ui;
 
     public void Roll()
     {
         value = Random.Range(1, 10);
+        state = SlotState.Empty;
+        assignedCard = null;
+        target = null;
 
-        if (state != SlotState.Committed)
-            state = SlotState.Empty;
-
-        ui?.SetValue(value);
-        ui?.Show();
-
-        onChanged?.Invoke(this);
+        ui?.Refresh();
     }
 
-    public void Assign(Card card, CharacterUnit target, CharacterUnit owner)
+    public void Plan(Card card, CharacterUnit tgt)
     {
-        if (state == SlotState.Executed)
-            return;
-
-        // prevent stealing unless explicitly overwritten later
-        if (this.owner != null && this.owner != owner)
-            return;
-
-        this.owner = owner;
-
         assignedCard = card;
-        this.target = target;
+        target = tgt;
         state = SlotState.Planned;
 
-        onChanged?.Invoke(this);
+        ui?.Refresh();
     }
 
     public void Commit()
     {
-        if (state != SlotState.Planned)
-            return;
+        if (state == SlotState.Planned)
+            state = SlotState.Committed;
 
-        state = SlotState.Committed;
-
-        onChanged?.Invoke(this);
+        ui?.Refresh();
     }
 
-    public void Execute()
+    public void Clear()
     {
-        if (state != SlotState.Committed)
-            return;
-
-        state = SlotState.Executed;
-
-        onChanged?.Invoke(this);
-    }
-
-    public void Unassign(CharacterUnit requester)
-    {
-        if (owner != null && owner != requester)
-            return;
-
         assignedCard = null;
         target = null;
-        owner = null;
         state = SlotState.Empty;
 
-        onChanged?.Invoke(this);
+        ui?.Refresh();
+    }
+
+    public void Unassign()
+    {
+        Clear();
     }
 
     public void ResetTurn()
     {
-        assignedCard = null;
-        target = null;
-        state = SlotState.Empty;
-
-        onChanged?.Invoke(this);
+        Clear();
     }
 }

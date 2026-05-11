@@ -14,10 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   Name: Googoogaga
   Description: goo goo babies
-  Image: {fileID: 21300000, guid: 892131d9367a8be4e937ca4e50ca56c0, type: 3}
+  Effects: 'On Clash Win : tung tung tung sahur'
   Artwork: {fileID: 21300000, guid: d057e77140578f34eb298cfd0825ad0a, type: 3}
   Cost: 0
-  MinRoll: 1
-  MaxRoll: 6
-  Damage: 4
-  prefab: {fileID: 445031347310594184, guid: a59bc0c60f7663e42834b359a9659159, type: 3}
+  dice:
+  - minRoll: 1
+    maxRoll: 6
+    power: 5
+    damageType: 0
+    effect: 0
+  rarity: 4

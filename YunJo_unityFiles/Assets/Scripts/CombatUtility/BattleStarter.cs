@@ -14,6 +14,7 @@ public class BattleStarter : MonoBehaviour
 
     IEnumerator StartBattle()
     {
+        UnitRegistry.Instance.Refresh();
         if (playerDeck == null || enemyDeck == null)
             yield break;
 
