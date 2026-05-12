@@ -28,6 +28,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
     {
         slot      = s;
         slot.ui   = this;
+        Show();
         Refresh();
     }
     // =========================
@@ -135,13 +136,29 @@ public class SpeedSlotUIElement : MonoBehaviour,
     // =========================
     public void Show()
     {
-        if (group != null) group.alpha = 1;
-        else gameObject.SetActive(true);
+        if (group != null)
+        {
+            group.alpha = 1;
+            group.interactable = true;
+            group.blocksRaycasts = true;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
     }
     public void Hide()
     {
-        if (group != null) group.alpha = 0;
-        else gameObject.SetActive(false);
+        if (group != null)
+        {
+            group.alpha = 0;
+            group.interactable = false;
+            group.blocksRaycasts = false;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     // Add to the existing IDropHandler, IPointerClickHandler list:

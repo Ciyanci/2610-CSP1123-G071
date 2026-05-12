@@ -6,19 +6,44 @@ public class SpeedSlotRowUI : MonoBehaviour
     public CharacterUnit owner;
     public List<SpeedSlotUIElement> slotUI = new();
 
+    public Transform followTarget;
+    public Vector3 offset = new Vector3(0, 1.2f, 0);
+
+    public void AttachTo(CharacterUnit unit)
+    {
+        owner = unit;
+        followTarget = unit.headAnchor;
+
+        Bind(unit);
+    }
+
+    void LateUpdate()
+    {
+        if (followTarget == null) return;
+
+        transform.position = followTarget.position + offset;
+    }
+
     public void Bind(CharacterUnit unit)
     {
         owner = unit;
 
-        // IMPORTANT: ensure same size
-        if (owner.speedSlots.Count != slotUI.Count)
-        {
-            Debug.LogWarning("Mismatch: speed slots vs UI slots");
-        }
+        followTarget = unit.headAnchor; // ADD THIS LINE
 
-        for (int i = 0; i < Mathf.Min(slotUI.Count, owner.speedSlots.Count); i++)
+        slotUI.Clear();
+        GetComponentsInChildren(slotUI);
+
+        for (int i = 0; i < slotUI.Count; i++)
         {
-            slotUI[i].Bind(owner.speedSlots[i]);
+            bool active = i < owner.speedSlots.Count;
+
+            slotUI[i].gameObject.SetActive(active);
+
+            if (active)
+            {
+                slotUI[i].Bind(owner.speedSlots[i]);
+                slotUI[i].Show();
+            }
         }
     }
 

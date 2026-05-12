@@ -118,8 +118,16 @@ public class CharacterUnit : MonoBehaviour
         SortSlots();
 
         // 🔥 CRITICAL: update UI immediately
-        if (slotRowUI != null)
-            slotRowUI.Refresh();
+        if (slotRowUI != null && speedSlots.Count > 0)
+            slotRowUI.Bind(this);
+    }
+
+    void OnTransformChildrenChanged()
+    {
+        if (slotRowUI == null)
+            return;
+
+        slotRowUI.Bind(this);
     }
 
     public void ResetSpeedSlots()
