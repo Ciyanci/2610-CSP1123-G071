@@ -7,5 +7,5 @@ public class PreviewIntent
     public CharacterUnit target;
     public Card card;
     public SpeedSlot slot;      // 🔥 CRITICAL ADDITION
-    public ArrowController arrow;
+    public ArrowManager arrow;
 }

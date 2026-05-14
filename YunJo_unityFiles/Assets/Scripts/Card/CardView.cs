@@ -1,3 +1,4 @@
+// CardView.cs
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,20 +18,23 @@ public class CardView : MonoBehaviour,
     [Header("Expanded")]
     public GameObject expandedPanel;
 
-    RectTransform rect;
+    // Cached rarity visual — found at Awake
+    CardFrameVisual frameVisual;
 
+    RectTransform rect;
     Vector2 basePos;
 
     Card card;
     public Card GetCard() => card;
     CharacterUnit owner;
 
-    bool isHovered;
-
     void Awake()
     {
-        rect = GetComponent<RectTransform>();
+        rect         = GetComponent<RectTransform>();
+        frameVisual  = GetComponentInChildren<CardFrameVisual>(true);
 
+        // Expanded panel setup — disable raycasts on children so they
+        // don't eat pointer events from other cards
         if (expandedPanel != null)
         {
             expandedPanel.SetActive(false);
@@ -40,10 +44,11 @@ public class CardView : MonoBehaviour,
                 cg = expandedPanel.AddComponent<CanvasGroup>();
 
             cg.blocksRaycasts = false;
-            cg.interactable = false;
+            cg.interactable   = false;
             cg.ignoreParentGroups = true;
         }
 
+        // Only the root Image receives raycasts — children are purely visual
         foreach (var g in GetComponentsInChildren<Graphic>())
             g.raycastTarget = false;
 
@@ -52,29 +57,24 @@ public class CardView : MonoBehaviour,
             rootImage.raycastTarget = true;
     }
 
-    void RefreshExpandedUI()
-    {
-        if (card == null) return;
-    }
     public void Setup(Card c, CharacterUnit unit)
     {
-        card = c;
+        card  = c;
         owner = unit;
 
-        title.text = c.Data.Name;
-        cost.text = c.Cost.ToString();
+        title.text   = c.Data.Name;
+        cost.text    = c.Cost.ToString();
         artwork.sprite = c.Artwork;
 
+        // Apply rarity shader now that card data is known
+        frameVisual?.SetRarity(c.Data.rarity);
+
         if (expandedPanel != null)
-        {
             expandedPanel.SetActive(false);
-            expandedPanel.SetActive(true);
-            expandedPanel.SetActive(false);
-        }
     }
 
     // =========================
-    // HAND OWNED POSITION
+    // POSITION
     // =========================
     public void SetBasePosition(Vector2 pos)
     {
@@ -89,44 +89,30 @@ public class CardView : MonoBehaviour,
 
         if (expandedPanel != null)
             expandedPanel.SetActive(false);
-
-        isHovered = false;
     }
 
-    // =========================
-    // SHIFT (ONLY HORIZONTAL OFFSET)
-    // =========================
     public void ApplyShift(float x)
     {
         rect.DOKill();
+        rect.DOAnchorPosX(basePos.x + x, 0.12f).SetEase(Ease.OutCubic);
+    }
 
-        rect.DOAnchorPosX(basePos.x + x, 0.12f)
+    // Add inside CardView alongside ApplyShift:
+    public void LiftTo(float y)
+    {
+        rect.DOKill();
+        rect.DOAnchorPos(new Vector2(basePos.x, basePos.y + y), 0.12f)
             .SetEase(Ease.OutCubic);
     }
 
-    // =========================
-    // HOVER VISUAL ONLY
-    // =========================
     public void SetHover(bool value)
     {
-        isHovered = value;
-
-        if (value)
-        {
-            if (expandedPanel != null)
-            {
-                expandedPanel.SetActive(true);
-                RefreshExpandedUI(); // 🔥 FORCE SYNC HERE
-            }
-        }
-        else
-        {
-            if (expandedPanel != null)
-                expandedPanel.SetActive(false);
-        }
+        if (expandedPanel != null)
+            expandedPanel.SetActive(value);
     }
+
     // =========================
-    // INPUT
+    // POINTER EVENTS
     // =========================
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -137,10 +123,9 @@ public class CardView : MonoBehaviour,
     {
         HandUI.Instance?.ResetHover();
     }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("[CARD CLICK] " + card.Data.Name);
-
         CombatFlowController.Instance.StartTargeting(card, owner);
     }
 }

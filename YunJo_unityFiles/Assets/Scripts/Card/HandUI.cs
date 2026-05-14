@@ -1,4 +1,6 @@
+// HandUI.cs
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class HandUI : MonoBehaviour
@@ -7,16 +9,16 @@ public class HandUI : MonoBehaviour
 
     [Header("References")]
     public Transform container;
-    public CardView prefab;
+    public CardView  prefab;
 
     [Header("Layout")]
-    public float spacing = 500f;
+    public float cardSpacing  = 160f;   // tighter default — cards overlap naturally
+    public float hoverLiftY   = 60f;    // how far the hovered card rises
+    public float neighbourPush = 40f;   // how far neighbours shift sideways
 
     List<CardView> views = new();
-
-    CharacterDeck currentDeck;
-
-    CardView currentHovered;
+    CharacterDeck  currentDeck;
+    CardView       currentHovered;
 
     void Awake()
     {
@@ -25,25 +27,13 @@ public class HandUI : MonoBehaviour
     }
 
     // =========================
-    // REQUIRED FIX (for CombatFlowController)
+    // SHOW / HIDE
     // =========================
     public void Show(CharacterDeck deck)
     {
-        if (deck == null)
-            return;
-
+        if (deck == null) return;
         gameObject.SetActive(true);
         Refresh(deck);
-    }
-
-    public RectTransform GetCardUI(CharacterUnit owner, Card card)
-    {
-        foreach (var v in views)
-        {
-            if (v != null && v.GetCard() == card)
-                return v.GetComponent<RectTransform>();
-        }
-        return null;
     }
 
     public void Hide()
@@ -52,72 +42,90 @@ public class HandUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public RectTransform GetCardUI(CharacterUnit owner, Card card)
+    {
+        foreach (var v in views)
+            if (v != null && v.GetCard() == card)
+                return v.GetComponent<RectTransform>();
+        return null;
+    }
+
     // =========================
-    // CORE
+    // REFRESH
     // =========================
     public void Refresh(CharacterDeck deck)
     {
         currentDeck = deck;
-
         Clear();
 
-        var hand = deck.GetHand();
-
-        float startX = -(hand.Count - 1) * spacing * 0.5f;
+        var hand   = deck.GetHand();
+        float startX = -(hand.Count - 1) * cardSpacing * 0.5f;
 
         for (int i = 0; i < hand.Count; i++)
         {
             CardView v = Instantiate(prefab, container);
             v.Setup(hand[i], deck.owner);
-
-            v.SetBasePosition(new Vector2(startX + i * spacing, 0));
-
+            v.SetBasePosition(new Vector2(startX + i * cardSpacing, 0));
             views.Add(v);
         }
     }
 
+    // =========================
+    // HOVER
+    // Only the root card Image receives raycasts, so this fires cleanly
+    // =========================
     public void OnCardHovered(CardView hovered)
     {
-        if (currentHovered == hovered)
-            return;
+        if (currentHovered == hovered) return;
+
+        // Reset previous
+        if (currentHovered != null)
+        {
+            currentHovered.SetHover(false);
+            currentHovered.ResetToBase();
+        }
 
         currentHovered = hovered;
-
         int index = views.IndexOf(hovered);
 
         for (int i = 0; i < views.Count; i++)
         {
             var v = views[i];
 
-            v.ResetToBase();
-
             if (v == hovered)
             {
+                // Lift the hovered card upward
                 v.SetHover(true);
+                v.LiftTo(hoverLiftY);
                 continue;
             }
 
-            int offset = i - index;
+            // Push neighbours away — further cards push more
+            int   delta = i - index;
+            float sign  = delta > 0 ? 1f : -1f;
+            float dist  = Mathf.Abs(delta);
+            float push  = sign * (neighbourPush + (dist - 1) * 15f);
 
-            float shift = offset > 0 ? 260f + offset * 35f : offset * 25f;
-
-            v.ApplyShift(shift);
+            v.ApplyShift(push);
         }
     }
 
     public void ResetHover()
     {
+        if (currentHovered == null) return;
+
+        currentHovered.SetHover(false);
         currentHovered = null;
 
         foreach (var v in views)
             v.ResetToBase();
     }
+
     void Clear()
     {
         foreach (var v in views)
-            if (v != null)
-                Destroy(v.gameObject);
-
+            if (v != null) Destroy(v.gameObject);
         views.Clear();
+        currentHovered = null;
     }
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4365327335245660856}
   - component: {fileID: 3463245769634064516}
   - component: {fileID: 2372535250043389058}
-  - component: {fileID: -1544715558713457465}
   m_Layer: 5
   m_Name: DiceIcon
   m_TagString: Untagged
@@ -93,29 +92,3 @@ MonoBehaviour:
   slashSprite: {fileID: 1122395297, guid: 8cdab18cbbec9854c86fa62a03cae3af, type: 3}
   pierceSprite: {fileID: 274890857, guid: 8cdab18cbbec9854c86fa62a03cae3af, type: 3}
   bluntSprite: {fileID: -1199157342, guid: 8cdab18cbbec9854c86fa62a03cae3af, type: 3}
---- !u!114 &-1544715558713457465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7094233121192454225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ad237854f02a1d40ad689181ebd888c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpeedSlotUIElement
-  group: {fileID: 0}
-  valueText: {fileID: 0}
-  cardNameText: {fileID: 0}
-  background: {fileID: 0}
-  clashIcon: {fileID: 0}
-  cardThumbnail: {fileID: 0}
-  emptyColor: {r: 0.2, g: 0.2, b: 0.2, a: 0.8}
-  plannedColor: {r: 0.2, g: 0.5, b: 0.8, a: 0.9}
-  committedColor: {r: 0.1, g: 0.7, b: 0.3, a: 0.9}
-  executedColor: {r: 0.4, g: 0.4, b: 0.4, a: 0.5}
-  clashColor: {r: 0.8, g: 0.2, b: 0.2, a: 0.9}
-  clashSprite: {fileID: 0}
-  unopposedSprite: {fileID: 0}
-  selectedColor: {r: 1, g: 0.85, b: 0.1, a: 1}

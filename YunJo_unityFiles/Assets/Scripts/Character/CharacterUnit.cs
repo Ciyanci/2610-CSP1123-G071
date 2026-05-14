@@ -15,6 +15,10 @@ public class CharacterUnit : MonoBehaviour
     public int maxStagger = 50;
     public int stagger = 50;
 
+    [Header("UI")]
+    public CharacterStatusUI statusUI;
+    public LightBarUI lightBarUI;
+
     [Header("State")]
     public UnitState state = UnitState.Normal;
 
@@ -23,8 +27,8 @@ public class CharacterUnit : MonoBehaviour
     public bool CanAct => state == UnitState.Normal;
 
     [Header("Resources")]
-    public int maxLight = 3;
-    public int currentLight = 3;
+    public int maxLight = 5;
+    public int currentLight = 1;
 
     [Header("Resistances")]
     public DamageResistance resistances;
@@ -60,6 +64,8 @@ public class CharacterUnit : MonoBehaviour
     void Start()
     {
         ResetSpeedSlots();
+        statusUI?.Bind(this);
+        lightBarUI?.Bind(this);
     }
 
     public void InitializeSpeedSlots()
@@ -101,11 +107,19 @@ public class CharacterUnit : MonoBehaviour
     // =========================
     // LIGHT SYSTEM
     // =========================
-    public void RefreshLight() => currentLight = maxLight;
+    public void RefreshLight()
+    {
+        currentLight = maxLight;
+        lightBarUI?.Refresh();
+    }
 
     public bool CanPay(int amount) => currentLight >= amount;
 
-    public void SpendLight(int amount) => currentLight -= amount;
+    public void SpendLight(int amount)
+    {
+        currentLight -= amount;
+        lightBarUI?.Refresh();
+    }
 
     // =========================
     // SPEED SLOTS
@@ -242,6 +256,8 @@ public class CharacterUnit : MonoBehaviour
 
         Debug.Log($"{unitName} took {final} HP");
 
+        statusUI?.Refresh();
+
         EvaluateState();
     }
 
@@ -252,6 +268,8 @@ public class CharacterUnit : MonoBehaviour
         stagger -= amount;
 
         Debug.Log($"{unitName} took {amount} Stagger");
+
+        statusUI?.Refresh();
 
         EvaluateState();
     }

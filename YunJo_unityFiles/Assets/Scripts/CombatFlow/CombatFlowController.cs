@@ -9,13 +9,10 @@ public class CombatFlowController : MonoBehaviour
     [Header("State")]
     public bool inputEnabled;
 
-    // Selection state — three steps: card → slot → target
-    Card selectedCard;
+    // Three-step selection: card → slot → target
+    Card          selectedCard;
     CharacterUnit selectedUser;
-    SpeedSlot selectedSlot;         // ← new: the specific slot the player clicked
-
-    [Header("Visuals")]
-    public ArrowController arrow;
+    SpeedSlot     selectedSlot;
 
     public bool IsTargeting => selectedCard != null;
 
@@ -26,159 +23,202 @@ public class CombatFlowController : MonoBehaviour
 
     // =========================
     // STEP 1 — select a card
-    // Called by CardView.OnPointerDown
     // =========================
     public void StartTargeting(Card card, CharacterUnit user)
     {
         if (!inputEnabled || card == null) return;
 
+        // Cancel any previous selection cleanly
+        CancelSelection();
+
         selectedCard = card;
         selectedUser = user;
-        selectedSlot = null;        // clear any previous slot selection
+        selectedSlot = null;
 
-        RectTransform ui = HandUI.Instance?.GetCardUI(user, card);
-        arrow?.Begin(ui);
-
-        Debug.Log($"[FLOW] Card selected: {card.Name} — now pick a speed slot");
+        Debug.Log($"[FLOW] Card selected: {card.Name} — pick a speed slot");
     }
 
     // =========================
     // STEP 2 — select a specific speed slot
-    // Called by SpeedSlotUIElement when clicked
     // =========================
     public void SelectSlot(SpeedSlot slot)
     {
-        if (!inputEnabled) return;
-        if (selectedCard == null) return;       // must have a card first
-        if (slot == null || slot.owner == null) return;
+        if (!inputEnabled)    return;
+        if (selectedCard == null) return;
+        if (slot?.owner == null)  return;
 
-        // Only allow selecting slots owned by players
+        // Players only
         if (!UnitRegistry.Instance.players.Contains(slot.owner)) return;
 
-        // Slot must be available
         if (slot.state == SlotState.Committed ||
-            slot.state == SlotState.Executed) return;
+            slot.state == SlotState.Executed)  return;
 
-        // If slot already has a card, unassign it first (swap behaviour)
+        // Swap — return existing card to hand first
         if (slot.state == SlotState.Planned && slot.assignedCard != null)
         {
             slot.owner.deck?.ReturnToHand(slot.assignedCard);
+            ArrowManager.Instance?.RemovePlannedArrow(slot);
             slot.Clear();
         }
 
-        selectedSlot = slot;
+        // Deselect previous slot highlight
+        selectedSlot?.ui?.SetSelected(false);
 
-        // Highlight the selected slot
+        selectedSlot = slot;
         slot.ui?.SetSelected(true);
 
-        Debug.Log($"[FLOW] Slot selected: value {slot.value} — now pick a target");
+        Debug.Log($"[FLOW] Slot selected: value {slot.value} — pick a target");
     }
 
     // =========================
-    // STEP 3 — confirm target
-    // Called by CharacterUnit.OnMouseDown when IsTargeting is true
+    // STEP 3 — confirm target (click on enemy)
     // =========================
     public void ConfirmTarget(CharacterUnit target)
     {
         if (selectedCard == null || selectedUser == null) return;
-        if (target == null || target.IsDead) return;
+        if (target == null || target.IsDead)              return;
 
-        // If no slot was manually picked, fall back to highest available
         SpeedSlot slot = selectedSlot ?? selectedUser.GetHighestAvailableSlot();
 
         if (slot == null)
         {
             Debug.Log("[FLOW] No available slot");
-            EndTargeting();
+            CancelSelection();
             return;
         }
 
         ActionPlanner.AssignToSlot(selectedUser, slot, selectedCard, target);
-
-        // Preview state on this slot
-        SpeedSlot enemySlot = FindSlotTargeting(target);
-        TargetPreviewState preview = enemySlot != null
-            ? TargetPreviewState.WillClash
-            : TargetPreviewState.Unopposed;
+        ArrowManager.Instance?.AddPlannedArrow(slot);
 
         slot.ui?.SetSelected(false);
-        slot.ui?.ShowPreview(preview);
+        slot.ui?.Refresh();
 
-        arrow?.End();
+        CharacterUnit user = selectedUser;
         ClearSelection();
 
-        RefreshHandIfSelected(selectedUser ?? slot.owner);
+        RefreshHandIfSelected(user);
+
+        Debug.Log($"[FLOW] {user.unitName} → slot {slot.value} → {target.unitName}");
     }
 
     // =========================
-    // CONFIRM ON A SPECIFIC SLOT (drag-drop path)
-    // Called by SpeedSlotUIElement.OnDrop
+    // CONFIRM ON SLOT (drag-drop path)
     // =========================
     public void ConfirmTargetOnSlot(Card card, CharacterUnit user, SpeedSlot slot)
     {
         if (!inputEnabled) return;
         if (card == null || user == null || slot == null) return;
         if (slot.state == SlotState.Committed ||
-            slot.state == SlotState.Executed) return;
+            slot.state == SlotState.Executed)  return;
 
         CharacterUnit target = TargetSelector.Instance?.GetTarget();
         if (target == null || target.IsDead) return;
 
         ActionPlanner.AssignToSlot(user, slot, card, target);
+        ArrowManager.Instance?.AddPlannedArrow(slot);
 
-        SpeedSlot enemySlot = FindSlotTargeting(target);
-        TargetPreviewState preview = enemySlot != null
-            ? TargetPreviewState.WillClash
-            : TargetPreviewState.Unopposed;
-
-        slot.ui?.ShowPreview(preview);
-
-        arrow?.End();
+        slot.ui?.Refresh();
         ClearSelection();
 
-        Debug.Log($"[FLOW] {user.unitName} → {slot.value} die → {target.unitName} ({preview})");
+        Debug.Log($"[FLOW] {user.unitName} → slot {slot.value} → {target.unitName} (drop)");
     }
 
     // =========================
-    // END TARGETING (cancel)
+    // CANCEL (Escape / explicit)
+    // Hides preview but keeps planned arrows
     // =========================
-    public void EndTargeting()
+    public void CancelSelection()
     {
-        if (selectedSlot != null)
-            selectedSlot.ui?.SetSelected(false);
-
-        arrow?.End();
+        selectedSlot?.ui?.SetSelected(false);
+        ArrowManager.Instance?.HidePreview();
         ClearSelection();
     }
 
+    // Alias kept so existing call sites compile
+    public void EndTargeting() => CancelSelection();
+
     // =========================
-    // CONFIRM PLANNING
+    // CONFIRM PLANNING (Space)
     // =========================
     public void ConfirmPlanning()
     {
         if (!inputEnabled) return;
 
         inputEnabled = false;
+        CancelSelection();
+
         StartCoroutine(CombatPipeline.Instance.ResolveTurn());
 
-        Debug.Log("[FLOW] Planning locked → resolving combat");
+        Debug.Log("[FLOW] Planning confirmed → resolving");
     }
 
     // =========================
-    // HELPERS
+    // INPUT GATE
     // =========================
-    public void SelectUnit(CharacterUnit unit)
-    {
-        if (unit?.deck != null)
-            HandUI.Instance.Show(unit.deck);
-    }
-
     public void SetInputEnabled(bool enabled)
     {
         inputEnabled = enabled;
 
         if (!enabled)
-            EndTargeting();
+        {
+            CancelSelection();
+            ArrowManager.Instance?.ClearAllArrows();
+        }
+
+        Debug.Log($"[FLOW] Input: {enabled}");
+    }
+
+    // =========================
+    // AUTO ASSIGN (Q)
+    // =========================
+    public void AutoAssignPlayerActions()
+    {
+        var players = UnitRegistry.Instance.players;
+        var enemies = UnitRegistry.Instance.enemies;
+
+        if (players == null || enemies == null) return;
+
+        foreach (var player in players)
+        {
+            if (player?.deck == null) continue;
+
+            List<Card> hand = player.deck.GetHand();
+            if (hand == null || hand.Count == 0) continue;
+
+            foreach (var slot in player.speedSlots)
+            {
+                if (slot.state == SlotState.Committed ||
+                    slot.state == SlotState.Executed  ||
+                    slot.state == SlotState.Planned)   continue;
+
+                if (hand.Count == 0) break;
+
+                Card          card   = hand[Random.Range(0, hand.Count)];
+                CharacterUnit target = enemies.Count > 0
+                    ? enemies[Random.Range(0, enemies.Count)]
+                    : null;
+
+                if (target == null) continue;
+
+                ActionPlanner.AssignToSlot(player, slot, card, target);
+                ArrowManager.Instance?.AddPlannedArrow(slot);
+                slot.ui?.Refresh();
+            }
+        }
+
+        if (selectedUser?.deck != null)
+            HandUI.Instance?.Refresh(selectedUser.deck);
+
+        Debug.Log("[FLOW] Auto-assign complete");
+    }
+
+    // =========================
+    // UNIT / SLOT SELECTION (info bar)
+    // =========================
+    public void SelectUnit(CharacterUnit unit)
+    {
+        if (unit?.deck != null)
+            HandUI.Instance?.Show(unit.deck);
     }
 
     public void RefreshHandIfSelected(CharacterUnit unit)
@@ -187,6 +227,9 @@ public class CombatFlowController : MonoBehaviour
         HandUI.Instance?.Refresh(unit.deck);
     }
 
+    // =========================
+    // HELPERS
+    // =========================
     SpeedSlot FindSlotTargeting(CharacterUnit target)
     {
         foreach (var unit in UnitRegistry.Instance.players)
@@ -211,71 +254,36 @@ public class CombatFlowController : MonoBehaviour
 
     public void ResetAll()
     {
-        arrow?.End();
-        ClearSelection();
+        CancelSelection();
+        ArrowManager.Instance?.ClearAllArrows();
     }
 
     // =========================
-    // AUTO ASSIGN (Q key)
+    // UPDATE
     // =========================
-    public void AutoAssignPlayerActions()
-    {
-        var players = UnitRegistry.Instance.players;
-        var enemies = UnitRegistry.Instance.enemies;
-
-        if (players == null || enemies == null) return;
-
-        foreach (var player in players)
-        {
-            if (player == null || player.deck == null) continue;
-
-            List<Card> hand = player.deck.GetHand();
-            if (hand == null || hand.Count == 0) continue;
-
-            // Fill ALL available slots, not just the highest
-            foreach (var slot in player.speedSlots)
-            {
-                if (slot.state == SlotState.Committed ||
-                    slot.state == SlotState.Executed  ||
-                    slot.state == SlotState.Planned) continue;
-
-                if (hand.Count == 0) break;
-
-                Card randomCard = hand[Random.Range(0, hand.Count)];
-                CharacterUnit target = enemies.Count > 0
-                    ? enemies[Random.Range(0, enemies.Count)]
-                    : null;
-
-                if (target == null) continue;
-
-                ActionPlanner.AssignToSlot(player, slot, randomCard, target);
-
-                // Preview
-                SpeedSlot enemySlot = FindSlotTargeting(target);
-                slot.ui?.ShowPreview(enemySlot != null
-                    ? TargetPreviewState.WillClash
-                    : TargetPreviewState.Unopposed);
-            }
-        }
-
-        if (selectedUser?.deck != null)
-            HandUI.Instance?.Refresh(selectedUser.deck);
-
-        Debug.Log("[FLOW] Auto-assignment complete");
-    }
-
     void Update()
     {
         if (!inputEnabled) return;
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            AutoAssignPlayerActions();
+        // Live preview arrow tracks cursor while a card is selected
+        if (IsTargeting && selectedUser != null)
+        {
+            Vector3 from = selectedUser.clashAnchor != null
+                ? selectedUser.clashAnchor.position
+                : selectedUser.transform.position;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            ConfirmPlanning();
+            Vector3 to = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            to.z = 0f;
 
-        // Escape cancels current selection
-        if (Input.GetKeyDown(KeyCode.Escape))
-            EndTargeting();
+            ArrowManager.Instance?.UpdatePreview(from, to);
+        }
+        else
+        {
+            ArrowManager.Instance?.HidePreview();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))      AutoAssignPlayerActions();
+        if (Input.GetKeyDown(KeyCode.Space))  ConfirmPlanning();
+        if (Input.GetKeyDown(KeyCode.Escape)) CancelSelection();
     }
 }
