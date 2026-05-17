@@ -2,13 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class InputRebindUI : MonoBehaviour
 {
     [Header("Input Action")]
     public InputActionReference actionReference;
 
-    [Header("Binding Index (0 usually main key)")]
+    [Header("Binding Index")]
     public int bindingIndex = 0;
 
     [Header("UI")]
@@ -18,56 +19,96 @@ public class InputRebindUI : MonoBehaviour
 
     private const string SAVE_KEY = "rebinds";
 
-    private void Awake()
-    {
-        LoadBindings();
-    }
-
     private void Start()
     {
+        if (actionReference == null || actionReference.action == null)
+        {
+            Debug.LogError("InputActionReference not assigned!");
+            return;
+        }
+
         LoadBindings();
         UpdateBindingText();
+
         rebindButton.onClick.AddListener(StartRebind);
+        rebindButtonText.text = "Rebind";
     }
 
     void StartRebind()
     {
+        // IMPORTANT: prevents UI from blocking Enter / keyboard input
+        EventSystem.current.SetSelectedGameObject(null);
+
+        var action = actionReference.action;
+
         rebindButton.interactable = false;
         rebindButtonText.text = "Press a key...";
 
-        actionReference.action.Disable();
+        action.Disable();
 
-        actionReference.action.PerformInteractiveRebinding(bindingIndex).WithCancelingThrough("<Keyboard>/escape").OnComplete(operation =>
-        {
-            operation.Dispose();
-            actionReference.action.Enable();
-            rebindButtonText.text = "Rebind";
+        action.PerformInteractiveRebinding(bindingIndex)
 
-            SaveBindings();
-            UpdateBindingText();
-        })
-        .Start();
+            // Allows Enter + Numpad Enter to be detected properly
+            .WithControlsHavingToMatchPath("<Keyboard>")
+
+            // Prevent mouse clicks from interfering
+            .WithControlsExcluding("<Mouse>")
+
+            // ESC cancels rebinding
+            .WithCancelingThrough("<Keyboard>/escape")
+
+            .OnComplete(operation =>
+            {
+                operation.Dispose();
+                action.Enable();
+
+                rebindButton.interactable = true;
+                rebindButtonText.text = "Rebind";
+
+                SaveBindings();
+                UpdateBindingText();
+            })
+
+            .OnCancel(operation =>
+            {
+                operation.Dispose();
+                action.Enable();
+
+                rebindButton.interactable = true;
+                rebindButtonText.text = "Rebind";
+            })
+
+            .Start();
     }
 
     void UpdateBindingText()
+    {
+        var action = actionReference.action;
+
+        if (bindingIndex < 0 || bindingIndex >= action.bindings.Count)
         {
-            bindingText.text = InputControlPath.ToHumanReadableString(
-                actionReference.action.bindings[bindingIndex].effectivePath,
-                InputControlPath.HumanReadableStringOptions.OmitDevice);
+            bindingText.text = "Invalid Binding Index";
+            return;
         }
 
-        void SaveBindings()
-        {
-            PlayerPrefs.SetString(SAVE_KEY, actionReference.action.actionMap.asset.SaveBindingOverridesAsJson());
-            PlayerPrefs.Save();
-        }
+        bindingText.text = InputControlPath.ToHumanReadableString(
+            action.bindings[bindingIndex].effectivePath,
+            InputControlPath.HumanReadableStringOptions.OmitDevice
+        );
+    }
 
-        void LoadBindings()
-        {
-            if (PlayerPrefs.HasKey(SAVE_KEY))
-            {
-                string json = PlayerPrefs.GetString(SAVE_KEY);
-                actionReference.action.actionMap.asset.LoadBindingOverridesFromJson(json);
-            }
-        }
+    void SaveBindings()
+    {
+        string json = actionReference.action.actionMap.asset.SaveBindingOverridesAsJson();
+        PlayerPrefs.SetString(SAVE_KEY, json);
+        PlayerPrefs.Save();
+    }
+
+    void LoadBindings()
+    {
+        if (!PlayerPrefs.HasKey(SAVE_KEY)) return;
+
+        string json = PlayerPrefs.GetString(SAVE_KEY);
+        actionReference.action.actionMap.asset.LoadBindingOverridesFromJson(json);
+    }
 }

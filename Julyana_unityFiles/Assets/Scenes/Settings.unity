@@ -3210,7 +3210,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fullscreen
+  m_Text: Submit
 --- !u!222 &763608243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5347,9 +5347,9 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1715170314}
   - {fileID: 918613367}
   - {fileID: 975848370}
+  - {fileID: 1715170314}
   m_Father: {fileID: 419557523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5366,14 +5366,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1386567563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6eee780af6a1a4443880d75779f20d5f, type: 3}
+  m_Script: {fileID: 11500000, guid: cc11d99b1a6682f4cbc4aba1fcd9ac5d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InputRebindUI
-  actionReference: {fileID: 392368643174621059, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  bindingIndex: 0
-  bindingText: {fileID: 918613368}
-  rebindButton: {fileID: 975848371}
-  rebindButtonText: {fileID: 1715170315}
+  m_EditorClassIdentifier: Unity.InputSystem.RebindingUI::UnityEngine.InputSystem.Samples.RebindUI.RebindActionUI
+  m_Action: {fileID: -1759990180155748471, guid: 7dead05c54ca85b4681351aafd8bd03a, type: 3}
+  m_BindingId: a0738286-36dd-48f1-8cf6-2388f225b289
+  m_DisplayStringOptions: -1
+  m_ActionLabel: {fileID: 0}
+  m_BindingText: {fileID: 0}
+  m_RebindOverlay: {fileID: 0}
+  m_RebindText: {fileID: 0}
+  m_RebindInfo: {fileID: 0}
+  m_RebindCancelButton: {fileID: 0}
+  m_RebindTimeout: 0
+  m_UpdateBindingUIEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_RebindStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_RebindStopEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1410570723
 GameObject:
   m_ObjectHideFlags: 0
