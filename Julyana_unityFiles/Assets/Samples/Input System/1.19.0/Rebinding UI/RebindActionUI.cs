@@ -307,6 +307,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                     action.actionMap.Enable();
             }
 
+
             // An "InvalidOperationException: Cannot rebind action x while it is enabled" will
             // be thrown if rebinding is attempted on an action that is enabled.
             //
@@ -325,6 +326,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .OnCancel(
                     operation =>
                     {
+                        action.Enable();
                         m_RebindStopEvent?.Invoke(this, operation);
                         if (m_RebindOverlay != null)
                             m_RebindOverlay.SetActive(false);
@@ -342,6 +344,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                 .OnComplete(
                     operation =>
                     {
+                        action.Enable();
                         if (m_RebindOverlay != null)
                             m_RebindOverlay.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
