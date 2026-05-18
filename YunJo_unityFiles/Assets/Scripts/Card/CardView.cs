@@ -18,7 +18,7 @@ public class CardView : MonoBehaviour,
     [Header("Expanded")]
     public GameObject expandedPanel;
 
-    // Cached rarity visual — found at Awake
+    //cached rarity visuals
     CardFrameVisual frameVisual;
 
     RectTransform rect;
@@ -33,8 +33,7 @@ public class CardView : MonoBehaviour,
         rect         = GetComponent<RectTransform>();
         frameVisual  = GetComponentInChildren<CardFrameVisual>(true);
 
-        // Expanded panel setup — disable raycasts on children so they
-        // don't eat pointer events from other cards
+        //disable raycasts on children so they don't eat pointer events from other cards (this caused me a headache)
         if (expandedPanel != null)
         {
             expandedPanel.SetActive(false);
@@ -48,7 +47,7 @@ public class CardView : MonoBehaviour,
             cg.ignoreParentGroups = true;
         }
 
-        // Only the root Image receives raycasts — children are purely visual
+        //makes so that only the root image receives raycasts (hopefully this one works)
         foreach (var g in GetComponentsInChildren<Graphic>())
             g.raycastTarget = false;
 
@@ -66,16 +65,14 @@ public class CardView : MonoBehaviour,
         cost.text    = c.Cost.ToString();
         artwork.sprite = c.Artwork;
 
-        // Apply rarity shader now that card data is known
+        //apply rarity shader based on card data
         frameVisual?.SetRarity(c.Data.rarity);
 
         if (expandedPanel != null)
             expandedPanel.SetActive(false);
     }
 
-    // =========================
-    // POSITION
-    // =========================
+    //position methods
     public void SetBasePosition(Vector2 pos)
     {
         basePos = pos;
@@ -97,7 +94,6 @@ public class CardView : MonoBehaviour,
         rect.DOAnchorPosX(basePos.x + x, 0.12f).SetEase(Ease.OutCubic);
     }
 
-    // Add inside CardView alongside ApplyShift:
     public void LiftTo(float y)
     {
         rect.DOKill();
@@ -111,9 +107,7 @@ public class CardView : MonoBehaviour,
             expandedPanel.SetActive(value);
     }
 
-    // =========================
-    // POINTER EVENTS
-    // =========================
+    //pointer events
     public void OnPointerEnter(PointerEventData eventData)
     {
         HandUI.Instance?.OnCardHovered(this);

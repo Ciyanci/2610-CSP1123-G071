@@ -28,9 +28,7 @@ public class CombatStateMachine : MonoBehaviour
             yield return StartCoroutine(EndTurn());
         }
     }
-    // =========================
-    // START TURN
-    // =========================
+    //start turn
     IEnumerator StartTurn()
     {
         phase = CombatPhase.StartTurn;
@@ -42,20 +40,16 @@ public class CombatStateMachine : MonoBehaviour
             unit.ResetSpeedSlots();
         yield return null;
     }
-    // =========================
-    // DRAW
-    // =========================
+    //draw phase
     IEnumerator DrawPhase()
     {
         phase = CombatPhase.Draw;
         Debug.Log("[PHASE] Draw");
-        // FIX #5: refresh hand to 4 each turn, not top-up to 9
         foreach (var deck in playerDecks)
         {
             if (deck != null)
                 deck.RefreshHand();
         }
-        // Also refresh enemy hands
         foreach (var enemy in enemies)
         {
             if (enemy != null && enemy.deck != null)
@@ -66,15 +60,11 @@ public class CombatStateMachine : MonoBehaviour
             hand.Hide();
         yield return new WaitForSeconds(0.2f);
     }
-    // =========================
-    // PLANNING
-    // =========================
+    //planning phase
     IEnumerator PlanningPhase()
     {
         phase = CombatPhase.Planning;
         Debug.Log("[PHASE] Planning");
-        // FIX #4: enemies plan fully BEFORE player input opens.
-        // This mirrors LoR — enemy intent is locked in, then revealed.
         foreach (var enemy in enemies)
         {
             if (enemy != null)
@@ -86,40 +76,32 @@ public class CombatStateMachine : MonoBehaviour
             !CombatFlowController.Instance.inputEnabled
         );
     }
-    // =========================
-    // INTENT PREVIEW
-    // =========================
+    //intent preview
     IEnumerator IntentPreview()
     {
         phase = CombatPhase.IntentPreview;
         Debug.Log("[PHASE] Intent Preview");
-        // Good place to show enemy intent indicators on their slots
         yield return new WaitForSeconds(1.0f);
     }
-    // =========================
-    // RESOLVE
-    // =========================
+    //resolve phase
     IEnumerator ResolvePhase()
     {
         phase = CombatPhase.Resolve;
         Debug.Log("[PHASE] Resolve");
-        // FIX #1: commit ALL planned slots before the pipeline reads them.
-        // BuildIntents() filters for SlotState.Committed — nothing fires without this.
+        //BuildIntents() filters for SlotState.Committed so that nothing fires without this
         foreach (var unit in UnitRegistry.Instance.players)
             unit.CommitAllSlots();
         foreach (var unit in UnitRegistry.Instance.enemies)
             unit.CommitAllSlots();
         yield return CombatPipeline.Instance.ResolveTurn();
     }
-    // =========================
-    // END TURN
-    // =========================
+    //end turn
     IEnumerator EndTurn()
     {
         phase = CombatPhase.EndTurn;
         Debug.Log("[PHASE] End Turn");
-        // Deck hand refill now lives in DrawPhase via RefreshHand().
-        // EndTurn is kept for future effects (status ticks, light refresh, etc.)
+        //Deck hand refill is now in DrawPhase via RefreshHand()
+        //end turn only for future effects
         yield return new WaitForSeconds(0.5f);
     }
 }

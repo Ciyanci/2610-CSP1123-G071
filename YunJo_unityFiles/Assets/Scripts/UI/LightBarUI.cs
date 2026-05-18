@@ -8,7 +8,7 @@ public class LightBarUI : MonoBehaviour
     public CharacterUnit owner;
 
     [Header("Slots")]
-    // Assign these in order in the Inspector — one Image per max light slot
+    //assign these in order in the Inspector (one Image per max light slot)
     public List<Image> lightSlots = new();
 
     [Header("Sprites")]

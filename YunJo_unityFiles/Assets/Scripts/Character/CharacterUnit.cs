@@ -59,7 +59,9 @@ public class CharacterUnit : MonoBehaviour
     public Sprite hit;
     public Sprite windup;
 
-    Vector3 startPos;
+    [HideInInspector] public Vector3 startPos;
+    //getter
+    public Vector3 GetStartPos() => startPos;
 
     void Start()
     {
@@ -104,9 +106,7 @@ public class CharacterUnit : MonoBehaviour
             slotRowUI.Bind(this);
     }
 
-    // =========================
-    // LIGHT SYSTEM
-    // =========================
+    //light system
     public void RefreshLight()
     {
         currentLight = maxLight;
@@ -121,19 +121,16 @@ public class CharacterUnit : MonoBehaviour
         lightBarUI?.Refresh();
     }
 
-    // =========================
-    // SPEED SLOTS
-    // =========================
+    //speed slots
     public void RollSpeedSlots()
     {
         foreach (var slot in speedSlots)
-            slot.Roll();
-
+            slot.Roll(); // data is set immediately (enemy AI can read this now)
         SortSlots();
-
-        // 🔥 CRITICAL: update UI immediately
         if (slotRowUI != null && speedSlots.Count > 0)
             slotRowUI.Bind(this);
+        // start visual animation (data is already final so no worries here)
+        slotRowUI?.AnimateRolls();
     }
 
     void OnTransformChildrenChanged()
@@ -154,10 +151,10 @@ public class CharacterUnit : MonoBehaviour
 
         isInterrupted = false;
 
-        // Rebuild slots fresh every turn
+        //rebuilds slots immediately after every turn
         InitializeSpeedSlots();
 
-        // Roll immediately
+        //rolls immediately
         RollSpeedSlots();
 
         defensiveDice.Clear();
@@ -169,7 +166,7 @@ public class CharacterUnit : MonoBehaviour
     {
         int count = 1;
 
-        // example progression thresholds
+        //example progression thresholds
         if (maxHP >= 60)
             count++;
 
@@ -231,7 +228,7 @@ public class CharacterUnit : MonoBehaviour
         return true;
     }
 
-    //DEFENSIVE QUERY SYSTEM
+    //defensive query system
     public DefensiveDie GetAvailableDefense()
     {
         if (IsDead || isInterrupted)
@@ -243,40 +240,40 @@ public class CharacterUnit : MonoBehaviour
         return defensiveDice[0];
     }
 
-    // =========================
-    // DAMAGE SYSTEM
-    // =========================
+    //damage system
     public void TakeDamage(int amount, DamageType type)
     {
         if (IsDead) return;
-
         int final = DamageCalculator.Calculate(amount, type, this);
-
         hp -= final;
-
-        Debug.Log($"{unitName} took {final} HP");
-
         statusUI?.Refresh();
-
+        CombatHUDController.Instance?.RefreshAll(); // ✅
         EvaluateState();
     }
 
     public void TakeStaggerDamage(int amount)
     {
         if (IsDead) return;
-
         stagger -= amount;
-
-        Debug.Log($"{unitName} took {amount} Stagger");
-
         statusUI?.Refresh();
-
+        CombatHUDController.Instance?.RefreshAll(); // ✅
+        EvaluateState();
+    }
+    public IEnumerator TakeDamageWithKnockback(int amount, DamageType type, Vector3 attackerDir, bool returnToStart = true)
+    {
+        if (IsDead) yield break;
+        int final = DamageCalculator.Calculate(amount, type, this);
+        hp -= final;
+        statusUI?.Refresh();
+        float knockDist = Mathf.Clamp(final * 0.04f, 0.2f, 1.2f);
+        yield return Recoil(attackerDir, knockDist, 0.12f);
+        // ✅ Only return to startPos if told to (unopposed attacks)
+        if (returnToStart && !IsDead)
+            yield return MoveTo(startPos, 0.2f);
         EvaluateState();
     }
 
-    // =========================
-    // STATE RESOLUTION (CORE)
-    // =========================
+    //state resolution (core of the character if they're dead or staggered)
     public void EvaluateState()
     {
         if (hp <= 0)
@@ -335,9 +332,7 @@ public class CharacterUnit : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // =========================
-    // VISUALS
-    // =========================
+    //visuals
     public IEnumerator MoveTo(Vector3 target, float duration = 0.2f)
     {
         Vector3 start = visual.position;

@@ -5,7 +5,7 @@ public class DefensiveDie
 {
     public DefenseType type;
 
-    public int value; // strength of defense roll
+    public int value; //strength
 
     public int Roll()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 public class CombatPageRuntime
 {
     public CharacterUnit owner;
-    public CharacterUnit target;   // ← already exists, just confirm it's set
+    public CharacterUnit target;
     public Card card;
     public List<PageDie> dice = new();
     public int currentIndex;
@@ -11,7 +11,7 @@ public class CombatPageRuntime
     public CombatPageRuntime(CharacterUnit owner, CharacterUnit target, Card card)
     {
         this.owner  = owner;
-        this.target = target;   // ← confirm this line is present
+        this.target = target;
         this.card   = card;
         foreach (var d in card.GetDice())
         {

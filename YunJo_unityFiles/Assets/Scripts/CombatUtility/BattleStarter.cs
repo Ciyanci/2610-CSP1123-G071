@@ -18,15 +18,19 @@ public class BattleStarter : MonoBehaviour
         if (playerDeck == null || enemyDeck == null)
             yield break;
 
-        // Initialize both decks properly
+        //initialise both decks
         playerDeck.Init();
         enemyDeck.Init();
 
-        // ensure starting hand is filled correctly
+        CombatHUDController.Instance?.Bind();
+
+        //ensure starting hand is filled correctly
         playerDeck.FillHandToLimit();
         enemyDeck.FillHandToLimit();
 
         Debug.Log("[BATTLE] Initialized decks");
+        CombatInfoBar.Instance?.ShowDefault();
+        CombatFlowController.Instance.SetInputEnabled(true);
 
         yield return new WaitForSeconds(0.2f);
     }

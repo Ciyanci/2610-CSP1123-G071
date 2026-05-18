@@ -6,18 +6,16 @@ public class ArrowManager : MonoBehaviour
     public static ArrowManager Instance;
 
     [Header("Prefabs")]
-    public CombatArrow previewArrowPrefab;   // blue dashed
-    public CombatArrow plannedArrowPrefab;   // red solid
-    public CombatArrow clashArrowPrefab;     // yellow solid
+    public CombatArrow previewArrowPrefab;   //blue dashed
+    public CombatArrow plannedArrowPrefab;   //red solid
+    public CombatArrow clashArrowPrefab;     //yellow solid
 
     [Header("Tip Sprites — set on prefabs")]
-    // Tips are child Transforms on each prefab, already configured
 
-    // Live preview arrow (cursor-following)
+    //cursor following live arrow
     CombatArrow previewArrow;
 
-    // Planned arrows — one per committed slot
-    // Key: the SpeedSlot that owns this arrow
+    //planned arrow (sets for one per slot this time oops)
     Dictionary<SpeedSlot, CombatArrow> plannedArrows = new();
 
     void Awake()
@@ -28,10 +26,7 @@ public class ArrowManager : MonoBehaviour
         previewArrow.Hide();
     }
 
-    // =========================
-    // PREVIEW ARROW
-    // Called every frame by CombatFlowController while targeting
-    // =========================
+    //preview arrow
     public void UpdatePreview(Vector3 from, Vector3 to)
     {
         previewArrow.Show();
@@ -43,18 +38,15 @@ public class ArrowManager : MonoBehaviour
         previewArrow.Hide();
     }
 
-    // =========================
-    // PLANNED ARROW
-    // Call when a slot is assigned
-    // =========================
+    //planned arrow
     public void AddPlannedArrow(SpeedSlot slot)
     {
         if (slot?.owner == null || slot.target == null) return;
 
-        // Remove old arrow if re-assigning
+        //remove old arrow when resigning (probably works)
         RemovePlannedArrow(slot);
 
-        // Check if counter-slot exists → clash
+        //check if counter-slot exists
         SpeedSlot counter = FindCounterSlot(slot);
         bool isClash      = counter != null;
 
@@ -63,7 +55,6 @@ public class ArrowManager : MonoBehaviour
 
         plannedArrows[slot] = arrow;
 
-        // If clash, also upgrade the counter's arrow
         if (isClash && plannedArrows.TryGetValue(counter, out var counterArrow))
         {
             RemovePlannedArrow(counter);
@@ -90,10 +81,7 @@ public class ArrowManager : MonoBehaviour
         previewArrow.Hide();
     }
 
-    // =========================
-    // UPDATE — redraw all arrows each frame
-    // Positions update even if units move
-    // =========================
+    //update (redraw arrows)
     void Update()
     {
         foreach (var kvp in plannedArrows)

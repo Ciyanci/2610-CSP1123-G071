@@ -26,9 +26,7 @@ public class HandUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // =========================
-    // SHOW / HIDE
-    // =========================
+    //show/hide methods
     public void Show(CharacterDeck deck)
     {
         if (deck == null) return;
@@ -50,9 +48,7 @@ public class HandUI : MonoBehaviour
         return null;
     }
 
-    // =========================
-    // REFRESH
-    // =========================
+    //refresh deck method
     public void Refresh(CharacterDeck deck)
     {
         currentDeck = deck;
@@ -70,10 +66,7 @@ public class HandUI : MonoBehaviour
         }
     }
 
-    // =========================
-    // HOVER
-    // Only the root card Image receives raycasts, so this fires cleanly
-    // =========================
+    //hover (only root card receives so it should fire cleanly) please i hope it does lowk i cant do this anymore
     public void OnCardHovered(CardView hovered)
     {
         if (currentHovered == hovered) return;
@@ -94,13 +87,13 @@ public class HandUI : MonoBehaviour
 
             if (v == hovered)
             {
-                // Lift the hovered card upward
+                //lifts hovered card upwards
                 v.SetHover(true);
                 v.LiftTo(hoverLiftY);
                 continue;
             }
 
-            // Push neighbours away — further cards push more
+            //push neighbours (might wanna tweak it because expanded panel counts as the card and it looks weird)
             int   delta = i - index;
             float sign  = delta > 0 ? 1f : -1f;
             float dist  = Mathf.Abs(delta);

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 public class PageCombatResolver : MonoBehaviour
 {
     [Header("Timing")]
@@ -8,217 +9,265 @@ public class PageCombatResolver : MonoBehaviour
     public float hitPauseDuration   = 0.3f;
     public float diePauseDuration   = 0.5f;
     public float clashPauseDuration = 0.25f;
+
     [Header("Camera")]
     public CombatCamera combatCamera;
     public float clashShakeIntensity = 0.15f;
     public float hitShakeIntensity   = 0.08f;
-    [Header("Dice UI")]
-    public DiceUI diceUILeft;    // attacker / side A
-    public DiceUI diceUIRight;   // defender / side B
-    // =========================
-    // CLASH ENTRY
-    // =========================
+
+    [Header("Dice Groups")]
+    public CombatDiceGroupUI diceGroupLeft;
+    public CombatDiceGroupUI diceGroupRight;
+
+    //clash entry
     public IEnumerator ResolvePages(CombatPageRuntime a, CombatPageRuntime b)
     {
-        // Frame both units
+        CombatCardDisplayUI.Instance?.ShowForClash(a.owner, a.card, b.owner, b.card);
+        diceGroupRight?.Bind(a.owner,  a.card);
+        diceGroupLeft?.Bind(b.owner, b.card);
         yield return CameraAction(CameraActionType.FrameTargets,
             targets: new List<Transform> { a.owner.visual, b.owner.visual },
-            duration: 0.3f);
-        diceUILeft?.Follow(a.owner.headAnchor);
-        diceUIRight?.Follow(b.owner.headAnchor);
-        // =========================
-        // CLASH LOOP
-        // =========================
+            duration: 0.4f);
+        //both units should walk into lane simultaneously with this
+        yield return LungeToLane(a.owner, b.owner);
+        //clash loop
         while (!a.IsFinished && !b.IsFinished)
         {
-            if (!a.owner.CanResolveAction() || !b.owner.CanResolveAction())
-                break;
+            if (!a.owner.CanResolveAction() || !b.owner.CanResolveAction()) break;
+
             var dieA = a.GetCurrentDie();
             var dieB = b.GetCurrentDie();
             if (dieA == null || dieB == null) break;
-            // Wind-up
+
             a.owner.PlayWindup();
             b.owner.PlayWindup();
             yield return new WaitForSeconds(windupDuration);
-            // Roll both dice with animated UI
+
             int rollA = 0, rollB = 0;
-            yield return RollBoth(dieA, dieB,
-                r => rollA = r,
-                r => rollB = r);
-            // Colour the result
-            diceUILeft?.SetResult(rollA, rollB);
-            diceUIRight?.SetResult(rollB, rollA);
+            bool doneA = false, doneB = false;
+
+            StartCoroutine(diceGroupLeft != null
+                ? diceGroupLeft.RollCurrentDie(dieA.data.minRoll, dieA.data.maxRoll,
+                    r => { rollA = r; doneA = true; })
+                : DoneImmediate(dieA.Roll(), r => { rollA = r; doneA = true; }));
+
+            StartCoroutine(diceGroupRight != null
+                ? diceGroupRight.RollCurrentDie(dieB.data.minRoll, dieB.data.maxRoll,
+                    r => { rollB = r; doneB = true; })
+                : DoneImmediate(dieB.Roll(), r => { rollB = r; doneB = true; }));
+
+            yield return new WaitUntil(() => doneA && doneB);
+
+            dieA.roll = rollA;
+            dieB.roll = rollB;
+
             yield return new WaitForSeconds(clashPauseDuration);
-            // Resolve outcome
+
             if (rollA > rollB)
             {
+                diceGroupLeft?.SetCurrentResult(true);
+                diceGroupRight?.SetCurrentResult(false);
+                yield return new WaitForSeconds(0.15f);
+
+                diceGroupRight?.BreakCurrentDie();
+                diceGroupLeft?.AdvanceDie();
+                diceGroupRight?.AdvanceDie();
+
                 yield return ApplyClashHit(a.owner, b.owner, dieA, rollA);
-                b.Advance();    // loser die cancelled
+                b.Advance();
             }
             else if (rollB > rollA)
             {
+                diceGroupRight?.SetCurrentResult(true);
+                diceGroupLeft?.SetCurrentResult(false);
+                yield return new WaitForSeconds(0.15f);
+
+                diceGroupLeft?.BreakCurrentDie();
+                diceGroupLeft?.AdvanceDie();
+                diceGroupRight?.AdvanceDie();
+
                 yield return ApplyClashHit(b.owner, a.owner, dieB, rollB);
-                a.Advance();    // loser die cancelled
+                a.Advance();
             }
             else
             {
-                Debug.Log("[CLASH] DRAW — both dice cancelled");
+                diceGroupLeft?.SetCurrentResult(false);
+                diceGroupRight?.SetCurrentResult(false);
+                yield return new WaitForSeconds(0.15f);
+
+                diceGroupLeft?.BreakCurrentDie();
+                diceGroupRight?.BreakCurrentDie();
+                diceGroupLeft?.AdvanceDie();
+                diceGroupRight?.AdvanceDie();
+
                 a.owner.sr.sprite = a.owner.idle;
                 b.owner.sr.sprite = b.owner.idle;
                 a.Advance();
                 b.Advance();
             }
+
             yield return new WaitForSeconds(diePauseDuration);
         }
-        // =========================
-        // FLUSH remaining dice
-        // =========================
+
         yield return FlushRemaining(a, b.owner);
         yield return FlushRemaining(b, a.owner);
-        diceUILeft?.Hide();
-        diceUIRight?.Hide();
+
+        a.owner.ResetPosition();
+        b.owner.ResetPosition();
+
+        diceGroupLeft?.Hide();
+        diceGroupRight?.Hide();
+
+        CombatCardDisplayUI.Instance?.Hide();
         yield return CameraAction(CameraActionType.Reset, duration: 0.3f);
     }
-    // =========================
-    // FLUSH — unopposed tail after clash ends
-    // =========================
+    IEnumerator LungeToLane(CharacterUnit unitA, CharacterUnit unitB)
+    {
+        if (ClashLane.Instance == null) yield break;
+
+        //determine which side each unit is on by comparing X positions
+        bool aIsLeft = unitA.transform.position.x < unitB.transform.position.x;
+
+        Vector3 posA = aIsLeft
+            ? ClashLane.Instance.LeftEngage
+            : ClashLane.Instance.RightEngage;
+
+        Vector3 posB = aIsLeft
+            ? ClashLane.Instance.RightEngage
+            : ClashLane.Instance.LeftEngage;
+
+        //both go go
+        Coroutine ca = StartCoroutine(unitA.MoveTo(posA, 0.3f));
+        Coroutine cb = StartCoroutine(unitB.MoveTo(posB, 0.3f));
+        yield return new WaitForSeconds(0.3f);
+    }
+
+
+    //flush toilet
     IEnumerator FlushRemaining(CombatPageRuntime page, CharacterUnit target)
     {
         while (!page.IsFinished)
         {
             if (!page.owner.CanResolveAction()) yield break;
             if (target == null || target.IsDead) yield break;
+
             var die = page.GetCurrentDie();
             if (die == null) { page.Advance(); continue; }
+
             yield return ApplyUnopposedHit(page.owner, target, die);
+
+            diceGroupLeft?.AdvanceDie();
             page.Advance();
+
             yield return new WaitForSeconds(diePauseDuration);
         }
     }
-    // =========================
-    // SINGLE UNOPPOSED PAGE
-    // Called from CombatPipeline.ResolveUnopposed
-    // =========================
+
+    //single unopposed babababababa
     public IEnumerator ResolveSinglePage(CombatPageRuntime page)
     {
         if (page?.owner == null) yield break;
+
+        CombatCardDisplayUI.Instance?.ShowForUnopposed(page.owner, page.card);
+        diceGroupRight?.Bind(page.owner, page.card);
+
         yield return CameraAction(CameraActionType.FocusTarget,
-            target: page.owner.visual,
-            duration: 0.25f);
-        diceUILeft?.Follow(page.owner.headAnchor);
+            target: page.owner.visual, duration: 0.25f);
+
         while (!page.IsFinished)
         {
             if (!page.owner.CanResolveAction()) yield break;
             if (page.target == null || page.target.IsDead) yield break;
+
             var die = page.GetCurrentDie();
             if (die == null) { page.Advance(); continue; }
+
             yield return ApplyUnopposedHit(page.owner, page.target, die);
+
+            diceGroupRight?.AdvanceDie();
             page.Advance();
+
             yield return new WaitForSeconds(diePauseDuration);
         }
-        diceUILeft?.Hide();
+
+        diceGroupRight?.Hide();
+        CombatCardDisplayUI.Instance?.Hide();
         yield return CameraAction(CameraActionType.Reset, duration: 0.25f);
     }
-    // =========================
-    // CLASH HIT
-    // =========================
-    IEnumerator ApplyClashHit(
-        CharacterUnit attacker,
-        CharacterUnit defender,
-        PageDie die,
-        int roll)
+
+    //clashy clashy
+    IEnumerator ApplyClashHit(CharacterUnit attacker, CharacterUnit defender, PageDie die, int roll)
     {
-        // Lunge toward defender's clash anchor
-        if (attacker.clashAnchor != null && defender.clashAnchor != null)
-            yield return attacker.MoveTo(defender.clashAnchor.position, 0.12f);
         attacker.PlayAttack();
         defender.PlayHit();
+
         int damage = Mathf.Max(1, roll + die.Power);
-        defender.TakeDamage(damage, die.damageType);
+        Vector3 attackDir = (defender.visual.position - attacker.visual.position).normalized;
+        yield return defender.TakeDamageWithKnockback(damage, die.damageType, attackDir, false);
         defender.TakeStaggerDamage(Mathf.Max(1, roll));
-        Debug.Log($"[CLASH HIT] {attacker.unitName} → {defender.unitName} " +
-                  $"| {die.damageType} {damage} HP (roll {roll} + pow {die.Power})");
+
         yield return CameraAction(CameraActionType.Shake,
-            shakeIntensity: clashShakeIntensity,
-            duration: 0.2f);
+            shakeIntensity: clashShakeIntensity, duration: 0.2f);
+
         yield return new WaitForSeconds(hitPauseDuration);
-        attacker.ResetPosition();
+
         attacker.sr.sprite = attacker.idle;
         defender.sr.sprite = defender.idle;
     }
-    // =========================
-    // UNOPPOSED HIT
-    // =========================
-    IEnumerator ApplyUnopposedHit(
-        CharacterUnit attacker,
-        CharacterUnit defender,
-        PageDie die)
+
+    //unopposed hitting
+    IEnumerator ApplyUnopposedHit(CharacterUnit attacker, CharacterUnit defender, PageDie die)
     {
         attacker.PlayWindup();
         yield return new WaitForSeconds(windupDuration);
-        // Animate the roll on diceUILeft
+
+        //move to lane engage point based on which side attacker is on
+        if (ClashLane.Instance != null)
+        {
+            bool attackerIsLeft = attacker.transform.position.x < defender.transform.position.x;
+            Vector3 engagePos   = attackerIsLeft
+                ? ClashLane.Instance.LeftEngage
+                : ClashLane.Instance.RightEngage;
+
+            yield return attacker.MoveTo(engagePos, 0.22f);
+        }
+
+        //roll while frozen in lane
         int roll = 0;
-        if (diceUILeft != null)
-            yield return diceUILeft.Roll(die.data.minRoll, die.data.maxRoll, r => roll = r);
+        if (diceGroupRight != null)
+            yield return diceGroupRight.RollCurrentDie(
+                die.data.minRoll, die.data.maxRoll, r => roll = r);
         else
             roll = die.Roll();
+
+        diceGroupRight?.SetCurrentResult(true);
+
         attacker.PlayAttack();
         defender.PlayHit();
-        int damage = Mathf.Max(1, roll + die.Power);
-        defender.TakeDamage(damage, die.damageType);
+
+        int damage    = Mathf.Max(1, roll + die.Power);
+        Vector3 dir   = (defender.visual.position - attacker.visual.position).normalized;
+        yield return defender.TakeDamageWithKnockback(damage, die.damageType, dir, false);
         defender.TakeStaggerDamage(Mathf.Max(1, roll));
-        Debug.Log($"[UNOPPOSED] {attacker.unitName} → {defender.unitName} " +
-                  $"| {die.damageType} {damage} HP (roll {roll} + pow {die.Power})");
+
         yield return CameraAction(CameraActionType.Shake,
-            shakeIntensity: hitShakeIntensity,
-            duration: 0.15f);
+            shakeIntensity: hitShakeIntensity, duration: 0.15f);
         yield return new WaitForSeconds(hitPauseDuration);
-        attacker.ResetPosition();
+
         attacker.sr.sprite = attacker.idle;
         defender.sr.sprite = defender.idle;
+
+        //walk back to start next action
+        yield return attacker.MoveTo(attacker.GetStartPos(), 0.28f);
     }
-    // =========================
-    // ROLL BOTH — simultaneous animated dice
-    // Uses lastRoll from DiceUI as the authoritative result
-    // =========================
-    IEnumerator RollBoth(
-        PageDie dieA,
-        PageDie dieB,
-        System.Action<int> onRollA,
-        System.Action<int> onRollB)
+
+    //helpers
+    IEnumerator DoneImmediate(int val, System.Action<int> cb)
     {
-        bool doneA = false, doneB = false;
-        if (diceUILeft != null)
-            StartCoroutine(diceUILeft.Roll(
-                dieA.data.minRoll, dieA.data.maxRoll,
-                _ => doneA = true));
-        else
-        {
-            dieA.roll = dieA.Roll();
-            doneA = true;
-        }
-        if (diceUIRight != null)
-            StartCoroutine(diceUIRight.Roll(
-                dieB.data.minRoll, dieB.data.maxRoll,
-                _ => doneB = true));
-        else
-        {
-            dieB.roll = dieB.Roll();
-            doneB = true;
-        }
-        yield return new WaitUntil(() => doneA && doneB);
-        // Read lastRoll from UI as the canonical value
-        int finalA = diceUILeft  != null ? diceUILeft.lastRoll  : dieA.roll;
-        int finalB = diceUIRight != null ? diceUIRight.lastRoll : dieB.roll;
-        // Sync back to PageDie so anything downstream reads the same number
-        dieA.roll = finalA;
-        dieB.roll = finalB;
-        onRollA(finalA);
-        onRollB(finalB);
+        cb?.Invoke(val);
+        yield break;
     }
-    // =========================
-    // CAMERA HELPER — avoids repeating List construction everywhere
-    // =========================
+
     IEnumerator CameraAction(
         CameraActionType type,
         Transform target         = null,
@@ -227,6 +276,7 @@ public class PageCombatResolver : MonoBehaviour
         float shakeIntensity     = 0f)
     {
         if (combatCamera == null) yield break;
+
         yield return combatCamera.Play(new List<CameraAction>
         {
             new CameraAction

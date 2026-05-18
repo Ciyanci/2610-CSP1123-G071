@@ -8,12 +8,10 @@ public class CharacterDeck : MonoBehaviour
     List<Card> discardPile = new();
     List<Card> hand      = new();
     [Header("Hand")]
-    // FIX #5: deckSize is the full pool; handSize is what's drawn each turn
+    //fixed this part, deckSize is the full pool; handSize is what's drawn each turn ok
     public int deckSize  = 9;
     public int handSize  = 4;
-    // =========================
-    // INIT (called once at battle start)
-    // =========================
+    //init() is called once at battle start btw
     public void Init()
     {
         drawPile.Clear();
@@ -26,10 +24,7 @@ public class CharacterDeck : MonoBehaviour
             drawPile.RemoveAt(drawPile.Count - 1);
         Shuffle(drawPile);
     }
-    // =========================
-    // REFRESH HAND (called each DrawPhase)
-    // Discards current hand, reshuffles if needed, draws handSize fresh cards
-    // =========================
+    //refresh hand (discard current hand, reshuffles, draws handSize fresh cards)
     public void RefreshHand()
     {
         // Return hand to discard
@@ -37,9 +32,7 @@ public class CharacterDeck : MonoBehaviour
         hand.Clear();
         FillHandToLimit();
     }
-    // =========================
-    // FILL (tops up to handSize — used by RefreshHand and BattleStarter)
-    // =========================
+    //fill (tops up to handSize — used by RefreshHand and BattleStarter)
     public void FillHandToLimit()
     {
         while (hand.Count < handSize)
@@ -49,9 +42,7 @@ public class CharacterDeck : MonoBehaviour
             hand.Add(c);
         }
     }
-    // =========================
-    // DRAW (recycles discard into draw when empty)
-    // =========================
+    // draw (recycles discard into draw when empty)
     public Card Draw()
     {
         if (drawPile.Count == 0)
@@ -66,9 +57,7 @@ public class CharacterDeck : MonoBehaviour
         drawPile.RemoveAt(0);
         return c;
     }
-    // =========================
-    // USE (moves a played card to discard)
-    // =========================
+    // useCard (moves a played card to discard)
     public void UseCard(Card card)
     {
         if (!hand.Contains(card))
@@ -80,11 +69,11 @@ public class CharacterDeck : MonoBehaviour
     public void ReturnToHand(Card card)
     {
         if (card == null) return;
-        if (hand.Contains(card)) return;   // already there
+        if (hand.Contains(card)) return;
         hand.Add(card);
     }
     public List<Card> GetHand() => hand;
-    // =========================
+
     void Shuffle(List<Card> list)
     {
         for (int i = 0; i < list.Count; i++)

@@ -14,9 +14,7 @@ public class Card
         Data = data;
     }
 
-    // =========================
-    // SOURCE OF TRUTH
-    // =========================
+    //this is where it gets the data
     public List<DiceData> GetDice()
     {
         return Data.dice;

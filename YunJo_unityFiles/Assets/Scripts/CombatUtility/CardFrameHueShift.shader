@@ -72,9 +72,7 @@ Shader "Custom/CardFrameHueShift"
                 return o;
             }
 
-            // -------------------------
-            // RGB -> HSV
-            // -------------------------
+            //rgb to hsv
 
             float3 RGBToHSV(float3 c)
             {
@@ -104,9 +102,7 @@ Shader "Custom/CardFrameHueShift"
                 );
             }
 
-            // -------------------------
-            // HSV -> RGB
-            // -------------------------
+            //hsv to rgb
 
             float3 HSVToRGB(float3 hsv)
             {
@@ -122,9 +118,7 @@ Shader "Custom/CardFrameHueShift"
                 return hsv.z * lerp(float3(1,1,1), rgb, hsv.y);
             }
 
-            // -------------------------
-            // FRAGMENT
-            // -------------------------
+            //fragment
 
             fixed4 frag(v2f i) : SV_Target
             {
@@ -132,19 +126,19 @@ Shader "Custom/CardFrameHueShift"
 
                 float3 hsv = RGBToHSV(tex.rgb);
 
-                // hue shift
+                //hue shift
                 hsv.x += _Hue;
                 hsv.x = frac(hsv.x);
 
-                // saturation
+                //saturation
                 hsv.y *= _Saturation;
 
-                // brightness
+                //brightness
                 hsv.z *= _Brightness;
 
                 float3 finalRGB = HSVToRGB(hsv);
 
-                // glow
+                //glow
                 finalRGB += _GlowColor.rgb * _GlowStrength;
 
                 fixed4 finalCol;

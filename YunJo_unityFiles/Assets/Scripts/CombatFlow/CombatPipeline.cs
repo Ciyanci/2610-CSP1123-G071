@@ -6,7 +6,6 @@ public partial class CombatPipeline : MonoBehaviour
 {
     public CombatPipelinePhase CurrentPhase;
     public static CombatPipeline Instance;
-    // FIX #2/#3: wire PageCombatResolver in the Inspector
     [SerializeField] PageCombatResolver pageResolver;
     List<CombatIntent> intents = new();
     List<CharacterUnit> allUnits = new();
@@ -22,20 +21,18 @@ public partial class CombatPipeline : MonoBehaviour
         allUnits.AddRange(UnitRegistry.Instance.players);
         allUnits.AddRange(UnitRegistry.Instance.enemies);
     }
-    // =========================
-    // ENTRY
-    // =========================
+    //entry
     public IEnumerator ResolveTurn()
     {
+        CinematicModeController.Instance?.EnterCinematic();
         CacheUnits();
         CurrentPhase = CombatPipelinePhase.Resolve;
         yield return BuildIntents();
         yield return ResolveIntents();
         yield return CleanupPhase();
+        yield return CheckBattleEnd();
     }
-    // =========================
-    // 1. BUILD INTENTS
-    // =========================
+    //build intents first
     IEnumerator BuildIntents()
     {
         intents.Clear();
@@ -61,15 +58,13 @@ public partial class CombatPipeline : MonoBehaviour
                 });
             }
         }
-        // Highest speed acts first
+        //speed priority (higher first)
         intents = intents
             .OrderByDescending(i => i.priority)
             .ToList();
         yield return null;
     }
-    // =========================
-    // 2. RESOLVE INTENTS
-    // =========================
+    //resolve intents
     IEnumerator ResolveIntents()
     {
         HashSet<CombatIntent> resolved = new();
@@ -93,10 +88,52 @@ public partial class CombatPipeline : MonoBehaviour
             }
         }
     }
-    // =========================
-    // UNOPPOSED
-    // FIX #3: actually apply damage die-by-die
-    // =========================
+
+    IEnumerator CheckBattleEnd()
+    {
+        bool playersAlive = UnitRegistry.Instance.players
+            .Exists(p => p != null && !p.IsDead);
+        bool enemiesAlive = UnitRegistry.Instance.enemies
+            .Exists(e => e != null && !e.IsDead);
+
+        if (!enemiesAlive)
+        {
+            CinematicModeController.Instance?.ExitCinematic();
+            BattleResultsUI.Instance?.ShowVictory();
+            yield break;
+        }
+
+        if (!playersAlive)
+        {
+            CinematicModeController.Instance?.ExitCinematic();
+            BattleResultsUI.Instance?.ShowDefeat();
+            yield break;
+        }
+
+        yield return StartNextTurn();
+    }
+
+    IEnumerator StartNextTurn()
+    {
+        CinematicModeController.Instance?.ExitCinematic();
+
+        foreach (var u in allUnits)
+        {
+            if (u != null && !u.IsDead)
+                u.ResetSpeedSlots();
+                CombatHUDController.Instance?.ShowSpeedBubbles();
+        }
+
+        //refresh hands
+        foreach (var p in UnitRegistry.Instance.players)
+            p.deck?.RefreshHand();
+
+        CombatFlowController.Instance.SetInputEnabled(true);
+        CombatInfoBar.Instance?.ShowDefault();
+        yield return null;
+    }
+
+    //unopposed (dice-by-dice damage applied now yay)
     IEnumerator ResolveUnopposed(CombatIntent intent)
     {
         if (!intent.IsValid)
@@ -105,10 +142,9 @@ public partial class CombatPipeline : MonoBehaviour
         yield return pageResolver.ResolveSinglePage(page);
         FinalizeIntent(intent);
     }
-    // =========================
-    // CLASH
-    // FIX #2: delegate to PageCombatResolver which actually rolls and damages
-    // =========================
+    //clash (pagecombatresolver handles the clash loop now)
+    // win - attacker deals damage, loser advances
+    // draw - both advance (cancelled)
     IEnumerator ResolveClash(CombatIntent a, CombatIntent b)
     {
         if (!a.IsValid || !b.IsValid)
@@ -116,17 +152,11 @@ public partial class CombatPipeline : MonoBehaviour
         Debug.Log($"[CLASH] {a.user.unitName} vs {b.user.unitName}");
         var pageA = a.CreatePage();
         var pageB = b.CreatePage();
-        // PageCombatResolver handles the full clash loop:
-        // win → attacker deals damage, loser advances
-        // draw → both advance (cancelled)
-        // then flushes any remaining dice unopposed
         yield return pageResolver.ResolvePages(pageA, pageB);
         FinalizeIntent(a);
         FinalizeIntent(b);
     }
-    // =========================
-    // FINALIZE
-    // =========================
+    //finalize intents (literally who cares if its finalise or finalize anymore bro)
     void FinalizeIntent(CombatIntent intent)
     {
         if (intent?.speedSlot == null)
@@ -143,12 +173,9 @@ public partial class CombatPipeline : MonoBehaviour
             i.speedSlot.state == SlotState.Committed
         );
     }
-    // =========================
-    // CLEANUP
-    // FIX #9: removed redundant slot.Clear() loop.
-    // StartTurn → ResetSpeedSlots() is the single authoritative reset.
-    // CleanupPhase only needs to set the phase flag and pause.
-    // =========================
+    //cleanup
+    //ResetSpeedSlots() is the single authoritative reset (called in startturn)
+    //CleanupPhase only needs to set the phase flag and pause
     IEnumerator CleanupPhase()
     {
         CurrentPhase = CombatPipelinePhase.Cleanup;
