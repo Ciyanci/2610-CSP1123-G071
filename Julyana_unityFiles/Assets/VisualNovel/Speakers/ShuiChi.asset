@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c5f8abf85316a4091a2d00da3250e4, type: 3}
   m_Name: ShuiChi
   m_EditorClassIdentifier: Assembly-CSharp::Speaker
-  SpeakerName: ShuiChi
-  textColor: {r: 0.5374286, g: 0, b: 1, a: 0}
+  speakerName: ShuiChi
+  textColor: {r: 0.5374286, g: 0, b: 1, a: 1}

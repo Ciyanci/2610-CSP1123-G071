@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 
 public class BottomBarController : MonoBehaviour
 {
@@ -10,7 +9,7 @@ public class BottomBarController : MonoBehaviour
     public TextMeshProUGUI personNameText;
 
     private int sentenceIndex = -1;
-    public StoryScene currentScene;
+    private StoryScene currentScene;
     private State state = State.COMPLETED;
 
     private enum State
@@ -18,23 +17,33 @@ public class BottomBarController : MonoBehaviour
         PLAYING, COMPLETED
     }
 
+    
     public void PlayScene(StoryScene scene)
     {
         currentScene = scene;
         sentenceIndex = -1;
         PlayNextSentence();
-
     }
+
     public void PlayNextSentence()
     {
         StartCoroutine(TypeText(currentScene.sentences[++sentenceIndex].text));
-        personNameText.text = currentScene.sentences[sentenceIndex].speaker.SpeakerName;
+        
+        Debug.Log("Speaker: " + currentScene.sentences[sentenceIndex].speaker);
+        Debug.Log("Speaker Name: " + currentScene.sentences[sentenceIndex].speaker.speakerName);
+        
+        personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
         personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
     }
 
     public bool IsCompleted()
     {
         return state == State.COMPLETED;
+    }
+
+    public bool IsLastSentence()
+    {
+        return sentenceIndex + 1 == currentScene.sentences.Count;
     }
 
     private IEnumerator TypeText(string text)
@@ -54,5 +63,4 @@ public class BottomBarController : MonoBehaviour
             }
         }
     }
-
 }
