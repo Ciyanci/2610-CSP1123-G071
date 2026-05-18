@@ -17,12 +17,8 @@ public class CardFrameVisual : MonoBehaviour
         {
             if (img == null)
                 continue;
-
-            Material mat =
-                Instantiate(img.material);
-
+            Material mat = Instantiate(img.material);
             img.material = mat;
-
             runtimeMaterials.Add(mat);
         }
     }
@@ -97,3 +93,4 @@ public class CardFrameVisual : MonoBehaviour
         }
     }
 }
+//hi

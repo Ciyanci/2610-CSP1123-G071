@@ -5,10 +5,10 @@ public class CombatArrow : MonoBehaviour
 {
     [Header("Curve")]
     public int   segments    = 40;
-    public float arcHeight   = 2.5f;   // world units, how high the arc rises
+    public float arcHeight   = 10f;   //world units, how high the arc rises
 
     [Header("Tip")]
-    public Transform tip;              // arrowhead transform
+    public Transform tip;         
 
     [Header("Dash (preview only)")]
     public bool  dashed          = false;
@@ -35,15 +35,12 @@ public class CombatArrow : MonoBehaviour
         }
     }
 
-    // =========================
-    // DRAW
-    // Call every frame while active
-    // =========================
+    //draw (call every frame while active)
     public void Draw(Vector3 from, Vector3 to)
     {
         gameObject.SetActive(true);
 
-        // Control point sits above the midpoint
+        //control point sits above the midpoint
         Vector3 mid     = (from + to) * 0.5f;
         Vector3 control = mid + Vector3.up * arcHeight;
 
@@ -54,7 +51,7 @@ public class CombatArrow : MonoBehaviour
             lr.SetPosition(i, pos);
         }
 
-        // Orient tip to face the curve's final tangent
+        //orrient tip to face the curve's final tangent
         if (tip != null)
         {
             Vector3 prev    = Bezier(from, control, to, 0.98f);
@@ -65,7 +62,7 @@ public class CombatArrow : MonoBehaviour
         }
     }
 
-    // Optional — clash arrows stop at a midpoint, not at the target
+    //clash arrows stop at a midpoint, not at the target
     public void DrawToMidpoint(Vector3 from, Vector3 to)
     {
         Vector3 midpoint = Vector3.Lerp(from, to, 0.5f);
@@ -84,7 +81,7 @@ public class CombatArrow : MonoBehaviour
         if (tip != null) tip.gameObject.SetActive(true);
     }
 
-    // Quadratic Bezier
+    //quadratic bezier (i love this one hahahahahaha)
     static Vector3 Bezier(Vector3 a, Vector3 c, Vector3 b, float t)
     {
         float u = 1f - t;

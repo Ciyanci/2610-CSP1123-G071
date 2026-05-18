@@ -19,7 +19,7 @@ public class ExpandedDiceRowUI : MonoBehaviour
             $"{data.minRoll}-{data.maxRoll}";
 
         effectText.text =
-            data.effect.ToString(); // 🔥 FIX
+            data.effect.ToString(); //fixed this one recently
 
         switch (data.damageType)
         {

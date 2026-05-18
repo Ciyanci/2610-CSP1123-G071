@@ -16,22 +16,23 @@ public class EnemyAI : MonoBehaviour
 
     public IEnumerator TakeTurn()
     {
-        if (!self.CanAct)
-            yield break;
+        if (!self.CanAct) yield break;
 
         yield return new WaitForSeconds(thinkTime);
 
         self.RefreshLight();
 
+        //cap to allowed slots
+        int allowedSlots = self.GetSpeedDiceCount();
+        int assigned = 0;
         int safety = 10;
 
-        while (self.currentLight > 0 && safety-- > 0)
+        while (self.currentLight > 0 && assigned < allowedSlots && safety-- > 0)
         {
             Card card = GetPlayableCard();
             if (card == null) yield break;
 
-            if (!self.CanPay(card.Cost))
-                break;
+            if (!self.CanPay(card.Cost)) break;
 
             CharacterUnit target = FindRandomPlayer();
             if (target == null) yield break;
@@ -41,21 +42,17 @@ public class EnemyAI : MonoBehaviour
 
             self.SpendLight(card.Cost);
 
-            ActionPlanner.AssignToSlot(
-                self,
-                slot,
-                card,
-                target
-            );
+            ActionPlanner.AssignToSlot(self, slot, card, target);
+            ArrowManager.Instance?.AddPlannedArrow(slot);
+            slot.ui?.Refresh();
+
+            assigned++; // ✅ track how many slots filled
 
             yield return new WaitForSeconds(0.15f);
         }
 
-        // finalize enemy planning
         foreach (var slot in self.speedSlots)
-        {
             slot.Commit();
-        }
     }
 
     Card GetPlayableCard()

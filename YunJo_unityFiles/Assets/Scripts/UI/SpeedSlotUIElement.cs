@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Collections;
 
 public class SpeedSlotUIElement : MonoBehaviour,
     IDropHandler,
@@ -64,9 +65,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
         _                   => emptyColor
     };
 
-    // =========================
-    // DROP
-    // =========================
+    //drop
     public void OnDrop(PointerEventData eventData)
     {
         if (slot == null || slot.owner == null) return;
@@ -83,28 +82,26 @@ public class SpeedSlotUIElement : MonoBehaviour,
         );
     }
 
-    // =========================
-    // CLICK
-    // =========================
+    //click
     public void OnPointerClick(PointerEventData eventData)
     {
         if (slot == null) return;
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            // If a card is being targeted, select this slot
+            //if card selected, choose this slot go brr
             if (CombatFlowController.Instance.IsTargeting)
             {
                 CombatFlowController.Instance.SelectSlot(slot);
                 return;
             }
 
-            // Otherwise open the info bar for this slot's interaction
+            //otherwise if no card then show slot info
             CombatInfoBar.Instance?.ShowSlotInfo(slot);
             return;
         }
 
-        // Right click — unassign
+        //right click to unassign
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             if (slot.state != SlotState.Planned) return;
@@ -119,9 +116,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
         }
     }
 
-    // =========================
-    // VISIBILITY
-    // =========================
+    //visiblity
     public void Show()
     {
         if (group != null)
@@ -142,5 +137,23 @@ public class SpeedSlotUIElement : MonoBehaviour,
             group.blocksRaycasts = false;
         }
         else gameObject.SetActive(false);
+    }
+
+    //helpers
+    public IEnumerator AnimateRoll(int finalValue, float duration = 0.8f)
+    {
+        float t = 0f;
+
+        while (t < duration)
+        {
+            //show random numbers visually
+            valueText.text = Random.Range(1, 10).ToString();
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        //locks in real value
+        valueText.text = finalValue.ToString();
+        Refresh();
     }
 }

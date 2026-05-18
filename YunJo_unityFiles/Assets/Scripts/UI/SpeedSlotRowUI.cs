@@ -28,7 +28,7 @@ public class SpeedSlotRowUI : MonoBehaviour
     {
         owner = unit;
 
-        followTarget = unit.headAnchor; // ADD THIS LINE
+        followTarget = unit.headAnchor;
 
         slotUI.Clear();
         GetComponentsInChildren(slotUI);
@@ -54,6 +54,15 @@ public class SpeedSlotRowUI : MonoBehaviour
         for (int i = 0; i < slotUI.Count && i < owner.speedSlots.Count; i++)
         {
             slotUI[i].Refresh();
+        }
+    }
+
+    public void AnimateRolls()
+    {
+        for (int i = 0; i < slotUI.Count && i < owner.speedSlots.Count; i++)
+        {
+            int finalVal = owner.speedSlots[i].value;
+            StartCoroutine(slotUI[i].AnimateRoll(finalVal));
         }
     }
 }

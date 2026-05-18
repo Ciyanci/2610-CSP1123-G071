@@ -9,7 +9,7 @@ public class CombatFlowController : MonoBehaviour
     [Header("State")]
     public bool inputEnabled;
 
-    // Three-step selection: card → slot → target
+    //3 steps : card then slot then target (easy enough right)
     Card          selectedCard;
     CharacterUnit selectedUser;
     SpeedSlot     selectedSlot;
@@ -21,14 +21,12 @@ public class CombatFlowController : MonoBehaviour
         Instance = this;
     }
 
-    // =========================
-    // STEP 1 — select a card
-    // =========================
+    //step 1 (selecting card)
     public void StartTargeting(Card card, CharacterUnit user)
     {
         if (!inputEnabled || card == null) return;
 
-        // Cancel any previous selection cleanly
+        //cancel previously selected cards
         CancelSelection();
 
         selectedCard = card;
@@ -38,22 +36,20 @@ public class CombatFlowController : MonoBehaviour
         Debug.Log($"[FLOW] Card selected: {card.Name} — pick a speed slot");
     }
 
-    // =========================
-    // STEP 2 — select a specific speed slot
-    // =========================
+    //step 2 (select speed sot)
     public void SelectSlot(SpeedSlot slot)
     {
         if (!inputEnabled)    return;
         if (selectedCard == null) return;
         if (slot?.owner == null)  return;
 
-        // Players only
+        //players only able to do this
         if (!UnitRegistry.Instance.players.Contains(slot.owner)) return;
 
         if (slot.state == SlotState.Committed ||
             slot.state == SlotState.Executed)  return;
 
-        // Swap — return existing card to hand first
+        //swap card (returns existing card to hand)
         if (slot.state == SlotState.Planned && slot.assignedCard != null)
         {
             slot.owner.deck?.ReturnToHand(slot.assignedCard);
@@ -61,7 +57,7 @@ public class CombatFlowController : MonoBehaviour
             slot.Clear();
         }
 
-        // Deselect previous slot highlight
+        //deselect previous slot highlight
         selectedSlot?.ui?.SetSelected(false);
 
         selectedSlot = slot;
@@ -70,9 +66,7 @@ public class CombatFlowController : MonoBehaviour
         Debug.Log($"[FLOW] Slot selected: value {slot.value} — pick a target");
     }
 
-    // =========================
-    // STEP 3 — confirm target (click on enemy)
-    // =========================
+    //step 3 (confirm target)
     public void ConfirmTarget(CharacterUnit target)
     {
         if (selectedCard == null || selectedUser == null) return;
@@ -97,13 +91,12 @@ public class CombatFlowController : MonoBehaviour
         ClearSelection();
 
         RefreshHandIfSelected(user);
+        CombatInfoBar.Instance?.ShowSlotInfo(slot);
 
         Debug.Log($"[FLOW] {user.unitName} → slot {slot.value} → {target.unitName}");
     }
 
-    // =========================
-    // CONFIRM ON SLOT (drag-drop path)
-    // =========================
+    //confirm on slot (idk why dragging doesnt work gotta work on this **)
     public void ConfirmTargetOnSlot(Card card, CharacterUnit user, SpeedSlot slot)
     {
         if (!inputEnabled) return;
@@ -123,23 +116,16 @@ public class CombatFlowController : MonoBehaviour
         Debug.Log($"[FLOW] {user.unitName} → slot {slot.value} → {target.unitName} (drop)");
     }
 
-    // =========================
-    // CANCEL (Escape / explicit)
-    // Hides preview but keeps planned arrows
-    // =========================
+    //cancel (escape key)
     public void CancelSelection()
     {
         selectedSlot?.ui?.SetSelected(false);
         ArrowManager.Instance?.HidePreview();
         ClearSelection();
     }
-
-    // Alias kept so existing call sites compile
     public void EndTargeting() => CancelSelection();
 
-    // =========================
-    // CONFIRM PLANNING (Space)
-    // =========================
+    //confirm planning (spacebar)
     public void ConfirmPlanning()
     {
         if (!inputEnabled) return;
@@ -147,14 +133,13 @@ public class CombatFlowController : MonoBehaviour
         inputEnabled = false;
         CancelSelection();
 
+        CinematicModeController.Instance?.EnterCinematic();
         StartCoroutine(CombatPipeline.Instance.ResolveTurn());
 
         Debug.Log("[FLOW] Planning confirmed → resolving");
     }
 
-    // =========================
-    // INPUT GATE
-    // =========================
+    //input gatekeeper
     public void SetInputEnabled(bool enabled)
     {
         inputEnabled = enabled;
@@ -168,9 +153,7 @@ public class CombatFlowController : MonoBehaviour
         Debug.Log($"[FLOW] Input: {enabled}");
     }
 
-    // =========================
-    // AUTO ASSIGN (Q)
-    // =========================
+    //auto assign (q) **should stop assigning on non-existent slots now hehe
     public void AutoAssignPlayerActions()
     {
         var players = UnitRegistry.Instance.players;
@@ -185,15 +168,25 @@ public class CombatFlowController : MonoBehaviour
             List<Card> hand = player.deck.GetHand();
             if (hand == null || hand.Count == 0) continue;
 
+            //only assigns to allowed slots (no more non-existent slots being assigned automatically)
+            int allowedSlots = player.GetSpeedDiceCount();
+            int assigned = 0;
+
             foreach (var slot in player.speedSlots)
             {
+                if (assigned >= allowedSlots) break; //hard cap
+
                 if (slot.state == SlotState.Committed ||
                     slot.state == SlotState.Executed  ||
-                    slot.state == SlotState.Planned)   continue;
+                    slot.state == SlotState.Planned)
+                {
+                    assigned++;
+                    continue;
+                }
 
                 if (hand.Count == 0) break;
 
-                Card          card   = hand[Random.Range(0, hand.Count)];
+                Card card = hand[Random.Range(0, hand.Count)];
                 CharacterUnit target = enemies.Count > 0
                     ? enemies[Random.Range(0, enemies.Count)]
                     : null;
@@ -203,6 +196,7 @@ public class CombatFlowController : MonoBehaviour
                 ActionPlanner.AssignToSlot(player, slot, card, target);
                 ArrowManager.Instance?.AddPlannedArrow(slot);
                 slot.ui?.Refresh();
+                assigned++;
             }
         }
 
@@ -212,9 +206,7 @@ public class CombatFlowController : MonoBehaviour
         Debug.Log("[FLOW] Auto-assign complete");
     }
 
-    // =========================
-    // UNIT / SLOT SELECTION (info bar)
-    // =========================
+    //unit slot selection info
     public void SelectUnit(CharacterUnit unit)
     {
         if (unit?.deck != null)
@@ -227,9 +219,7 @@ public class CombatFlowController : MonoBehaviour
         HandUI.Instance?.Refresh(unit.deck);
     }
 
-    // =========================
-    // HELPERS
-    // =========================
+    //cool helpers
     SpeedSlot FindSlotTargeting(CharacterUnit target)
     {
         foreach (var unit in UnitRegistry.Instance.players)
@@ -258,14 +248,12 @@ public class CombatFlowController : MonoBehaviour
         ArrowManager.Instance?.ClearAllArrows();
     }
 
-    // =========================
-    // UPDATE
-    // =========================
+    //update
     void Update()
     {
         if (!inputEnabled) return;
 
-        // Live preview arrow tracks cursor while a card is selected
+        //live preview arrow tracks cursor while a card is selected
         if (IsTargeting && selectedUser != null)
         {
             Vector3 from = selectedUser.clashAnchor != null

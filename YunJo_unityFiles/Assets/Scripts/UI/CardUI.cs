@@ -10,10 +10,9 @@ public class CardUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHa
         CombatFlowController.Instance.StartTargeting(card, null);
     }
 
-    // ✅ REQUIRED (even if unused)
     public void OnDrag(PointerEventData eventData)
     {
-        // Intentionally empty
+        //intentionally empty because we need this (everything breaks without this i wanna kms)
     }
 
     public void OnEndDrag(PointerEventData eventData)

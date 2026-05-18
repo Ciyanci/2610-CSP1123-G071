@@ -1,9 +1,8 @@
-// ClashOddsCalculator.cs
 using UnityEngine;
 
 public static class ClashOddsCalculator
 {
-    // Returns player win probability 0..1 given two dice ranges + powers
+    //returns player win probability given two dice ranges + powers
     public static float WinProbability(
         int minA, int maxA, int powerA,
         int minB, int maxB, int powerB)
@@ -28,11 +27,11 @@ public static class ClashOddsCalculator
 
         if (total == 0) return 0.5f;
 
-        // Draws split evenly
+        //draws split evenly
         return (wins + draws * 0.5f) / total;
     }
 
-    // Returns a guidance string for the info bar
+    //return guidance string
     public static string OddsLabel(float winChance)
     {
         if      (winChance >= 0.70f) return "Favoured to Win";
@@ -51,3 +50,4 @@ public static class ClashOddsCalculator
         else                         return new Color(0.9f, 0.2f, 0.2f);
     }
 }
+//i love meth

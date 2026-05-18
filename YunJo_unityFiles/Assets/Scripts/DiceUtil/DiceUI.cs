@@ -8,7 +8,7 @@ public class DiceUI : MonoBehaviour
     public Color winColor  = Color.green;
     public Color loseColor = Color.red;
     public Color tieColor  = Color.yellow;
-    // Exposed so RollBoth can read the result after animation
+    //exposed so RollBoth can read the result after animation
     public int lastRoll { get; private set; }
     Transform follow;
     Camera cam;
@@ -21,9 +21,7 @@ public class DiceUI : MonoBehaviour
         canvasGroup.alpha = 0;
         text.color = Color.white;
     }
-    // =========================
-    // FOLLOW
-    // =========================
+    //follow
     public void Follow(Transform t)
     {
         follow = t;
@@ -40,15 +38,10 @@ public class DiceUI : MonoBehaviour
         smoothedScreen   = Vector3.Lerp(smoothedScreen, screen, Time.deltaTime * 15f);
         rect.position    = smoothedScreen;
     }
-    // =========================
-    // VISIBILITY
-    // =========================
+    //visibiilittly
     public void Show() => canvasGroup.alpha = 1;
     public void Hide() => canvasGroup.alpha = 0;
-    // =========================
-    // ROLL ANIMATION
-    // Stores result in lastRoll AND fires callback — both paths safe
-    // =========================
+    //roll anim (stores result so that rolls can happen correctly)
     public IEnumerator Roll(int min, int max, System.Action<int> onDone)
     {
         Show();
@@ -65,9 +58,7 @@ public class DiceUI : MonoBehaviour
         text.text = lastRoll.ToString();
         onDone?.Invoke(lastRoll);
     }
-    // =========================
-    // COLOUR RESULT
-    // =========================
+    //colour result
     public void SetResult(int myRoll, int enemyRoll)
     {
         if (myRoll == enemyRoll) text.color = tieColor;

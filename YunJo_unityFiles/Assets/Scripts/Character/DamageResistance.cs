@@ -33,7 +33,7 @@ public class DamageResistance
             ResistanceLevel.Normal => 1f,
             ResistanceLevel.Endured => 0.5f,
             ResistanceLevel.Ineffective => 0.25f,
-            _ => 1f
+            _ => 1f //null protector or sum (idk waht to call it but it's incase it's null so it doesnt break)
         };
     }
 }
