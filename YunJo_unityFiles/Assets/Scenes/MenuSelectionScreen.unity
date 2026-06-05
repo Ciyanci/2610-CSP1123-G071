@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 150930073}
   - component: {fileID: 150930072}
+  - component: {fileID: 150930074}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -216,6 +217,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &150930074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150930071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
 --- !u!1 &335484957
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +257,7 @@ GameObject:
   - component: {fileID: 335484960}
   - component: {fileID: 335484959}
   - component: {fileID: 335484958}
+  - component: {fileID: 335484961}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -308,6 +339,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &335484961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335484957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_TaaSettings:
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
+  m_Version: 2
 --- !u!1 &383250568
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +522,46 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383250568}
   m_CullTransparentMesh: 1
+--- !u!1 &456340594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 456340595}
+  m_Layer: 5
+  m_Name: ButtonHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &456340595
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456340594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 752908208}
+  - {fileID: 1103911788}
+  - {fileID: 1343389708}
+  - {fileID: 1081443013}
+  - {fileID: 932061625}
+  m_Father: {fileID: 1921874089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 787, y: -223}
+  m_SizeDelta: {x: 450, y: 350}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &493841185
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +767,7 @@ GameObject:
   - component: {fileID: 752908210}
   - component: {fileID: 752908209}
   - component: {fileID: 752908212}
+  - component: {fileID: 752908213}
   m_Layer: 5
   m_Name: LoadGameButton
   m_TagString: Untagged
@@ -672,13 +788,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1756799083}
-  m_Father: {fileID: 1921874089}
+  - {fileID: 1567067757}
+  m_Father: {fileID: 456340595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -67}
-  m_SizeDelta: {x: 180, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -250, y: 350}
+  m_SizeDelta: {x: 800, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &752908209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,8 +903,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuController
   firstSelected: {fileID: 752908207}
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
 --- !u!114 &752908213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,14 +925,21 @@ MonoBehaviour:
   leftBorder: {fileID: 1567067758}
   label: {fileID: 1756799084}
   defaultWidth: 800
+<<<<<<< HEAD
   hoverWidth: 1322
+=======
+  hoverWidth: 1280
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
   animDuration: 0.2
   defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
   defaultLabel: {r: 1, g: 1, b: 1, a: 0.7}
   hoverLabel: {r: 1, g: 1, b: 1, a: 1}
   borderColor: {r: 0, g: 1, b: 0.91, a: 1}
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
 --- !u!1 &759406501
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +1091,7 @@ GameObject:
   - component: {fileID: 932061628}
   - component: {fileID: 932061627}
   - component: {fileID: 932061626}
+  - component: {fileID: 932061629}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -984,13 +1112,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1694920269}
-  m_Father: {fileID: 1921874089}
+  m_Father: {fileID: 456340595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -267}
-  m_SizeDelta: {x: 80, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -250, y: -170}
+  m_SizeDelta: {x: 800, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &932061626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,8 +1213,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932061624}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
 --- !u!114 &932061629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,14 +1235,21 @@ MonoBehaviour:
   leftBorder: {fileID: 0}
   label: {fileID: 1694920270}
   defaultWidth: 800
+<<<<<<< HEAD
   hoverWidth: 1322
+=======
+  hoverWidth: 1500
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
   animDuration: 0.2
   defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
   defaultLabel: {r: 1, g: 1, b: 1, a: 0.7}
   hoverLabel: {r: 1, g: 1, b: 1, a: 0.7}
   borderColor: {r: 0, g: 1, b: 0.91, a: 1}
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
 --- !u!1 &1081443012
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1262,7 @@ GameObject:
   - component: {fileID: 1081443016}
   - component: {fileID: 1081443015}
   - component: {fileID: 1081443014}
+  - component: {fileID: 1081443017}
   m_Layer: 5
   m_Name: LibraryButton
   m_TagString: Untagged
@@ -1144,13 +1283,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1503953158}
-  m_Father: {fileID: 1921874089}
+  m_Father: {fileID: 456340595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -217}
-  m_SizeDelta: {x: 140, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -72, y: -40}
+  m_SizeDelta: {x: 800, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1081443014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1245,6 +1384,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081443012}
   m_CullTransparentMesh: 1
+--- !u!114 &1081443017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081443012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd96bbe13c09a7a4fb6bbc826d3540b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StretchMenuButton
+  buttonRect: {fileID: 1081443013}
+  buttonBG: {fileID: 1081443015}
+  leftBorder: {fileID: 0}
+  label: {fileID: 1503953159}
+  defaultWidth: 800
+  hoverWidth: 1500
+  animDuration: 0.2
+  defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
+  defaultLabel: {r: 1, g: 1, b: 1, a: 0.7}
+  hoverLabel: {r: 1, g: 1, b: 1, a: 0.7}
+  borderColor: {r: 0, g: 1, b: 0.91, a: 1}
 --- !u!1 &1103911787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1420,7 @@ GameObject:
   - component: {fileID: 1103911791}
   - component: {fileID: 1103911790}
   - component: {fileID: 1103911789}
+  - component: {fileID: 1103911792}
   m_Layer: 5
   m_Name: NewGameButton
   m_TagString: Untagged
@@ -1277,13 +1441,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 759406502}
-  m_Father: {fileID: 1921874089}
+  m_Father: {fileID: 456340595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -117}
-  m_SizeDelta: {x: 170, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -72, y: 220}
+  m_SizeDelta: {x: 800, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1103911789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1378,6 +1542,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103911787}
   m_CullTransparentMesh: 1
+--- !u!114 &1103911792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103911787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd96bbe13c09a7a4fb6bbc826d3540b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StretchMenuButton
+  buttonRect: {fileID: 1103911788}
+  buttonBG: {fileID: 1103911790}
+  leftBorder: {fileID: 0}
+  label: {fileID: 759406503}
+  defaultWidth: 800
+  hoverWidth: 1500
+  animDuration: 0.2
+  defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
+  defaultLabel: {r: 1, g: 1, b: 1, a: 0.7}
+  hoverLabel: {r: 1, g: 1, b: 1, a: 0.7}
+  borderColor: {r: 0, g: 1, b: 0.91, a: 1}
 --- !u!1 &1179980334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +1657,7 @@ GameObject:
   - component: {fileID: 1343389711}
   - component: {fileID: 1343389710}
   - component: {fileID: 1343389709}
+  - component: {fileID: 1343389712}
   m_Layer: 5
   m_Name: SettingsButton
   m_TagString: Untagged
@@ -1489,13 +1678,13 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 383250569}
-  m_Father: {fileID: 1921874089}
+  m_Father: {fileID: 456340595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -167}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -250, y: 90}
+  m_SizeDelta: {x: 800, y: 100}
+  m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1343389709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1590,8 +1779,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343389707}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
 --- !u!114 &1343389712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,7 +1801,11 @@ MonoBehaviour:
   leftBorder: {fileID: 0}
   label: {fileID: 383250570}
   defaultWidth: 800
+<<<<<<< HEAD
   hoverWidth: 1322
+=======
+  hoverWidth: 1500
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
   animDuration: 0.2
   defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
@@ -1753,7 +1949,10 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449259600}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> b26a8dbdb767b705c3189c5174f38b617489aaa2
 --- !u!1 &1503953157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,6 +2091,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1503953157}
+  m_CullTransparentMesh: 1
+--- !u!1 &1567067756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567067757}
+  - component: {fileID: 1567067759}
+  - component: {fileID: 1567067758}
+  m_Layer: 5
+  m_Name: LeftBorder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1567067757
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567067756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 752908208}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 3, y: 100}
+  m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1567067758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567067756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1567067759
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567067756}
   m_CullTransparentMesh: 1
 --- !u!1 &1694920268
 GameObject:
@@ -2062,10 +2336,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 752908208}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 450, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756799084
 MonoBehaviour:
@@ -2266,11 +2540,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 493841186}
-  - {fileID: 752908208}
-  - {fileID: 1103911788}
-  - {fileID: 1343389708}
-  - {fileID: 1081443013}
-  - {fileID: 932061625}
+  - {fileID: 456340595}
+  - {fileID: 1449259601}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
