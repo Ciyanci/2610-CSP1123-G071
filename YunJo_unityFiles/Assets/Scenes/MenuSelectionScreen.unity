@@ -920,7 +920,7 @@ MonoBehaviour:
   leftBorder: {fileID: 1567067758}
   label: {fileID: 1756799084}
   defaultWidth: 800
-  hoverWidth: 1280
+  hoverWidth: 1322
   animDuration: 0.2
   defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   leftBorder: {fileID: 0}
   label: {fileID: 1694920270}
   defaultWidth: 800
-  hoverWidth: 1500
+  hoverWidth: 1322
   animDuration: 0.2
   defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
@@ -1770,7 +1770,7 @@ MonoBehaviour:
   leftBorder: {fileID: 0}
   label: {fileID: 383250570}
   defaultWidth: 800
-  hoverWidth: 1500
+  hoverWidth: 1322
   animDuration: 0.2
   defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   hoverBG: {r: 0, g: 1, b: 0.91, a: 0.1}
