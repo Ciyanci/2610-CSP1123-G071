@@ -7,7 +7,7 @@ public class MenuSelectorController : MonoBehaviour
     public void OnNewGameClick()
     {
         Debug.Log("New Game button clicked");
-        SceneManager.LoadScene("NewGame");
+        SceneManager.LoadScene("BattleScene");
     }
 
     public void OnLoadGameClick()
