@@ -1,14 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SettingsManager : MonoBehaviour
+public class ToggleSettingsButton : MonoBehaviour
 {
     public GameObject settingsPanel;
     private bool isOpen = false;
 
     void Update()
     {
-        // Escape key or controller Start/Menu button
         if (Keyboard.current.escapeKey.wasPressedThisFrame ||
         (Gamepad.current != null && Gamepad.current.startButton.wasPressedThisFrame))
         {
@@ -21,7 +20,6 @@ public class SettingsManager : MonoBehaviour
         isOpen = !isOpen;
         settingsPanel.SetActive(isOpen);
 
-        // Pause game when settings open
         Time.timeScale = isOpen ? 0f : 1f;
     }
 
