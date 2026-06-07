@@ -20,7 +20,7 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
     [Header("Colors")]
     public Color defaultBG = new Color (0.50f, 0.50f, 0.50f, 1.00f);
-    public Color hoverBG = new Color (0.00f, 1.00f, 0.91f, 0.10f);
+    public Color hoverBG = new Color (0.00f, 1.00f, 0.91f, 1.00f);
     public Color defaultLabel = new Color (1.00f, 1.00f, 1.00f, 0.70f);
     public Color hoverLabel = new Color (1.00f, 1.00f, 1.00f, 0.70f);
     public Color borderColor = new Color (0.0f, 1.00f, 0.91f, 1.00f);
