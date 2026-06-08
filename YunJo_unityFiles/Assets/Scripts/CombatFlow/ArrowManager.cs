@@ -42,24 +42,17 @@ public class ArrowManager : MonoBehaviour
     public void AddPlannedArrow(SpeedSlot slot)
     {
         if (slot?.owner == null || slot.target == null) return;
-
-        //remove old arrow when resigning (probably works)
         RemovePlannedArrow(slot);
-
-        //check if counter-slot exists
         SpeedSlot counter = FindCounterSlot(slot);
         bool isClash      = counter != null;
-
         CombatArrow prefab = isClash ? clashArrowPrefab : plannedArrowPrefab;
         CombatArrow arrow  = Instantiate(prefab, transform);
-
         plannedArrows[slot] = arrow;
-
-        if (isClash && plannedArrows.TryGetValue(counter, out var counterArrow))
+        if (counter != null)
         {
             RemovePlannedArrow(counter);
-            CombatArrow newCounter = Instantiate(clashArrowPrefab, transform);
-            plannedArrows[counter] = newCounter;
+            CombatArrow counterArrow = Instantiate(clashArrowPrefab, transform);
+            plannedArrows[counter] = counterArrow;
         }
     }
 
@@ -69,6 +62,18 @@ public class ArrowManager : MonoBehaviour
         {
             if (arrow != null) Destroy(arrow.gameObject);
             plannedArrows.Remove(slot);
+        }
+        SpeedSlot counter = FindCounterSlot(slot);
+        if (counter != null && plannedArrows.ContainsKey(counter))
+        {
+            Destroy(plannedArrows[counter].gameObject);
+            plannedArrows.Remove(counter);
+            // Only respawn if counter still has a valid target
+            if (counter.assignedCard != null && counter.target != null)
+            {
+                CombatArrow downgraded = Instantiate(plannedArrowPrefab, transform);
+                plannedArrows[counter] = downgraded;
+            }
         }
     }
 

@@ -143,6 +143,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
     public IEnumerator AnimateRoll(int finalValue, float duration = 0.8f)
     {
         float t = 0f;
+        CombatAudioManager.Instance?.PlaySpeedDiceRoll();
 
         while (t < duration)
         {

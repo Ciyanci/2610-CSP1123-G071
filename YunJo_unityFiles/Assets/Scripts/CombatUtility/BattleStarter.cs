@@ -6,7 +6,6 @@ public class BattleStarter : MonoBehaviour
     public CharacterDeck playerDeck;
     public CharacterDeck enemyDeck;
 
-
     void Start()
     {
         StartCoroutine(StartBattle());
@@ -15,23 +14,17 @@ public class BattleStarter : MonoBehaviour
     IEnumerator StartBattle()
     {
         UnitRegistry.Instance.Refresh();
-        if (playerDeck == null || enemyDeck == null)
-            yield break;
+        yield return null;
 
-        //initialise both decks
+        if (playerDeck == null || enemyDeck == null) yield break;
+
         playerDeck.Init();
         enemyDeck.Init();
 
         CombatHUDController.Instance?.Bind();
 
-        //ensure starting hand is filled correctly
-        playerDeck.FillHandToLimit();
-        enemyDeck.FillHandToLimit();
+        CombatAudioManager.Instance?.PlayTurnBegin();
 
-        Debug.Log("[BATTLE] Initialized decks");
-        CombatInfoBar.Instance?.ShowDefault();
-        CombatFlowController.Instance.SetInputEnabled(true);
-
-        yield return new WaitForSeconds(0.2f);
+        Debug.Log("[BATTLE] Initialized — state machine takes over");
     }
 }

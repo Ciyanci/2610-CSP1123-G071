@@ -20,7 +20,6 @@ public class CombatCardDisplayUI : MonoBehaviour
     [Header("Follow Settings")]
     public Vector3 behindOffset = new Vector3(0f, 0.5f, 0f);
 
-    // ✅ private fields that LateUpdate needs
     CharacterUnit _unitA;
     CharacterUnit _unitB;
 

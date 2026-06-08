@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 156a1d6c92d042940a5d3aa407192241
+=======
+guid: 894f9ba3f2326264a8ad086b8fe26d1d
+>>>>>>> CombatSystemOverhaul
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

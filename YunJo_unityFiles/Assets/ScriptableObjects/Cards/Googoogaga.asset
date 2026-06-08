@@ -23,4 +23,9 @@ MonoBehaviour:
     power: 5
     damageType: 0
     effect: 0
+  - minRoll: 1
+    maxRoll: 6
+    power: 5
+    damageType: 1
+    effect: 0
   rarity: 4

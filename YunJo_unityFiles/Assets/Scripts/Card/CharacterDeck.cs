@@ -42,7 +42,7 @@ public class CharacterDeck : MonoBehaviour
             hand.Add(c);
         }
     }
-    // draw (recycles discard into draw when empty)
+    //draw (recycles discard into draw when empty)
     public Card Draw()
     {
         if (drawPile.Count == 0)
@@ -57,7 +57,7 @@ public class CharacterDeck : MonoBehaviour
         drawPile.RemoveAt(0);
         return c;
     }
-    // useCard (moves a played card to discard)
+    //useCard (moves a played card to discard)
     public void UseCard(Card card)
     {
         if (!hand.Contains(card))
