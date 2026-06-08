@@ -340,8 +340,8 @@ public class CharacterUnit : MonoBehaviour
 
         RefreshAllUI();
 
-        float knockDist = Mathf.Clamp(final * 0.04f, 0.2f, 1.2f);
-        yield return Recoil(attackerDir, knockDist, 0.12f);
+        float knockDist = Mathf.Clamp(final * 1f, 3f, 12f);
+        yield return Recoil(attackerDir, knockDist, 0.06f);
 
         if (returnToStart && !IsDead)
             yield return MoveTo(startPos, 0.2f);
