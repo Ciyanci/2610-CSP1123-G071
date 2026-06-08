@@ -14,6 +14,7 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public CanvasGroup buttonBGGroup;
     public Image leftBorder;
     public TextMeshProUGUI label;
+    public Image iconImage;
 
     [Header("Settings")]
     public float defaultWidth = 800f;
@@ -28,6 +29,8 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Color defaultLabel = new Color (1.00f, 1.00f, 1.00f, 0.70f);
     public Color hoverLabel = new Color (1.00f, 1.00f, 1.00f, 0.70f);
     public Color borderColor = new Color (0.0f, 1.00f, 0.91f, 1.00f);
+    public Color defaultIcon = new Color (1.00f, 1.00f, 1.00f, 1.00f);
+    public Color hoverIcon = new Color (0.00f, 1.00f, 0.91f, 1.00f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +41,7 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
         buttonBGGroup.alpha = 1f;
         label.color = defaultLabel;
         leftBorder.color = new Color(borderColor.r, borderColor.g, borderColor.b,0f);
+        iconImage.color = defaultIcon;
     }
 
     // Update is called once per frame
@@ -53,6 +57,7 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
         buttonBG.DOColor(hoverBG, animDuration).SetTarget(gameObject);
         label.DOColor(hoverLabel, 0.15f).SetTarget(gameObject);
         leftBorder.DOFade(1f, 0.15f).SetTarget(gameObject);
+        iconImage.DOColor(hoverIcon, 0.15f).SetTarget(gameObject);
     }
 
     public void OnPointerExit(PointerEventData e)
@@ -67,5 +72,6 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
         buttonBG.DOColor(defaultBG, animDuration).SetTarget(gameObject);
         label.DOColor(defaultLabel, 0.15f).SetTarget(gameObject);
         leftBorder.DOFade(0f, 0.15f).SetTarget(gameObject);
+        iconImage.DOColor(defaultIcon, 0.15f).SetTarget(gameObject);
     }
 }
