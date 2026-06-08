@@ -46,13 +46,23 @@ public class EnemyAI : MonoBehaviour
             ArrowManager.Instance?.AddPlannedArrow(slot);
             slot.ui?.Refresh();
 
-            assigned++; // ✅ track how many slots filled
+            assigned++; //tracks how many slots are filled
 
             yield return new WaitForSeconds(0.15f);
         }
 
         foreach (var slot in self.speedSlots)
-            slot.Commit();
+        {
+            if (slot.state == SlotState.Planned)
+            {
+                slot.Commit();
+                Debug.Log($"[AI] {self.unitName} committed slot spd:{slot.value} card:{slot.assignedCard?.Name}");
+            }
+            else
+            {
+                Debug.Log($"[AI] {self.unitName} slot skipped (state:{slot.state})");
+            }
+        }
     }
 
     Card GetPlayableCard()
@@ -72,7 +82,7 @@ public class EnemyAI : MonoBehaviour
 
     CharacterUnit FindRandomPlayer()
     {
-        var players = FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None);
+        var players = FindObjectsByType<CharacterUnit>(FindObjectsInactive.Exclude);
 
         List<CharacterUnit> valid = new();
 

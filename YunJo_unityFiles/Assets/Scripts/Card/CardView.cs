@@ -1,9 +1,9 @@
-// CardView.cs
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class CardView : MonoBehaviour,
     IPointerEnterHandler,
@@ -17,6 +17,14 @@ public class CardView : MonoBehaviour,
 
     [Header("Expanded")]
     public GameObject expandedPanel;
+
+
+    [Header("Dice Slot Row")]
+    public List<DiceSlotUI> diceSlots = new(); 
+
+    [Header("Expanded Dice Rows")]
+    public List<ExpandedDiceRowUI> expandedDiceRows = new();
+
 
     //cached rarity visuals
     CardFrameVisual frameVisual;
@@ -60,14 +68,28 @@ public class CardView : MonoBehaviour,
     {
         card  = c;
         owner = unit;
-
-        title.text   = c.Data.Name;
-        cost.text    = c.Cost.ToString();
+        title.text     = c.Data.Name;
+        cost.text      = c.Cost.ToString();
         artwork.sprite = c.Artwork;
-
-        //apply rarity shader based on card data
         frameVisual?.SetRarity(c.Data.rarity);
-
+        var dice = c.GetDice();
+        for (int i = 0; i < diceSlots.Count; i++)
+        {
+            if (i < dice.Count) diceSlots[i].Setup(dice[i]);
+            else                diceSlots[i].Hide();
+        }
+        for (int i = 0; i < expandedDiceRows.Count; i++)
+        {
+            if (i < dice.Count)
+            {
+                expandedDiceRows[i].gameObject.SetActive(true);
+                expandedDiceRows[i].Setup(dice[i]);
+            }
+            else
+            {
+                expandedDiceRows[i].gameObject.SetActive(false);
+            }
+        }
         if (expandedPanel != null)
             expandedPanel.SetActive(false);
     }
@@ -103,13 +125,14 @@ public class CardView : MonoBehaviour,
 
     public void SetHover(bool value)
     {
-        if (expandedPanel != null)
-            expandedPanel.SetActive(value);
+        if (expandedPanel == null) return;
+        expandedPanel.SetActive(value);
     }
 
     //pointer events
     public void OnPointerEnter(PointerEventData eventData)
     {
+        CombatAudioManager.Instance?.PlayCardHover();
         HandUI.Instance?.OnCardHovered(this);
     }
 

@@ -515,6 +515,8 @@ MonoBehaviour:
   cost: {fileID: 7215218383542079240}
   artwork: {fileID: 3565032366905208360}
   expandedPanel: {fileID: 7118074789753424276}
+  diceSlots: []
+  expandedDiceRows: []
 --- !u!114 &1606761016557817320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +533,6 @@ MonoBehaviour:
   - {fileID: 756257629415074556}
   - {fileID: 1785061320574848526}
   - {fileID: 6109079845025310143}
-  - {fileID: 1050092431918520197}
 --- !u!1 &2550403968254363779
 GameObject:
   m_ObjectHideFlags: 0

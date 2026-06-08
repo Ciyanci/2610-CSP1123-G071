@@ -49,14 +49,11 @@ public class LightBarUI : MonoBehaviour
 
     void LateUpdate()
     {
-        if (followTarget == null) return;
-
-        Vector3 screen = cam.WorldToScreenPoint(
-            followTarget.position + offset
-        );
-
+        if (owner == null || owner.visual == null || cam == null) return;
+        //follows visual directly with offset
+        Vector3 worldPos = owner.visual.position + offset;
+        Vector3 screen   = cam.WorldToScreenPoint(worldPos);
         if (screen.z <= 0) return;
-
         transform.position = screen;
     }
 }

@@ -30,14 +30,14 @@ public class UpdateCollectibleCount : MonoBehaviour
         Type collectibleType = Type.GetType("Pickup");
         if (collectibleType != null)
         {
-            totalCollectibles += UnityEngine.Object.FindObjectsByType(collectibleType, FindObjectsSortMode.None).Length;
+            totalCollectibles += UnityEngine.Object.FindObjectsByType(collectibleType, FindObjectsInactive.Exclude).Length;
         }
 
         // Optionally, check and count objects of type Collectible2D as well if needed
         Type collectible2DType = Type.GetType("Collectible2D");
         if (collectible2DType != null)
         {
-            totalCollectibles += UnityEngine.Object.FindObjectsByType(collectible2DType, FindObjectsSortMode.None).Length;
+            totalCollectibles += UnityEngine.Object.FindObjectsByType(collectible2DType, FindObjectsInactive.Exclude).Length;
         }
 
         // Update the collectible count display

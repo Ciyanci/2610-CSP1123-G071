@@ -11,7 +11,6 @@ public class CharacterUnit : MonoBehaviour
     [Header("Stats")]
     public int maxHP = 100;
     public int hp = 100;
-
     public int maxStagger = 50;
     public int stagger = 50;
 
@@ -22,9 +21,9 @@ public class CharacterUnit : MonoBehaviour
     [Header("State")]
     public UnitState state = UnitState.Normal;
 
-    public bool IsDead => state == UnitState.Dead;
+    public bool IsDead      => state == UnitState.Dead;
     public bool IsStaggered => state == UnitState.Staggered;
-    public bool CanAct => state == UnitState.Normal;
+    public bool CanAct      => state == UnitState.Normal;
 
     [Header("Resources")]
     public int maxLight = 5;
@@ -53,15 +52,29 @@ public class CharacterUnit : MonoBehaviour
 
     [Header("Sprites")]
     public SpriteRenderer sr;
-
     public Sprite idle;
     public Sprite attack;
     public Sprite hit;
     public Sprite windup;
+    public Sprite move;
 
     [HideInInspector] public Vector3 startPos;
-    //getter
     public Vector3 GetStartPos() => startPos;
+
+    [Header("Facing")]
+    public bool startsOnLeft = true;
+    int facingSign = 1;
+
+    void Awake()
+    {
+        startPos = visual.position;
+        facingSign = startsOnLeft ? 1 : -1;
+        ApplyFacing(facingSign);
+        if (deck == null)
+            deck = GetComponent<CharacterDeck>();
+        if (slotRowUI != null)
+            slotRowUI.Bind(this);
+    }
 
     void Start()
     {
@@ -70,43 +83,95 @@ public class CharacterUnit : MonoBehaviour
         lightBarUI?.Bind(this);
     }
 
-    public void InitializeSpeedSlots()
+    //facing**
+
+    public void SetInitialFacing(bool faceRight)
     {
-        if (speedSlots == null)
-            speedSlots = new List<SpeedSlot>();
+        facingSign = faceRight ? 1 : -1;
+        ApplyFacing(facingSign);
+    }
 
-        speedSlots.Clear();
+    void ApplyFacing(int sign)
+    {
+        if (visual == null) return;
+        Vector3 s = visual.localScale;
+        s.x = Mathf.Abs(s.x) * sign;
+        visual.localScale = s;
+    }
 
-        int diceCount = GetSpeedDiceCount();
+    public void FaceTowardUnit(CharacterUnit other)
+    {
+        if (other == null || visual == null) return;
+        int sign = other.visual.position.x > visual.position.x ? 1 : -1;
+        ApplyFacing(sign);
+    }
 
-        for (int i = 0; i < diceCount; i++)
+    public void RestoreDefaultFacing()
+    {
+        ApplyFacing(facingSign);
+    }
+    //movement**
+
+    //faces movement direction during travel, restores facingSign on arrival
+    public IEnumerator MoveTo(
+        Vector3 target,
+        float duration = 0.2f,
+        bool playMoveSprite = true,
+        CharacterUnit faceTarget = null)
+    {
+        Vector3 start = visual.position;
+        if (Vector3.Distance(start, target) < 0.01f) yield break;
+        if (faceTarget != null)
         {
-            SpeedSlot slot = new SpeedSlot
-            {
-                owner = this
-            };
+            FaceTowardUnit(faceTarget);
+        }
+        else
+        {
+            int moveSign = target.x > start.x ? 1 : -1;
+            ApplyFacing(moveSign);
+        }
+        if (playMoveSprite && move != null)
+            sr.sprite = move;
+        float t = 0;
+        while (t < duration)
+        {
+            visual.position = Vector3.Lerp(start, target, t / duration);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        visual.position = target;
+        ApplyFacing(facingSign);
+        if (playMoveSprite)
+            sr.sprite = idle;
+    }
+    public IEnumerator Recoil(Vector3 dir, float distance, float duration)
+    {
+        Vector3 start  = visual.position;
+        Vector3 target = start + dir * distance;
 
-            speedSlots.Add(slot);
+        float t = 0;
+        while (t < duration)
+        {
+            visual.position = Vector3.Lerp(start, target, t / duration);
+            t += Time.deltaTime;
+            yield return null;
         }
 
-        SortSlots();
-
-        if (slotRowUI != null)
-            slotRowUI.Bind(this);
+        visual.position = target;
+        ApplyFacing(facingSign); //restore in case anything changed it
     }
 
-    void Awake()
+    public void ResetPosition()
     {
-        startPos = visual.position;
-
-        if (deck == null)
-            deck = GetComponent<CharacterDeck>();
-
-        if (slotRowUI != null)
-            slotRowUI.Bind(this);
+        visual.position = startPos;
+        ApplyFacing(facingSign);
+        sr.sprite = idle;
     }
 
-    //light system
+    public Vector3 GetClashPosition() => clashAnchor.position;
+
+    //light**
+
     public void RefreshLight()
     {
         currentLight = maxLight;
@@ -121,23 +186,24 @@ public class CharacterUnit : MonoBehaviour
         lightBarUI?.Refresh();
     }
 
-    //speed slots
+    //speed slot**
+
     public void RollSpeedSlots()
     {
         foreach (var slot in speedSlots)
-            slot.Roll(); // data is set immediately (enemy AI can read this now)
+            slot.Roll();
+
         SortSlots();
+
         if (slotRowUI != null && speedSlots.Count > 0)
             slotRowUI.Bind(this);
-        // start visual animation (data is already final so no worries here)
+
         slotRowUI?.AnimateRolls();
     }
 
     void OnTransformChildrenChanged()
     {
-        if (slotRowUI == null)
-            return;
-
+        if (slotRowUI == null) return;
         slotRowUI.Bind(this);
     }
 
@@ -146,34 +212,39 @@ public class CharacterUnit : MonoBehaviour
         if (state == UnitState.Staggered)
         {
             stagger = maxStagger;
-            state = UnitState.Normal;
+            state   = UnitState.Normal;
         }
 
         isInterrupted = false;
-
-        //rebuilds slots immediately after every turn
         InitializeSpeedSlots();
-
-        //rolls immediately
         RollSpeedSlots();
-
         defensiveDice.Clear();
-
         slotRowUI?.Refresh();
+    }
+
+    public void InitializeSpeedSlots()
+    {
+        if (speedSlots == null)
+            speedSlots = new List<SpeedSlot>();
+
+        speedSlots.Clear();
+
+        int diceCount = GetSpeedDiceCount();
+
+        for (int i = 0; i < diceCount; i++)
+            speedSlots.Add(new SpeedSlot { owner = this });
+
+        SortSlots();
+
+        if (slotRowUI != null)
+            slotRowUI.Bind(this);
     }
 
     public int GetSpeedDiceCount()
     {
         int count = 1;
-
-        //example progression thresholds
-        if (maxHP >= 60)
-            count++;
-
-        if (maxHP >= 120)
-            count++;
-
-        //clamp because clamping is cool
+        if (maxHP >= 60)  count++;
+        if (maxHP >= 120) count++;
         return Mathf.Clamp(count, 1, 4);
     }
 
@@ -185,24 +256,20 @@ public class CharacterUnit : MonoBehaviour
     public void CommitAllSlots()
     {
         foreach (var slot in speedSlots)
-        {
             if (slot.state == SlotState.Planned)
                 slot.Commit();
-        }
     }
 
     public SpeedSlot GetHighestAvailableSlot()
     {
-        if (!CanAct)
-            return null;
+        if (!CanAct) return null;
 
         SpeedSlot best = null;
 
         foreach (var slot in speedSlots)
         {
             if (slot.state == SlotState.Executed ||
-                slot.state == SlotState.Committed)
-                continue;
+                slot.state == SlotState.Committed) continue;
 
             if (best == null || slot.value > best.value)
                 best = slot;
@@ -217,177 +284,126 @@ public class CharacterUnit : MonoBehaviour
             slot.Clear();
     }
 
-    public bool CanResolveAction()
-    {
-        if (IsDead)
-            return false;
+    public bool CanResolveAction() => !IsDead && !isInterrupted;
 
-        if (isInterrupted)
-            return false;
+    //defensive**
 
-        return true;
-    }
-
-    //defensive query system
     public DefensiveDie GetAvailableDefense()
     {
-        if (IsDead || isInterrupted)
-            return null;
-
-        if (defensiveDice == null || defensiveDice.Count == 0)
-            return null;
-
+        if (IsDead || isInterrupted) return null;
+        if (defensiveDice == null || defensiveDice.Count == 0) return null;
         return defensiveDice[0];
     }
 
-    //damage system
+    //damage**
+
     public void TakeDamage(int amount, DamageType type)
     {
         if (IsDead) return;
+
         int final = DamageCalculator.Calculate(amount, type, this);
-        hp -= final;
-        statusUI?.Refresh();
-        CombatHUDController.Instance?.RefreshAll(); // ✅
+        hp = Mathf.Max(0, hp - final);
+
+        Debug.Log($"{unitName} took {final} HP | remaining: {hp}/{maxHP}");
+
+        RefreshAllUI();
         EvaluateState();
     }
 
     public void TakeStaggerDamage(int amount)
     {
         if (IsDead) return;
-        stagger -= amount;
-        statusUI?.Refresh();
-        CombatHUDController.Instance?.RefreshAll(); // ✅
+
+        stagger = Mathf.Max(0, stagger - amount);
+
+        Debug.Log($"{unitName} took {amount} stagger | remaining: {stagger}/{maxStagger}");
+
+        RefreshAllUI();
         EvaluateState();
     }
-    public IEnumerator TakeDamageWithKnockback(int amount, DamageType type, Vector3 attackerDir, bool returnToStart = true)
+
+    void RefreshAllUI()
+    {
+        statusUI?.Refresh();
+        CombatHUDController.Instance?.RefreshAll();
+    }
+
+    public IEnumerator TakeDamageWithKnockback(
+        int amount, DamageType type, Vector3 attackerDir, bool returnToStart = true)
     {
         if (IsDead) yield break;
+
         int final = DamageCalculator.Calculate(amount, type, this);
-        hp -= final;
-        statusUI?.Refresh();
+        hp = Mathf.Max(0, hp - final);
+
+        Debug.Log($"{unitName} took {final} HP (knockback) | remaining: {hp}/{maxHP}");
+
+        RefreshAllUI();
+
         float knockDist = Mathf.Clamp(final * 0.04f, 0.2f, 1.2f);
         yield return Recoil(attackerDir, knockDist, 0.12f);
-        // ✅ Only return to startPos if told to (unopposed attacks)
+
         if (returnToStart && !IsDead)
             yield return MoveTo(startPos, 0.2f);
+
         EvaluateState();
     }
 
-    //state resolution (core of the character if they're dead or staggered)
+    //state**
+
     public void EvaluateState()
     {
-        if (hp <= 0)
-        {
-            Die();
-            return;
-        }
-
-        if (stagger <= 0)
-        {
-            Stagger();
-            return;
-        }
-
+        if (hp <= 0)      { Die();     return; }
+        if (stagger <= 0) { Stagger(); return; }
         state = UnitState.Normal;
     }
 
     public void Stagger()
     {
         if (state == UnitState.Dead) return;
-
         state = UnitState.Staggered;
-
         Debug.Log($"{unitName} staggered");
-
         ClearCombatAssignments();
     }
 
     public void ApplyStagger()
     {
-        if (state == UnitState.Dead)
-            return;
-
-        if (state == UnitState.Staggered)
-            return;
-
-        state = UnitState.Staggered;
+        if (state == UnitState.Dead || state == UnitState.Staggered) return;
+        state         = UnitState.Staggered;
         isInterrupted = true;
-
         Debug.Log($"{unitName} staggered (INTERRUPT)");
-
         ClearCombatAssignments();
     }
 
     public void Die()
     {
-        if (state == UnitState.Dead)
-            return;
-
+        if (state == UnitState.Dead) return;
         state = UnitState.Dead;
-
         Debug.Log($"{unitName} died");
-
         ClearCombatAssignments();
-
         gameObject.SetActive(false);
     }
 
-    //visuals
-    public IEnumerator MoveTo(Vector3 target, float duration = 0.2f)
-    {
-        Vector3 start = visual.position;
-        float t = 0;
-
-        while (t < duration)
-        {
-            visual.position = Vector3.Lerp(start, target, t / duration);
-            t += Time.deltaTime;
-            yield return null;
-        }
-
-        visual.position = target;
-    }
-
-    public IEnumerator Recoil(Vector3 dir, float distance, float duration)
-    {
-        Vector3 start = visual.position;
-        Vector3 target = start + dir * distance;
-
-        float t = 0;
-
-        while (t < duration)
-        {
-            visual.position = Vector3.Lerp(start, target, t / duration);
-            t += Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    public void ResetPosition()
-    {
-        visual.position = startPos;
-    }
-
-    public Vector3 GetClashPosition()
-    {
-        return clashAnchor.position;
-    }
+    //sprites**
 
     public void PlayAttack() => sr.sprite = attack;
-    public void PlayHit() => sr.sprite = hit;
+    public void PlayHit()    => sr.sprite = hit;
     public void PlayWindup() => sr.sprite = windup;
+    public void PlayMove()   => sr.sprite = move;
+
+    //speed UI**
 
     public void HideSpeed()
     {
-        foreach (var slot in speedSlots)
-            slot.ui?.Hide();
+        foreach (var slot in speedSlots) slot.ui?.Hide();
     }
 
     public void ShowSpeed()
     {
-        foreach (var slot in speedSlots)
-            slot.ui?.Show();
+        foreach (var slot in speedSlots) slot.ui?.Show();
     }
+
+    //inputs**
 
     void OnMouseDown()
     {
@@ -397,5 +413,20 @@ public class CharacterUnit : MonoBehaviour
             return;
         }
         CombatFlowController.Instance.SelectUnit(this);
+    }
+
+    public void SetInvolved(bool involved)
+    {
+        if (sr == null) return;
+        Color c = sr.color;
+        c.a = involved ? 1f : 0.5f;
+        sr.color = c;
+    }
+    public void ResetTransparency()
+    {
+        if (sr == null) return;
+        Color c = sr.color;
+        c.a = 1f;
+        sr.color = c;
     }
 }

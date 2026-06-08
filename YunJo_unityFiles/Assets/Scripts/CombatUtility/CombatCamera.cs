@@ -19,9 +19,6 @@ public class CombatCamera : MonoBehaviour
     //target state
     Vector3 targetPos;
     float   targetSize;
-
-    bool cinematic = false; //it says assigned by never used but this one is important trust me
-
     void Awake()
     {
         cam         = Camera.main;
@@ -45,7 +42,6 @@ public class CombatCamera : MonoBehaviour
     //planning mode
     public void SetPlanningView()
     {
-        cinematic  = false;
         targetPos  = new Vector3(defaultPos.x, defaultPos.y, transform.position.z);
         targetSize = planningSize;
     }
@@ -53,8 +49,6 @@ public class CombatCamera : MonoBehaviour
     //cinematic mode
     public void SetCinematicView()
     {
-        cinematic = true;
-
         if (ClashLane.Instance != null)
         {
             Vector3 focus = ClashLane.Instance.CameraFocus;

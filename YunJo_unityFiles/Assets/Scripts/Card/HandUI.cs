@@ -12,9 +12,9 @@ public class HandUI : MonoBehaviour
     public CardView  prefab;
 
     [Header("Layout")]
-    public float cardSpacing  = 160f;   // tighter default — cards overlap naturally
-    public float hoverLiftY   = 60f;    // how far the hovered card rises
-    public float neighbourPush = 40f;   // how far neighbours shift sideways
+    public float cardSpacing  = 160f; 
+    public float hoverLiftY   = 60f;  
+    public float neighbourPush = 40f;  
 
     List<CardView> views = new();
     CharacterDeck  currentDeck;

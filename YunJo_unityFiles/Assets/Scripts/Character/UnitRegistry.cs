@@ -19,7 +19,7 @@ public class UnitRegistry : MonoBehaviour
         players.Clear();
         enemies.Clear();
 
-        var all = FindObjectsByType<CharacterUnit>(FindObjectsSortMode.None);
+        var all = FindObjectsByType<CharacterUnit>(FindObjectsInactive.Exclude);
 
         foreach (var u in all)
         {

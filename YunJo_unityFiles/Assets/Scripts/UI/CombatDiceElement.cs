@@ -21,14 +21,13 @@ public class CombatDiceElement : MonoBehaviour
     //called by CombatDiceGroupUI.RefreshActiveDie each time the die advances
     public void Setup(DiceData data)
     {
+        StopAllCoroutines();
         broken = false;
         gameObject.SetActive(true);
         breakOverlay?.gameObject.SetActive(false);
-
         valueText.text  = "?";
         valueText.color = Color.white;
         valueText.gameObject.SetActive(true);
-
         if (background != null)
             background.color = data.effect switch
             {
@@ -36,7 +35,7 @@ public class CombatDiceElement : MonoBehaviour
                 DiceBehaviour.Defend => defendColor,
                 DiceBehaviour.Evade  => evadeColor,
                 DiceBehaviour.Buff   => buffColor,
-                _                   => attackColor
+                _                    => attackColor
             };
     }
 

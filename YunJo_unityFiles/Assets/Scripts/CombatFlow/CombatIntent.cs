@@ -9,15 +9,28 @@ public class CombatIntent
     public Card card;
     public int priority;
 
+    CombatPageRuntime runtimePage;
+
     public bool IsValid =>
-        user != null &&
+        user   != null &&
         target != null &&
-        card != null &&
-        !user.IsDead &&
+        card   != null &&
+        !user.IsDead   &&
         !target.IsDead;
 
-    public CombatPageRuntime CreatePage()
+    //creates once, returns cached after that
+    public CombatPageRuntime GetOrCreatePage()
     {
-        return new CombatPageRuntime(user, target, card);
+        if (runtimePage == null)
+        {
+            runtimePage = new CombatPageRuntime(user, target, card);
+            Debug.Log($"[PAGE] Created page {runtimePage.PageId}: {user.unitName} → {target.unitName}");
+        }
+        return runtimePage;
+    }
+
+    public void ClearPage()
+    {
+        runtimePage = null;
     }
 }

@@ -84,19 +84,21 @@ public class CombatDiceGroupUI : MonoBehaviour
             onDone?.Invoke(Random.Range(min, max + 1));
             yield break;
         }
-
         int result = Random.Range(min, max + 1);
         float t    = 0f;
         float dur  = 0.45f;
-
+        //animate random numbers — unit plays windup DURING this window
+        CombatAudioManager.Instance?.PlayDiceRoll();
         while (t < dur)
         {
             activeDiceElement.SetValue(Random.Range(min, max + 1));
             t += Time.deltaTime;
             yield return null;
         }
-
+        //lock the final value visually
         activeDiceElement.SetValue(result);
+        //fire callback timing
+        yield return new WaitForSeconds(0.3f);
         onDone?.Invoke(result);
     }
 
@@ -109,20 +111,15 @@ public class CombatDiceGroupUI : MonoBehaviour
     // break (loser die, play break anim haha skill issue)
     public void BreakCurrentDie()
     {
-        //mark current type icon as spent
+        activeDiceElement?.Break();
         if (currentDieIndex < spawnedIcons.Count)
             spawnedIcons[currentDieIndex].SetSpent();
-
-        activeDiceElement?.Break();
     }
-
     //advance (move to next die in sequence)
     public void AdvanceDie()
     {
-        //mark current icon spent if not already broken
         if (currentDieIndex < spawnedIcons.Count)
-            spawnedIcons[currentDieIndex].SetSpent();
-
+            spawnedIcons[currentDieIndex].SetHighlight(false);
         currentDieIndex++;
         RefreshActiveDie();
     }
@@ -146,19 +143,21 @@ public class CombatDiceGroupUI : MonoBehaviour
     void RefreshActiveDie()
     {
         if (activeDiceElement == null) return;
-
         if (currentDieIndex < currentDice.Count)
         {
+            //makes sure that it always force-enable and reset before setup
+            //this prevents BreakAnim coroutine finishing late and hiding the new die (nevermind it doesnt wtf)
+            activeDiceElement.gameObject.SetActive(true);
+            activeDiceElement.StopAllCoroutines();
             activeDiceElement.Setup(currentDice[currentDieIndex]);
-
-            //highlight matching type icon
             for (int i = 0; i < spawnedIcons.Count; i++)
                 spawnedIcons[i].SetHighlight(i == currentDieIndex);
         }
         else
         {
-            //hide active element when resolved
             activeDiceElement.gameObject.SetActive(false);
+            foreach (var icon in spawnedIcons)
+                icon.SetHighlight(false);
         }
     }
 

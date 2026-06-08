@@ -1,107 +1,125 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 public class CombatStateMachine : MonoBehaviour
 {
+    public static CombatStateMachine Instance;
+
     public CombatPhase phase;
-    public List<EnemyAI> enemies;
-    List<CharacterDeck> playerDecks;
+
     void Awake()
     {
-        playerDecks = new List<CharacterDeck>(
-            FindObjectsByType<CharacterDeck>(FindObjectsSortMode.None)
-        ).FindAll(d => d.owner != null && d.owner.CompareTag("Player"));
+        Instance = this;
     }
+
     void Start()
     {
         StartCoroutine(TurnLoop());
     }
+
     IEnumerator TurnLoop()
     {
         while (true)
         {
-            yield return StartCoroutine(StartTurn());
-            yield return StartCoroutine(DrawPhase());
-            yield return StartCoroutine(PlanningPhase());
-            yield return StartCoroutine(IntentPreview());
-            yield return StartCoroutine(ResolvePhase());
-            yield return StartCoroutine(EndTurn());
+            yield return StartTurnPhase();
+            yield return DrawPhase();
+            yield return PlanningPhase();
+            yield return new WaitUntil(() => _turnComplete);
+            _turnComplete = false;
         }
     }
-    //start turn
-    IEnumerator StartTurn()
+
+    bool _turnComplete = false;
+    public void NotifyTurnComplete()
+    {
+        _turnComplete = true;
+    }
+
+    //start turn **
+    IEnumerator StartTurnPhase()
     {
         phase = CombatPhase.StartTurn;
         Debug.Log("[PHASE] Start Turn");
-        // Roll fresh speed dice for everyone — this also clears last turn's slots
+
         foreach (var unit in UnitRegistry.Instance.players)
+        {
+            if (unit == null || unit.IsDead) continue;
             unit.ResetSpeedSlots();
+        }
         foreach (var unit in UnitRegistry.Instance.enemies)
+        {
+            if (unit == null || unit.IsDead) continue;
             unit.ResetSpeedSlots();
-        yield return null;
+        }
+
+        yield return new WaitForSeconds(0.8f); // let AnimateRolls play
+        CombatHUDController.Instance?.ShowSpeedBubbles();
     }
-    //draw phase
+
+    //draw **
     IEnumerator DrawPhase()
     {
         phase = CombatPhase.Draw;
         Debug.Log("[PHASE] Draw");
-        foreach (var deck in playerDecks)
-        {
-            if (deck != null)
-                deck.RefreshHand();
-        }
-        foreach (var enemy in enemies)
-        {
-            if (enemy != null && enemy.deck != null)
-                enemy.deck.RefreshHand();
-        }
-        HandUI hand = FindFirstObjectByType<HandUI>();
-        if (hand != null)
-            hand.Hide();
+
+        foreach (var unit in UnitRegistry.Instance.players)
+            unit.deck?.RefreshHand();
+        foreach (var unit in UnitRegistry.Instance.enemies)
+            unit.deck?.RefreshHand();
+
+        var players = UnitRegistry.Instance.players;
+        if (players.Count > 0 && players[0].deck != null)
+            HandUI.Instance?.Show(players[0].deck);
+
         yield return new WaitForSeconds(0.2f);
     }
-    //planning phase
+
+    //planning **
     IEnumerator PlanningPhase()
     {
         phase = CombatPhase.Planning;
         Debug.Log("[PHASE] Planning");
-        foreach (var enemy in enemies)
+
+        var enemies = UnitRegistry.Instance?.enemies;
+        if (enemies != null)
         {
-            if (enemy != null)
-                yield return StartCoroutine(enemy.TakeTurn());
+            foreach (var enemy in enemies)
+            {
+                if (enemy == null || enemy.IsDead) continue;
+                var ai = enemy.GetComponent<EnemyAI>();
+                if (ai == null) continue;
+                Debug.Log($"[AI] Running AI for {enemy.unitName}");
+                yield return ai.TakeTurn();
+            }
         }
-        // Now open player input
+
+        RefreshInfoBarForEnemyIntent();
+
+        CombatInfoBar.Instance?.ShowDefault();
         CombatFlowController.Instance.SetInputEnabled(true);
-        yield return new WaitUntil(() =>
-            !CombatFlowController.Instance.inputEnabled
-        );
+
+        yield return new WaitUntil(() => !CombatFlowController.Instance.inputEnabled);
     }
-    //intent preview
-    IEnumerator IntentPreview()
+
+    void RefreshInfoBarForEnemyIntent()
     {
-        phase = CombatPhase.IntentPreview;
-        Debug.Log("[PHASE] Intent Preview");
-        yield return new WaitForSeconds(1.0f);
-    }
-    //resolve phase
-    IEnumerator ResolvePhase()
-    {
-        phase = CombatPhase.Resolve;
-        Debug.Log("[PHASE] Resolve");
-        //BuildIntents() filters for SlotState.Committed so that nothing fires without this
-        foreach (var unit in UnitRegistry.Instance.players)
-            unit.CommitAllSlots();
-        foreach (var unit in UnitRegistry.Instance.enemies)
-            unit.CommitAllSlots();
-        yield return CombatPipeline.Instance.ResolveTurn();
-    }
-    //end turn
-    IEnumerator EndTurn()
-    {
-        phase = CombatPhase.EndTurn;
-        Debug.Log("[PHASE] End Turn");
-        //Deck hand refill is now in DrawPhase via RefreshHand()
-        //end turn only for future effects
-        yield return new WaitForSeconds(0.5f);
+        var players = UnitRegistry.Instance?.players;
+        if (players == null) return;
+
+        foreach (var player in players)
+        {
+            if (player == null || player.IsDead) continue;
+            foreach (var slot in player.speedSlots)
+            {
+                if (slot.state == SlotState.Planned &&
+                    slot.assignedCard != null &&
+                    slot.target != null)
+                {
+                    CombatInfoBar.Instance?.ShowSlotInfo(slot);
+                    return;
+                }
+            }
+        }
     }
 }
