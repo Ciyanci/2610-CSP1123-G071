@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using JetBrains.Annotations;
 
 public class MainFrameController : MonoBehaviour
 {
@@ -34,39 +35,49 @@ public class MainFrameController : MonoBehaviour
         infoPanel.anchoredPosition = infoPanelHiddenPos;
     }
 
-
-public void OnFrameButtonClicked(FrameButton button)
-{
-    // Same button while selected: close and reset
-    if (hasSelection && currentActive == button)
+    public void OnFrameButtonClicked(FrameButton button)
     {
-        ClosePanel();
-        return;
+        // Same button while selected: close and reset
+        if (hasSelection && currentActive == button)
+        {
+            ClosePanel();
+            return;
+        }
+
+        UpdateInfoPanel(button.title, button.description);
+
+        if (!hasSelection)
+        {
+            // First ever press
+            hasSelection = true;
+            currentActive = button;
+            OpenPanel(button);
+        }
+        else
+        {
+            // Capture position NOW while frame is at rest
+            Vector2 targetPos = GetCenteredPos(button);
+            currentActive = button;
+
+            Sequence seq = DOTween.Sequence();
+
+            // Step 1: snap back to center AND restore original size/scale simultaneously
+            seq.Append(mainFrame.DOAnchorPos(expandedPos, tweenDuration * 0.8f).SetEase(Ease.InQuart));
+            seq.Join(mainFrame.DOSizeDelta(expandedSize, tweenDuration * 0.8f).SetEase(easeType));
+            seq.Join(mainFrame.DOScale(Vector3.one, tweenDuration * 0.8f).SetEase(easeType));
+
+            // Step 2: hold at original position for tweenDuration
+            seq.AppendInterval(0.1f);
+
+            // Step 3: move to new button
+            seq.Append(mainFrame.DOAnchorPos(targetPos, tweenDuration * 0.8f).SetEase(Ease.OutQuart));
+            seq.Join(mainFrame.DOSizeDelta(collapsedSize, tweenDuration * 0.8f).SetEase(easeType));
+            seq.Join(mainFrame.DOScale(zoomedScale, tweenDuration * 0.8f).SetEase(easeType));
+
+            infoPanel.DOKill();
+            infoPanel.DOPunchScale(Vector3.one * 0.03f, 0.25f, 5, 0.5f);
+        }
     }
-
-    UpdateInfoPanel(button.title, button.description);
-
-    if (!hasSelection)
-    {
-        // First ever press
-        hasSelection = true;
-        currentActive = button;
-        OpenPanel(button);
-    }
-    else
-    {
-        // Capture position NOW while frame is at rest
-        Vector2 targetPos = GetCenteredPos(button);
-        currentActive = button;
-
-        Sequence seq = DOTween.Sequence();
-        seq.Append(mainFrame.DOAnchorPos(expandedPos, tweenDuration * 0.5f).SetEase(Ease.InQuart));
-        seq.Append(mainFrame.DOAnchorPos(targetPos, tweenDuration * 0.5f).SetEase(Ease.OutQuart));
-
-        infoPanel.DOKill();
-        infoPanel.DOPunchScale(Vector3.one * 0.03f, 0.25f, 5, 0.5f);
-    }
-}
 
     private void ClosePanel()
     {
@@ -95,7 +106,7 @@ public void OnFrameButtonClicked(FrameButton button)
         seq.Join(infoPanel.DOAnchorPos(infoPanelVisiblePos, tweenDuration).SetEase(easeType));
     }
 
-  private Vector2 GetCenteredPos(FrameButton button)
+    private Vector2 GetCenteredPos(FrameButton button)
     {
         RectTransform buttonRect = button.GetComponent<RectTransform>();
 
@@ -112,7 +123,7 @@ public void OnFrameButtonClicked(FrameButton button)
         Vector2 diffLocal = diff / scale;
 
         // Sidebar offset: shift left so button sits in the visible portion
-        float sidebarWidth = expandedSize.x - collapsedSize.x;
+        float sidebarWidth = 300;
         float sidebarOffset = sidebarWidth / 2f;
 
         return new Vector2(expandedPos.x - diffLocal.x - sidebarOffset, expandedPos.y - diffLocal.y);
