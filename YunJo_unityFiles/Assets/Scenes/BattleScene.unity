@@ -11073,8 +11073,8 @@ MonoBehaviour:
   diePauseDuration: 0.5
   clashPauseDuration: 0.25
   combatCamera: {fileID: 198258396}
-  clashShakeIntensity: 0.15
-  hitShakeIntensity: 0.08
+  clashShakeIntensity: 5
+  hitShakeIntensity: 5
   diceGroupLeft: {fileID: 1529936544}
   diceGroupRight: {fileID: 192503773}
 --- !u!224 &1120593717 stripped
