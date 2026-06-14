@@ -28,6 +28,24 @@ public class MenuSelectorController : MonoBehaviour
         SceneManager.LoadScene("Library");
     }
 
+    public void OnTestGameClick()
+    {
+        Debug.Log("Load Game button clicked");
+        SceneManager.LoadScene("VisualNovelTest");
+    }
+
+    public void OnLoadMapClick()
+    {
+        Debug.Log("Load Game button clicked");
+        SceneManager.LoadScene("LevelSelection");
+    }
+
+    public void OnLoadBattleClick()
+    {
+        Debug.Log("Load Game button clicked");
+        SceneManager.LoadScene("BattleScene");
+    }
+
     public void OnExitClick()
     {
         Debug.Log("Exit button clicked");
