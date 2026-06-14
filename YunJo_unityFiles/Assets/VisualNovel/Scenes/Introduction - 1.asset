@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Introduction - 1
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  sentences:
+  - text: Impermanence is of natural order, to defy it is to defy nature itself.
+    speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+  - text: "And yet even so\u2026 this garden\u2026"
+    speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+  - text: ...
+    speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+  - text: What does it want of this world..?
+    speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+  backgroud: {fileID: 21300000, guid: 1e90bba6eb3960841bdd36ba68a8acc0, type: 3}
+  nextScene: {fileID: 11400000, guid: 9e30212ad4261894e80fcedfc88a10cc, type: 2}
