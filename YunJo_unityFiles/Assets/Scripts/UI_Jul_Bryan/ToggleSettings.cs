@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class ToggleSettingsButton : MonoBehaviour
 {
     public GameObject settingsPanel;
-    private bool isOpen = false;
+    public GameObject pauseMenuPanel;
+    private bool isPaused = false;
 
     void Update()
     {
@@ -17,16 +19,47 @@ public class ToggleSettingsButton : MonoBehaviour
 
     public void ToggleSettings()
     {
-        isOpen = !isOpen;
-        settingsPanel.SetActive(isOpen);
+        isPaused = !isPaused;
+        pauseMenuPanel.SetActive(isPaused);
+        settingsPanel.SetActive(false);
 
-        Time.timeScale = isOpen ? 0f : 1f;
+        Time.timeScale = isPaused ? 0f : 1f;
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = isPaused;
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
+        pauseMenuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        Time.timeScale=1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void OpenSetings()
+    {
+        pauseMenuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
     public void CloseSettings()
     {
-        isOpen = false;
+        isPaused = false;
         settingsPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void QuitToTitle()
+    {
         Time.timeScale = 1f;
+        SceneManager.LoadScene("TittleScreen"); 
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
