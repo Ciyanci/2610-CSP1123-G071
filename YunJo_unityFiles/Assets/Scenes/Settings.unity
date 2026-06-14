@@ -4064,7 +4064,6 @@ GameObject:
   - component: {fileID: 818294806}
   - component: {fileID: 818294808}
   - component: {fileID: 818294807}
-  - component: {fileID: 818294809}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -4129,30 +4128,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 818294805}
   m_CullTransparentMesh: 1
---- !u!223 &818294809
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 818294805}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_UseReflectionProbes: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!1 &856829666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4276,6 +4251,7 @@ GameObject:
   - component: {fileID: 873404789}
   - component: {fileID: 873404788}
   - component: {fileID: 873404787}
+  - component: {fileID: 873404790}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -4397,6 +4373,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873404785}
   m_CullTransparentMesh: 1
+--- !u!114 &873404790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873404785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd96bbe13c09a7a4fb6bbc826d3540b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StretchMenuButton
+  buttonRect: {fileID: 873404786}
+  textBGRect: {fileID: 0}
+  buttonBG: {fileID: 0}
+  buttonBGGroup: {fileID: 0}
+  leftBorder: {fileID: 0}
+  label: {fileID: 202599336}
+  iconImage: {fileID: 0}
+  defaultWidth: 160
+  hoverWidth: 200
+  textBGWidth: 1500
+  textBGDefault: 150
+  animDuration: 0.2
+  defaultBG: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  hoverBG: {r: 0, g: 1, b: 0.91, a: 1}
+  defaultLabel: {r: 1, g: 1, b: 1, a: 0.7}
+  hoverLabel: {r: 1, g: 1, b: 1, a: 0.7}
+  borderColor: {r: 0, g: 1, b: 0.91, a: 1}
+  defaultIcon: {r: 1, g: 1, b: 1, a: 1}
+  hoverIcon: {r: 0, g: 1, b: 0.91, a: 1}
 --- !u!1 &885038508
 GameObject:
   m_ObjectHideFlags: 0

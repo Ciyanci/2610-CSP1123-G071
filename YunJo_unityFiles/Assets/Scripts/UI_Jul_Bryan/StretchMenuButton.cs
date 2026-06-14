@@ -49,29 +49,29 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         DOTween.Kill(gameObject);
         buttonRect.DOSizeDelta(new Vector2(hoverWidth, buttonRect.sizeDelta.y), animDuration)
-            .SetEase(Ease.OutCubic).SetTarget(gameObject);
+            .SetEase(Ease.OutCubic).SetTarget(gameObject).SetUpdate(true);
 
         textBGRect.DOSizeDelta(new Vector2(textBGWidth, textBGRect.sizeDelta.y), animDuration)
-            .SetEase(Ease.OutCubic).SetTarget(gameObject);
+            .SetEase(Ease.OutCubic).SetTarget(gameObject).SetUpdate(true);
 
-        buttonBG.DOColor(hoverBG, animDuration).SetTarget(gameObject);
-        label.DOColor(hoverLabel, 0.15f).SetTarget(gameObject);
-        leftBorder.DOFade(1f, 0.15f).SetTarget(gameObject);
-        iconImage.DOColor(hoverIcon, 0.15f).SetTarget(gameObject);
+        buttonBG.DOColor(hoverBG, animDuration).SetTarget(gameObject).SetUpdate(true);
+        label.DOColor(hoverLabel, 0.15f).SetTarget(gameObject).SetUpdate(true);
+        leftBorder.DOFade(1f, 0.15f).SetTarget(gameObject).SetUpdate(true);
+        iconImage.DOColor(hoverIcon, 0.15f).SetTarget(gameObject).SetUpdate(true);
     }
 
     public void OnPointerExit(PointerEventData e)
     {
         DOTween.Kill(gameObject);
         buttonRect.DOSizeDelta(new Vector2(defaultWidth, buttonRect.sizeDelta.y), animDuration)
-            .SetEase(Ease.OutCubic).SetTarget(gameObject);
+            .SetEase(Ease.OutCubic).SetTarget(gameObject).SetUpdate(true);
         
         textBGRect.DOSizeDelta(new Vector2(textBGDefault, textBGRect.sizeDelta.y), animDuration)
-            .SetEase(Ease.OutCubic).SetTarget(gameObject);
+            .SetEase(Ease.OutCubic).SetTarget(gameObject).SetUpdate(true);
 
-        buttonBG.DOColor(defaultBG, animDuration).SetTarget(gameObject);
-        label.DOColor(defaultLabel, 0.15f).SetTarget(gameObject);
-        leftBorder.DOFade(0f, 0.15f).SetTarget(gameObject);
-        iconImage.DOColor(defaultIcon, 0.15f).SetTarget(gameObject);
+        buttonBG.DOColor(defaultBG, animDuration).SetTarget(gameObject).SetUpdate(true);
+        label.DOColor(defaultLabel, 0.15f).SetTarget(gameObject).SetUpdate(true);
+        leftBorder.DOFade(0f, 0.15f).SetTarget(gameObject).SetUpdate(true);
+        iconImage.DOColor(defaultIcon, 0.15f).SetTarget(gameObject).SetUpdate(true);
     }
 }
