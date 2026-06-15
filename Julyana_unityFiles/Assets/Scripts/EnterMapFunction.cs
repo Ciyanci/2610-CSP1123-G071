@@ -11,6 +11,3 @@ public class EnterMapFunction : MonoBehaviour
         SceneManager.LoadScene("MapSystem");
     }
 }
-
-    // Update is called once per frame
-  
