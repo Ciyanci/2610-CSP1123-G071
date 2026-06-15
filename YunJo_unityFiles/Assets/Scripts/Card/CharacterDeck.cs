@@ -8,7 +8,6 @@ public class CharacterDeck : MonoBehaviour
     List<Card> discardPile = new();
     List<Card> hand      = new();
     [Header("Hand")]
-    //fixed this part, deckSize is the full pool; handSize is what's drawn each turn ok
     public int deckSize  = 9;
     public int handSize  = 4;
     //init() is called once at battle start btw
@@ -56,6 +55,18 @@ public class CharacterDeck : MonoBehaviour
         Card c = drawPile[0];
         drawPile.RemoveAt(0);
         return c;
+    }
+
+    //load card list
+    public void LoadFromCardList(List<CardData> cards)
+    {
+        drawPile.Clear();
+        discardPile.Clear();
+        hand.Clear();
+        foreach (var data in cards)
+            drawPile.Add(new Card(data));
+        Shuffle(drawPile);
+        Debug.Log($"[DECK] Loaded {drawPile.Count} cards for {owner?.unitName}");
     }
     //useCard (moves a played card to discard)
     public void UseCard(Card card)

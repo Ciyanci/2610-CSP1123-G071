@@ -254,9 +254,10 @@ public partial class CombatPipeline : MonoBehaviour
     }
     IEnumerator EndSequence()
     {
-        CinematicModeController.Instance?.ExitCinematic();
         yield return TurnTransitionUI.Instance?.FadeToBlack();
+        yield return new WaitForSeconds(0.5f);
     }
+
     // =========================
     // NEXT TURN — behind black screen
     // =========================
