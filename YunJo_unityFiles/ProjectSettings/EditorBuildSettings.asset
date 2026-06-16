@@ -30,7 +30,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CreditsScene.unity
     guid: 379e2a75c292c7946ac9c675d664c4dc
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
+    path: Assets/Scenes/BattleScene copy.unity
     guid: f4c48ef0a2b96c24e82c06f24659fdef
   - enabled: 1
     path: Assets/VisualNovel/VisualNovelTest.unity
@@ -38,5 +38,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelSelection.unity
     guid: 45dff352800c65a409d870489decef75
+  - enabled: 1
+    path: Assets/Scenes/CombatPrep.unity
+    guid: 58c5a97e5e3054d46a2f895b0c4f79f6
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

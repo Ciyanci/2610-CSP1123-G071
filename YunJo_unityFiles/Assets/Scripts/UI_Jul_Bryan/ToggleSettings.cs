@@ -24,8 +24,6 @@ public class ToggleSettingsButton : MonoBehaviour
         settingsPanel.SetActive(false);
 
         Time.timeScale = isPaused ? 0f : 1f;
-        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = isPaused;
     }
 
     public void Resume()
@@ -34,8 +32,6 @@ public class ToggleSettingsButton : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
         Time.timeScale=1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     public void OpenSetings()

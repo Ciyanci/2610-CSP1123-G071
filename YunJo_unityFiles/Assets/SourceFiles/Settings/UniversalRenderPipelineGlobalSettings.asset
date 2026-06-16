@@ -66,11 +66,8 @@ MonoBehaviour:
       - rid: 8026737403946074121
       - rid: 3713617425158373376
       - rid: 3713617425158373377
-<<<<<<< HEAD
       - rid: 3856184379378761728
-=======
       - rid: 2530124898555134013
->>>>>>> CombatSystemOverhaul
     m_RuntimeSettings:
       m_List:
       - rid: 6852985685364965378
