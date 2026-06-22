@@ -13,15 +13,15 @@ public class BattleStarter : MonoBehaviour
         UnitRegistry.Instance.Refresh();
         yield return null; // let all Awake/Start finish
 
-        // ✅ Apply UnitData to every unit in the scene
-        // This must happen before Init() so decks have cards
+        //apply unitdata to characters on scene
+        //this must happen before Init() so decks have cards
         foreach (var unit in UnitRegistry.Instance.players)
             ApplyUnitData(unit);
 
         foreach (var unit in UnitRegistry.Instance.enemies)
             ApplyUnitData(unit);
 
-        // ✅ Init decks AFTER UnitData has populated startingDeck
+        //init decks AFTER UnitData has populated startingDeck
         foreach (var unit in UnitRegistry.Instance.players)
             unit.deck?.Init();
 
@@ -47,7 +47,7 @@ public class BattleStarter : MonoBehaviour
             return;
         }
 
-        // ✅ Apply stats from UnitData + keypage
+        //apply stats from UnitData + keypage
         unit.unitName   = data.unitName;
         unit.maxHP      = data.GetMaxHP(keypage);
         unit.hp         = unit.maxHP;
@@ -57,7 +57,7 @@ public class BattleStarter : MonoBehaviour
         unit.currentLight = data.maxLight;
         unit.resistances  = data.GetResistances(keypage);
 
-        // ✅ Apply sprites if UnitData has them
+        //apply sprites if UnitData has them
         if (data.idleSprite   != null) unit.idle   = data.idleSprite;
         if (data.attackSprite != null) unit.attack = data.attackSprite;
         if (data.hitSprite    != null) unit.hit    = data.hitSprite;
@@ -67,8 +67,7 @@ public class BattleStarter : MonoBehaviour
         if (unit.sr != null && unit.idle != null)
             unit.sr.sprite = unit.idle;
 
-        // ✅ Copy card pool into CharacterDeck.startingDeck
-        // so Init() has something to build from
+        //copy card pool into CharacterDeck.startingDeck so Init() has something to build from
         if (unit.deck != null)
         {
             unit.deck.startingDeck.Clear();

@@ -9,8 +9,8 @@ public class CharacterUnit : MonoBehaviour
     public UnitType unitType;
 
     [Header("Unit Data — assign in Inspector")]
-    public UnitData unitData;       // ✅ reference for keypage/card editing in prep
-    public KeypageData equippedKeypage; // ✅ assigned in prep, null for leaders
+    public UnitData unitData;       //reference for keypage/card editing in prep
+    public KeypageData equippedKeypage; //assigned in prep, null for leaders
 
     [Header("Stats")]
     public int maxHP      = 100;
@@ -87,10 +87,7 @@ public class CharacterUnit : MonoBehaviour
         lightBarUI?.Bind(this);
     }
 
-    // =========================
-    // APPLY KEYPAGE
-    // Called by BattleStarter after prep
-    // =========================
+    //apply keypage (called after battlestarter applies data)
     public void ApplyKeypage(KeypageData keypage)
     {
         equippedKeypage = keypage;
@@ -107,9 +104,7 @@ public class CharacterUnit : MonoBehaviour
         CombatHUDController.Instance?.RefreshAll();
     }
 
-    // =========================
-    // FACING
-    // =========================
+    //facing (still bugged when moving how tf do i fix this wrtfatahdhwtf)
     public void SetInitialFacing(bool faceRight)
     {
         facingSign = faceRight ? 1 : -1;
@@ -133,9 +128,7 @@ public class CharacterUnit : MonoBehaviour
 
     public void RestoreDefaultFacing() => ApplyFacing(facingSign);
 
-    // =========================
-    // MOVEMENT
-    // =========================
+    //movement (i hate you)
     public IEnumerator MoveTo(
         Vector3 target,
         float duration       = 0.2f,
@@ -190,9 +183,7 @@ public class CharacterUnit : MonoBehaviour
 
     public Vector3 GetClashPosition() => clashAnchor.position;
 
-    // =========================
-    // LIGHT
-    // =========================
+    //light
     public void RefreshLight()
     {
         currentLight = maxLight;
@@ -206,9 +197,7 @@ public class CharacterUnit : MonoBehaviour
         lightBarUI?.Refresh();
     }
 
-    // =========================
-    // SPEED SLOTS
-    // =========================
+    //speed slot
     public void RollSpeedSlots()
     {
         foreach (var slot in speedSlots) slot.Roll();
@@ -289,9 +278,7 @@ public class CharacterUnit : MonoBehaviour
 
     public bool CanResolveAction() => !IsDead && !isInterrupted;
 
-    // =========================
-    // DEFENSIVE
-    // =========================
+    //defensive
     public DefensiveDie GetAvailableDefense()
     {
         if (IsDead || isInterrupted) return null;
@@ -299,9 +286,7 @@ public class CharacterUnit : MonoBehaviour
         return defensiveDice[0];
     }
 
-    // =========================
-    // DAMAGE
-    // =========================
+    //dmg
     public void TakeDamage(int amount, DamageType type)
     {
         if (IsDead) return;
@@ -342,9 +327,7 @@ public class CharacterUnit : MonoBehaviour
         EvaluateState();
     }
 
-    // =========================
-    // STATE
-    // =========================
+    //state
     public void EvaluateState()
     {
         if (hp <= 0)      { Die();     return; }
@@ -378,23 +361,17 @@ public class CharacterUnit : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // =========================
-    // SPRITES
-    // =========================
+    //sprites
     public void PlayAttack() => sr.sprite = attack;
     public void PlayHit()    => sr.sprite = hit;
     public void PlayWindup() => sr.sprite = windup;
     public void PlayMove()   => sr.sprite = move;
 
-    // =========================
-    // SPEED UI
-    // =========================
+    //speed ui
     public void HideSpeed() { foreach (var s in speedSlots) s.ui?.Hide(); }
     public void ShowSpeed() { foreach (var s in speedSlots) s.ui?.Show(); }
 
-    // =========================
-    // INPUT
-    // =========================
+    //player input
     void OnMouseDown()
     {
         if (CombatFlowController.Instance.IsTargeting)

@@ -49,7 +49,7 @@ public class CardEditorWindowUI : MonoBehaviour
         {
             var entry = Instantiate(currentDeckEntryPrefab, currentDeckContainer);
             entry.Setup(card, boundUnit, isInteractable: true);
-            var c = card; // capture for lambda
+            var c = card; //capture for lambda
             entry.button?.onClick.RemoveAllListeners();
             entry.button?.onClick.AddListener(() =>
                 CombatPrepManager.Instance?.RemoveCard(boundUnit, c));

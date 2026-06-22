@@ -68,18 +68,35 @@ public class CardView : MonoBehaviour,
     {
         card  = c;
         owner = unit;
+
         title.text     = c.Data.Name;
         cost.text      = c.Cost.ToString();
         artwork.sprite = c.Artwork;
+
         frameVisual?.SetRarity(c.Data.rarity);
+
         var dice = c.GetDice();
+
+        //dice slots on the base card face
+        if (diceSlots == null || diceSlots.Count == 0)
+            Debug.LogWarning($"[CARDVIEW] {c.Data.Name}: diceSlots list is empty — " +
+                            "wire DiceSlot child objects in the prefab Inspector");
+
         for (int i = 0; i < diceSlots.Count; i++)
         {
+            if (diceSlots[i] == null) continue;
             if (i < dice.Count) diceSlots[i].Setup(dice[i]);
             else                diceSlots[i].Hide();
         }
+
+        //expanded panel rows
+        if (expandedDiceRows == null || expandedDiceRows.Count == 0)
+            Debug.LogWarning($"[CARDVIEW] {c.Data.Name}: expandedDiceRows list is empty — " +
+                            "wire DiceRow child objects in the prefab Inspector");
+
         for (int i = 0; i < expandedDiceRows.Count; i++)
         {
+            if (expandedDiceRows[i] == null) continue;
             if (i < dice.Count)
             {
                 expandedDiceRows[i].gameObject.SetActive(true);
@@ -90,9 +107,11 @@ public class CardView : MonoBehaviour,
                 expandedDiceRows[i].gameObject.SetActive(false);
             }
         }
+
         if (expandedPanel != null)
             expandedPanel.SetActive(false);
     }
+
 
     //position methods
     public void SetBasePosition(Vector2 pos)

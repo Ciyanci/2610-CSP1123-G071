@@ -1,4 +1,3 @@
-// CombatPrepManager.cs — per-stage manual version
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -43,14 +42,12 @@ public class CombatPrepManager : MonoBehaviour
         enemyPanel?.Bind(enemyPreviewData);
         playerPanel?.Bind(playerUnits);
 
-        // Auto-select first player unit
+        //auto-select first player unit
         if (playerUnits.Count > 0)
             SelectUnit(playerUnits[0]);
     }
 
-    // =========================
-    // SELECTION
-    // =========================
+    //selection
     public void SelectUnit(CharacterUnit unit)
     {
         selectedUnit = unit;
@@ -59,9 +56,7 @@ public class CombatPrepManager : MonoBehaviour
 
     public CharacterUnit GetSelectedUnit() => selectedUnit;
 
-    // =========================
-    // WINDOWS
-    // =========================
+    //windows
     public void OpenKeypageWindow(CharacterUnit unit)
     {
         if (unit == null) return;
@@ -85,9 +80,7 @@ public class CombatPrepManager : MonoBehaviour
         cardEditorWindow?.Close();
     }
 
-    // =========================
-    // DECK EDITING
-    // =========================
+    //deck editing
     public void AddCard(CharacterUnit unit, CardData card)
     {
         if (unit?.deck == null || card == null) return;
@@ -105,9 +98,7 @@ public class CombatPrepManager : MonoBehaviour
         playerPanel?.RefreshSelected();
     }
 
-    // =========================
-    // KEYPAGE
-    // =========================
+    //keypage
     public void EquipKeypage(CharacterUnit unit, KeypageData keypage)
     {
         if (unit == null) return;
@@ -117,9 +108,7 @@ public class CombatPrepManager : MonoBehaviour
         playerPanel?.RefreshSelected();
     }
 
-    // =========================
-    // ENTER BATTLE
-    // =========================
+    //enter battle
     public void EnterBattle()
     {
         SceneManager.LoadScene(combatSceneName);

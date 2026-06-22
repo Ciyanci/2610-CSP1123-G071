@@ -37,9 +37,7 @@ public class UnitInfoBlock : MonoBehaviour
 
     CharacterUnit boundUnit;
 
-    // =========================
-    // BIND — enemy (read only)
-    // =========================
+    //bind (enemy is read only)
     public void BindEnemy(UnitData unit)
     {
         boundUnit = null;
@@ -56,9 +54,7 @@ public class UnitInfoBlock : MonoBehaviour
         Populate(unit, null, isPlayer: false);
     }
 
-    // =========================
-    // BIND — player unit
-    // =========================
+    //bind (player)
     public void BindUnit(CharacterUnit unit)
     {
         boundUnit = unit;
@@ -74,7 +70,7 @@ public class UnitInfoBlock : MonoBehaviour
         UnitData    data    = unit.unitData;
         KeypageData keypage = unit.equippedKeypage;
 
-        // Keypage button — visible for non-leader players only
+        //keypage button — visible for non-leader players only
         if (keypageOverlayButton != null)
         {
             bool canChangeKeypage = isInteractable &&
@@ -92,18 +88,14 @@ public class UnitInfoBlock : MonoBehaviour
         Populate(data, keypage, isPlayer: true);
     }
 
-    // =========================
-    // REFRESH — call after deck/keypage changes
-    // =========================
+    //refresh (call after deck/keypage changes)
     public void RefreshDeck()
     {
         if (boundUnit != null)
             SpawnDeckCards(boundUnit.deck?.startingDeck, boundUnit);
     }
 
-    // =========================
-    // INTERNAL
-    // =========================
+    //internal
     void Populate(UnitData unit, KeypageData keypage, bool isPlayer)
     {
         if (unit == null) return;
@@ -134,7 +126,7 @@ public class UnitInfoBlock : MonoBehaviour
 
         RefreshPassives(unit, keypage);
 
-        // Deck — only player units have a live CharacterUnit reference
+        //deck (only player has live characterunit display)
         if (isPlayer && boundUnit != null)
             SpawnDeckCards(boundUnit.deck?.startingDeck, boundUnit);
         else
