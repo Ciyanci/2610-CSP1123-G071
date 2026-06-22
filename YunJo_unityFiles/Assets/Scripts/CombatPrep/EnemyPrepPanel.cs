@@ -9,12 +9,8 @@ public class EnemyPrepPanel : MonoBehaviour
     [Header("Info Block")]
     public UnitInfoBlock infoBlock;
 
-    List<UnitData> enemyUnits = new();
-
     public void Bind(List<UnitData> units)
     {
-        enemyUnits = units;
-
         for (int i = 0; i < slotUIs.Count; i++)
         {
             if (i < units.Count)
@@ -23,7 +19,6 @@ public class EnemyPrepPanel : MonoBehaviour
                 slotUIs[i].BindEmpty();
         }
 
-        // Auto-select first enemy
         if (units.Count > 0)
             OnEnemySelected(units[0]);
     }

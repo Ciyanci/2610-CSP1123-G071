@@ -10,13 +10,13 @@ public class CardListEntryUI : MonoBehaviour
     public Image           inDeckOverlay;
     public Button          addButton;
 
-    CardData       boundCard;
-    TeamRosterSlot boundSlot;
+    CardData      boundCard;
+    CharacterUnit boundUnit;
 
-    public void Setup(CardData card, bool alreadyInDeck, TeamRosterSlot slot)
+    public void Setup(CardData card, bool alreadyInDeck, CharacterUnit unit)
     {
         boundCard = card;
-        boundSlot = slot;
+        boundUnit = unit;
 
         if (artwork      != null && card.Artwork != null) artwork.sprite = card.Artwork;
         if (cardNameText != null) cardNameText.text = card.Name;
@@ -27,7 +27,7 @@ public class CardListEntryUI : MonoBehaviour
         addButton?.onClick.RemoveAllListeners();
         addButton?.onClick.AddListener(() =>
         {
-            CombatPrepManager.Instance?.AddCard(boundSlot, boundCard);
+            CombatPrepManager.Instance?.AddCard(boundUnit, boundCard);
             inDeckOverlay?.gameObject.SetActive(true);
         });
     }

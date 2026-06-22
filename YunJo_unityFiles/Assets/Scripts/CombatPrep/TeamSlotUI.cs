@@ -12,33 +12,36 @@ public class TeamSlotUI : MonoBehaviour
     public GameObject      emptyState;
     public Image           selectedHighlight;
     public Button          button;
-    public Button          swapButton;   // assistant only — opens unit picker
 
     [Header("Colors")]
     public Color selectedColor   = new Color(0.9f, 0.75f, 0.2f, 0.35f);
     public Color deselectedColor = new Color(0f, 0f, 0f, 0f);
 
-    //bound data
-    public TeamRosterSlot BoundSlot  { get; private set; }
-    public UnitData       BoundEnemy { get; private set; }
+    public CharacterUnit BoundUnit  { get; private set; }
+    public UnitData      BoundEnemy { get; private set; }
 
-    //bind for enemy to read
+    // =========================
+    // ENEMY — read only
+    // =========================
     public void BindEnemy(UnitData unit, Action<UnitData> onSelect)
     {
-        BoundSlot  = null;
+        BoundUnit  = null;
         BoundEnemy = unit;
 
         leaderBadge?.SetActive(false);
-        swapButton?.gameObject.SetActive(false);
         emptyState?.SetActive(unit == null);
 
         if (unit != null)
         {
-            if (portrait  != null && unit.portrait != null)
+            if (portrait != null && unit.portrait != null)
                 portrait.sprite = unit.portrait;
-            if (nameText  != null)
-                nameText.text   = unit.unitName;
+            if (nameText != null)
+                nameText.text = unit.unitName;
             portrait?.gameObject.SetActive(true);
+        }
+        else
+        {
+            portrait?.gameObject.SetActive(false);
         }
 
         button?.onClick.RemoveAllListeners();
@@ -46,32 +49,24 @@ public class TeamSlotUI : MonoBehaviour
             button?.onClick.AddListener(() => onSelect?.Invoke(unit));
     }
 
-    //bind player slots
-    public void BindPlayerSlot(
-        TeamRosterSlot slot,
-        bool isLeader,
-        int assistantIndex,
-        Action<TeamRosterSlot> onSelect)
+    // =========================
+    // PLAYER — interactable
+    // =========================
+    public void BindPlayerUnit(CharacterUnit unit, bool isLeader,
+                               Action<CharacterUnit> onSelect)
     {
-        BoundSlot  = slot;
+        BoundUnit  = unit;
         BoundEnemy = null;
 
         leaderBadge?.SetActive(isLeader);
-        emptyState?.SetActive(slot == null || slot.IsEmpty);
+        emptyState?.SetActive(unit == null);
 
-        //swap button only for empty/filled assistant slots
-        swapButton?.gameObject.SetActive(!isLeader);
-        swapButton?.onClick.RemoveAllListeners();
-        if (!isLeader && assistantIndex >= 0)
-            swapButton?.onClick.AddListener(() =>
-                CombatPrepManager.Instance?.OpenUnitPickerWindow(assistantIndex));
-
-        if (slot != null && !slot.IsEmpty)
+        if (unit != null)
         {
-            if (portrait != null && slot.unit.portrait != null)
-                portrait.sprite = slot.unit.portrait;
+            if (portrait != null && unit.unitData?.portrait != null)
+                portrait.sprite = unit.unitData.portrait;
             if (nameText != null)
-                nameText.text   = slot.unit.unitName;
+                nameText.text = unit.unitName;
             portrait?.gameObject.SetActive(true);
         }
         else
@@ -82,18 +77,20 @@ public class TeamSlotUI : MonoBehaviour
         }
 
         button?.onClick.RemoveAllListeners();
-        button?.onClick.AddListener(() => onSelect?.Invoke(slot));
+        if (unit != null)
+            button?.onClick.AddListener(() => onSelect?.Invoke(unit));
     }
 
-    //bind for empty placeholders
+    // =========================
+    // EMPTY
+    // =========================
     public void BindEmpty()
     {
-        BoundSlot  = null;
+        BoundUnit  = null;
         BoundEnemy = null;
         emptyState?.SetActive(true);
         portrait?.gameObject.SetActive(false);
         leaderBadge?.SetActive(false);
-        swapButton?.gameObject.SetActive(false);
         button?.onClick.RemoveAllListeners();
     }
 

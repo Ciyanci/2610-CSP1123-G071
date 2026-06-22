@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-//use this for the panels in combat prep
+
 public class UnitInfoBlock : MonoBehaviour
 {
     [Header("Identity")]
@@ -28,37 +28,82 @@ public class UnitInfoBlock : MonoBehaviour
     public Transform       deckContainer;
     public DeckCardEntryUI deckCardPrefab;
 
-    //set to true for player panel which enables remove button on deck cards
-    public bool isInteractable = false;
-
-    //overlay button covering the info section (player panel only again)
+    [Header("Interaction")]
+    public bool   isInteractable = false;
     public Button keypageOverlayButton;
 
     List<PassiveEntryUI>  spawnedPassives  = new();
     List<DeckCardEntryUI> spawnedDeckCards = new();
 
-    TeamRosterSlot boundSlot;
+    CharacterUnit boundUnit;
 
-    //for enemy units (no slot)
+    // =========================
+    // BIND — enemy (read only)
+    // =========================
     public void BindEnemy(UnitData unit)
     {
-        boundSlot = null;
-        Populate(unit, null, isPlayer: false);
-    }
+        boundUnit = null;
 
-    //for player slots
-    public void BindSlot(TeamRosterSlot slot)
-    {
-        boundSlot = slot;
-        if (slot == null || slot.IsEmpty)
+        if (unit == null)
         {
             gameObject.SetActive(false);
             return;
         }
+
         gameObject.SetActive(true);
-        Populate(slot.unit, slot.GetEffectiveKeypage(), isPlayer: true);
+        keypageOverlayButton?.gameObject.SetActive(false);
+
+        Populate(unit, null, isPlayer: false);
     }
 
+    // =========================
+    // BIND — player unit
+    // =========================
+    public void BindUnit(CharacterUnit unit)
+    {
+        boundUnit = unit;
+
+        if (unit == null)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        gameObject.SetActive(true);
+
+        UnitData    data    = unit.unitData;
+        KeypageData keypage = unit.equippedKeypage;
+
+        // Keypage button — visible for non-leader players only
+        if (keypageOverlayButton != null)
+        {
+            bool canChangeKeypage = isInteractable &&
+                                    data != null &&
+                                    !data.isLeader;
+
+            keypageOverlayButton.gameObject.SetActive(canChangeKeypage);
+            keypageOverlayButton.onClick.RemoveAllListeners();
+
+            if (canChangeKeypage)
+                keypageOverlayButton.onClick.AddListener(() =>
+                    CombatPrepManager.Instance?.OpenKeypageWindow(unit));
+        }
+
+        Populate(data, keypage, isPlayer: true);
+    }
+
+    // =========================
+    // REFRESH — call after deck/keypage changes
+    // =========================
+    public void RefreshDeck()
+    {
+        if (boundUnit != null)
+            SpawnDeckCards(boundUnit.deck?.startingDeck, boundUnit);
+    }
+
+    // =========================
+    // INTERNAL
+    // =========================
     void Populate(UnitData unit, KeypageData keypage, bool isPlayer)
     {
         if (unit == null) return;
@@ -80,44 +125,34 @@ public class UnitInfoBlock : MonoBehaviour
             staggerText.text = $"STG  {unit.GetMaxStagger(keypage)}";
 
         if (speedRangeText != null)
-            speedRangeText.text = "SPD  1 ~ 9";  //static range, dice rolled in combat
+            speedRangeText.text = "SPD  1 – 9";
 
-        //resistances
         var res = unit.GetResistances(keypage);
         SetResText(slashText,  res.GetModifier(DamageType.Slash));
         SetResText(pierceText, res.GetModifier(DamageType.Pierce));
         SetResText(bluntText,  res.GetModifier(DamageType.Blunt));
 
-        //keypage overlay button — player only, non-leader
-        if (keypageOverlayButton != null)
-        {
-            keypageOverlayButton.gameObject.SetActive(isPlayer);
-            keypageOverlayButton.onClick.RemoveAllListeners();
-            if (isPlayer && boundSlot != null && !unit.isLeader)
-                keypageOverlayButton.onClick.AddListener(() =>
-                    CombatPrepManager.Instance?.OpenKeypageWindow(boundSlot));
-        }
-
         RefreshPassives(unit, keypage);
-        RefreshDeck();
+
+        // Deck — only player units have a live CharacterUnit reference
+        if (isPlayer && boundUnit != null)
+            SpawnDeckCards(boundUnit.deck?.startingDeck, boundUnit);
+        else
+            SpawnDeckCards(null, null);
     }
 
-    public void RefreshDeck()
+    void SpawnDeckCards(List<CardData> deck, CharacterUnit unit)
     {
         foreach (var e in spawnedDeckCards)
             if (e != null) Destroy(e.gameObject);
         spawnedDeckCards.Clear();
 
-        if (deckCardPrefab == null) return;
-
-        List<CardData> deck = boundSlot != null
-            ? boundSlot.configuredDeck
-            : new List<CardData>();
+        if (deckCardPrefab == null || deck == null) return;
 
         foreach (var card in deck)
         {
             var entry = Instantiate(deckCardPrefab, deckContainer);
-            entry.Setup(card, boundSlot, isInteractable);
+            entry.Setup(card, unit, isInteractable);
             spawnedDeckCards.Add(entry);
         }
     }
@@ -128,10 +163,9 @@ public class UnitInfoBlock : MonoBehaviour
             if (e != null) Destroy(e.gameObject);
         spawnedPassives.Clear();
 
-        if (passivePrefab == null) return;
+        if (passivePrefab == null || unit == null) return;
 
-        var passives = unit.GetActivePassives(keypage);
-        foreach (var p in passives)
+        foreach (var p in unit.GetActivePassives(keypage))
         {
             var entry = Instantiate(passivePrefab, passiveContainer);
             entry.Setup(p);
@@ -144,19 +178,19 @@ public class UnitInfoBlock : MonoBehaviour
         if (label == null) return;
         label.text = mod switch
         {
-            >= 2.0f  => "Fatal",
-            >= 1.5f  => "Weak",
-            >= 1.0f  => "Normal",
-            >= 0.5f  => "Endured",
-            _        => "Ineffective"
+            >= 2.0f => "Fatal",
+            >= 1.5f => "Weak",
+            >= 1.0f => "Normal",
+            >= 0.5f => "Endured",
+            _       => "Ineffective"
         };
         label.color = mod switch
         {
-            >= 2.0f  => new Color(0.9f, 0.2f, 0.2f),
-            >= 1.5f  => new Color(0.9f, 0.6f, 0.2f),
-            >= 1.0f  => Color.white,
-            >= 0.5f  => new Color(0.4f, 0.8f, 0.4f),
-            _        => new Color(0.4f, 0.6f, 0.9f)
+            >= 2.0f => new Color(0.9f, 0.2f, 0.2f),
+            >= 1.5f => new Color(0.9f, 0.6f, 0.2f),
+            >= 1.0f => Color.white,
+            >= 0.5f => new Color(0.4f, 0.8f, 0.4f),
+            _       => new Color(0.4f, 0.6f, 0.9f)
         };
     }
 }

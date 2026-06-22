@@ -7,31 +7,27 @@ public class DeckCardEntryUI : MonoBehaviour
     public Image           artwork;
     public TextMeshProUGUI cardNameText;
     public TextMeshProUGUI costText;
-    public Button          button;  //click to open card editor (player) or nothing (enemy)
+    public Button          button;
 
-    CardData       boundCard;
-    TeamRosterSlot boundSlot;
+    CardData      boundCard;
+    CharacterUnit boundUnit;
 
-    public void Setup(CardData card, TeamRosterSlot slot, bool isInteractable)
+    public void Setup(CardData card, CharacterUnit unit, bool isInteractable)
     {
         boundCard = card;
-        boundSlot = slot;
+        boundUnit = unit;
 
         if (artwork      != null && card.Artwork != null) artwork.sprite = card.Artwork;
         if (cardNameText != null) cardNameText.text = card.Name;
         if (costText     != null) costText.text     = card.Cost.ToString();
 
-        button?.onClick.RemoveAllListeners();
-
-        if (isInteractable && button != null)
+        if (button != null)
         {
-            button.interactable = true;
-            button.onClick.AddListener(() =>
-                CombatPrepManager.Instance?.OpenCardEditorWindow(boundSlot));
-        }
-        else if (button != null)
-        {
-            button.interactable = false;
+            button.interactable = isInteractable;
+            button.onClick.RemoveAllListeners();
+            if (isInteractable)
+                button.onClick.AddListener(() =>
+                    CombatPrepManager.Instance?.OpenCardEditorWindow(boundUnit));
         }
     }
 }

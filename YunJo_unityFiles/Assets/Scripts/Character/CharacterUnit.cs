@@ -8,11 +8,15 @@ public class CharacterUnit : MonoBehaviour
     public string unitName;
     public UnitType unitType;
 
+    [Header("Unit Data — assign in Inspector")]
+    public UnitData unitData;       // ✅ reference for keypage/card editing in prep
+    public KeypageData equippedKeypage; // ✅ assigned in prep, null for leaders
+
     [Header("Stats")]
-    public int maxHP = 100;
-    public int hp = 100;
+    public int maxHP      = 100;
+    public int hp         = 100;
     public int maxStagger = 50;
-    public int stagger = 50;
+    public int stagger    = 50;
 
     [Header("UI")]
     public CharacterStatusUI statusUI;
@@ -26,7 +30,7 @@ public class CharacterUnit : MonoBehaviour
     public bool CanAct      => state == UnitState.Normal;
 
     [Header("Resources")]
-    public int maxLight = 5;
+    public int maxLight     = 5;
     public int currentLight = 1;
 
     [Header("Resistances")]
@@ -67,7 +71,7 @@ public class CharacterUnit : MonoBehaviour
 
     void Awake()
     {
-        startPos = visual.position;
+        startPos   = visual.position;
         facingSign = startsOnLeft ? 1 : -1;
         ApplyFacing(facingSign);
         if (deck == null)
@@ -83,8 +87,29 @@ public class CharacterUnit : MonoBehaviour
         lightBarUI?.Bind(this);
     }
 
-    //facing**
+    // =========================
+    // APPLY KEYPAGE
+    // Called by BattleStarter after prep
+    // =========================
+    public void ApplyKeypage(KeypageData keypage)
+    {
+        equippedKeypage = keypage;
 
+        if (unitData == null) return;
+
+        maxHP      = unitData.GetMaxHP(keypage);
+        hp         = maxHP;
+        maxStagger = unitData.GetMaxStagger(keypage);
+        stagger    = maxStagger;
+        resistances = unitData.GetResistances(keypage);
+
+        statusUI?.Refresh();
+        CombatHUDController.Instance?.RefreshAll();
+    }
+
+    // =========================
+    // FACING
+    // =========================
     public void SetInitialFacing(bool faceRight)
     {
         facingSign = faceRight ? 1 : -1;
@@ -106,32 +131,29 @@ public class CharacterUnit : MonoBehaviour
         ApplyFacing(sign);
     }
 
-    public void RestoreDefaultFacing()
-    {
-        ApplyFacing(facingSign);
-    }
-    //movement**
+    public void RestoreDefaultFacing() => ApplyFacing(facingSign);
 
-    //faces movement direction during travel, restores facingSign on arrival
+    // =========================
+    // MOVEMENT
+    // =========================
     public IEnumerator MoveTo(
         Vector3 target,
-        float duration = 0.2f,
-        bool playMoveSprite = true,
+        float duration       = 0.2f,
+        bool playMoveSprite  = true,
         CharacterUnit faceTarget = null)
     {
         Vector3 start = visual.position;
         if (Vector3.Distance(start, target) < 0.01f) yield break;
-        if (faceTarget != null)
-        {
-            FaceTowardUnit(faceTarget);
-        }
+
+        if (faceTarget != null) FaceTowardUnit(faceTarget);
         else
         {
             int moveSign = target.x > start.x ? 1 : -1;
             ApplyFacing(moveSign);
         }
-        if (playMoveSprite && move != null)
-            sr.sprite = move;
+
+        if (playMoveSprite && move != null) sr.sprite = move;
+
         float t = 0;
         while (t < duration)
         {
@@ -141,14 +163,13 @@ public class CharacterUnit : MonoBehaviour
         }
         visual.position = target;
         ApplyFacing(facingSign);
-        if (playMoveSprite)
-            sr.sprite = idle;
+        if (playMoveSprite) sr.sprite = idle;
     }
+
     public IEnumerator Recoil(Vector3 dir, float distance, float duration)
     {
         Vector3 start  = visual.position;
         Vector3 target = start + dir * distance;
-
         float t = 0;
         while (t < duration)
         {
@@ -156,9 +177,8 @@ public class CharacterUnit : MonoBehaviour
             t += Time.deltaTime;
             yield return null;
         }
-
         visual.position = target;
-        ApplyFacing(facingSign); //restore in case anything changed it
+        ApplyFacing(facingSign);
     }
 
     public void ResetPosition()
@@ -170,34 +190,30 @@ public class CharacterUnit : MonoBehaviour
 
     public Vector3 GetClashPosition() => clashAnchor.position;
 
-    //light**
-
+    // =========================
+    // LIGHT
+    // =========================
     public void RefreshLight()
     {
         currentLight = maxLight;
         lightBarUI?.Refresh();
     }
 
-    public bool CanPay(int amount) => currentLight >= amount;
-
+    public bool CanPay(int amount)    => currentLight >= amount;
     public void SpendLight(int amount)
     {
         currentLight -= amount;
         lightBarUI?.Refresh();
     }
 
-    //speed slot**
-
+    // =========================
+    // SPEED SLOTS
+    // =========================
     public void RollSpeedSlots()
     {
-        foreach (var slot in speedSlots)
-            slot.Roll();
-
+        foreach (var slot in speedSlots) slot.Roll();
         SortSlots();
-
-        if (slotRowUI != null && speedSlots.Count > 0)
-            slotRowUI.Bind(this);
-
+        if (slotRowUI != null && speedSlots.Count > 0) slotRowUI.Bind(this);
         slotRowUI?.AnimateRolls();
     }
 
@@ -214,7 +230,6 @@ public class CharacterUnit : MonoBehaviour
             stagger = maxStagger;
             state   = UnitState.Normal;
         }
-
         isInterrupted = false;
         InitializeSpeedSlots();
         RollSpeedSlots();
@@ -224,20 +239,13 @@ public class CharacterUnit : MonoBehaviour
 
     public void InitializeSpeedSlots()
     {
-        if (speedSlots == null)
-            speedSlots = new List<SpeedSlot>();
-
+        if (speedSlots == null) speedSlots = new List<SpeedSlot>();
         speedSlots.Clear();
-
         int diceCount = GetSpeedDiceCount();
-
         for (int i = 0; i < diceCount; i++)
             speedSlots.Add(new SpeedSlot { owner = this });
-
         SortSlots();
-
-        if (slotRowUI != null)
-            slotRowUI.Bind(this);
+        if (slotRowUI != null) slotRowUI.Bind(this);
     }
 
     public int GetSpeedDiceCount()
@@ -263,31 +271,27 @@ public class CharacterUnit : MonoBehaviour
     public SpeedSlot GetHighestAvailableSlot()
     {
         if (!CanAct) return null;
-
         SpeedSlot best = null;
-
         foreach (var slot in speedSlots)
         {
             if (slot.state == SlotState.Executed ||
                 slot.state == SlotState.Committed) continue;
-
             if (best == null || slot.value > best.value)
                 best = slot;
         }
-
         return best;
     }
 
     public void ClearCombatAssignments()
     {
-        foreach (var slot in speedSlots)
-            slot.Clear();
+        foreach (var slot in speedSlots) slot.Clear();
     }
 
     public bool CanResolveAction() => !IsDead && !isInterrupted;
 
-    //defensive**
-
+    // =========================
+    // DEFENSIVE
+    // =========================
     public DefensiveDie GetAvailableDefense()
     {
         if (IsDead || isInterrupted) return null;
@@ -295,17 +299,15 @@ public class CharacterUnit : MonoBehaviour
         return defensiveDice[0];
     }
 
-    //damage**
-
+    // =========================
+    // DAMAGE
+    // =========================
     public void TakeDamage(int amount, DamageType type)
     {
         if (IsDead) return;
-
         int final = DamageCalculator.Calculate(amount, type, this);
         hp = Mathf.Max(0, hp - final);
-
         Debug.Log($"{unitName} took {final} HP | remaining: {hp}/{maxHP}");
-
         RefreshAllUI();
         EvaluateState();
     }
@@ -313,11 +315,8 @@ public class CharacterUnit : MonoBehaviour
     public void TakeStaggerDamage(int amount)
     {
         if (IsDead) return;
-
         stagger = Mathf.Max(0, stagger - amount);
-
-        Debug.Log($"{unitName} took {amount} stagger | remaining: {stagger}/{maxStagger}");
-
+        Debug.Log($"{unitName} stagger | remaining: {stagger}/{maxStagger}");
         RefreshAllUI();
         EvaluateState();
     }
@@ -332,25 +331,20 @@ public class CharacterUnit : MonoBehaviour
         int amount, DamageType type, Vector3 attackerDir, bool returnToStart = true)
     {
         if (IsDead) yield break;
-
         int final = DamageCalculator.Calculate(amount, type, this);
         hp = Mathf.Max(0, hp - final);
-
         Debug.Log($"{unitName} took {final} HP (knockback) | remaining: {hp}/{maxHP}");
-
         RefreshAllUI();
-
         float knockDist = Mathf.Clamp(final * 1f, 3f, 12f);
         yield return Recoil(attackerDir, knockDist, 0.06f);
-
         if (returnToStart && !IsDead)
             yield return MoveTo(startPos, 0.2f);
-
         EvaluateState();
     }
 
-    //state**
-
+    // =========================
+    // STATE
+    // =========================
     public void EvaluateState()
     {
         if (hp <= 0)      { Die();     return; }
@@ -384,27 +378,23 @@ public class CharacterUnit : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    //sprites**
-
+    // =========================
+    // SPRITES
+    // =========================
     public void PlayAttack() => sr.sprite = attack;
     public void PlayHit()    => sr.sprite = hit;
     public void PlayWindup() => sr.sprite = windup;
     public void PlayMove()   => sr.sprite = move;
 
-    //speed UI**
+    // =========================
+    // SPEED UI
+    // =========================
+    public void HideSpeed() { foreach (var s in speedSlots) s.ui?.Hide(); }
+    public void ShowSpeed() { foreach (var s in speedSlots) s.ui?.Show(); }
 
-    public void HideSpeed()
-    {
-        foreach (var slot in speedSlots) slot.ui?.Hide();
-    }
-
-    public void ShowSpeed()
-    {
-        foreach (var slot in speedSlots) slot.ui?.Show();
-    }
-
-    //inputs**
-
+    // =========================
+    // INPUT
+    // =========================
     void OnMouseDown()
     {
         if (CombatFlowController.Instance.IsTargeting)
@@ -422,6 +412,7 @@ public class CharacterUnit : MonoBehaviour
         c.a = involved ? 1f : 0.5f;
         sr.color = c;
     }
+
     public void ResetTransparency()
     {
         if (sr == null) return;

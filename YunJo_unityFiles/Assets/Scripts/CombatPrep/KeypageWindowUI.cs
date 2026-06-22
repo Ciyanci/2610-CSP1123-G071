@@ -4,22 +4,19 @@ using System.Collections.Generic;
 
 public class KeypageWindowUI : MonoBehaviour
 {
-    public Transform        container;
-    public KeypageEntryUI   entryPrefab;
-    public Button           closeButton;
+    public Transform      container;
+    public KeypageEntryUI entryPrefab;
+    public Button         closeButton;
 
     List<KeypageEntryUI> spawned = new();
-    TeamRosterSlot       boundSlot;
+    CharacterUnit        boundUnit;
     List<KeypageData>    keypages;
 
-    void Awake()
-    {
-        closeButton?.onClick.AddListener(Close);
-    }
+    void Awake() => closeButton?.onClick.AddListener(Close);
 
-    public void Open(TeamRosterSlot slot, List<KeypageData> available)
+    public void Open(CharacterUnit unit, List<KeypageData> available)
     {
-        boundSlot = slot;
+        boundUnit = unit;
         keypages  = available;
         gameObject.SetActive(true);
         Refresh();
@@ -31,13 +28,13 @@ public class KeypageWindowUI : MonoBehaviour
             if (e != null) Destroy(e.gameObject);
         spawned.Clear();
 
-        if (boundSlot == null || keypages == null) return;
+        if (boundUnit == null || keypages == null) return;
 
         foreach (var kp in keypages)
         {
-            var entry = Instantiate(entryPrefab, container);
-            bool equipped = boundSlot.equippedKeypage == kp;
-            entry.Setup(kp, equipped, boundSlot);
+            var entry    = Instantiate(entryPrefab, container);
+            bool equipped = boundUnit.equippedKeypage == kp;
+            entry.Setup(kp, equipped, boundUnit);
             spawned.Add(entry);
         }
     }

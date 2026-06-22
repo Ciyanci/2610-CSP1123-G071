@@ -1,20 +1,19 @@
 using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class PlayerPrepPanel : MonoBehaviour
 {
     [Header("Slot Buttons")]
     public List<TeamSlotUI> slotUIs = new();
 
-    [Header("Info Block")]
+    [Header("Info Block — isInteractable must be true")]
     public UnitInfoBlock infoBlock;
 
     [Header("Enter Battle")]
     public Button enterBattleButton;
 
-    TeamRoster     roster;
-    TeamRosterSlot selectedSlot;
+    CharacterUnit selectedUnit;
 
     void Start()
     {
@@ -22,47 +21,37 @@ public class PlayerPrepPanel : MonoBehaviour
             () => CombatPrepManager.Instance?.EnterBattle());
     }
 
-    public void Bind(TeamRoster r)
+    public void Bind(List<CharacterUnit> units)
     {
-        roster = r;
-
-        //leader slot (index 0)
-        if (slotUIs.Count > 0)
-            slotUIs[0].BindPlayerSlot(
-                r.leaderSlot,
-                isLeader: true,
-                assistantIndex: -1,
-                onSelect: OnPlayerSlotSelected);
-
-        //assistant slots
-        for (int i = 1; i < slotUIs.Count; i++)
+        for (int i = 0; i < slotUIs.Count; i++)
         {
-            int ai = i - 1;
-            if (ai < r.assistantSlots.Length)
-                slotUIs[i].BindPlayerSlot(
-                    r.assistantSlots[ai],
-                    isLeader: false,
-                    assistantIndex: ai,
-                    onSelect: OnPlayerSlotSelected);
+            if (i < units.Count)
+            {
+                bool isLeader = units[i].unitData != null &&
+                                units[i].unitData.isLeader;
+                slotUIs[i].BindPlayerUnit(units[i], isLeader, OnPlayerSelected);
+            }
             else
+            {
                 slotUIs[i].BindEmpty();
+            }
         }
     }
 
-    void OnPlayerSlotSelected(TeamRosterSlot slot)
+    void OnPlayerSelected(CharacterUnit unit)
     {
-        selectedSlot = slot;
+        selectedUnit = unit;
 
         foreach (var s in slotUIs)
-            s.SetSelected(s.BoundSlot == slot);
+            s.SetSelected(s.BoundUnit == unit);
 
-        infoBlock?.BindSlot(slot);
-        CombatPrepManager.Instance?.SelectPlayerSlot(slot);
+        infoBlock?.BindUnit(unit);
+        CombatPrepManager.Instance?.SelectUnit(unit);
     }
 
-    public void SetSelected(TeamRosterSlot slot)
+    public void SetSelected(CharacterUnit unit)
     {
-        OnPlayerSlotSelected(slot);
+        OnPlayerSelected(unit);
     }
 
     public void RefreshSelected()

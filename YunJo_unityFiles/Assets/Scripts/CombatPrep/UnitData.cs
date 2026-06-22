@@ -7,17 +7,18 @@ public class UnitData : ScriptableObject
     [Header("Identity")]
     public string unitName;
     public Sprite portrait;
+
+    [Header("Sprites")]
     public Sprite idleSprite;
     public Sprite attackSprite;
     public Sprite hitSprite;
     public Sprite windupSprite;
     public Sprite moveSprite;
 
-    [Header("Leader")]
-    public bool isLeader = false;
 
-    //leaders have a fixed keypage that cannot be changed
-    public KeypageData lockedKeypage;
+    [Header("Leader")]
+    public bool        isLeader     = false;
+    public KeypageData lockedKeypage;          // leaders only
 
     [Header("Base Stats")]
     public int baseMaxHP      = 100;
@@ -27,61 +28,42 @@ public class UnitData : ScriptableObject
     [Header("Base Resistances")]
     public DamageResistance baseResistances;
 
-    [Header("Deck")]
-    //cards always available to this unit regardless of keypage
-    public List<CardData> starterDeck = new();
-
-    //unique cards available to certain characters if needed
-    public List<CardData> uniqueCards = new();
+    [Header("Cards")]
+    public List<CardData> starterDeck  = new();
+    public List<CardData> uniqueCards  = new();  // leader only
 
     [Header("Passives")]
-    //leader-only, always active regardless of keypage
-    public List<PassiveData> innatePassives = new();
+    public List<PassiveData> innatePassives = new();  // leader only
 
-    //return full card pool to character (starter + unique + keypage granted cards)
-    public List<CardData> GetFullCardPool(KeypageData keypage)
+    // =========================
+    // HELPERS
+    // =========================
+    public int GetMaxHP(KeypageData kp) =>
+        baseMaxHP + (kp != null ? kp.hpBonus : 0);
+
+    public int GetMaxStagger(KeypageData kp) =>
+        baseMaxStagger + (kp != null ? kp.staggerBonus : 0);
+
+    public DamageResistance GetResistances(KeypageData kp) =>
+        (kp != null && kp.overrideResistances) ? kp.resistances : baseResistances;
+
+    public List<CardData> GetFullCardPool(KeypageData kp)
     {
         var pool = new List<CardData>(starterDeck);
-
         foreach (var c in uniqueCards)
             if (!pool.Contains(c)) pool.Add(c);
-
-        if (keypage != null)
-            foreach (var c in keypage.grantedCards)
+        if (kp != null)
+            foreach (var c in kp.grantedCards)
                 if (!pool.Contains(c)) pool.Add(c);
-
         return pool;
     }
 
-    //return active passive for unit
-    public List<PassiveData> GetActivePassives(KeypageData keypage)
+    public List<PassiveData> GetActivePassives(KeypageData kp)
     {
-        var passives = new List<PassiveData>(innatePassives);
-
-        if (keypage != null)
-            foreach (var p in keypage.grantedPassives)
-                if (!passives.Contains(p)) passives.Add(p);
-
-        return passives;
-    }
-
-    //final hp after keypage bonus (negative value to reduce max hp)
-    public int GetMaxHP(KeypageData keypage)
-    {
-        return baseMaxHP + (keypage != null ? keypage.hpBonus : 0);
-    }
-
-    //final stagger threshold
-    public int GetMaxStagger(KeypageData keypage)
-    {
-        return baseMaxStagger + (keypage != null ? keypage.staggerBonus : 0);
-    }
-
-    //keypage overrides resistances (usually wont be touched but added just in caaase)
-    public DamageResistance GetResistances(KeypageData keypage)
-    {
-        if (keypage != null && keypage.overrideResistances)
-            return keypage.resistances;
-        return baseResistances;
+        var list = new List<PassiveData>(innatePassives);
+        if (kp != null)
+            foreach (var p in kp.grantedPassives)
+                if (!list.Contains(p)) list.Add(p);
+        return list;
     }
 }

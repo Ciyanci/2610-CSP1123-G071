@@ -9,26 +9,23 @@ public class CardEditorWindowUI : MonoBehaviour
     public DeckCardEntryUI currentDeckEntryPrefab;
 
     [Header("Available Pool")]
-    public Transform        poolContainer;
-    public CardListEntryUI  poolEntryPrefab;
+    public Transform       poolContainer;
+    public CardListEntryUI poolEntryPrefab;
 
     [Header("Close")]
     public Button closeButton;
 
-    List<DeckCardEntryUI>  spawnedCurrent = new();
-    List<CardListEntryUI>  spawnedPool    = new();
+    List<DeckCardEntryUI> spawnedCurrent = new();
+    List<CardListEntryUI> spawnedPool    = new();
 
-    TeamRosterSlot  boundSlot;
-    List<CardData>  allCards;
+    CharacterUnit  boundUnit;
+    List<CardData> allCards;
 
-    void Awake()
+    void Awake() => closeButton?.onClick.AddListener(Close);
+
+    public void Open(CharacterUnit unit, List<CardData> cards)
     {
-        closeButton?.onClick.AddListener(Close);
-    }
-
-    public void Open(TeamRosterSlot slot, List<CardData> cards)
-    {
-        boundSlot = slot;
+        boundUnit = unit;
         allCards  = cards;
         gameObject.SetActive(true);
         Refresh();
@@ -46,17 +43,16 @@ public class CardEditorWindowUI : MonoBehaviour
             if (e != null) Destroy(e.gameObject);
         spawnedCurrent.Clear();
 
-        if (boundSlot == null || currentDeckEntryPrefab == null) return;
+        if (boundUnit?.deck == null || currentDeckEntryPrefab == null) return;
 
-        foreach (var card in boundSlot.configuredDeck)
+        foreach (var card in boundUnit.deck.startingDeck)
         {
             var entry = Instantiate(currentDeckEntryPrefab, currentDeckContainer);
-            //interactable true so clicking removes the card
-            entry.Setup(card, boundSlot, isInteractable: true);
-            //override button to remove instead of open editor
+            entry.Setup(card, boundUnit, isInteractable: true);
+            var c = card; // capture for lambda
             entry.button?.onClick.RemoveAllListeners();
             entry.button?.onClick.AddListener(() =>
-                CombatPrepManager.Instance?.RemoveCard(boundSlot, card));
+                CombatPrepManager.Instance?.RemoveCard(boundUnit, c));
             spawnedCurrent.Add(entry);
         }
     }
@@ -67,17 +63,15 @@ public class CardEditorWindowUI : MonoBehaviour
             if (e != null) Destroy(e.gameObject);
         spawnedPool.Clear();
 
-        if (boundSlot == null || boundSlot.IsEmpty ||
-            poolEntryPrefab == null) return;
+        if (boundUnit?.unitData == null || poolEntryPrefab == null) return;
 
-        var pool = boundSlot.unit.GetFullCardPool(
-            boundSlot.GetEffectiveKeypage());
+        var pool = boundUnit.unitData.GetFullCardPool(boundUnit.equippedKeypage);
 
         foreach (var card in pool)
         {
-            var entry = Instantiate(poolEntryPrefab, poolContainer);
-            bool inDeck = boundSlot.configuredDeck.Contains(card);
-            entry.Setup(card, inDeck, boundSlot);
+            var entry   = Instantiate(poolEntryPrefab, poolContainer);
+            bool inDeck = boundUnit.deck.startingDeck.Contains(card);
+            entry.Setup(card, inDeck, boundUnit);
             spawnedPool.Add(entry);
         }
     }

@@ -1,3 +1,4 @@
+// CombatPrepManager.cs — per-stage manual version
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
@@ -6,168 +7,121 @@ public class CombatPrepManager : MonoBehaviour
 {
     public static CombatPrepManager Instance;
 
-    [Header("Data")]
-    public TeamRoster        roster;
-    public StageData         stage;
-    public List<CardData>    allCards     = new();
-    public List<KeypageData> allKeypages  = new();
-    public List<UnitData>    allUnits     = new();  //for assistant picker
+    [Header("Scene To Load")]
+    public string combatSceneName = "Combat_Stage1";
 
-    [Header("Panels")]
-    public EnemyPrepPanel  enemyPanel;
-    public PlayerPrepPanel playerPanel;
+    [Header("Player Units — assign in Inspector")]
+    public List<CharacterUnit> playerUnits = new();
+
+    [Header("All Available Cards")]
+    public List<CardData> allCards = new();
+
+    [Header("All Available Keypages")]
+    public List<KeypageData> allKeypages = new();
+
+    [Header("UI")]
+    public PlayerPrepPanel    playerPanel;
+    public EnemyPrepPanel     enemyPanel;
+    public KeypageWindowUI    keypageWindow;
+    public CardEditorWindowUI cardEditorWindow;
 
     [Header("Stage Title")]
     public TMPro.TextMeshProUGUI stageTitleText;
 
-    [Header("Overlay Windows")]
-    public KeypageWindowUI    keypageWindow;
-    public CardEditorWindowUI cardEditorWindow;
-    public UnitPickerWindowUI unitPickerWindow;
+    [Header("Enemy Preview Units — assign UnitData directly")]
+    public List<UnitData> enemyPreviewData = new();
 
-    //currently selected player slot
-    TeamRosterSlot selectedPlayerSlot;
+    CharacterUnit selectedUnit;
 
     void Awake() => Instance = this;
 
     void Start()
     {
-        if (BattleContext.ActiveStage  != null) stage  = BattleContext.ActiveStage;
-        if (BattleContext.ActiveRoster != null) roster = BattleContext.ActiveRoster;
-
-        if (stage  == null) { Debug.LogError("[PREP] No stage");  return; }
-        if (roster == null) { Debug.LogError("[PREP] No roster"); return; }
-
-        //ensure leader deck initialized
-        if (!roster.leaderSlot.IsEmpty &&
-            roster.leaderSlot.configuredDeck.Count == 0)
-            roster.leaderSlot.InitializeDeck();
-
-        if (stageTitleText != null)
-            stageTitleText.text = stage.stageName;
-
-        //close all windows
         keypageWindow?.Close();
         cardEditorWindow?.Close();
-        unitPickerWindow?.Close();
 
-        enemyPanel?.Bind(stage.enemyUnits);
-        playerPanel?.Bind(roster);
+        enemyPanel?.Bind(enemyPreviewData);
+        playerPanel?.Bind(playerUnits);
 
-        //auto-select leader
-        SelectPlayerSlot(roster.leaderSlot);
+        // Auto-select first player unit
+        if (playerUnits.Count > 0)
+            SelectUnit(playerUnits[0]);
     }
 
-    //selection
-    public void SelectPlayerSlot(TeamRosterSlot slot)
+    // =========================
+    // SELECTION
+    // =========================
+    public void SelectUnit(CharacterUnit unit)
     {
-        selectedPlayerSlot = slot;
-        playerPanel?.SetSelected(slot);
+        selectedUnit = unit;
+        playerPanel?.SetSelected(unit);
     }
 
-    public TeamRosterSlot GetSelectedPlayerSlot() => selectedPlayerSlot;
+    public CharacterUnit GetSelectedUnit() => selectedUnit;
 
-    //windows
-    public void OpenKeypageWindow(TeamRosterSlot slot)
+    // =========================
+    // WINDOWS
+    // =========================
+    public void OpenKeypageWindow(CharacterUnit unit)
     {
-        if (slot == null || slot.IsEmpty) return;
-        if (slot.unit.isLeader)
+        if (unit == null) return;
+        if (unit.unitData != null && unit.unitData.isLeader)
         {
-            Debug.Log("[PREP] Leader keypage locked");
+            Debug.Log("[PREP] Leader keypage is locked");
             return;
         }
-        keypageWindow?.Open(slot, allKeypages);
+        keypageWindow?.Open(unit, allKeypages);
     }
 
-    public void OpenCardEditorWindow(TeamRosterSlot slot)
+    public void OpenCardEditorWindow(CharacterUnit unit)
     {
-        if (slot == null || slot.IsEmpty) return;
-        cardEditorWindow?.Open(slot, allCards);
-    }
-
-    public void OpenUnitPickerWindow(int assistantIndex)
-    {
-        unitPickerWindow?.Open(assistantIndex, allUnits, roster);
+        if (unit == null) return;
+        cardEditorWindow?.Open(unit, allCards);
     }
 
     public void CloseAllWindows()
     {
         keypageWindow?.Close();
         cardEditorWindow?.Close();
-        unitPickerWindow?.Close();
     }
 
-    //deck editing
-    public void AddCard(TeamRosterSlot slot, CardData card)
+    // =========================
+    // DECK EDITING
+    // =========================
+    public void AddCard(CharacterUnit unit, CardData card)
     {
-        if (slot == null || slot.IsEmpty || card == null) return;
-        if (!slot.configuredDeck.Contains(card))
-            slot.configuredDeck.Add(card);
-
+        if (unit?.deck == null || card == null) return;
+        if (!unit.deck.startingDeck.Contains(card))
+            unit.deck.startingDeck.Add(card);
         cardEditorWindow?.Refresh();
         playerPanel?.RefreshSelected();
     }
 
-    public void RemoveCard(TeamRosterSlot slot, CardData card)
+    public void RemoveCard(CharacterUnit unit, CardData card)
     {
-        if (slot == null || slot.IsEmpty || card == null) return;
-        slot.configuredDeck.Remove(card);
-
+        if (unit?.deck == null || card == null) return;
+        unit.deck.startingDeck.Remove(card);
         cardEditorWindow?.Refresh();
         playerPanel?.RefreshSelected();
     }
 
-    //keypage
-    public void EquipKeypage(TeamRosterSlot slot, KeypageData keypage)
+    // =========================
+    // KEYPAGE
+    // =========================
+    public void EquipKeypage(CharacterUnit unit, KeypageData keypage)
     {
-        if (slot == null || slot.IsEmpty || slot.unit.isLeader) return;
-        slot.equippedKeypage = keypage;
-
+        if (unit == null) return;
+        if (unit.unitData != null && unit.unitData.isLeader) return;
+        unit.equippedKeypage = keypage;
         keypageWindow?.Refresh();
         playerPanel?.RefreshSelected();
     }
 
-    //unit swap
-    public void AssignUnit(int assistantIndex, UnitData unit)
-    {
-        if (assistantIndex < 0 ||
-            assistantIndex >= roster.assistantSlots.Length) return;
-
-        var slot = roster.assistantSlots[assistantIndex];
-        slot.unit            = unit;
-        slot.equippedKeypage = null;
-        slot.InitializeDeck();
-
-        playerPanel?.Bind(roster);
-        SelectPlayerSlot(slot);
-        unitPickerWindow?.Close();
-    }
-
-    public void ClearAssistantSlot(int assistantIndex)
-    {
-        if (assistantIndex < 0 ||
-            assistantIndex >= roster.assistantSlots.Length) return;
-
-        var slot = roster.assistantSlots[assistantIndex];
-        slot.unit            = null;
-        slot.equippedKeypage = null;
-        slot.configuredDeck.Clear();
-
-        playerPanel?.Bind(roster);
-        SelectPlayerSlot(roster.leaderSlot);
-        unitPickerWindow?.Close();
-    }
-
-    //enter battle
+    // =========================
+    // ENTER BATTLE
+    // =========================
     public void EnterBattle()
     {
-        if (!roster.IsValid())
-        {
-            Debug.LogWarning("[PREP] Need at least a leader");
-            return;
-        }
-
-        BattleContext.Set(stage, roster);
-        SceneManager.LoadScene(stage.combatSceneName);
+        SceneManager.LoadScene(combatSceneName);
     }
 }
