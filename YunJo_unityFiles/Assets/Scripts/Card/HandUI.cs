@@ -102,6 +102,21 @@ public class HandUI : MonoBehaviour
         }
     }
 
+    public void ShowCards(List<Card> cards)
+    {
+        gameObject.SetActive(true);
+        Clear();
+
+        float startX = -(cards.Count - 1)*cardSpacing * 0.5f;
+        for (int i = 0; i < cards.Count; i++)
+        {
+            CardView v = Instantiate(prefab, container);
+            v.Setup(cards[i], null);
+            v.SetBasePosition(new Vector2(startX+i*cardSpacing, 0));
+            views.Add(v);
+        }
+    }
+
     public void ResetHover()
     {
         if (currentHovered == null) return;

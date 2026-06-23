@@ -35,6 +35,7 @@ public class CardView : MonoBehaviour,
     Card card;
     public Card GetCard() => card;
     CharacterUnit owner;
+    int siblingIndex;
 
     void Awake()
     {
@@ -62,6 +63,16 @@ public class CardView : MonoBehaviour,
         var rootImage = GetComponent<Image>();
         if (rootImage != null)
             rootImage.raycastTarget = true;
+    }
+    public void BringToFront()
+    {
+        siblingIndex = transform.GetSiblingIndex();
+        transform.SetAsLastSibling();
+    }
+
+    public void RestoreSiblingOrder()
+    {
+        transform.SetSiblingIndex(siblingIndex);
     }
 
     public void Setup(Card c, CharacterUnit unit)
@@ -162,6 +173,7 @@ public class CardView : MonoBehaviour,
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (CombatFlowController.Instance == null) return;
         CombatFlowController.Instance.StartTargeting(card, owner);
     }
 }
