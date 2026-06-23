@@ -285,21 +285,13 @@ public class PageCombatResolver : MonoBehaviour
         attacker.PlayAttack();
         defender.PlayHit();
         CombatAudioManager.Instance?.PlayClashHit();
-
-        int damage  = Mathf.Max(1, roll + die.Power);
-        Vector3 dir = (defender.visual.position - attacker.visual.position).normalized;
-
-        yield return defender.TakeDamageWithKnockback(damage, die.damageType, dir, false);
-        defender.TakeStaggerDamage(Mathf.Max(1, roll));
-
         yield return CameraShake(clashShakeIntensity, 0.2f);
         yield return new WaitForSeconds(hitPauseDuration);
-
         attacker.sr.sprite = attacker.idle;
-        defender.sr.sprite = defender.idle;
+        if (!defender.IsDead) defender.sr.sprite = defender.idle;
+        FaceUnitsTowardEachOther(attacker, defender);
     }
 
-    //flush hit **
     IEnumerator ApplyFlushHit(
         CharacterUnit attacker,
         CharacterUnit defender,
@@ -307,7 +299,6 @@ public class PageCombatResolver : MonoBehaviour
         CombatDiceGroupUI group)
     {
         attacker.PlayWindup();
-
         int roll = 0;
         if (group != null)
             yield return group.RollCurrentDie(
@@ -317,25 +308,25 @@ public class PageCombatResolver : MonoBehaviour
             yield return new WaitForSeconds(windupDuration);
             roll = die.Roll();
         }
-
         group?.SetCurrentResult(true);
         yield return new WaitForSeconds(0.15f);
-
         attacker.PlayAttack();
         defender.PlayHit();
         CombatAudioManager.Instance?.PlayUnopposedHit();
-
         int damage  = Mathf.Max(1, roll + die.Power);
         Vector3 dir = (defender.visual.position - attacker.visual.position).normalized;
-
-        yield return defender.TakeDamageWithKnockback(damage, die.damageType, dir, false);
+        //pass attacker
+        yield return defender.TakeDamageWithKnockback(
+            damage, die.damageType, dir,
+            returnToStart: false,
+            attacker: attacker);
         defender.TakeStaggerDamage(Mathf.Max(1, roll));
-
         yield return CameraShake(hitShakeIntensity, 0.15f);
         yield return new WaitForSeconds(hitPauseDuration);
-
         attacker.sr.sprite = attacker.idle;
-        defender.sr.sprite = defender.idle;
+        if (!defender.IsDead) defender.sr.sprite = defender.idle;
+        if (!defender.IsDead)
+            FaceUnitsTowardEachOther(attacker, defender);
     }
 
     //return to clash positions**

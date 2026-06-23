@@ -39,8 +39,16 @@ public class CombatHUDController : MonoBehaviour
     //refresh all chocolate bars (info bar on bottom u know what this is bro)
     public void RefreshAll()
     {
-        foreach (var e in playerEntries) e.Refresh();
-        foreach (var e in enemyEntries)  e.Refresh();
+        foreach (var e in playerEntries)
+        {
+            if (e == null) continue;
+            e.Refresh();
+        }
+        foreach (var e in enemyEntries)
+        {
+            if (e == null) continue;
+            e.Refresh();
+        }
     }
 
     //show speed slot bubble booblbleb

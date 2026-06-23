@@ -36,6 +36,12 @@ public class UnitHUDEntry : MonoBehaviour
     public void Refresh()
     {
         if (owner == null) return;
+        if (!owner.gameObject.activeInHierarchy)
+        {
+            if (hpFill      != null) hpFill.fillAmount      = 0f;
+            if (staggerFill != null) staggerFill.fillAmount = 0f;
+            return;
+        }
 
         if (hpFill != null)
             hpFill.fillAmount = Mathf.Clamp01((float)owner.hp / owner.maxHP);

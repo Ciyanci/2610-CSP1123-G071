@@ -138,14 +138,16 @@ public class CharacterUnit : MonoBehaviour
         Vector3 start = visual.position;
         if (Vector3.Distance(start, target) < 0.01f) yield break;
 
-        if (faceTarget != null) FaceTowardUnit(faceTarget);
+        if (faceTarget != null)
+            FaceTowardUnit(faceTarget);
         else
         {
             int moveSign = target.x > start.x ? 1 : -1;
             ApplyFacing(moveSign);
         }
 
-        if (playMoveSprite && move != null) sr.sprite = move;
+        if (playMoveSprite && move != null)
+            sr.sprite = move;
 
         float t = 0;
         while (t < duration)
@@ -155,9 +157,15 @@ public class CharacterUnit : MonoBehaviour
             yield return null;
         }
         visual.position = target;
-        ApplyFacing(facingSign);
-        if (playMoveSprite) sr.sprite = idle;
+
+        //only restore default facing if no combat target was given
+        if (faceTarget == null)
+            ApplyFacing(facingSign);
+
+        if (playMoveSprite)
+            sr.sprite = idle;
     }
+
 
     public IEnumerator Recoil(Vector3 dir, float distance, float duration)
     {
@@ -171,7 +179,7 @@ public class CharacterUnit : MonoBehaviour
             yield return null;
         }
         visual.position = target;
-        ApplyFacing(facingSign);
+        //removed ApplyFacing(facingSign) — caller decides facing after recoil
     }
 
     public void ResetPosition()
@@ -308,12 +316,16 @@ public class CharacterUnit : MonoBehaviour
 
     void RefreshAllUI()
     {
+        if (state == UnitState.Dead) return;
+
         statusUI?.Refresh();
         CombatHUDController.Instance?.RefreshAll();
     }
 
     public IEnumerator TakeDamageWithKnockback(
-        int amount, DamageType type, Vector3 attackerDir, bool returnToStart = true)
+        int amount, DamageType type, Vector3 attackerDir,
+        bool returnToStart = true,
+        CharacterUnit attacker = null)
     {
         if (IsDead) yield break;
         int final = DamageCalculator.Calculate(amount, type, this);
@@ -322,8 +334,11 @@ public class CharacterUnit : MonoBehaviour
         RefreshAllUI();
         float knockDist = Mathf.Clamp(final * 1f, 3f, 12f);
         yield return Recoil(attackerDir, knockDist, 0.06f);
+        //after recoil, re-face the attacker before returning
+        if (attacker != null && !attacker.IsDead)
+            FaceTowardUnit(attacker);
         if (returnToStart && !IsDead)
-            yield return MoveTo(startPos, 0.2f);
+            yield return MoveTo(startPos, 0.2f, true, attacker); //pass attacker as faceTarget
         EvaluateState();
     }
 
@@ -358,6 +373,43 @@ public class CharacterUnit : MonoBehaviour
         state = UnitState.Dead;
         Debug.Log($"{unitName} died");
         ClearCombatAssignments();
+        StartCoroutine(DeathSequence());
+    }
+
+    IEnumerator DeathSequence()
+    {
+        //hide all associated UI immediately
+        HideSpeed();
+        lightBarUI?.gameObject.SetActive(false);
+        statusUI?.gameObject.SetActive(false);
+
+        //fade + drift downward
+        float duration = 0.8f;
+        float t = 0f;
+
+        Vector3 startPos   = visual.position;
+        Vector3 driftTarget = startPos + Vector3.down * 1.5f;
+
+        Color startColor = sr.color;
+
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            float progress = t / duration;
+
+            //fade alpha
+            Color c = startColor;
+            c.a = Mathf.Lerp(1f, 0f, progress);
+            sr.color = c;
+
+            //drift downward
+            visual.position = Vector3.Lerp(startPos, driftTarget, progress);
+
+            yield return null;
+        }
+
+        //fully invisible — now deactivate
+        sr.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
         gameObject.SetActive(false);
     }
 
