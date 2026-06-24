@@ -78,10 +78,9 @@ public class PageCombatResolver : MonoBehaviour
         Vector3 posA, posB;
         GetClashMeetPositions(a.owner, b.owner, out posA, out posB);
         Debug.Log($"[RESOLVER] Moving {a.owner.unitName} to {posA}, {b.owner.unitName} to {posB}");
-        StartCoroutine(a.owner.MoveTo(posA, 0.3f, true, b.owner));
-        StartCoroutine(b.owner.MoveTo(posB, 0.3f, true, a.owner));
+        StartCoroutine(a.owner.MoveTo(posA, 0.3f, true));
+        StartCoroutine(b.owner.MoveTo(posB, 0.3f, true));
         yield return new WaitForSeconds(0.3f);
-        FaceUnitsTowardEachOther(a.owner, b.owner);
         Vector3 clashPosA = a.owner.visual.position;
         Vector3 clashPosB = b.owner.visual.position;
         //clash loop**
@@ -106,7 +105,6 @@ public class PageCombatResolver : MonoBehaviour
             }
             Debug.Log($"[RESOLVER] Clash iteration {clashIteration}: {a.owner.unitName}[{a.currentIndex}/{a.dice.Count}] vs {b.owner.unitName}[{b.currentIndex}/{b.dice.Count}]");
             yield return ReturnToPositions(a.owner, clashPosA, b.owner, clashPosB);
-            FaceUnitsTowardEachOther(a.owner, b.owner);
             a.owner.PlayWindup();
             b.owner.PlayWindup();
             int rollA = 0, rollB = 0;
@@ -266,7 +264,6 @@ public class PageCombatResolver : MonoBehaviour
                 ? target.clashAnchor.position
                 : GetApproachPosition(page.owner, target);
             yield return page.owner.MoveTo(attackPos, 0.22f, true, target);
-            FaceUnitsTowardEachOther(page.owner, target);
             yield return ApplyFlushHit(page.owner, target, die, group);
             page.Advance();
             group?.AdvanceDie();
@@ -289,9 +286,7 @@ public class PageCombatResolver : MonoBehaviour
         yield return new WaitForSeconds(hitPauseDuration);
         attacker.sr.sprite = attacker.idle;
         if (!defender.IsDead) defender.sr.sprite = defender.idle;
-        FaceUnitsTowardEachOther(attacker, defender);
     }
-
     IEnumerator ApplyFlushHit(
         CharacterUnit attacker,
         CharacterUnit defender,
@@ -315,18 +310,12 @@ public class PageCombatResolver : MonoBehaviour
         CombatAudioManager.Instance?.PlayUnopposedHit();
         int damage  = Mathf.Max(1, roll + die.Power);
         Vector3 dir = (defender.visual.position - attacker.visual.position).normalized;
-        //pass attacker
-        yield return defender.TakeDamageWithKnockback(
-            damage, die.damageType, dir,
-            returnToStart: false,
-            attacker: attacker);
+        yield return defender.TakeDamageWithKnockback(damage, die.damageType, dir, false);
         defender.TakeStaggerDamage(Mathf.Max(1, roll));
         yield return CameraShake(hitShakeIntensity, 0.15f);
         yield return new WaitForSeconds(hitPauseDuration);
         attacker.sr.sprite = attacker.idle;
         if (!defender.IsDead) defender.sr.sprite = defender.idle;
-        if (!defender.IsDead)
-            FaceUnitsTowardEachOther(attacker, defender);
     }
 
     //return to clash positions**
@@ -337,7 +326,6 @@ public class PageCombatResolver : MonoBehaviour
         bool aClose = Vector3.Distance(a.visual.position, posA) < 0.1f;
         bool bClose = Vector3.Distance(b.visual.position, posB) < 0.1f;
         if (aClose && bClose) yield break;
-
         float dur = 0.18f;
         if (!aClose) StartCoroutine(a.MoveTo(posA, dur, true, b));
         if (!bClose) StartCoroutine(b.MoveTo(posB, dur, true, a));
@@ -353,14 +341,6 @@ public class PageCombatResolver : MonoBehaviour
         float offset = ClashLane.Instance != null
             ? ClashLane.Instance.attackNearOffset : 5f;
         return target.visual.position + new Vector3(sign * offset, 0f, 0f);
-    }
-
-    //facing helper ** (clashing needs tweaking)
-    void FaceUnitsTowardEachOther(CharacterUnit a, CharacterUnit b)
-    {
-        if (a == null || b == null) return;
-        a.FaceTowardUnit(b);
-        b.FaceTowardUnit(a);
     }
 
     //helpers **

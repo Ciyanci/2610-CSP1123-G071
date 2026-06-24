@@ -131,24 +131,14 @@ public class CharacterUnit : MonoBehaviour
     //movement (i hate you)
     public IEnumerator MoveTo(
         Vector3 target,
-        float duration       = 0.2f,
-        bool playMoveSprite  = true,
+        float duration      = 0.2f,
+        bool playMoveSprite = true,
         CharacterUnit faceTarget = null)
     {
         Vector3 start = visual.position;
         if (Vector3.Distance(start, target) < 0.01f) yield break;
-
-        if (faceTarget != null)
-            FaceTowardUnit(faceTarget);
-        else
-        {
-            int moveSign = target.x > start.x ? 1 : -1;
-            ApplyFacing(moveSign);
-        }
-
         if (playMoveSprite && move != null)
             sr.sprite = move;
-
         float t = 0;
         while (t < duration)
         {
@@ -157,11 +147,6 @@ public class CharacterUnit : MonoBehaviour
             yield return null;
         }
         visual.position = target;
-
-        //only restore default facing if no combat target was given
-        if (faceTarget == null)
-            ApplyFacing(facingSign);
-
         if (playMoveSprite)
             sr.sprite = idle;
     }
@@ -179,14 +164,14 @@ public class CharacterUnit : MonoBehaviour
             yield return null;
         }
         visual.position = target;
-        //removed ApplyFacing(facingSign) — caller decides facing after recoil
     }
-
     public void ResetPosition()
     {
         visual.position = startPos;
-        ApplyFacing(facingSign);
         sr.sprite = idle;
+        Vector3 s = visual.localScale;
+        s.x = Mathf.Abs(s.x) * facingSign;
+        visual.localScale = s;
     }
 
     public Vector3 GetClashPosition() => clashAnchor.position;
@@ -324,8 +309,7 @@ public class CharacterUnit : MonoBehaviour
 
     public IEnumerator TakeDamageWithKnockback(
         int amount, DamageType type, Vector3 attackerDir,
-        bool returnToStart = true,
-        CharacterUnit attacker = null)
+        bool returnToStart = true)
     {
         if (IsDead) yield break;
         int final = DamageCalculator.Calculate(amount, type, this);
@@ -334,14 +318,10 @@ public class CharacterUnit : MonoBehaviour
         RefreshAllUI();
         float knockDist = Mathf.Clamp(final * 1f, 3f, 12f);
         yield return Recoil(attackerDir, knockDist, 0.06f);
-        //after recoil, re-face the attacker before returning
-        if (attacker != null && !attacker.IsDead)
-            FaceTowardUnit(attacker);
         if (returnToStart && !IsDead)
-            yield return MoveTo(startPos, 0.2f, true, attacker); //pass attacker as faceTarget
+            yield return MoveTo(startPos, 0.2f);
         EvaluateState();
     }
-
     //state
     public void EvaluateState()
     {
