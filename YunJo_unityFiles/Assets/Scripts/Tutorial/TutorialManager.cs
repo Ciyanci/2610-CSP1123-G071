@@ -8,76 +8,143 @@ public class TutorialManager : MonoBehaviour
 {
     public static TutorialManager Instance;
 
-    [Header("Tutorial Steps")]
+    [Header("Steps")]
     public List<TutorialStep> steps = new();
 
-    [Header("Prompt UI")]
-    public GameObject        promptPanel;
-    public TextMeshProUGUI   promptText;
-    public Button            continueButton;
+    //tutorial panel (blocks shit)
+    [Header("Tutorial Panel")]
+    public GameObject      tutorialPanel;
+    public TextMeshProUGUI tutorialBodyText;
+    public TextMeshProUGUI pageCounterText;
+    public Button          nextPageButton;
+    public TextMeshProUGUI nextPageButtonText;
 
-    [Header("Highlight Overlay")]
-    // Optional — a transparent colored panel you move over UI elements
-    public RectTransform     highlightRect;
+    //hint bar (does not block shit)
+    [Header("Hint Bar")]
+    public GameObject      hintBar;
+    public TextMeshProUGUI hintText;
 
-    int currentStep = 0;
-    bool waitingForContinue = false;
+    //internal state
+    int          currentPage     = 0;
+    List<string> activePages     = new();
+    bool         waitingForPages = false;
 
     void Awake() => Instance = this;
 
     void Start()
     {
-        // Block input until tutorial grants it
         CombatFlowController.Instance.SetInputEnabled(false);
-        promptPanel?.SetActive(false);
-        continueButton?.onClick.AddListener(OnContinue);
+
+        tutorialPanel?.SetActive(false);
+        hintBar?.SetActive(false);
+
+        nextPageButton?.onClick.AddListener(OnNextPageClicked);
+
         StartCoroutine(RunTutorial());
     }
 
-    // =========================
-    // TUTORIAL LOOP
-    // =========================
+    //main tutorial loop
     IEnumerator RunTutorial()
     {
         foreach (var step in steps)
         {
-            currentStep++;
+            //blocking panel first — player clicks through all pages
+            if (step.tutorialPages != null && step.tutorialPages.Count > 0)
+                yield return ShowTutorialPanel(step.tutorialPages);
 
-            // Show prompt
-            if (!string.IsNullOrEmpty(step.promptText))
-            {
-                ShowPrompt(step.promptText);
-                yield return new WaitUntil(() => !waitingForContinue);
-            }
+            //hint bar — passive, just updates text (doesnt block shit)
+            ShowHint(step.hintText);
 
-            // Grant input if step requires it
             if (step.enableInput)
                 CombatFlowController.Instance.SetInputEnabled(true);
 
-            // Wait for a game condition if specified
             if (step.waitCondition != TutorialWaitCondition.None)
                 yield return WaitForCondition(step.waitCondition);
 
-            // Block input again after condition met (unless step says keep it)
             if (step.enableInput && !step.keepInputAfter)
                 CombatFlowController.Instance.SetInputEnabled(false);
         }
 
-        // All steps done — hand fully to player
+        //all steps done
+        HideHint();
         CombatFlowController.Instance.SetInputEnabled(true);
-        promptPanel?.SetActive(false);
     }
 
-    // =========================
-    // WAIT CONDITIONS
-    // =========================
+    //tutorial panel
+    IEnumerator ShowTutorialPanel(List<string> pages)
+    {
+        activePages      = pages;
+        currentPage      = 0;
+        waitingForPages  = true;
+
+        tutorialPanel?.SetActive(true);
+        RefreshPage();
+
+        yield return new WaitUntil(() => !waitingForPages);
+    }
+
+    void RefreshPage()
+    {
+        if (tutorialBodyText != null)
+            tutorialBodyText.text = activePages[currentPage];
+
+        if (pageCounterText != null)
+            pageCounterText.text  = activePages.Count > 1
+                ? $"{currentPage + 1} / {activePages.Count}"
+                : "";   // hide counter on single-page panels
+
+        if (nextPageButtonText != null)
+            nextPageButtonText.text = (currentPage == activePages.Count - 1)
+                ? "OK"
+                : "Next";
+    }
+
+    void OnNextPageClicked()
+    {
+        if (!waitingForPages) return;
+
+        currentPage++;
+
+        if (currentPage < activePages.Count)
+        {
+            RefreshPage();
+        }
+        else
+        {
+            waitingForPages = false;
+            tutorialPanel?.SetActive(false);
+        }
+    }
+
+    //hint bar
+    void ShowHint(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            HideHint();
+            return;
+        }
+
+        hintBar?.SetActive(true);
+        if (hintText != null)
+            hintText.text = text;
+    }
+
+    void HideHint()
+    {
+        hintBar?.SetActive(false);
+    }
+
+    //call this from anywhere to update the hint mid-step if needed
+    public void SetHint(string text) => ShowHint(text);
+
+    //wait for condition
     IEnumerator WaitForCondition(TutorialWaitCondition condition)
     {
         switch (condition)
         {
             case TutorialWaitCondition.PlayerAssignedCard:
-                yield return new WaitUntil(() =>
-                    AnyPlayerSlotPlanned());
+                yield return new WaitUntil(() => AnyPlayerSlotPlanned());
                 break;
 
             case TutorialWaitCondition.PlayerConfirmedTurn:
@@ -107,44 +174,4 @@ public class TutorialManager : MonoBehaviour
                     return true;
         return false;
     }
-
-    // =========================
-    // PROMPT
-    // =========================
-    void ShowPrompt(string text)
-    {
-        waitingForContinue = true;
-        promptPanel?.SetActive(true);
-        if (promptText != null) promptText.text = text;
-    }
-
-    void OnContinue()
-    {
-        waitingForContinue = false;
-        promptPanel?.SetActive(false);
-    }
-}
-
-// =========================
-// DATA
-// =========================
-[System.Serializable]
-public class TutorialStep
-{
-    [TextArea]
-    public string promptText;           // shown in the prompt panel
-
-    public bool enableInput      = false; // open player input during this step
-    public bool keepInputAfter   = false; // don't re-block after condition met
-
-    public TutorialWaitCondition waitCondition = TutorialWaitCondition.None;
-}
-
-public enum TutorialWaitCondition
-{
-    None,
-    PlayerAssignedCard,
-    PlayerConfirmedTurn,
-    TurnResolved,
-    EnemyDead
 }
