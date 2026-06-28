@@ -135,18 +135,22 @@ public partial class CombatPipeline : MonoBehaviour
             SetInvolvedUnits(top, counter);
             if (counter != null)
             {
-                Debug.Log($"[PIPELINE] CLASH resolving: {top.user.unitName}(spd:{top.priority}) vs {counter.user.unitName}(spd:{counter.priority})");
+                Debug.Log($"[PIPELINE] CLASH: {top.user.unitName} vs {counter.user.unitName}");
                 resolved.Add(top);
                 resolved.Add(counter);
                 remaining.Remove(top);
                 remaining.Remove(counter);
+                combatCamera?.FrameUnits(top.user, counter.user);
+                yield return new WaitForSeconds(0.2f); // let camera ease in
                 yield return ResolveClash(top, counter);
             }
             else
             {
-                Debug.Log($"[PIPELINE] UNOPPOSED resolving: {top.user.unitName}(spd:{top.priority}) → {top.target.unitName}");
+                Debug.Log($"[PIPELINE] UNOPPOSED: {top.user.unitName} → {top.target.unitName}");
                 resolved.Add(top);
                 remaining.Remove(top);
+                combatCamera?.FrameUnits(top.user, top.target);
+                yield return new WaitForSeconds(0.2f);
                 yield return ResolveUnopposed(top);
             }
             //restore transparency

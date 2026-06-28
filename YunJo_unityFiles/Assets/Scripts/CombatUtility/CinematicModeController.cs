@@ -12,21 +12,23 @@ public class CinematicModeController : MonoBehaviour
     [Header("Camera")]
     public CombatCamera combatCamera;
 
+    [Header("Parallax")]
+    public BattlegroundParallax parallax;
+
     void Awake() => Instance = this;
 
     public void EnterCinematic()
     {
         foreach (var root in planningUIRoots)
             root?.SetActive(false);
-
         combatCamera?.SetCinematicView();
+        parallax?.EnterCinematic();
     }
-
     public void ExitCinematic()
     {
         foreach (var root in planningUIRoots)
             root?.SetActive(true);
-
         combatCamera?.SetPlanningView();
+        parallax?.ExitCinematic();
     }
 }

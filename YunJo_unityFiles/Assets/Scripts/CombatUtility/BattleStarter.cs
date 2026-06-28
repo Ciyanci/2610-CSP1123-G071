@@ -11,26 +11,17 @@ public class BattleStarter : MonoBehaviour
     IEnumerator StartBattle()
     {
         UnitRegistry.Instance.Refresh();
-        yield return null; // let all Awake/Start finish
-
-        //apply unitdata to characters on scene
-        //this must happen before Init() so decks have cards
+        yield return null;
         foreach (var unit in UnitRegistry.Instance.players)
             ApplyUnitData(unit);
-
         foreach (var unit in UnitRegistry.Instance.enemies)
             ApplyUnitData(unit);
-
-        //init decks AFTER UnitData has populated startingDeck
         foreach (var unit in UnitRegistry.Instance.players)
             unit.deck?.Init();
-
         foreach (var unit in UnitRegistry.Instance.enemies)
             unit.deck?.Init();
-
         CombatHUDController.Instance?.Bind();
         CombatAudioManager.Instance?.PlayTurnBegin();
-
         Debug.Log("[BATTLE] Battle started");
     }
 

@@ -10,15 +10,34 @@ public class CombatCamera : MonoBehaviour
     float   defaultSize;
 
     [Header("Zoom Levels")]
-    public float planningSize   = 100f;
-    public float cinematicSize  = 80f;
+    public float planningSize     = 80f;
+    public float cinematicSize    = 10f;
+    public float minCinematicSize = 10f;
+    public float maxCinematicSize = 40f;
 
-    [Header("Ease")]
-    public float easeSpeed = 3f;
+    [Header("Framing")]
+    public float framePadding = 8f;
 
-    //target state
+    [Header("Follow — position lag")]
+    //higher = snappier, lower = more lag/trail
+    public float positionSmoothTime  = 0.35f;
+
+    //extra lag multiplier applied during active resolution
+    public float combatLagMultiplier = 2.2f;
+
+    [Header("Follow — zoom lag")]
+    public float zoomSmoothTime = 0.5f;
+
+    //internal smoothdamp state
+    Vector3 currentVelocity  = Vector3.zero;
+    float   currentZoomVel   = 0f;
+
     Vector3 targetPos;
     float   targetSize;
+
+    //set true during a resolution so lag multiplier kicks in
+    bool inResolution = false;
+
     void Awake()
     {
         cam         = Camera.main;
@@ -33,50 +52,82 @@ public class CombatCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.position   = Vector3.Lerp(transform.position, targetPos,
-                                   Time.deltaTime * easeSpeed);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetSize,
-                                   Time.deltaTime * easeSpeed);
+        float smoothTime = inResolution
+            ? positionSmoothTime * combatLagMultiplier
+            : positionSmoothTime;
+
+        //SmoothDamp — has velocity so it trails naturally
+        transform.position = Vector3.SmoothDamp(
+            transform.position,
+            targetPos,
+            ref currentVelocity,
+            smoothTime);
+
+        cam.orthographicSize = Mathf.SmoothDamp(
+            cam.orthographicSize,
+            targetSize,
+            ref currentZoomVel,
+            zoomSmoothTime);
     }
 
-    //planning mode
+    //planning state (default)
     public void SetPlanningView()
     {
-        targetPos  = new Vector3(defaultPos.x, defaultPos.y, transform.position.z);
-        targetSize = planningSize;
+        inResolution = false;
+        targetPos    = new Vector3(defaultPos.x, defaultPos.y, transform.position.z);
+        targetSize   = planningSize;
     }
 
-    //cinematic mode
+    //frame two units
+    public void FrameUnits(CharacterUnit a, CharacterUnit b)
+    {
+        inResolution = true;
+
+        if (a == null && b == null) { SetCinematicView(); return; }
+
+        Vector3 posA = a != null ? a.visual.position : b.visual.position;
+        Vector3 posB = b != null ? b.visual.position : a.visual.position;
+
+        Vector3 mid = (posA + posB) * 0.5f;
+        targetPos   = new Vector3(mid.x, mid.y, transform.position.z);
+
+        float dist     = Vector3.Distance(posA, posB);
+        float ideal    = (dist * 0.5f) + framePadding;
+        targetSize     = Mathf.Clamp(ideal, minCinematicSize, maxCinematicSize);
+    }
+
+    public void FrameUnits(CharacterUnit a) => FrameUnits(a, null);
+
+    //cinematic (fallback ver)
     public void SetCinematicView()
     {
+        inResolution = true;
+
         if (ClashLane.Instance != null)
         {
             Vector3 focus = ClashLane.Instance.CameraFocus;
             targetPos = new Vector3(focus.x, focus.y, transform.position.z);
         }
-
         targetSize = cinematicSize;
     }
 
-    //shake (gotta rework this tmr)
+    //shake
     public IEnumerator Shake(float intensity, float duration)
     {
-        Vector3 origin = targetPos;
-        float   t      = 0f;
-
+        float t = 0f;
         while (t < duration)
         {
             Vector2 offset = Random.insideUnitCircle * intensity;
-            //offset
-            transform.position = Vector3.Lerp(transform.position,
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
                 targetPos + new Vector3(offset.x, offset.y, 0f),
-                Time.deltaTime * 30f);
+                ref currentVelocity,
+                0.03f);
             t += Time.deltaTime;
             yield return null;
         }
     }
 
-    //made it so that play() routes through new system
     public IEnumerator Play(List<CameraAction> sequence)
     {
         foreach (var action in sequence)
@@ -95,7 +146,6 @@ public class CombatCamera : MonoBehaviour
             case CameraActionType.FrameTargets:
             case CameraActionType.FocusTarget:
             case CameraActionType.Zoom:
-                //in cinematic mode all of these just ensures focus on the lane
                 SetCinematicView();
                 yield return new WaitForSeconds(a.duration);
                 break;
@@ -105,7 +155,8 @@ public class CombatCamera : MonoBehaviour
                 break;
 
             case CameraActionType.MoveTo:
-                targetPos = new Vector3(a.position.x, a.position.y, transform.position.z);
+                targetPos = new Vector3(
+                    a.position.x, a.position.y, transform.position.z);
                 yield return new WaitForSeconds(a.duration);
                 break;
         }

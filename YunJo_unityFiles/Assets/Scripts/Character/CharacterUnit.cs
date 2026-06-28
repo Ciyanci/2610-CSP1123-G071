@@ -411,7 +411,9 @@ public class CharacterUnit : MonoBehaviour
             CombatFlowController.Instance.ConfirmTarget(this);
             return;
         }
-        CombatFlowController.Instance.SelectUnit(this);
+
+        if (CompareTag("Player"))
+            CombatFlowController.Instance.SelectUnit(this);
     }
 
     public void SetInvolved(bool involved)
