@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   currentScene: {fileID: 11400000, guid: 71d0665b63d81da4ba694934e3d31451, type: 2}
   bottomBar: {fileID: 1310287611}
-  backgroundController: {fileID: 0}
+  backgroundController: {fileID: 1671942121}
 --- !u!4 &1524550577
 Transform:
   m_ObjectHideFlags: 0
