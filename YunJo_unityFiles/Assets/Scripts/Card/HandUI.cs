@@ -138,4 +138,37 @@ public class HandUI : MonoBehaviour
         views.Clear();
         currentHovered = null;
     }
+
+    public void ShowLibraryCards(List<Card> cards)
+    {
+        gameObject.SetActive(true);
+        Clear();
+
+        int columns = 4;
+        float xSpacing = cardSpacing;
+        float ySpacing = 240f;
+
+        int rows = Mathf.CeilToInt(cards.Count / (float)columns);
+
+        for (int row = 0; row < rows; row++)
+        {
+            int cardsInRow = Mathf.Min(columns, cards.Count - row * columns);
+            float startX = - (cardsInRow -1) * xSpacing * 0.5f;
+
+            for (int col = 0; col < cardsInRow; col++)
+            {
+                int index = row * columns + col;
+
+                CardView v = Instantiate(prefab, container);
+                v.Setup(cards[index], null);
+
+                float x = startX + col * xSpacing;
+                float y = -row * ySpacing;
+
+                v.SetBasePosition(new Vector2(x,y));
+
+                views.Add(v);
+            }
+        }
+    }
 }
