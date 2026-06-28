@@ -626,6 +626,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 660e91810d0aa5d45a5fcf34c6c7d5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  bgm: {fileID: 1291357804}
+  silentSceneIndexes: 080000000b0000000a0000000900000006000000
 --- !u!1 &1623339326
 GameObject:
   m_ObjectHideFlags: 0
