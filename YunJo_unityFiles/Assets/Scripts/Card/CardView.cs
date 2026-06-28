@@ -164,11 +164,13 @@ public class CardView : MonoBehaviour,
     {
         CombatAudioManager.Instance?.PlayCardHover();
         HandUI.Instance?.OnCardHovered(this);
+        CardInfoPanel.Instance?.Show(card);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         HandUI.Instance?.ResetHover();
+        CardInfoPanel.Instance?.Hide();
     }
 
     public void OnPointerDown(PointerEventData eventData)

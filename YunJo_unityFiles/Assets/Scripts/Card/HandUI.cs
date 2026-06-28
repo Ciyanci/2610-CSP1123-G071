@@ -78,6 +78,7 @@ public class HandUI : MonoBehaviour
         }
 
         currentHovered = hovered;
+        currentHovered.BringToFront();
         int index = views.IndexOf(hovered);
 
         for (int i = 0; i < views.Count; i++)
@@ -126,6 +127,8 @@ public class HandUI : MonoBehaviour
 
         foreach (var v in views)
             v.ResetToBase();
+
+        currentHovered.RestoreSiblingOrder();
     }
 
     void Clear()
