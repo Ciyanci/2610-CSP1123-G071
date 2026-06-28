@@ -139,7 +139,7 @@ public class HandUI : MonoBehaviour
         currentHovered = null;
     }
 
-    public void ShowLibraryCards(List<Card> cards)
+    public void ShowLibraryCards(List<Card> cards) // this makes it so that in library it will make a grid layout instead of a horizontal one
     {
         gameObject.SetActive(true);
         Clear();
