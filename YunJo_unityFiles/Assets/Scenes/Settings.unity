@@ -4877,7 +4877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
   fadePanel: {fileID: 1663667558}
-  fadeDuration: 1
+  fadeDuration: 0.5
 --- !u!114 &1012648254
 MonoBehaviour:
   m_ObjectHideFlags: 0
