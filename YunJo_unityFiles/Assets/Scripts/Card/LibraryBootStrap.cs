@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 public class LibrarySceneBootstrap : MonoBehaviour
 {
-    [Header ("Drag all your CardData ScriptableObjects here")]
-    public List<CardData> allCards;
-
     void Start()
     {
-        var cards = new List<Card>();
-        foreach (var data in allCards)
-            cards.Add(new Card(data));
+        List<Card> cards = new();
 
-        HandUI.Instance.ShowCards(cards);
+        foreach (CardData data in CardInventory.GetAll())
+        {
+            cards.Add(new Card(data));
+        }
+        HandUI.Instance.ShowLibraryCards(cards);
     }
 }
