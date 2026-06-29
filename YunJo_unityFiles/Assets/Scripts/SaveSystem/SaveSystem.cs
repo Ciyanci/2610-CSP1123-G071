@@ -3,7 +3,7 @@ using System.IO;
 
 public static class SaveSystem
 {
-    static string savePath => Application.persistentDataPath + "save/json";
+    static string savePath => Application.persistentDataPath + "save.json";
 
     public static void Save(SaveData data) //saves data to save.json
     {
