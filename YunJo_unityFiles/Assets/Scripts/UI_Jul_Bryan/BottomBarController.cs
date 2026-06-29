@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -63,4 +63,6 @@ public class BottomBarController : MonoBehaviour
             }
         }
     }
+
+    public int GetSentenceIndex() => sentenceIndex;
 }

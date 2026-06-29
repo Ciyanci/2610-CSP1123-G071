@@ -9,10 +9,17 @@ public class StoryScene : ScriptableObject
     public Sprite backgroud;
     public StoryScene nextScene;
 
+    public enum CharacterPosition
+    {
+        Left, Center, Right, None
+    }
+
     [System.Serializable]
     public struct Sentence
     {
         public string text;
         public Speaker speaker;
+        public Sprite characterSprite;
+        public CharacterPosition characterPos;
     }
 }
