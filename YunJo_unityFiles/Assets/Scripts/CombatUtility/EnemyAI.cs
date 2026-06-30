@@ -40,8 +40,6 @@ public class EnemyAI : MonoBehaviour
             SpeedSlot slot = self.GetHighestAvailableSlot();
             if (slot == null) yield break;
 
-            self.SpendLight(card.Cost);
-
             ActionPlanner.AssignToSlot(self, slot, card, target);
             ArrowManager.Instance?.AddPlannedArrow(slot);
             slot.ui?.Refresh();

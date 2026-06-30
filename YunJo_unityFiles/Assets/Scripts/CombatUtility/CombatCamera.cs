@@ -38,6 +38,8 @@ public class CombatCamera : MonoBehaviour
     //set true during a resolution so lag multiplier kicks in
     bool inResolution = false;
 
+    Coroutine trackingCoroutine;
+
     void Awake()
     {
         cam         = Camera.main;
@@ -109,6 +111,50 @@ public class CombatCamera : MonoBehaviour
             targetPos = new Vector3(focus.x, focus.y, transform.position.z);
         }
         targetSize = cinematicSize;
+    }
+
+    //unopposed tracking cam
+    public void StartTracking(CharacterUnit unit, CharacterUnit target = null)
+    {
+        StopTracking();
+        inResolution     = true;
+        trackingCoroutine = StartCoroutine(TrackUnit(unit, target));
+    }
+    public void StopTracking()
+    {
+        if (trackingCoroutine != null)
+        {
+            StopCoroutine(trackingCoroutine);
+            trackingCoroutine = null;
+        }
+    }
+    IEnumerator TrackUnit(CharacterUnit unit, CharacterUnit secondary = null)
+    {
+        while (unit != null && unit.gameObject.activeInHierarchy)
+        {
+            Vector3 posA = unit.visual != null
+                ? unit.visual.position
+                : unit.transform.position;
+            if (secondary != null && secondary.gameObject.activeInHierarchy)
+            {
+                //frame both — midpoint shifts as aggressor moves
+                Vector3 posB = secondary.visual != null
+                    ? secondary.visual.position
+                    : secondary.transform.position;
+                Vector3 mid  = (posA + posB) * 0.5f;
+                targetPos    = new Vector3(mid.x, mid.y, transform.position.z);
+                float dist   = Vector3.Distance(posA, posB);
+                float ideal  = (dist * 0.5f) + framePadding;
+                targetSize   = Mathf.Clamp(ideal, minCinematicSize, maxCinematicSize);
+            }
+            else
+            {
+                //single unit — just follow them
+                targetPos  = new Vector3(posA.x, posA.y, transform.position.z);
+                targetSize = minCinematicSize;
+            }
+            yield return null;
+        }
     }
 
     //shake

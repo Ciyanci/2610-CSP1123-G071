@@ -20,7 +20,7 @@ public partial class CombatPipeline : MonoBehaviour
     //entry **
     public IEnumerator ResolveTurn()
     {
-        Debug.Log("[PIPELINE] ========== TURN START ==========");
+        Debug.Log("[PIPELINE] -- TURN START");
         CacheUnits();
         CurrentPhase = CombatPipelinePhase.Resolve;
         foreach (var unit in allUnits)
@@ -184,15 +184,18 @@ public partial class CombatPipeline : MonoBehaviour
     //unopposed **
     IEnumerator ResolveUnopposed(CombatIntent intent)
     {
-        Debug.Log($"[RESOLVE] Unopposed start: {intent.user.unitName} → {intent.target.unitName}");
+        Debug.Log($"[RESOLVE] Unopposed: {intent.user.unitName} → {intent.target.unitName}");
         if (!intent.IsValid)
         {
-            Debug.LogWarning($"[RESOLVE] Unopposed aborted — intent invalid");
+            Debug.LogWarning("[RESOLVE] Unopposed aborted — intent invalid");
             yield break;
         }
         var page = intent.GetOrCreatePage();
-        Debug.Log($"[RESOLVE] Page created with {page.dice.Count} dice for {intent.user.unitName}");
+        //start tracking aggressor + target so camera follows the charge
+        combatCamera?.StartTracking(intent.user, intent.target);
         yield return pageResolver.ResolveSinglePage(page);
+        //stop tracking once resolution is done
+        combatCamera?.StopTracking();
         Debug.Log($"[RESOLVE] Unopposed complete: {intent.user.unitName}");
         FinalizeIntent(intent);
     }

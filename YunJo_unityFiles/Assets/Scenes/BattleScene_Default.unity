@@ -1395,10 +1395,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
   steps: []
-  promptPanel: {fileID: 0}
-  promptText: {fileID: 0}
-  continueButton: {fileID: 0}
-  highlightRect: {fileID: 0}
+  tutorialPanel: {fileID: 0}
+  tutorialBodyText: {fileID: 0}
+  pageCounterText: {fileID: 0}
+  nextPageButton: {fileID: 0}
+  nextPageButtonText: {fileID: 0}
+  hintBar: {fileID: 0}
+  hintText: {fileID: 0}
 --- !u!1 &157474291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,8 +2188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatCamera
   planningSize: 70
-  cinematicSize: 30
-  minCinematicSize: 20
+  cinematicSize: 40
+  minCinematicSize: 40
   maxCinematicSize: 50
   framePadding: 8
   positionSmoothTime: 0.35
@@ -7672,7 +7675,7 @@ MonoBehaviour:
   defeatColor: {r: 0.7, g: 0.15, b: 0.15, a: 1}
   fadeInDuration: 0.8
   autoExitDelay: 6
-  exitSceneName: MainMenu
+  exitSceneName: LevelSelection
 --- !u!1 &778367408
 GameObject:
   m_ObjectHideFlags: 0
@@ -9623,8 +9626,8 @@ MonoBehaviour:
   unitType: 0
   unitData: {fileID: 11400000, guid: 49797cdd44c95f84291acacd6f72e4e6, type: 2}
   equippedKeypage: {fileID: 11400000, guid: 5bf6d43ee7ad33d4ca61e8a0241ed98a, type: 2}
-  maxHP: 100
-  hp: 100
+  maxHP: 1000
+  hp: 1000
   maxStagger: 50
   stagger: 50
   statusUI: {fileID: 8983849356019755231}
@@ -19256,11 +19259,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 352e268be4ee93745badb703b83fd9d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattlegroundParallax
-  floorRenderer: {fileID: 1053097114}
-  planningScaleY: 1
-  planningOffsetY: 0
-  cinematicScaleY: 0.7
-  cinematicOffsetY: 20
+  layers:
+  - renderer: {fileID: 1911308678}
+    depthFactor: 0.1
+    cinematicOffsetY: -100
+    cinematicOffsetX: 0
+  - renderer: {fileID: 1053097114}
+    depthFactor: 0.2
+    cinematicOffsetY: -40
+    cinematicOffsetX: 0
   transitionDuration: 0.45
   easeCurve:
     serializedVersion: 2
@@ -19286,7 +19293,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  layers: []
 --- !u!224 &1728775060 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7099396780701275635, guid: 42cb1f547fee3054f9eb6f2b7b9dad6e, type: 3}
@@ -23136,6 +23142,14 @@ PrefabInstance:
     - target: {fileID: 3606042252556331649, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: hp
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: maxHP
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: statusUI

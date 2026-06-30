@@ -1,25 +1,20 @@
 using UnityEngine;
-
 public static class ActionPlanner
 {
-    public static void AssignToSlot(
-        CharacterUnit owner,
+    public static bool AssignToSlot(
+        CharacterUnit user,
         SpeedSlot slot,
         Card card,
         CharacterUnit target)
     {
-        if (owner == null || slot == null || card == null || target == null)
-            return;
-
-        if (!owner.CanAct)
-            return;
-
-        if (target.IsDead)
-            return;
-
+        if (!user.CanPay(card.Cost))
+        {
+            Debug.LogWarning($"[PLANNER] {user.unitName} cannot afford " +
+                             $"{card.Name} (cost:{card.Cost} light:{user.currentLight})");
+            return false;
+        }
+        user.SpendLight(card.Cost);
         slot.Plan(card, target);
-
-        Debug.Log($"[PLAN] {owner.unitName} -> S{slot.value}");
-        SlotUIUpdater.Refresh(owner);
+        return true;
     }
 }
