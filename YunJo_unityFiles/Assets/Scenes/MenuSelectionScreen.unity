@@ -1250,12 +1250,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2049935232}
         m_TargetAssemblyTypeName: LoadingBar, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: NewGame
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2868,7 +2868,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3469,12 +3469,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2049935232}
         m_TargetAssemblyTypeName: LoadingBar, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: ContinuGame
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 9
+          m_IntArgument: 8
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3920,7 +3920,7 @@ GameObject:
   - component: {fileID: 1449259603}
   - component: {fileID: 1449259602}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GameTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4401,7 +4401,7 @@ GameObject:
   - component: {fileID: 1567067759}
   - component: {fileID: 1567067758}
   m_Layer: 5
-  m_Name: LeftBorder
+  m_Name: LoadLeftBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4734,7 +4734,7 @@ GameObject:
   - component: {fileID: 1728563355}
   - component: {fileID: 1728563354}
   m_Layer: 5
-  m_Name: TextBackground
+  m_Name: LoadTextBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4910,7 +4910,7 @@ GameObject:
   - component: {fileID: 1756799084}
   - component: {fileID: 1756799086}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: LoadText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5452,7 +5452,7 @@ GameObject:
   - component: {fileID: 1955516658}
   - component: {fileID: 1955516657}
   m_Layer: 5
-  m_Name: Icon (1)
+  m_Name: LoadIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

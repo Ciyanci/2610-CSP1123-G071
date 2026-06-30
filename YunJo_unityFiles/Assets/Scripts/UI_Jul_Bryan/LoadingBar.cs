@@ -6,15 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class LoadingBar : MonoBehaviour
 {
+    [Header("Loading Screen UI")]
     public GameObject LoadingScreen;
     public Image LoadingBarFill;
 
-    public void LoadScene(int sceneId)
+    public void NewGame(int sceneId)
     {
+        GameManager.Instance.DeleteSave();
+
+        GameManager.Instance.SaveGame();
+
+        StartCoroutine(LoadSceneAsync(sceneId)); //begin loading the next scene
+    }
+
+    public void ContinuGame(int sceneId)
+    {
+        GameManager.Instance.LoadGame();
+
         StartCoroutine(LoadSceneAsync(sceneId));
     }
 
-    IEnumerator LoadSceneAsync(int sceneId)
+    public void LoadScene(int sceneId)
+    {
+        GameManager.Instance.SaveGame();
+        StartCoroutine(LoadSceneAsync(sceneId));
+    }
+
+    IEnumerator LoadSceneAsync(int sceneId) //ienumerator cuz it allows loading screen and bar to update while it loads the next scene, makes it so that it loads over multiple frames
     {
         LoadingScreen.SetActive(true);
         LoadingBarFill.fillAmount = 0f;
@@ -34,6 +52,7 @@ public class LoadingBar : MonoBehaviour
             LoadingBarFill.fillAmount = Mathf.Min(loadProgress, timerProgress);
             yield return null;
         }
+        LoadingBarFill.fillAmount = 1f;
         operation.allowSceneActivation = true;  
         LoadingScreen.SetActive(false);
     }
