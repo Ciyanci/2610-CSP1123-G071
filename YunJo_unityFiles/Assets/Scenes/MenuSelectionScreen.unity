@@ -1799,6 +1799,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
   - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
   - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
+  gameplayScenes:
+  - BattleScene_Tutorial1
+  - VisualNovelTest
+  - BattleScene_Default
+  - 
+  completedSceneNames: []
 --- !u!4 &712395252
 Transform:
   m_ObjectHideFlags: 0
@@ -3474,7 +3480,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 8
+          m_IntArgument: 11
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

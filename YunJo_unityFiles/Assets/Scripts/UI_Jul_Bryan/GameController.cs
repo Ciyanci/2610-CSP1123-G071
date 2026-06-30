@@ -52,6 +52,7 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
+                        GameManager.Instance.CompleteCurrentScene();
                         Debug.Log("End of story!");
                     }
                 }

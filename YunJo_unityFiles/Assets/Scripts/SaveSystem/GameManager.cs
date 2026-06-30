@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Drag every CardData asset here")]
     public List<CardData> allCardData = new();
+    [Header("Gameplay/Visual Novel scenes go here")]
+    public List<string> gameplayScenes = new();
+    public List<string> completedSceneNames = new();
+
 
     void Awake()
     {
@@ -31,6 +35,30 @@ public class GameManager : MonoBehaviour
         SaveGame();
     }
 
+    public void CompleteCurrentScene()
+    {
+        string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+
+        if (!gameplayScenes.Contains(sceneName))
+        {
+            Debug.Log($"[STAGE] {sceneName} is not a gameplay/visual novel stage ");
+            return;
+        }
+
+        if (!completedSceneNames.Contains(sceneName))
+        {
+            completedSceneNames.Add(sceneName);
+            SaveGame();
+
+            Debug.Log($"[STAGE] Completed scene: {sceneName}");
+        }
+    }
+
+    public bool IsSceneCompleted(string sceneName)
+    {
+        return completedSceneNames.Contains(sceneName);
+    }
+
     public void SaveGame()
     {
         SaveData data = new SaveData();
@@ -40,9 +68,12 @@ public class GameManager : MonoBehaviour
             data.unlockedCardNames.Add(card.Name);
         }
 
+        data.completedSceneNames = new List<string>(completedSceneNames);
+
         SaveSystem.Save(data);
 
         Debug.Log($"[SAVE] Saved {data.unlockedCardNames.Count} cards");
+        Debug.Log($"[SAVE] Saved {data.completedSceneNames.Count} completed scenes.");
     }
 
     public void LoadGame()
@@ -65,12 +96,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        completedSceneNames = new List<string>(data.completedSceneNames);
+
         Debug.Log($"[LOAD] Loaded {CardInventory.GetAll().Count} cards");
+        Debug.Log($"[LOAD] Loaded {completedSceneNames.Count} completed scenes.");
     }
 
     public void DeleteSave()
     {
         SaveSystem.Delete();
         CardInventory.Clear();
+        completedSceneNames.Clear();
     }
 }

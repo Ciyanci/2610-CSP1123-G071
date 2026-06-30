@@ -6,4 +6,5 @@ using System;
 public class SaveData //using string to be saved since unity cant serialize scriptableobject references
 {
     public List<string> unlockedCardNames = new();
+    public List<string> completedSceneNames = new();
 }

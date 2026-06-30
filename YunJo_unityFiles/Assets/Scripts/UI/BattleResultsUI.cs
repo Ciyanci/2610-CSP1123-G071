@@ -28,6 +28,7 @@ public class BattleResultsUI : MonoBehaviour
 
     bool shown    = false;
     bool canClick = false;
+    bool playerWon = false;
 
     void Awake()
     {
@@ -40,8 +41,16 @@ public class BattleResultsUI : MonoBehaviour
     // =========================
     // ENTRY POINTS
     // =========================
-    public void ShowVictory() => Show("VICTORY", victoryColor);
-    public void ShowDefeat()  => Show("DEFEAT",  defeatColor);
+    public void ShowVictory()
+    {
+        playerWon = true;
+        Show("VICTORY", victoryColor);
+    }
+    public void ShowDefeat()
+    {
+        playerWon = false;
+        Show("DEFEAT",  defeatColor);
+    }
 
     // =========================
     // SHOW
@@ -124,6 +133,10 @@ public class BattleResultsUI : MonoBehaviour
     void Exit()
     {
         canClick = false;
+        if (playerWon)
+        {
+            GameManager.Instance.CompleteCurrentScene();
+        }
         if (!string.IsNullOrEmpty(exitSceneName))
             SceneManager.LoadScene(exitSceneName);
         else
