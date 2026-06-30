@@ -21,5 +21,7 @@ public class StoryScene : ScriptableObject
         public Speaker speaker;
         public Sprite characterSprite;
         public CharacterPosition characterPos;
+        public Sprite characterSprite2;
+        public CharacterPosition characterPos2;
     }
 }

@@ -7,40 +7,31 @@ public class GameController : MonoBehaviour
     public StoryScene currentScene;
     public BottomBarController bottomBar;
     public BackgroundController backgroundController;
-    public CharacterSpriteController characterController;
+    public CharacterSpriteController characterController; // ← renamed field
 
     void Start()
     {
-        Debug.Log("[GameController] Start called");
-        Debug.Log($"[GameController] currentScene: {(currentScene == null ? "NULL" : currentScene.name)}");
-        Debug.Log($"[GameController] bottomBar: {(bottomBar == null ? "NULL" : "OK")}");
-        Debug.Log($"[GameController] backgroundController: {(backgroundController == null ? "NULL" : "OK")}");
-        Debug.Log($"[GameController] characterController: {(characterController == null ? "NULL" : "OK")}");
-
         bottomBar.PlayScene(currentScene);
         backgroundController.SetImage(currentScene.backgroud);
-        ShowCharacter(currentScene.sentences[0]);
+        ShowCharacter(currentScene.sentences[0]); // ← show first sentence's character
     }
 
     void ShowCharacter(StoryScene.Sentence sentence)
     {
-        Debug.Log($"[GameController] ShowCharacter called — sprite: {(sentence.characterSprite == null ? "NULL" : sentence.characterSprite.name)}, pos: {sentence.characterPos}");
+        string sprite1Name = sentence.characterSprite != null ? sentence.characterSprite.name : "NULL";
+        string sprite2Name = sentence.characterSprite2 != null ? sentence.characterSprite2.name : "NULL";
+        Debug.Log($"[GameController] Sentence data — Sprite1: {sprite1Name}, Pos1: {sentence.characterPos}, Sprite2: {sprite2Name}, Pos2: {sentence.characterPos2}");
 
-        if (characterController == null)
-        {
-            Debug.LogError("[GameController] characterController is NULL — assign it in the Inspector!");
-            return;
-        }
+        characterController.Hide(); // clear both slots first
 
-        if (sentence.characterPos == StoryScene.CharacterPosition.None || sentence.characterSprite == null)
+        if (sentence.characterPos != StoryScene.CharacterPosition.None && sentence.characterSprite != null)
         {
-            Debug.Log("[GameController] No character to show, calling Hide");
-            characterController.Hide();
-        }
-        else
-        {
-            Debug.Log("[GameController] Calling Show on characterController");
             characterController.Show(sentence.characterSprite, sentence.characterPos);
+        }
+
+        if (sentence.characterPos2 != StoryScene.CharacterPosition.None && sentence.characterSprite2 != null)
+        {
+            characterController.Show(sentence.characterSprite2, sentence.characterPos2);
         }
     }
 
@@ -57,15 +48,16 @@ public class GameController : MonoBehaviour
                         currentScene = currentScene.nextScene;
                         bottomBar.PlayScene(currentScene);
                         backgroundController.SwitchImage(currentScene.backgroud);
-                        ShowCharacter(currentScene.sentences[0]);
+                        ShowCharacter(currentScene.sentences[0]); // ← show first character of new scene
                     }
                     else
                     {
-                        Debug.Log("[GameController] End of story!");
+                        Debug.Log("End of story!");
                     }
                 }
                 else
                 {
+                    // ← get NEXT index before playing, so character matches upcoming sentence
                     ShowCharacter(currentScene.sentences[bottomBar.GetSentenceIndex() + 1]);
                     bottomBar.PlayNextSentence();
                 }

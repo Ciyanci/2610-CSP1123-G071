@@ -10,15 +10,8 @@ public class CharacterSpriteController : MonoBehaviour
     public void Show(Sprite sprite, StoryScene.CharacterPosition pos)
     {
         Debug.Log($"[CharacterSprite] Show called — Sprite: {sprite?.name ?? "NULL"}, Position: {pos}");
-        
-        Hide(); // clear all first
-        Image target = pos switch
-        {
-            StoryScene.CharacterPosition.Left   => leftSlot,
-            StoryScene.CharacterPosition.Center => centerSlot,
-            StoryScene.CharacterPosition.Right  => rightSlot,
-            _ => null
-        };
+
+        Image target = GetSlot(pos);
 
         if (target != null)
         {
@@ -38,6 +31,17 @@ public class CharacterSpriteController : MonoBehaviour
         SetAlpha(leftSlot, 0f);
         SetAlpha(centerSlot, 0f);
         SetAlpha(rightSlot, 0f);
+    }
+
+    private Image GetSlot(StoryScene.CharacterPosition pos)
+    {
+        return pos switch
+        {
+            StoryScene.CharacterPosition.Left   => leftSlot,
+            StoryScene.CharacterPosition.Center => centerSlot,
+            StoryScene.CharacterPosition.Right  => rightSlot,
+            _ => null
+        };
     }
 
     private void SetAlpha(Image image, float alpha)

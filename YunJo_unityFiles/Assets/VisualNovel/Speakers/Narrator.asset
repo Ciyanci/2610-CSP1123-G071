@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Narrator
   m_EditorClassIdentifier: Assembly-CSharp::Speaker
   speakerName: ???
-  textColor: {r: 1, g: 0, b: 0.51239383, a: 1}
+  textColor: {r: 0.6150943, g: 0, b: 0, a: 1}
