@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class CardInfoPanel : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CardInfoPanel : MonoBehaviour
     public TMP_Text description;
     public Image artwork;
     public TMP_Text rarityLabel;
+    public TMP_Text effects;
 
     void Awake()
     {
@@ -28,6 +30,7 @@ public class CardInfoPanel : MonoBehaviour
         cost.text = card.Cost.ToString();
         description.text = card.Data.Description;
         artwork.sprite = card.Artwork;
+        effects.text = card.Data.Effects;
 
         background.color = card.Data.rarity switch
         {
