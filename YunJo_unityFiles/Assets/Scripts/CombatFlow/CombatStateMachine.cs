@@ -5,18 +5,15 @@ using System.Collections.Generic;
 public class CombatStateMachine : MonoBehaviour
 {
     public static CombatStateMachine Instance;
-
     public CombatPhase phase;
 
-    void Awake()
-    {
-        Instance = this;
-    }
+    // ✅ Set true by TutorialManager while it owns input
+    // Prevents PlanningPhase from reacting to tutorial's internal enable/disable
+    [HideInInspector] public bool tutorialControllingInput = false;
 
-    void Start()
-    {
-        StartCoroutine(TurnLoop());
-    }
+    void Awake() => Instance = this;
+
+    void Start() => StartCoroutine(TurnLoop());
 
     IEnumerator TurnLoop()
     {
@@ -31,17 +28,16 @@ public class CombatStateMachine : MonoBehaviour
     }
 
     bool _turnComplete = false;
-    public void NotifyTurnComplete()
-    {
-        _turnComplete = true;
-    }
+    public void NotifyTurnComplete() => _turnComplete = true;
 
-    //start turn **
     IEnumerator StartTurnPhase()
     {
         phase = CombatPhase.StartTurn;
         Debug.Log("[PHASE] Start Turn");
-
+        // ✅ Always reset tutorial flag at the start of a fresh turn
+        // After the tutorial step that uses keepInputAfter, subsequent turns
+        // should run normally with no tutorial interference
+        tutorialControllingInput = false;
         foreach (var unit in UnitRegistry.Instance.players)
         {
             if (unit == null || unit.IsDead) continue;
@@ -52,12 +48,10 @@ public class CombatStateMachine : MonoBehaviour
             if (unit == null || unit.IsDead) continue;
             unit.ResetSpeedSlots();
         }
-
-        yield return new WaitForSeconds(0.8f); // let AnimateRolls play
+        yield return new WaitForSeconds(0.8f);
         CombatHUDController.Instance?.ShowSpeedBubbles();
     }
 
-    //draw **
     IEnumerator DrawPhase()
     {
         phase = CombatPhase.Draw;
@@ -68,19 +62,21 @@ public class CombatStateMachine : MonoBehaviour
         foreach (var unit in UnitRegistry.Instance.enemies)
             unit.deck?.RefreshHand();
 
+        yield return new WaitForSeconds(0.3f);
+
         var players = UnitRegistry.Instance.players;
         if (players.Count > 0 && players[0].deck != null)
             HandUI.Instance?.Show(players[0].deck);
 
-        yield return new WaitForSeconds(0.2f);
+        CombatInfoBar.Instance?.ShowDefault();
     }
 
-    //planning **
     IEnumerator PlanningPhase()
     {
         phase = CombatPhase.Planning;
         Debug.Log("[PHASE] Planning");
-
+        yield return new WaitUntil(() => !tutorialControllingInput);
+        // Run enemy AI
         var enemies = UnitRegistry.Instance?.enemies;
         if (enemies != null)
         {
@@ -93,15 +89,14 @@ public class CombatStateMachine : MonoBehaviour
                 yield return ai.TakeTurn();
             }
         }
-
         RefreshInfoBarForEnemyIntent();
-
         CombatInfoBar.Instance?.ShowDefault();
+        yield return new WaitUntil(() => !tutorialControllingInput);
         CombatFlowController.Instance.SetInputEnabled(true);
-
-        yield return new WaitUntil(() => !CombatFlowController.Instance.inputEnabled);
+        yield return new WaitUntil(() =>
+            !CombatFlowController.Instance.inputEnabled &&
+            !tutorialControllingInput);
     }
-
     void RefreshInfoBarForEnemyIntent()
     {
         var players = UnitRegistry.Instance?.players;
