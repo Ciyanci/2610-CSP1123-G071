@@ -49,38 +49,62 @@ public class TeamSlotUI : MonoBehaviour
             button?.onClick.AddListener(() => onSelect?.Invoke(unit));
     }
 
+
     // =========================
     // PLAYER — interactable
     // =========================
     public void BindPlayerUnit(CharacterUnit unit, bool isLeader,
                                Action<CharacterUnit> onSelect)
     {
-        BoundUnit  = unit;
+        BoundUnit = unit;
         BoundEnemy = null;
 
-        leaderBadge?.SetActive(isLeader);
-        emptyState?.SetActive(unit == null);
+        if (emptyState != null)
+            emptyState.SetActive(unit == null);
+
+        if (leaderBadge != null)
+            leaderBadge.SetActive(isLeader);
 
         if (unit != null)
         {
-            if (portrait != null && unit.unitData?.portrait != null)
-                portrait.sprite = unit.unitData.portrait;
             if (nameText != null)
-                nameText.text = unit.unitName;
-            portrait?.gameObject.SetActive(true);
+            {
+                nameText.gameObject.SetActive(true);
+
+                if (unit.unitData != null && !string.IsNullOrEmpty(unit.unitData.unitName))
+                    nameText.text = unit.unitData.unitName;
+                else
+                    nameText.text = unit.unitName;
+            }
+
+            if (portrait != null)
+            {
+                portrait.gameObject.SetActive(true);
+
+                if (unit.unitData != null && unit.unitData.portrait != null)
+                    portrait.sprite = unit.unitData.portrait;
+            }
         }
         else
         {
-            portrait?.gameObject.SetActive(false);
             if (nameText != null)
-                nameText.text = isLeader ? "No Leader" : "Empty";
+            {
+                nameText.gameObject.SetActive(true);
+                nameText.text = "Empty";
+            }
+
+            if (portrait != null)
+                portrait.gameObject.SetActive(false);
         }
 
-        button?.onClick.RemoveAllListeners();
-        if (unit != null)
-            button?.onClick.AddListener(() => onSelect?.Invoke(unit));
-    }
+        if (button != null)
+        {
+            button.onClick.RemoveAllListeners();
 
+            if (unit != null)
+                button.onClick.AddListener(() => onSelect?.Invoke(unit));
+        }
+    }
     // =========================
     // EMPTY
     // =========================
