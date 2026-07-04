@@ -10461,7 +10461,25 @@ MonoBehaviour:
     targetUI: {fileID: 967399765}
     highlightPadding: {x: 20, y: 20}
     boxPosition: {fileID: 967399765}
+    boxPadding: {x: -600, y: 420}
+  - title: Character's Stats
+    description: Shows the stats on the character
+    targetUI: {fileID: 967399765}
+    highlightPadding: {x: 20, y: 20}
+    boxPosition: {fileID: 967399765}
+    boxPadding: {x: -600, y: 200}
+  - title: Character's Resistance
+    description: Shows the character's resistances
+    targetUI: {fileID: 967399765}
+    highlightPadding: {x: 20, y: 100}
+    boxPosition: {fileID: 967399765}
     boxPadding: {x: -600, y: 0}
+  - title: Deck of Cards
+    description: Shows the character's deck of cards
+    targetUI: {fileID: 967399765}
+    highlightPadding: {x: 20, y: 20}
+    boxPosition: {fileID: 967399765}
+    boxPadding: {x: -600, y: -200}
   overlayPanel: {fileID: 1989210087}
   darkBackground: {fileID: 2077619569}
   highlightFrame: {fileID: 1430663670}
