@@ -48,8 +48,16 @@ public class CombatFlowController : MonoBehaviour
 
         if (slot.state == SlotState.Planned && slot.assignedCard != null)
         {
+            slot.owner.currentLight = Mathf.Min(
+                slot.owner.currentLight + slot.assignedCard.Cost,
+                slot.owner.maxLight);
+
+            slot.owner.RefreshLight();
+
             slot.owner.deck?.ReturnToHand(slot.assignedCard);
+
             ArrowManager.Instance?.RemovePlannedArrow(slot);
+
             slot.Clear();
         }
 
@@ -89,7 +97,7 @@ public class CombatFlowController : MonoBehaviour
         ClearSelection();
         RefreshHandIfSelected(user);
         CombatInfoBar.Instance?.ShowSlotInfo(slot);
-        Debug.Log($"[FLOW] {user.unitName} → slot {slot.value} → {target.unitName}");
+        Debug.Log($"[FLOW] {user.unitName} to slot {slot.value} to {target.unitName}");
     }
 
     //drag drop confirm target

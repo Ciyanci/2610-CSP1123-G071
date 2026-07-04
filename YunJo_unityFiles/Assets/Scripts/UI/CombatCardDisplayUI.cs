@@ -1,4 +1,3 @@
-// CombatCardDisplayUI.cs
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -67,7 +66,7 @@ public class CombatCardDisplayUI : MonoBehaviour
     void BindSide(Image artwork, TextMeshProUGUI nameText, Card card)
     {
         if (card == null) return;
-        if (artwork  != null) artwork.sprite = card.Artwork;
+        if (artwork != null) artwork.sprite = card.Artwork;
         if (nameText != null) nameText.text  = card.Name;
     }
 

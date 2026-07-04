@@ -5,10 +5,10 @@ using System;
 
 public class RewardCardEntryUI : MonoBehaviour
 {
-    public Image           artwork;
+    public Image artwork;
     public TextMeshProUGUI cardNameText;
     public TextMeshProUGUI costText;
-    public Button          selectButton;
+    public Button selectButton;
 
     CardData boundCard;
     Action<CardData> onSelected;
@@ -18,10 +18,10 @@ public class RewardCardEntryUI : MonoBehaviour
         boundCard  = card;
         onSelected = callback;
 
-        if (artwork      != null && card.Artwork != null)
+        if (artwork != null && card.Artwork != null)
             artwork.sprite = card.Artwork;
         if (cardNameText != null) cardNameText.text = card.Name;
-        if (costText     != null) costText.text     = card.Cost.ToString();
+        if (costText != null) costText.text = card.Cost.ToString();
 
         selectButton?.onClick.RemoveAllListeners();
         selectButton?.onClick.AddListener(() => onSelected?.Invoke(boundCard));

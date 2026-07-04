@@ -4,18 +4,18 @@ using UnityEngine;
 public class CombatArrow : MonoBehaviour
 {
     [Header("Curve")]
-    public int   segments    = 40;
+    public int segments    = 40;
     public float arcHeight   = 10f;   //world units, how high the arc rises
 
     [Header("Tip")]
     public Transform tip;         
 
     [Header("Dash (preview only)")]
-    public bool  dashed          = false;
+    public bool  dashed = false;
     public float dashScrollSpeed = 1.2f;
 
     LineRenderer lr;
-    float        dashOffset;
+    float dashOffset;
 
     void Awake()
     {
@@ -46,7 +46,7 @@ public class CombatArrow : MonoBehaviour
 
         for (int i = 0; i <= segments; i++)
         {
-            float   t   = i / (float)segments;
+            float t = i / (float)segments;
             Vector3 pos = Bezier(from, control, to, t);
             lr.SetPosition(i, pos);
         }
@@ -54,11 +54,11 @@ public class CombatArrow : MonoBehaviour
         //orrient tip to face the curve's final tangent
         if (tip != null)
         {
-            Vector3 prev    = Bezier(from, control, to, 0.98f);
-            Vector3 dir     = (to - prev).normalized;
-            float   angle   = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            tip.position    = to;
-            tip.rotation    = Quaternion.Euler(0, 0, angle);
+            Vector3 prev = Bezier(from, control, to, 0.98f);
+            Vector3 dir = (to - prev).normalized;
+            float   angle  = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            tip.position = to;
+            tip.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 

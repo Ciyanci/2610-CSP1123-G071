@@ -34,20 +34,20 @@ public static class ClashOddsCalculator
     //return guidance string
     public static string OddsLabel(float winChance)
     {
-        if      (winChance >= 0.70f) return "Favoured to Win";
+        if (winChance >= 0.70f) return "Favoured to Win";
         else if (winChance >= 0.55f) return "Slight Advantage";
         else if (winChance >= 0.45f) return "Even Odds";
         else if (winChance >= 0.30f) return "Slight Disadvantage";
-        else                         return "Likely to Lose";
+        else return "Likely to Lose";
     }
 
     public static Color OddsColor(float winChance)
     {
-        if      (winChance >= 0.70f) return new Color(0.2f, 0.9f, 0.3f);
+        if (winChance >= 0.70f) return new Color(0.2f, 0.9f, 0.3f);
         else if (winChance >= 0.55f) return new Color(0.6f, 0.9f, 0.2f);
         else if (winChance >= 0.45f) return Color.white;
         else if (winChance >= 0.30f) return new Color(0.9f, 0.6f, 0.2f);
-        else                         return new Color(0.9f, 0.2f, 0.2f);
+        else return new Color(0.9f, 0.2f, 0.2f);
     }
 }
 //i love meth

@@ -62,6 +62,10 @@ public class CharacterUnit : MonoBehaviour
     public Sprite windup;
     public Sprite move;
 
+    [Header("Damage Popup")]
+    public DamagePopup damagePopupPrefab;
+    public Transform damagePopupAnchor;
+
     [HideInInspector] public Vector3 startPos;
     public Vector3 GetStartPos() => startPos;
 
@@ -179,7 +183,6 @@ public class CharacterUnit : MonoBehaviour
     //light
     public void RefreshLight()
     {
-        currentLight = maxLight;
         lightBarUI?.Refresh();
     }
 
@@ -283,13 +286,39 @@ public class CharacterUnit : MonoBehaviour
     public void TakeDamage(int amount, DamageType type)
     {
         if (IsDead) return;
+
         int final = DamageCalculator.Calculate(amount, type, this);
+
         hp = Mathf.Max(0, hp - final);
+
+        //show popup
+        if (final > 0)
+            ShowDamagePopup(final);
+
         Debug.Log($"{unitName} took {final} HP | remaining: {hp}/{maxHP}");
+
         RefreshAllUI();
         EvaluateState();
     }
 
+    public void ShowDamagePopup(int damage)
+    {
+        if (damagePopupPrefab == null)
+            return;
+
+        Transform anchor = damagePopupAnchor != null
+            ? damagePopupAnchor
+            : headAnchor != null
+                ? headAnchor
+                : transform;
+
+        DamagePopup popup = Instantiate(
+            damagePopupPrefab,
+            anchor.position,
+            Quaternion.identity);
+
+        popup.Show(damage);
+    }
     public void TakeStaggerDamage(int amount)
     {
         if (IsDead) return;

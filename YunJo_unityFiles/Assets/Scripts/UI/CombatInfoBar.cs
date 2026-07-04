@@ -8,23 +8,23 @@ public class CombatInfoBar : MonoBehaviour
 
     [Header("Left Panel — player unit")]
     public TextMeshProUGUI leftUnitName;
-    public Image           leftHpFill;
+    public Image leftHpFill;
     public TextMeshProUGUI leftHpText;
-    public Image           leftStaggerFill;
+    public Image leftStaggerFill;
     public TextMeshProUGUI leftStaggerText;
 
     [Header("Right Panel — enemy unit")]
     public TextMeshProUGUI rightUnitName;
-    public Image           rightHpFill;
+    public Image rightHpFill;
     public TextMeshProUGUI rightHpText;
-    public Image           rightStaggerFill;
+    public Image rightStaggerFill;
     public TextMeshProUGUI rightStaggerText;
 
     [Header("Centre Panel")]
-    public GameObject      centrePanel;
+    public GameObject centrePanel;
     public TextMeshProUGUI centreLabel;
-    public Transform       leftCardRoot;
-    public Transform       rightCardRoot;
+    public Transform leftCardRoot;
+    public Transform rightCardRoot;
 
     //pre-placed, not instantiated prefabs ok
     [Header("Card Previews")]
@@ -35,7 +35,7 @@ public class CombatInfoBar : MonoBehaviour
     public TextMeshProUGUI oddsLabel;
 
     [Header("Colors")]
-    public Color clashColor     = new Color(0.85f, 0.2f,  0.2f,  1f);
+    public Color clashColor = new Color(0.85f, 0.2f,  0.2f,  1f);
     public Color unopposedColor = new Color(0.2f,  0.75f, 0.2f,  1f);
 
     void Awake()
@@ -48,12 +48,10 @@ public class CombatInfoBar : MonoBehaviour
     public void ShowDefault()
     {
         centrePanel?.SetActive(false);
-
         ClearPanel(rightUnitName, rightHpFill, rightHpText,
                    rightStaggerFill, rightStaggerText);
 
         rightCardView?.Clear();
-
         var players = UnitRegistry.Instance?.players;
         if (players != null && players.Count > 0)
             BindLeft(players[0]);
@@ -63,28 +61,21 @@ public class CombatInfoBar : MonoBehaviour
     public void ShowUnit(CharacterUnit unit)
     {
         if (unit == null) return;
-
         centrePanel?.SetActive(false);
-
         bool isPlayer = UnitRegistry.Instance.players.Contains(unit);
-
         if (isPlayer) BindLeft(unit);
-        else          BindRight(unit);
+        else BindRight(unit);
     }
 
     //slot info
     public void ShowSlotInfo(SpeedSlot slot)
     {
         if (slot == null) return;
-
         CharacterUnit owner = slot.owner;
         bool ownerIsPlayer  = UnitRegistry.Instance.players.Contains(owner);
-
         if (ownerIsPlayer) BindLeft(owner);
         else               BindRight(owner);
-
         CharacterUnit target = slot.target;
-
         if (target != null)
         {
             if (ownerIsPlayer) BindRight(target);
@@ -108,15 +99,15 @@ public class CombatInfoBar : MonoBehaviour
         centrePanel?.SetActive(true);
 
         SpeedSlot counterSlot = FindCounterSlot(slot);
-        bool isClash          = counterSlot != null;
+        bool isClash = counterSlot != null;
 
         if (centreLabel != null)
         {
-            centreLabel.text  = isClash ? "⚔  CLASHING" : "✓  UNOPPOSED";
+            centreLabel.text = isClash ? "CLASHING" : "UNOPPOSED";
             centreLabel.color = isClash ? clashColor : unopposedColor;
         }
 
-        SpeedSlot playerSlot = ownerIsPlayer ? slot        : counterSlot;
+        SpeedSlot playerSlot = ownerIsPlayer ? slot : counterSlot;
         SpeedSlot enemySlot  = ownerIsPlayer ? counterSlot : slot;
 
         //use infobarcardview directly (no prefabs, gotta make this everytime)
@@ -127,11 +118,10 @@ public class CombatInfoBar : MonoBehaviour
         {
             if (isClash &&
                 playerSlot?.assignedCard != null &&
-                enemySlot?.assignedCard  != null)
+                enemySlot?.assignedCard != null)
             {
                 var dieP = playerSlot.assignedCard.GetDiceSafe(0);
                 var dieE = enemySlot.assignedCard.GetDiceSafe(0);
-
                 if (dieP != null && dieE != null)
                 {
                     float odds = ClashOddsCalculator.WinProbability(
@@ -152,10 +142,8 @@ public class CombatInfoBar : MonoBehaviour
     public void Clear()
     {
         centrePanel?.SetActive(false);
-
         leftCardView?.Clear();
         rightCardView?.Clear();
-
         ClearPanel(leftUnitName,  leftHpFill,  leftHpText,
                    leftStaggerFill,  leftStaggerText);
         ClearPanel(rightUnitName, rightHpFill, rightHpText,
@@ -166,21 +154,21 @@ public class CombatInfoBar : MonoBehaviour
     void BindLeft(CharacterUnit unit)
     {
         if (unit == null) return;
-        if (leftUnitName    != null) leftUnitName.text         = unit.unitName;
-        if (leftHpFill      != null) leftHpFill.fillAmount     = Mathf.Clamp01((float)unit.hp / unit.maxHP);
-        if (leftHpText      != null) leftHpText.text           = $"{unit.hp} / {unit.maxHP}";
+        if (leftUnitName != null) leftUnitName.text = unit.unitName;
+        if (leftHpFill != null) leftHpFill.fillAmount = Mathf.Clamp01((float)unit.hp / unit.maxHP);
+        if (leftHpText != null) leftHpText.text = $"{unit.hp} / {unit.maxHP}";
         if (leftStaggerFill != null) leftStaggerFill.fillAmount = Mathf.Clamp01((float)unit.stagger / unit.maxStagger);
-        if (leftStaggerText != null) leftStaggerText.text      = $"{unit.stagger} / {unit.maxStagger}";
+        if (leftStaggerText != null) leftStaggerText.text = $"{unit.stagger} / {unit.maxStagger}";
     }
 
     void BindRight(CharacterUnit unit)
     {
         if (unit == null) return;
-        if (rightUnitName    != null) rightUnitName.text         = unit.unitName;
-        if (rightHpFill      != null) rightHpFill.fillAmount     = Mathf.Clamp01((float)unit.hp / unit.maxHP);
-        if (rightHpText      != null) rightHpText.text           = $"{unit.hp} / {unit.maxHP}";
+        if (rightUnitName != null) rightUnitName.text = unit.unitName;
+        if (rightHpFill != null) rightHpFill.fillAmount = Mathf.Clamp01((float)unit.hp / unit.maxHP);
+        if (rightHpText != null) rightHpText.text = $"{unit.hp} / {unit.maxHP}";
         if (rightStaggerFill != null) rightStaggerFill.fillAmount = Mathf.Clamp01((float)unit.stagger / unit.maxStagger);
-        if (rightStaggerText != null) rightStaggerText.text      = $"{unit.stagger} / {unit.maxStagger}";
+        if (rightStaggerText != null) rightStaggerText.text = $"{unit.stagger} / {unit.maxStagger}";
     }
 
     void ClearPanel(
@@ -188,11 +176,11 @@ public class CombatInfoBar : MonoBehaviour
         Image hpFill,       TextMeshProUGUI hpText,
         Image staggerFill,  TextMeshProUGUI staggerText)
     {
-        if (name        != null) name.text              = string.Empty;
-        if (hpFill      != null) hpFill.fillAmount       = 0;
-        if (hpText      != null) hpText.text             = string.Empty;
-        if (staggerFill != null) staggerFill.fillAmount  = 0;
-        if (staggerText != null) staggerText.text        = string.Empty;
+        if (name != null) name.text = string.Empty;
+        if (hpFill != null) hpFill.fillAmount = 0;
+        if (hpText != null) hpText.text = string.Empty;
+        if (staggerFill != null) staggerFill.fillAmount = 0;
+        if (staggerText != null) staggerText.text = string.Empty;
     }
 
     SpeedSlot FindCounterSlot(SpeedSlot slot)

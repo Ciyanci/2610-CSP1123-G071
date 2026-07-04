@@ -18,7 +18,7 @@ public class UnitData : ScriptableObject
 
     [Header("Leader")]
     public bool        isLeader     = false;
-    public KeypageData lockedKeypage;          // leaders only
+    public KeypageData lockedKeypage;          //leaders only
 
     [Header("Base Stats")]
     public int baseMaxHP      = 100;
@@ -30,14 +30,12 @@ public class UnitData : ScriptableObject
 
     [Header("Cards")]
     public List<CardData> starterDeck  = new();
-    public List<CardData> uniqueCards  = new();  // leader only
+    public List<CardData> uniqueCards  = new();  //leader only
 
     [Header("Passives")]
-    public List<PassiveData> innatePassives = new();  // leader only
+    public List<PassiveData> innatePassives = new();  //leader only
 
-    // =========================
-    // HELPERS
-    // =========================
+    //helpers
     public int GetMaxHP(KeypageData kp) =>
         baseMaxHP + (kp != null ? kp.hpBonus : 0);
 

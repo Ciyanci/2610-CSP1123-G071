@@ -16,11 +16,11 @@ public class SpeedSlotUIElement : MonoBehaviour,
     public Image outline;
 
     [Header("State Colors")]
-    public Color emptyColor     = new Color(0.15f, 0.15f, 0.15f, 0.85f);
-    public Color plannedColor   = new Color(0.2f,  0.5f,  0.8f,  0.9f);
+    public Color emptyColor = new Color(0.15f, 0.15f, 0.15f, 0.85f);
+    public Color plannedColor = new Color(0.2f,  0.5f,  0.8f,  0.9f);
     public Color committedColor = new Color(0.1f,  0.7f,  0.3f,  0.9f);
-    public Color executedColor  = new Color(0.35f, 0.35f, 0.35f, 0.5f);
-    public Color selectedColor  = new Color(1f,    0.85f, 0.1f,  1f);
+    public Color executedColor = new Color(0.35f, 0.35f, 0.35f, 0.5f);
+    public Color selectedColor = new Color(1f,    0.85f, 0.1f,  1f);
 
     public SpeedSlot slot { get; private set; }
 
@@ -62,7 +62,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
         SlotState.Planned   => plannedColor,
         SlotState.Committed => committedColor,
         SlotState.Executed  => executedColor,
-        _                   => emptyColor
+        _ => emptyColor
     };
 
     //drop
@@ -121,7 +121,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
     {
         if (group != null)
         {
-            group.alpha          = 1;
+            group.alpha = 1;
             group.interactable   = true;
             group.blocksRaycasts = true;
         }
@@ -132,7 +132,7 @@ public class SpeedSlotUIElement : MonoBehaviour,
     {
         if (group != null)
         {
-            group.alpha          = 0;
+            group.alpha = 0;
             group.interactable   = false;
             group.blocksRaycasts = false;
         }

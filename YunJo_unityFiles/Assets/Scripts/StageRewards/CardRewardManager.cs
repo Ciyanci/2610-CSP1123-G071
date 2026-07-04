@@ -12,11 +12,11 @@ public class CardRewardManager : MonoBehaviour
     public List<CardData> rewardPool = new();
 
     [Header("UI")]
-    public GameObject        rewardPanel;
-    public Transform         cardContainer;
+    public GameObject rewardPanel;
+    public Transform cardContainer;
     public RewardCardEntryUI cardEntryPrefab;
-    public TextMeshProUGUI   headerText;
-    public Button            skipButton;
+    public TextMeshProUGUI headerText;
+    public Button skipButton;
 
     [Header("Save Key — unique per stage, prevents re-earning")]
     public string rewardSaveKey = "Tutorial1_CardReward";
@@ -40,7 +40,7 @@ public class CardRewardManager : MonoBehaviour
     //called by TutorialManager or BattleResultsUI after victory
     public void ShowRewards()
     {
-        //already claimed — skip straight to next scene
+        //already claimed - skip straight to next scene
         if (PlayerPrefs.GetInt(rewardSaveKey, 0) == 1)
         {
             Debug.Log($"[REWARD] {rewardSaveKey} already claimed — skipping");

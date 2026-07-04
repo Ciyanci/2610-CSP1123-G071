@@ -17,11 +17,21 @@ public class DamagePopup : MonoBehaviour
     IEnumerator Animate()
     {
         float t = 0f;
+
         Vector3 start = transform.position;
+        Vector3 end = start + Vector3.up * 60f;   //UI pixels
 
         while (t < duration)
         {
-            transform.position += Vector3.up * riseSpeed * Time.deltaTime;
+            float p = t / duration;
+
+            transform.position = Vector3.Lerp(start, end, p);
+
+            //fade out
+            Color c = text.color;
+            c.a = 1f - p;
+            text.color = c;
+
             t += Time.deltaTime;
             yield return null;
         }

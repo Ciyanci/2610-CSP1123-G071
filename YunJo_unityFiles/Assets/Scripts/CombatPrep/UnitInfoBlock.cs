@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class UnitInfoBlock : MonoBehaviour
 {
     [Header("Identity")]
-    public Image           portrait;
+    public Image portrait;
     public TextMeshProUGUI unitNameText;
     public TextMeshProUGUI keypageNameText;
 
@@ -21,18 +21,18 @@ public class UnitInfoBlock : MonoBehaviour
     public TextMeshProUGUI bluntText;
 
     [Header("Passives")]
-    public Transform      passiveContainer;
+    public Transform passiveContainer;
     public PassiveEntryUI passivePrefab;
 
     [Header("Deck")]
-    public Transform       deckContainer;
+    public Transform deckContainer;
     public DeckCardEntryUI deckCardPrefab;
 
     [Header("Interaction")]
-    public bool   isInteractable = false;
+    public bool isInteractable = false;
     public Button keypageOverlayButton;
 
-    List<PassiveEntryUI>  spawnedPassives  = new();
+    List<PassiveEntryUI> spawnedPassives  = new();
     List<DeckCardEntryUI> spawnedDeckCards = new();
 
     CharacterUnit boundUnit;

@@ -7,10 +7,8 @@ public class BattlegroundParallax : MonoBehaviour
     public ParallaxLayer[] layers;
 
     [Header("Transition")]
-    public float          transitionDuration = 0.45f;
+    public float transitionDuration = 0.45f;
     public AnimationCurve easeCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
-
-    Coroutine activeTransition;
 
     public void EnterCinematic()
     {
@@ -40,8 +38,13 @@ public class ParallaxLayer
     [Tooltip("Optional horizontal drift")]
     public float cinematicOffsetX = 0f;
 
+    [Header("(Y-axis zoom)")]
+    [Tooltip("Y-scale multiplier in cinematic mode (e.g. 1.3 = 30% taller)")]
+    public float scaleMultiplierY = 1f;
+
     Vector3   startPos;
-    bool      initialized = false;
+    Vector3   startScale;
+    bool      initialized;
     Coroutine active;
 
     public void SetCinematic(MonoBehaviour owner, float duration, AnimationCurve curve)
@@ -49,14 +52,19 @@ public class ParallaxLayer
         if (renderer == null) return;
         Init();
 
-        Vector3 target = startPos + new Vector3(
+        Vector3 targetPos = startPos + new Vector3(
             cinematicOffsetX * depthFactor,
             cinematicOffsetY * depthFactor,
             0f);
 
+        Vector3 targetScale = new Vector3(
+            startScale.x,
+            startScale.y * scaleMultiplierY,
+            startScale.z);
+
         if (active != null) owner.StopCoroutine(active);
         active = owner.StartCoroutine(
-            MoveLayer(renderer.transform, target, duration, curve));
+            TransitionLayer(renderer.transform, targetPos, targetScale, duration, curve));
     }
 
     public void SetPlanning(MonoBehaviour owner, float duration, AnimationCurve curve)
@@ -66,30 +74,37 @@ public class ParallaxLayer
 
         if (active != null) owner.StopCoroutine(active);
         active = owner.StartCoroutine(
-            MoveLayer(renderer.transform, startPos, duration, curve));
+            TransitionLayer(renderer.transform, startPos, startScale, duration, curve));
     }
 
     void Init()
     {
         if (initialized) return;
         startPos    = renderer.transform.position;
+        startScale  = renderer.transform.localScale;
         initialized = true;
     }
 
-    IEnumerator MoveLayer(
-        Transform t, Vector3 target, float duration, AnimationCurve curve)
+    IEnumerator TransitionLayer(
+        Transform t, Vector3 targetPos, Vector3 targetScale,
+        float duration, AnimationCurve curve)
     {
-        Vector3 from    = t.position;
-        float   elapsed = 0f;
+        Vector3 fromPos   = t.position;
+        Vector3 fromScale = t.localScale;
+        float   elapsed   = 0f;
 
         while (elapsed < duration)
         {
-            elapsed    += Time.deltaTime;
+            elapsed += Time.deltaTime;
             float eased = curve.Evaluate(Mathf.Clamp01(elapsed / duration));
-            t.position  = Vector3.Lerp(from, target, eased);
+
+            t.position   = Vector3.Lerp(fromPos,   targetPos,   eased);
+            t.localScale = Vector3.Lerp(fromScale, targetScale, eased);
+
             yield return null;
         }
 
-        t.position = target;
+        t.position   = targetPos;
+        t.localScale = targetScale;
     }
 }

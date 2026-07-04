@@ -7,8 +7,6 @@ public class CombatStateMachine : MonoBehaviour
     public static CombatStateMachine Instance;
     public CombatPhase phase;
 
-    // ✅ Set true by TutorialManager while it owns input
-    // Prevents PlanningPhase from reacting to tutorial's internal enable/disable
     [HideInInspector] public bool tutorialControllingInput = false;
 
     void Awake() => Instance = this;
@@ -34,21 +32,27 @@ public class CombatStateMachine : MonoBehaviour
     {
         phase = CombatPhase.StartTurn;
         Debug.Log("[PHASE] Start Turn");
-        // ✅ Always reset tutorial flag at the start of a fresh turn
-        // After the tutorial step that uses keepInputAfter, subsequent turns
-        // should run normally with no tutorial interference
-        tutorialControllingInput = false;
+
         foreach (var unit in UnitRegistry.Instance.players)
         {
             if (unit == null || unit.IsDead) continue;
+
             unit.ResetSpeedSlots();
+            unit.currentLight = Mathf.Min(unit.currentLight + 1, unit.maxLight);
+            unit.RefreshLight();
         }
+
         foreach (var unit in UnitRegistry.Instance.enemies)
         {
             if (unit == null || unit.IsDead) continue;
+
             unit.ResetSpeedSlots();
+            unit.currentLight = Mathf.Min(unit.currentLight + 1, unit.maxLight);
+            unit.RefreshLight();
         }
+
         yield return new WaitForSeconds(0.8f);
+
         CombatHUDController.Instance?.ShowSpeedBubbles();
     }
 
@@ -75,8 +79,6 @@ public class CombatStateMachine : MonoBehaviour
     {
         phase = CombatPhase.Planning;
         Debug.Log("[PHASE] Planning");
-        yield return new WaitUntil(() => !tutorialControllingInput);
-        // Run enemy AI
         var enemies = UnitRegistry.Instance?.enemies;
         if (enemies != null)
         {
@@ -84,9 +86,11 @@ public class CombatStateMachine : MonoBehaviour
             {
                 if (enemy == null || enemy.IsDead) continue;
                 var ai = enemy.GetComponent<EnemyAI>();
-                if (ai == null) continue;
-                Debug.Log($"[AI] Running AI for {enemy.unitName}");
-                yield return ai.TakeTurn();
+                if (ai != null)
+                {
+                    Debug.Log($"[AI] Running AI for {enemy.unitName}");
+                    yield return ai.TakeTurn();
+                }
             }
         }
         RefreshInfoBarForEnemyIntent();
