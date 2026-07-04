@@ -24,6 +24,10 @@ public class MainFrameController : MonoBehaviour
     public Ease easeType = Ease.InOutQuart;
     public Vector3 zoomedScale = new Vector3(1.3f, 1.3f, 1f);
 
+    [Header("Visual Novel")]
+    public LoadingBar loadingBar;
+    public int visualNovelSceneId = 11;
+
     private bool isPanelOpen = false;
     private FrameButton currentActive = null;
     private bool hasSelection = false;
@@ -35,9 +39,37 @@ public class MainFrameController : MonoBehaviour
         infoPanel.anchoredPosition = infoPanelHiddenPos;
     }
 
+    public void StartScene()
+    {
+        if (currentActive == null)
+        {
+            Debug.LogWarning("[MainFrame] No stage selected!");
+            return;
+        }
+
+        if (currentActive.storyScene == null)
+        {
+            Debug.LogWarning($"[MainFrame] No StoryScene assigned to {currentActive.title}!");
+            return;
+        }
+
+        // find LoadingBar automatically if not assigned
+        if (loadingBar == null)
+            loadingBar = FindObjectOfType<LoadingBar>(true); // true = include inactive
+
+        if (loadingBar == null)
+        {
+            Debug.LogError("[MainFrame] LoadingBar not found in scene!");
+            return;
+        }
+
+        Debug.Log($"[MainFrame] Starting scene: {currentActive.storyScene.name}");
+        GameManager.Instance.SetTargetScene(currentActive.storyScene);
+        loadingBar.LoadScene(visualNovelSceneId);
+    }
+
     public void OnFrameButtonClicked(FrameButton button)
     {
-        // Same button while selected: close and reset
         if (hasSelection && currentActive == button)
         {
             ClosePanel();
@@ -48,28 +80,20 @@ public class MainFrameController : MonoBehaviour
 
         if (!hasSelection)
         {
-            // First ever press
             hasSelection = true;
             currentActive = button;
             OpenPanel(button);
         }
         else
         {
-            // Capture position NOW while frame is at rest
             Vector2 targetPos = GetCenteredPos(button);
             currentActive = button;
 
             Sequence seq = DOTween.Sequence();
-
-            // Step 1: snap back to center AND restore original size/scale simultaneously
             seq.Append(mainFrame.DOAnchorPos(expandedPos, tweenDuration * 0.8f).SetEase(Ease.InQuart));
             seq.Join(mainFrame.DOSizeDelta(expandedSize, tweenDuration * 0.8f).SetEase(easeType));
             seq.Join(mainFrame.DOScale(Vector3.one, tweenDuration * 0.8f).SetEase(easeType));
-
-            // Step 2: hold at original position for tweenDuration
             seq.AppendInterval(0.1f);
-
-            // Step 3: move to new button
             seq.Append(mainFrame.DOAnchorPos(targetPos, tweenDuration * 0.8f).SetEase(Ease.OutQuart));
             seq.Join(mainFrame.DOSizeDelta(collapsedSize, tweenDuration * 0.8f).SetEase(easeType));
             seq.Join(mainFrame.DOScale(zoomedScale, tweenDuration * 0.8f).SetEase(easeType));
@@ -87,7 +111,7 @@ public class MainFrameController : MonoBehaviour
 
         Sequence seq = DOTween.Sequence();
         seq.Join(mainFrame.DOSizeDelta(expandedSize, tweenDuration).SetEase(easeType));
-        seq.Join(mainFrame.DOAnchorPos(expandedPos, tweenDuration).SetEase(easeType));
+        seq.Join(mainFrame.DOAnchorPos(expandedPos, tweenDuration).SetEase(easeType)); 
         seq.Join(mainFrame.DOScale(Vector3.one, tweenDuration).SetEase(easeType));
         seq.Join(infoPanel.DOAnchorPos(infoPanelHiddenPos, tweenDuration).SetEase(easeType));
     }
@@ -95,8 +119,6 @@ public class MainFrameController : MonoBehaviour
     private void OpenPanel(FrameButton button)
     {
         isPanelOpen = true;
-
-        // Capture before any tween touches the frame
         Vector2 targetPos = GetCenteredPos(button);
 
         Sequence seq = DOTween.Sequence();
@@ -109,20 +131,14 @@ public class MainFrameController : MonoBehaviour
     private Vector2 GetCenteredPos(FrameButton button)
     {
         RectTransform buttonRect = button.GetComponent<RectTransform>();
-
-        // Get both positions in canvas/root space, unaffected by current animation state
         Vector2 buttonWorld = buttonRect.position;
         Vector2 frameWorld = mainFrame.position;
-
-        // How far is the button from the frame's current pivot in world units
         Vector2 diff = buttonWorld - frameWorld;
 
-        // Convert world unit difference to local canvas units using the canvas scale
         Canvas canvas = mainFrame.GetComponentInParent<Canvas>();
         float scale = canvas.scaleFactor;
         Vector2 diffLocal = diff / scale;
 
-        // Sidebar offset: shift left so button sits in the visible portion
         float sidebarWidth = 300;
         float sidebarOffset = sidebarWidth / 2f;
 

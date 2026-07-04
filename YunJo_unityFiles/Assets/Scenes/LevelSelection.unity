@@ -564,14 +564,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1102681654}
-        m_TargetAssemblyTypeName: LoadingBar, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 994772963}
+        m_TargetAssemblyTypeName: MainFrameController, Assembly-CSharp
+        m_MethodName: StartScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 11
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1267,6 +1267,7 @@ MonoBehaviour:
     and sent to the Kan Section to work alongside He Xiangu. Before the two can even
     get acquainted, an unusual guest arrives, one who forced their way to an invitation
     and has a very personal reason for being there.
+  storyScene: {fileID: 11400000, guid: 4733e25091d35ce4b80a7b6656fda590, type: 2}
 --- !u!114 &530670697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,6 +1557,7 @@ MonoBehaviour:
     told to deal with it on the spot. With no prior combat training, no weapon in
     hand, and nothing but Lu Dongbin's unsettling confidence to go on, he is thrown
     headfirst into his first real test as a Caretaker.
+  storyScene: {fileID: 11400000, guid: bf74193f1b8a8864ab7b2c1bf21f31e0, type: 2}
 --- !u!114 &717082308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1930,6 +1932,8 @@ MonoBehaviour:
   tweenDuration: 0.4
   easeType: 16
   zoomedScale: {x: 1.3, y: 1.3, z: 1}
+  loadingBar: {fileID: 1102681654}
+  visualNovelSceneId: 10
 --- !u!114 &994772964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,6 +2257,7 @@ MonoBehaviour:
   description: 'A wandering musician awakens in a paradise he does not recognize.
     As beauty gives way to bloodshed, every answer only deepens the mystery of the
     forbidden Penglai Garden. '
+  storyScene: {fileID: 11400000, guid: 71d0665b63d81da4ba694934e3d31451, type: 2}
 --- !u!114 &1082867048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2572,6 +2577,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124375653}
   m_CullTransparentMesh: 1
+--- !u!1 &1133431569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1133431571}
+  - component: {fileID: 1133431570}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1133431570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133431569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ada18364c158c74db84084ecae8f8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  allCardData: []
+  gameplayScenes: []
+  completedSceneNames: []
+  targetScene: {fileID: 0}
+--- !u!4 &1133431571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133431569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1058.303, y: 522.1422, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342227811
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,6 +2683,7 @@ MonoBehaviour:
     as mandelas that he'll be responsible for dealing with. He barely has time to
     process any of it before a disturbance in the Southern Courtyard cuts the lesson
     short.
+  storyScene: {fileID: 11400000, guid: 2ba021fbe5e097347b363dbe5ebda5af, type: 2}
 --- !u!114 &1342227814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3120,6 +3174,7 @@ MonoBehaviour:
     the Garden on a gamble. Back in the Garden, Han Xiangzi and Lu Dongbin catch
     a glimpse of their incoming guests through the invitation and head out to receive
     them.
+  storyScene: {fileID: 11400000, guid: c179a81fec32af243a0a15ed6b9685ec, type: 2}
 --- !u!114 &1436476644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3551,6 +3606,7 @@ MonoBehaviour:
     arrangement where Caretakers serve as both hosts and combatants to outside guests.
     Just as he starts to wrap his head around it all, the full scope of his new life
     begins to sink in.
+  storyScene: {fileID: 11400000, guid: 64c1653c58f72ef458775c38406d7617, type: 2}
 --- !u!114 &1667133893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4797,3 +4853,4 @@ SceneRoots:
   - {fileID: 1672716377}
   - {fileID: 1102681655}
   - {fileID: 1927892211}
+  - {fileID: 1133431571}

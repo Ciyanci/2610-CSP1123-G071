@@ -16,6 +16,11 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.Instance != null && GameManager.Instance.targetScene != null)
+        {
+            currentScene = GameManager.Instance.targetScene;
+            GameManager.Instance.targetScene = null; // clear after use
+        }
         PlayCurrentScene();
     }
 
@@ -98,11 +103,20 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void SkipScene()
+   public void SkipScene()
     {
-        GoToNextScene();
-    }
+        if (isIntroPlaying) return;
 
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("[GameController] GameManager is NULL — loading level selection directly");
+            FindObjectOfType<LoadingBar>(true).LoadScene(11);
+            return;
+        }
+
+        GameManager.Instance.CompleteCurrentScene();
+        GameManager.Instance.ReturnToLevelSelection();
+    }
     void Update()
     {
         if (!canAdvance || isIntroPlaying) return; // ← block all input during intro or cooldown

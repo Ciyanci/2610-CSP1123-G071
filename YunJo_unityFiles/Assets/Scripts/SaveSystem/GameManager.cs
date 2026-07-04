@@ -11,25 +11,42 @@ public class GameManager : MonoBehaviour
     public List<string> gameplayScenes = new();
     public List<string> completedSceneNames = new();
 
+    [Header("Visual Novel")]
+    public StoryScene targetScene;
+    public int levelSelectionSceneId = 11; // ← new
 
     void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
-
             DontDestroyOnLoad(gameObject);
-
             LoadGame();
         }
-
         else
         {
             Destroy(gameObject);
         }
     }
 
-    public void UnlockCard(CardData card) //unlocks a new card and immediately saves the game
+    public void SetTargetScene(StoryScene scene)
+    {
+        targetScene = scene;
+        Debug.Log($"[GameManager] Target scene set to: {scene.name}");
+    }
+
+    public void ReturnToLevelSelection() // ← new
+    {
+        LoadingBar loadingBar = FindObjectOfType<LoadingBar>(true);
+        if (loadingBar == null)
+        {
+            Debug.LogError("[GameManager] LoadingBar not found!");
+            return;
+        }
+        loadingBar.LoadScene(levelSelectionSceneId);
+    }
+
+    public void UnlockCard(CardData card)
     {
         CardInventory.Add(card);
         SaveGame();
@@ -49,7 +66,6 @@ public class GameManager : MonoBehaviour
         {
             completedSceneNames.Add(sceneName);
             SaveGame();
-
             Debug.Log($"[STAGE] Completed scene: {sceneName}");
         }
     }
@@ -63,7 +79,7 @@ public class GameManager : MonoBehaviour
     {
         SaveData data = new SaveData();
 
-        foreach (CardData card in CardInventory.GetAll()) //convert CardData objects into card names
+        foreach (CardData card in CardInventory.GetAll())
         {
             data.unlockedCardNames.Add(card.Name);
         }
@@ -80,9 +96,9 @@ public class GameManager : MonoBehaviour
     {
         SaveData data = SaveSystem.Load();
 
-        CardInventory.Clear(); 
+        CardInventory.Clear();
 
-        foreach (string name in data.unlockedCardNames) //convert saved card names back into CardData objects
+        foreach (string name in data.unlockedCardNames)
         {
             CardData found = allCardData.Find(card => card.Name == name);
 
