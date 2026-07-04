@@ -15,7 +15,8 @@ MonoBehaviour:
   hasChapterIntro: 1
   chapterNumber: Chapter 0 - 3
   chapterName: "\u2018A silly bird must take flight first.\u2019"
-  hasBattleScene: 0
+  hasBattleScene: 1
+  battleSceneName: CombatPrep
   sentences:
   - text: 'This is a mandela. '
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}

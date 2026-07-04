@@ -1,7 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+//background variable must be renamed to backgroud cuz spelling mistake in StoryScene.cs whoops
 public class GameController : MonoBehaviour
 {
     public StoryScene currentScene;
@@ -10,8 +11,8 @@ public class GameController : MonoBehaviour
     public CharacterSpriteController characterController;
     public ChapterIntroController chapterIntro;
 
-    private bool isIntroPlaying = false;
-    private bool canAdvance = false;
+    private bool isIntroPlaying = false;  // ← new
+    private bool canAdvance = false;      // ← new
 
     void Start()
     {
@@ -24,32 +25,23 @@ public class GameController : MonoBehaviour
         {
             isIntroPlaying = true;
             canAdvance = false;
-
             chapterIntro.Show(currentScene.chapterNumber, currentScene.chapterName, () =>
             {
                 isIntroPlaying = false;
-                StartStoryScene();
+                bottomBar.PlayScene(currentScene);
+                backgroundController.SetImage(currentScene.backgroud);
+                ShowCharacter(currentScene.sentences[0]);
+                StartCoroutine(AdvanceCooldown()); // ← start cooldown after intro
             });
         }
         else
         {
-            StartStoryScene();
-        }
-    }
-
-    void StartStoryScene()
-    {
-        canAdvance = false;
-
-        bottomBar.PlayScene(currentScene);
-        backgroundController.SetImage(currentScene.backgroud);
-
-        if (currentScene.sentences.Count > 0)
-        {
+            canAdvance = false;
+            bottomBar.PlayScene(currentScene);
+            backgroundController.SetImage(currentScene.backgroud);
             ShowCharacter(currentScene.sentences[0]);
+            StartCoroutine(AdvanceCooldown()); // ← start cooldown on scene start
         }
-
-        StartCoroutine(AdvanceCooldown());
     }
 
     private IEnumerator AdvanceCooldown()
@@ -61,6 +53,11 @@ public class GameController : MonoBehaviour
 
     void ShowCharacter(StoryScene.Sentence sentence)
     {
+        string sprite1Name = sentence.characterSprite != null ? sentence.characterSprite.name : "NULL";
+        string sprite2Name = sentence.characterSprite2 != null ? sentence.characterSprite2.name : "NULL";
+        string sprite3Name = sentence.characterSprite3 != null ? sentence.characterSprite3.name : "NULL";
+        Debug.Log($"[GameController] Sentence data — Sprite1: {sprite1Name}, Pos1: {sentence.characterPos}, Sprite2: {sprite2Name}, Pos2: {sentence.characterPos2}, Sprite3: {sprite3Name}, Pos3: {sentence.characterPos3}");
+
         characterController.Hide();
 
         if (sentence.characterPos != StoryScene.CharacterPosition.None && sentence.characterSprite != null)
@@ -93,6 +90,7 @@ public class GameController : MonoBehaviour
             backgroundController.SwitchImage(currentScene.backgroud);
             PlayCurrentScene();
         }
+
         else
         {
             GameManager.Instance.CompleteCurrentScene();
@@ -102,14 +100,12 @@ public class GameController : MonoBehaviour
 
     public void SkipScene()
     {
-        if (isIntroPlaying) return;
-
         GoToNextScene();
     }
 
     void Update()
     {
-        if (!canAdvance || isIntroPlaying) return;
+        if (!canAdvance || isIntroPlaying) return; // ← block all input during intro or cooldown
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
@@ -123,7 +119,7 @@ public class GameController : MonoBehaviour
                 {
                     ShowCharacter(currentScene.sentences[bottomBar.GetSentenceIndex() + 1]);
                     bottomBar.PlayNextSentence();
-                    StartCoroutine(AdvanceCooldown());
+                    StartCoroutine(AdvanceCooldown()); // ← cooldown after each advance
                 }
             }
             else

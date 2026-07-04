@@ -15,7 +15,7 @@ MonoBehaviour:
   hasChapterIntro: 0
   chapterNumber: 
   chapterName: 
-  hasBattleScene: 1
+  hasBattleScene: 0
   battleSceneName: CombatPrep
   sentences:
   - text: "\u2026my limbs\u2026 they're all intact again?"
