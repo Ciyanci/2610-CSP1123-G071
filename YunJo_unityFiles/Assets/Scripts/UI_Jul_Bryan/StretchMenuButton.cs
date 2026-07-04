@@ -33,7 +33,7 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public Color hoverIcon = new Color (0.00f, 1.00f, 0.91f, 1.00f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Start() // set everything to its default
     {
         buttonRect.sizeDelta = new Vector2(defaultWidth,buttonRect.sizeDelta.y);
         textBGRect.sizeDelta = new Vector2(textBGDefault, textBGRect.sizeDelta.y);
@@ -47,20 +47,20 @@ public class StretchMenuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
     // Update is called once per frame
     public void OnPointerEnter(PointerEventData e)
     {
-        DOTween.Kill(gameObject);
-        buttonRect.DOSizeDelta(new Vector2(hoverWidth, buttonRect.sizeDelta.y), animDuration)
+        DOTween.Kill(gameObject); //stop any animations to prevent overlapping of animation
+        buttonRect.DOSizeDelta(new Vector2(hoverWidth, buttonRect.sizeDelta.y), animDuration)    //stretch button
             .SetEase(Ease.OutCubic).SetTarget(gameObject).SetUpdate(true);
 
-        textBGRect.DOSizeDelta(new Vector2(textBGWidth, textBGRect.sizeDelta.y), animDuration)
+        textBGRect.DOSizeDelta(new Vector2(textBGWidth, textBGRect.sizeDelta.y), animDuration) //stretch background
             .SetEase(Ease.OutCubic).SetTarget(gameObject).SetUpdate(true);
 
-        buttonBG.DOColor(hoverBG, animDuration).SetTarget(gameObject).SetUpdate(true);
-        label.DOColor(hoverLabel, 0.15f).SetTarget(gameObject).SetUpdate(true);
-        leftBorder.DOFade(1f, 0.15f).SetTarget(gameObject).SetUpdate(true);
-        iconImage.DOColor(hoverIcon, 0.15f).SetTarget(gameObject).SetUpdate(true);
+        buttonBG.DOColor(hoverBG, animDuration).SetTarget(gameObject).SetUpdate(true); //change button background colour
+        label.DOColor(hoverLabel, 0.15f).SetTarget(gameObject).SetUpdate(true); // change text colour
+        leftBorder.DOFade(1f, 0.15f).SetTarget(gameObject).SetUpdate(true); //left border fade
+        iconImage.DOColor(hoverIcon, 0.15f).SetTarget(gameObject).SetUpdate(true); // change icon colour
     }
 
-    public void OnPointerExit(PointerEventData e)
+    public void OnPointerExit(PointerEventData e) //return to default everything
     {
         DOTween.Kill(gameObject);
         buttonRect.DOSizeDelta(new Vector2(defaultWidth, buttonRect.sizeDelta.y), animDuration)
