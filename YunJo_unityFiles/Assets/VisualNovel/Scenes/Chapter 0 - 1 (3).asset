@@ -15,7 +15,8 @@ MonoBehaviour:
   hasChapterIntro: 0
   chapterNumber: 
   chapterName: 
-  hasBattleScene: 0
+  hasBattleScene: 1
+  battleSceneName: CombatPrep
   sentences:
   - text: "\u2026my limbs\u2026 they're all intact again?"
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}

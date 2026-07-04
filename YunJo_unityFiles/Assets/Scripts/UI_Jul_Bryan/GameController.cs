@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -10,8 +10,8 @@ public class GameController : MonoBehaviour
     public CharacterSpriteController characterController;
     public ChapterIntroController chapterIntro;
 
-    private bool isIntroPlaying = false;  // ← new
-    private bool canAdvance = false;      // ← new
+    private bool isIntroPlaying = false;
+    private bool canAdvance = false;
 
     void Start()
     {
@@ -24,23 +24,32 @@ public class GameController : MonoBehaviour
         {
             isIntroPlaying = true;
             canAdvance = false;
+
             chapterIntro.Show(currentScene.chapterNumber, currentScene.chapterName, () =>
             {
                 isIntroPlaying = false;
-                bottomBar.PlayScene(currentScene);
-                backgroundController.SetImage(currentScene.backgroud);
-                ShowCharacter(currentScene.sentences[0]);
-                StartCoroutine(AdvanceCooldown()); // ← start cooldown after intro
+                StartStoryScene();
             });
         }
         else
         {
-            canAdvance = false;
-            bottomBar.PlayScene(currentScene);
-            backgroundController.SetImage(currentScene.backgroud);
-            ShowCharacter(currentScene.sentences[0]);
-            StartCoroutine(AdvanceCooldown()); // ← start cooldown on scene start
+            StartStoryScene();
         }
+    }
+
+    void StartStoryScene()
+    {
+        canAdvance = false;
+
+        bottomBar.PlayScene(currentScene);
+        backgroundController.SetImage(currentScene.backgroud);
+
+        if (currentScene.sentences.Count > 0)
+        {
+            ShowCharacter(currentScene.sentences[0]);
+        }
+
+        StartCoroutine(AdvanceCooldown());
     }
 
     private IEnumerator AdvanceCooldown()
@@ -52,11 +61,6 @@ public class GameController : MonoBehaviour
 
     void ShowCharacter(StoryScene.Sentence sentence)
     {
-        string sprite1Name = sentence.characterSprite != null ? sentence.characterSprite.name : "NULL";
-        string sprite2Name = sentence.characterSprite2 != null ? sentence.characterSprite2.name : "NULL";
-        string sprite3Name = sentence.characterSprite3 != null ? sentence.characterSprite3.name : "NULL";
-        Debug.Log($"[GameController] Sentence data — Sprite1: {sprite1Name}, Pos1: {sentence.characterPos}, Sprite2: {sprite2Name}, Pos2: {sentence.characterPos2}, Sprite3: {sprite3Name}, Pos3: {sentence.characterPos3}");
-
         characterController.Hide();
 
         if (sentence.characterPos != StoryScene.CharacterPosition.None && sentence.characterSprite != null)
@@ -75,19 +79,17 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void SkipScene()
+    void GoToNextScene()
     {
-        if (isIntroPlaying) return; // ← block skip during intro
+        if (currentScene.hasBattleScene)
+        {
+            SceneManager.LoadScene(currentScene.battleSceneName);
+            return;
+        }
 
         if (currentScene.nextScene != null)
         {
             currentScene = currentScene.nextScene;
-
-            while (!currentScene.hasChapterIntro && currentScene.nextScene != null)
-            {
-                currentScene = currentScene.nextScene;
-            }
-
             backgroundController.SwitchImage(currentScene.backgroud);
             PlayCurrentScene();
         }
@@ -98,9 +100,16 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SkipScene()
+    {
+        if (isIntroPlaying) return;
+
+        GoToNextScene();
+    }
+
     void Update()
     {
-        if (!canAdvance || isIntroPlaying) return; // ← block all input during intro or cooldown
+        if (!canAdvance || isIntroPlaying) return;
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
@@ -108,23 +117,13 @@ public class GameController : MonoBehaviour
             {
                 if (bottomBar.IsLastSentence())
                 {
-                    if (currentScene.nextScene != null)
-                    {
-                        currentScene = currentScene.nextScene;
-                        backgroundController.SwitchImage(currentScene.backgroud);
-                        PlayCurrentScene();
-                    }
-                    else
-                    {
-                        GameManager.Instance.CompleteCurrentScene();
-                        Debug.Log("End of story!");
-                    }
+                    GoToNextScene();
                 }
                 else
                 {
                     ShowCharacter(currentScene.sentences[bottomBar.GetSentenceIndex() + 1]);
                     bottomBar.PlayNextSentence();
-                    StartCoroutine(AdvanceCooldown()); // ← cooldown after each advance
+                    StartCoroutine(AdvanceCooldown());
                 }
             }
             else

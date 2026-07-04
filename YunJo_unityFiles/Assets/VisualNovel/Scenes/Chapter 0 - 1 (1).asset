@@ -16,6 +16,7 @@ MonoBehaviour:
   chapterNumber: Chapter 0 - 1
   chapterName: "\u2018An old man loses his horse; \u2019"
   hasBattleScene: 0
+  battleSceneName: BattleScene
   sentences:
   - text: Impermanence is of natural order, to defy it is to defy nature itself.
     speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewStoryScene", menuName = "Data/New Story Scene")]
-[System.Serializable]
 public class StoryScene : ScriptableObject
 {
     [Header("Chapter Introduction")]
@@ -12,6 +11,7 @@ public class StoryScene : ScriptableObject
 
     [Header("Battle")]
     public bool hasBattleScene;
+    public string battleSceneName = "BattleScene";
 
     [Header("Scene Data")]
     public List<Sentence> sentences;
@@ -20,7 +20,10 @@ public class StoryScene : ScriptableObject
 
     public enum CharacterPosition
     {
-        Left, Center, Right, None
+        Left,
+        Center,
+        Right,
+        None
     }
 
     [System.Serializable]
@@ -28,11 +31,14 @@ public class StoryScene : ScriptableObject
     {
         public string text;
         public Speaker speaker;
-        public string jobTitle;         // ← new
+        public string jobTitle;
+
         public Sprite characterSprite;
         public CharacterPosition characterPos;
+
         public Sprite characterSprite2;
         public CharacterPosition characterPos2;
+
         public Sprite characterSprite3;
         public CharacterPosition characterPos3;
     }
