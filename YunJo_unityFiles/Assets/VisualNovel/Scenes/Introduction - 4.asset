@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Introduction - 4
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 1
+  chapterNumber: Chapter 0 - 2
+  chapterName: "\u2018Who knows what good fortune is to come?\u2019"
+  sentences:
+  - text: "So\u2026 what exactly do you need me to do?"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'You will act as a Caretaker. There are 8 sections in Penglai Garden :
+      Qian, Kun, Zhen, Xun, Kan, Li, Gen, and Dui. We will proceed with your training
+      here, in the Kun Section. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: "This place is huge\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: "This is the Center Palace. Apart from overseeing Penglai Garden, I am
+      responsible as the Caretaker of the Kun section \u2014 the responsibility now
+      being handed over to you. "
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: "I'm not the best at gardening, but\u2026 if it means staying alive, then
+      I'm willing to learn! "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'You needn''t do much gardening work, the Garden already sustains itself.
+      The work of a Caretaker is to deal with mandelas that manifest around the Garden. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: '''Mandelas''? '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'Distorted memories within the Garden that manifests as physical entities.
+      Hostile, but not intentionally. They are merely confused. Dealing with them
+      is beneficial to both sides, as it is a mercy to them, and prevents them from
+      distorting the Garden''s essence. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: "So\u2026 why can't the Garden clean up these mandelas if it sustains itself? "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: "\u2026 "
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'The architecture of the Garden is set in stone, it may shift ever so slightly,
+      but it always returns back to its original state, you can view the architecture
+      as the Garden''s body. The memories, however, are separate from the Garden,
+      and as such, can decay, leading to these distortions. And as far as I am aware,
+      the Garden treats these mandelas as no different from any other memory it holds,
+      so it sees no need to take action. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: "I\u2026 probably get it. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'Don''t worry about the finer details. All you have to do is, again, to
+      deal with these mandelas as I and the other Caretakers have. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'Come now, I am sensing a disturbance in the Southern Courtyard. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 4114157388386300877, guid: 5aa8130d623ac8149ae0912a814ac8e6, type: 3}
+    characterPos2: 2
+  - text: "\u2026Okay\u2026"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -3128884628959073313, guid: 430f7e9b3aacd2c468061dc6bfb51362, type: 3}
+    characterPos2: 2
+  backgroud: {fileID: 7692112337033927237, guid: c947a8a5a79326c4aa5510dd107d258e, type: 3}
+  nextScene: {fileID: 0}

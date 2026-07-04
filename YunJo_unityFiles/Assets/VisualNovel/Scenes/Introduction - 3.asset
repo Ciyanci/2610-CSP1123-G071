@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
   m_Name: Introduction - 3
   m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 0
+  chapterNumber: 
+  chapterName: 
   sentences:
   - text: "\u2026my limbs\u2026 they're all intact again?"
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
@@ -180,4 +183,4 @@ MonoBehaviour:
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
   backgroud: {fileID: 7692112337033927237, guid: c947a8a5a79326c4aa5510dd107d258e, type: 3}
-  nextScene: {fileID: 0}
+  nextScene: {fileID: 11400000, guid: 2ba021fbe5e097347b363dbe5ebda5af, type: 2}

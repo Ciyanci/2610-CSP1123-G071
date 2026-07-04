@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
   m_Name: Introduction - 1
   m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 1
+  chapterNumber: Chapter 0 - 1
+  chapterName: "\u2018An old man loses his horse; \u2019"
   sentences:
   - text: Impermanence is of natural order, to defy it is to defy nature itself.
     speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
