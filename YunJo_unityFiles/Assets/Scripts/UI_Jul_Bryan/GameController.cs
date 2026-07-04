@@ -63,6 +63,10 @@ public class GameController : MonoBehaviour
                     bottomBar.PlayNextSentence();
                 }
             }
+            else
+            {
+                bottomBar.SkipToEnd(); // ← first click skips typing, second click advances
+            }
         }
     }
 }

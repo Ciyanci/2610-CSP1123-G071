@@ -167,4 +167,4 @@ MonoBehaviour:
     characterSprite2: {fileID: 0}
     characterPos2: 0
   backgroud: {fileID: -1987847278077066332, guid: f69b563bb67eeae44a7408f55ae060db, type: 3}
-  nextScene: {fileID: 0}
+  nextScene: {fileID: 11400000, guid: e9f6dd96d0598bf41a50d33d665abb68, type: 2}

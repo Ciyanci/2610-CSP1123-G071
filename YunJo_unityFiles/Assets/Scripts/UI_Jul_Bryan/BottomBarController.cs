@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -16,7 +16,6 @@ public class BottomBarController : MonoBehaviour
     {
         PLAYING, COMPLETED
     }
-
     
     public void PlayScene(StoryScene scene)
     {
@@ -34,6 +33,13 @@ public class BottomBarController : MonoBehaviour
         
         personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
         personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
+    }
+
+    public void SkipToEnd()
+    {
+        StopAllCoroutines();
+        barText.text = currentScene.sentences[sentenceIndex].text;
+        state = State.COMPLETED;
     }
 
     public bool IsCompleted()
