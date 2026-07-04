@@ -1,5 +1,7 @@
+using Debug = UnityEngine.Debug;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 //background variable must be renamed to backgroud cuz spelling mistake in StoryScene.cs whoops
@@ -107,16 +109,25 @@ public class GameController : MonoBehaviour
     {
         if (isIntroPlaying) return;
 
-        if (GameManager.Instance == null)
+        if (currentScene.hasBattleScene)
         {
-            Debug.LogError("[GameController] GameManager is NULL — loading level selection directly");
-            FindObjectOfType<LoadingBar>(true).LoadScene(11);
-            return;
+            
         }
+        else
+        {
 
-        GameManager.Instance.CompleteCurrentScene();
-        GameManager.Instance.ReturnToLevelSelection();
+            if (GameManager.Instance == null)
+            {
+                Debug.LogError("[GameController] GameManager is NULL — loading level selection directly");
+                FindObjectOfType<LoadingBar>(true).LoadScene(12);
+                return;
+            }
+
+            GameManager.Instance.CompleteCurrentScene();
+            GameManager.Instance.ReturnToLevelSelection();
+        }
     }
+
     void Update()
     {
         if (!canAdvance || isIntroPlaying) return; // ← block all input during intro or cooldown
