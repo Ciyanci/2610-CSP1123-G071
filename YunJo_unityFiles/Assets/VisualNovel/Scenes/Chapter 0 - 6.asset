@@ -1,0 +1,265 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Chapter 0 - 6
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 1
+  chapterNumber: Chapter 0 - 6
+  chapterName: Caretaker, Kan Section
+  hasBattleScene: 0
+  sentences:
+  - text: Hmph... is it really so important to belong to a renowned triad?
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: "To be fair\u2026 it's all part of life in the Mainland. Whether you're
+      from the slums or the upper class, you have to belong to a group. Life gets
+      too hard otherwise. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: "Well, in any case\u2026 there has been a few rearrangements to your life
+      here in the Garden now, Xiangzi. "
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: 'Instead of being the sole Caretaker of one section, I believe you should
+      serve as my assistant. It would be most beneficial to the both of us if you
+      worked alongside the Caretakers of each section and gained experience that
+      way. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: "\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: 'Excuse me? '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: 'You seriously can''t expect me to be able to take on that much responsibility?! '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: 'Settle down. Your responsibilities remain virtually the same as before,
+      only this time you will have to traverse across each section and aid the section''s
+      respective Caretakers. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: 'My decision is final. You can start making your way over to the Kan Section
+      now, I have informed He Xiangu, she will be waiting for your arrival. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: "\u2026yes sir. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: "So this is the Kan Section\u2026 there's a lot of rivers flowing around,
+      and a handful of ponds. It's honestly quite relaxing\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: 'Hello, I''m He Xiangu, in charge of the Kan Section. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: "Hiya, I'm Han Xiangzi, apparently Lu Dongbin's helper now\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos3: 0
+  - text: 'Y-yes, Head Caretaker Lu told me all about it. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: 'Head Caretaker Lu has also informed me that another invitation has been
+      sent out, a special one this time around. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos3: 0
+  - text: "\u2026and what exactly makes this one so special? "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos3: 0
+  - text: 'This invitation has been forcefully taken from the previously planned
+      guest. It seems to be someone seeking out an invitation to the Garden, so it
+      is special in the way that we will be dealing with someone who apparently knows
+      more than the average civilian on how the Garden works. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos3: 0
+  - text: "\u2026huh, I never really thought about what would happen if the invitation
+      got in the hands of someone other than the intended guest. Do you think the
+      Garden accounts for that in its 'fated encounters' thingymajiggy? "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos3: 0
+  - text: 'I doubt that the Garden never considered that possibility. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos3: 0
+  - text: 'In any case, let us go receive this mysterious guest. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos3: 0
+  - text: "Greetings, dear guest\u2026 welcome to the Garden. I am Han Xiangzi, Assistant
+      Head Caretaker of my role's namesake. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
+    characterPos3: 0
+  - text: 'You may find what you''re looking for, but you may also forfeit your precious
+      possessions to us. '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Assistant Head Caretaker
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
+    characterPos3: 0
+  - text: 'Dear guest, it seems you''re looking for something specific, something
+      close to you. '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
+    characterPos3: 0
+  - text: 'P-please, tell us what you''re- '
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
+    jobTitle: Caretaker, Kan Section
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
+    characterPos3: 0
+  - text: "I'm looking\u2026 for my daughter."
+    speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: Invitation Usurper
+    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
+    characterPos3: 0
+  backgroud: {fileID: -2889761728585982002, guid: dde821efbab0ba74195bb14d40e3d0b2, type: 3}
+  nextScene: {fileID: 0}

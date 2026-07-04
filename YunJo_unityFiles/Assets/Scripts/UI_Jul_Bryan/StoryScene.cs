@@ -5,6 +5,15 @@ using UnityEngine;
 [System.Serializable]
 public class StoryScene : ScriptableObject
 {
+    [Header("Chapter Introduction")]
+    public bool hasChapterIntro;
+    public string chapterNumber;
+    public string chapterName;
+
+    [Header("Battle")]
+    public bool hasBattleScene;
+
+    [Header("Scene Data")]
     public List<Sentence> sentences;
     public Sprite backgroud;
     public StoryScene nextScene;
@@ -19,9 +28,12 @@ public class StoryScene : ScriptableObject
     {
         public string text;
         public Speaker speaker;
+        public string jobTitle;         // ← new
         public Sprite characterSprite;
         public CharacterPosition characterPos;
         public Sprite characterSprite2;
         public CharacterPosition characterPos2;
+        public Sprite characterSprite3;
+        public CharacterPosition characterPos3;
     }
 }

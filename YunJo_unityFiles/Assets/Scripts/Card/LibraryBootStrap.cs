@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class LibrarySceneBootstrap : MonoBehaviour
 {
-    void Start()
+    void Start() //shows cards that the player has or has been debugged into the game
     {
         List<Card> cards = new();
 

@@ -10,161 +10,234 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
-  m_Name: Introduction - 2
+  m_Name: Chapter 0 - 1 (2)
   m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 0
+  chapterNumber: 
+  chapterName: 
+  hasBattleScene: 0
   sentences:
   - text: "Peach blossoms on the flowing water\u2026 green hills and clear water\u2026"
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: 
     characterSprite: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 0}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "Haah\u2026 blessed are my eyes to behold such a sight. Inspiration flows,
       a poet\u2019s heart flutters. I could produce five- nay\u2026 TEN thousand
       melodies just from this view alone!"
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: 
     characterSprite: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "\u2026but still\u2026 that man was quite shady even if he still got me
       here as promised."
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: ...
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "I suppose I\u2019ll just have to take his word as is."
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: 
     characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: Heed my words and engrain them into your heart.
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    jobTitle: 
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: Do not waste my time playing a lute to a cow, I despise unnecessary talk.
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    jobTitle: 
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: -4781322123015416207, guid: 941860a8a1c75da4e9f0af218fde150d, type: 3}
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "Answer my questions directly \u2013 tell me your origin, how you entered
       these sacred grounds, and for what purpose?"
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    jobTitle: 
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: -4781322123015416207, guid: 941860a8a1c75da4e9f0af218fde150d, type: 3}
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: M-my apologies! I was unaware that this garden was guarded. I-I mean no
       harm, truly!
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    jobTitle: 
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: -4781322123015416207, guid: 941860a8a1c75da4e9f0af218fde150d, type: 3}
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "GAH! My arm\u2026 MY ARM!"
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: -4781322123015416207, guid: 941860a8a1c75da4e9f0af218fde150d, type: 3}
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: Questions. Answers. Now.
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 5361058018049513712, guid: acdf91747addb494f8d12dd20fa05cdc, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: -4781322123015416207, guid: 941860a8a1c75da4e9f0af218fde150d, type: 3}
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "I\u2019m a musician from Yanhai and\u2026 I\u2026 I don\u2019t\u2026 I
       took a boat and woke up here\u2026 I don\u2019t know how I got here, I didn\u2019t
       mean to trespass, truly!"
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "Please\u2026 I\u2019m going to bleed out like this\u2026! Agh\u2026 I\u2026
       I was just trying to travel around the world for inspiration\u2026 I\u2026
       I don\u2019t know how I was going to survive as a starving musician, but\u2026
       this isn\u2019t how I expected things to-"
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: GAAH!!!
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: You painted a snake and decided to add legs, I already told you, I despise
       unnecessary talk. The rest of your limbs come off next.
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5361058018049513712, guid: acdf91747addb494f8d12dd20fa05cdc, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "You don\u2019t know how you got here, nor do you have an actual purpose
       intruding upon these grounds, just who are you?"
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5361058018049513712, guid: acdf91747addb494f8d12dd20fa05cdc, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "I\u2019ve told you, I\u2019m just a musician from Yanhai\u2026 just what
       exactly is this place?! Who ARE you?!"
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: GRRHHGHH!!
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "I\u2019m the one asking questions here. Your name?"
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5361058018049513712, guid: acdf91747addb494f8d12dd20fa05cdc, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "Han\u2026 Han Xiangzi\u2026"
-    speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Intruder
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "Hm. This is Penglai Garden. I wasn\u2019t expecting any guests today,
       and yet you appeared out of nowhere."
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5361058018049513712, guid: acdf91747addb494f8d12dd20fa05cdc, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "There are many laws to these grounds, you see, and people just aren\u2019t
       allowed in and out as they please."
     speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
-    characterSprite: {fileID: 0}
+    jobTitle: 
+    characterSprite: {fileID: 5361058018049513712, guid: acdf91747addb494f8d12dd20fa05cdc, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: ...
-    speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    characterSprite: {fileID: 0}
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Intruder
+    characterSprite: {fileID: 5154902158729021133, guid: fa5697526b96a394a8c8edbf9731b325, type: 3}
     characterPos: 0
-    characterSprite2: {fileID: 0}
-    characterPos2: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   backgroud: {fileID: -1987847278077066332, guid: f69b563bb67eeae44a7408f55ae060db, type: 3}
-  nextScene: {fileID: 0}
+  nextScene: {fileID: 11400000, guid: e9f6dd96d0598bf41a50d33d665abb68, type: 2}

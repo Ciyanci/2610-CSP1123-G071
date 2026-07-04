@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77c5f8abf85316a4091a2d00da3250e4, type: 3}
-  m_Name: SpeakerB
+  m_Name: WeiJian
   m_EditorClassIdentifier: Assembly-CSharp::Speaker
-  speakerName: ???
-  textColor: {r: 1, g: 0, b: 0.72601175, a: 1}
+  speakerName: Wei Jian
+  jobTitle: 
+  textColor: {r: 0.06857526, g: 1, b: 0, a: 1}

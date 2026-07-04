@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Chapter 0 - 5 (3)
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 0
+  chapterNumber: Chapter 0 - 5
+  chapterName: "\u2018A desperate dog leaps over the wall.\u2019"
+  hasBattleScene: 0
+  sentences:
+  - text: What was that..?
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos3: 2
+  - text: 'Visions of our guest. When the invitation is sent out, we can take a peek
+      at our incoming guests. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos3: 2
+  - text: 'It''s best to know what kind of guests will be visiting us in advance,
+      no? '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos3: 2
+  - text: "What a creepy little thing\u2026 being able to peep on people as well
+      as kidnapping them\u2026 it's the type of things you hear in a cautionary tale
+      for stranger danger. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos3: 2
+  - text: 'Did the invitation being manifested in that guy''s bag cause that internal
+      damage or something? '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos3: 2
+  - text: 'No, the manifestation process does not affect the outside world in any
+      way, it simply allows the scroll to find its way to the guest. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos3: 2
+  - text: 'So all that was someone else''s doing. '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos3: 2
+  - text: "Eugh\u2026 creepy to think about. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos3: 2
+  - text: '... '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos3: 2
+  - text: 'In any case, we should go greet our guests. They seem to be a lower quality
+      this time around, a perfect opportunity for you to gain some experience. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos3: 2
+  - text: Street thugs, I've seen plenty of them. Lowly gangsters from the slums
+      of the Mainland. I've dealt with some before, should be easy-peasy! Hehe~
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos3: 2
+  backgroud: {fileID: -1987847278077066332, guid: f69b563bb67eeae44a7408f55ae060db, type: 3}
+  nextScene: {fileID: 11400000, guid: 5dea46dbd1fef7345b5d39cea258242b, type: 2}

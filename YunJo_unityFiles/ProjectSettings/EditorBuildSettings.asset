@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: 379e2a75c292c7946ac9c675d664c4dc
+  - enabled: 1
+    path: Assets/Scenes/BattleScene_Default.unity
+    guid: bec0ccef11060344883677e80c96a650
+  - enabled: 1
+    path: Assets/Scenes/BattleScene_Tutorial1.unity
+    guid: a63f260bcda23c842a839241a8d7eb60
   - enabled: 0
     path: Assets/Scenes/BattleScene copy.unity
     guid: f4c48ef0a2b96c24e82c06f24659fdef
@@ -41,11 +47,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CombatPrep.unity
     guid: 58c5a97e5e3054d46a2f895b0c4f79f6
-  - enabled: 1
-    path: Assets/Scenes/BattleScene_Default.unity
-    guid: bec0ccef11060344883677e80c96a650
-  - enabled: 1
-    path: Assets/Scenes/BattleScene_Tutorial1.unity
-    guid: cbf2f6854a06d6149a2949ddee4eeb64
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
