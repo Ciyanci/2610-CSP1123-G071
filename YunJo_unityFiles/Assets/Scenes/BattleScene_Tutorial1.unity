@@ -1402,11 +1402,6 @@ MonoBehaviour:
     - {fileID: -1944830579455001227, guid: d6e2750897d30544e897bb719ba2d975, type: 3}
     - {fileID: -4506541251230492428, guid: 548d1e8419cf7c741ae64eef0afc2542, type: 3}
     - {fileID: -1225170829019403273, guid: 93ff5eedc30398e499a4697effb442b6, type: 3}
-    hintText: 
-    enableInput: 0
-    keepInputAfter: 0
-    waitCondition: 0
-  - tutorialImages: []
     hintText: Click on a card to assign it to a Caretaker. Then, click on an enemy
       to assign a TARGET.
     enableInput: 1
@@ -1416,8 +1411,13 @@ MonoBehaviour:
     hintText: Now tap 'SPACEBAR' on your keyboard to confirm planning and begin the
       turn.
     enableInput: 1
-    keepInputAfter: 0
+    keepInputAfter: 1
     waitCondition: 2
+  - tutorialImages: []
+    hintText: Great! Now finish the fight!
+    enableInput: 0
+    keepInputAfter: 1
+    waitCondition: 3
   tutorialPanel: {fileID: 2084752921}
   tutorialImage: {fileID: 706876171}
   pageCounterText: {fileID: 1662681178}
@@ -1495,7 +1495,7 @@ MonoBehaviour:
   hpFill: {fileID: 920758595}
   staggerFill: {fileID: 1505288714}
   lightBar: {fileID: 390305939}
-  offset: {x: 0, y: -5, z: 0}
+  offset: {x: 0, y: -8, z: 0}
 --- !u!224 &165742145
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1505,7 +1505,7 @@ RectTransform:
   m_GameObject: {fileID: 165742143}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -60.80568}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 391583351}
@@ -1964,7 +1964,7 @@ MonoBehaviour:
   activeDiceElement: {fileID: 4865862702862143425}
   typeIconContainer: {fileID: 2119836243}
   typeIconPrefab: {fileID: 7480928264014499497, guid: 3f091532d86532e49958b197913db8a4, type: 3}
-  worldOffset: {x: -10, y: -7, z: 0}
+  worldOffset: {x: -12, y: -4, z: 0}
   canvasGroup: {fileID: 192503774}
 --- !u!225 &192503774
 CanvasGroup:
@@ -4004,7 +4004,7 @@ MonoBehaviour:
   filledSprite: {fileID: 291308517, guid: 326d2e72acc588a40b854b5000fb49d8, type: 3}
   emptySprite: {fileID: -1976836649, guid: 326d2e72acc588a40b854b5000fb49d8, type: 3}
   followTarget: {fileID: 620646010}
-  offset: {x: 0, y: 7, z: 0}
+  offset: {x: 0, y: 10, z: 0}
 --- !u!114 &390305940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4023,7 +4023,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -17
+  m_Spacing: -10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -4040,7 +4040,7 @@ RectTransform:
   m_GameObject: {fileID: 390305938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 680373111}
@@ -7584,7 +7584,7 @@ MonoBehaviour:
   filledSprite: {fileID: 291308517, guid: 326d2e72acc588a40b854b5000fb49d8, type: 3}
   emptySprite: {fileID: -1976836649, guid: 326d2e72acc588a40b854b5000fb49d8, type: 3}
   followTarget: {fileID: 934219606}
-  offset: {x: 0, y: 7, z: 0}
+  offset: {x: 0, y: 10, z: 0}
 --- !u!114 &716574707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7603,7 +7603,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: -17
+  m_Spacing: -10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -7620,7 +7620,7 @@ RectTransform:
   m_GameObject: {fileID: 716574705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1498436983}
@@ -10115,7 +10115,7 @@ GameObject:
   - component: {fileID: 934219605}
   - component: {fileID: 934219607}
   m_Layer: 0
-  m_Name: Yisang
+  m_Name: Han Xiangzi
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10133,7 +10133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806fd64321b26a544a410f4feee60c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterUnit
-  unitName: Yisang
+  unitName: Han Xiangzi
   unitType: 0
   unitData: {fileID: 11400000, guid: 49797cdd44c95f84291acacd6f72e4e6, type: 2}
   equippedKeypage: {fileID: 11400000, guid: 5bf6d43ee7ad33d4ca61e8a0241ed98a, type: 2}
@@ -10164,11 +10164,13 @@ MonoBehaviour:
   headAnchor: {fileID: 323545231}
   clashAnchor: {fileID: 882647863}
   sr: {fileID: 982196523}
-  idle: {fileID: 21300000, guid: d87a9a2eabdd64b46a9ee2f470ad87eb, type: 3}
-  attack: {fileID: 21300000, guid: 62f34766b170fa54d8433213a407bd05, type: 3}
-  hit: {fileID: 21300000, guid: 9fe434e46fd7e9f459689be18b356181, type: 3}
-  windup: {fileID: 21300000, guid: 0ee45bbdb625b2f41a213493d3f7d10b, type: 3}
-  move: {fileID: 21300000, guid: 6177c36cf4118e34e92c7088ac582338, type: 3}
+  idle: {fileID: 983967142338209625, guid: 53aa7573601f65e45a16a72573b80812, type: 3}
+  attack: {fileID: -5055833407284863860, guid: c8dd0557cb4558a4dbc7834fdeed2158, type: 3}
+  hit: {fileID: 2428192973233196522, guid: 98318471481189c42863e044ae01f494, type: 3}
+  windup: {fileID: 6005294875439876813, guid: 87c1315e2ffe7404083f88aee363b4fc, type: 3}
+  move: {fileID: -8797813088355249399, guid: 4ea435ed6ef42464a84996da34a798e9, type: 3}
+  damagePopupPrefab: {fileID: 9182758906715513964, guid: d753659dbba7e8a45926b844f6fe1d24, type: 3}
+  damagePopupAnchor: {fileID: 323545231}
   startPos: {x: 0, y: 0, z: 0}
   startsOnLeft: 1
 --- !u!4 &934219606
@@ -10519,7 +10521,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: d87a9a2eabdd64b46a9ee2f470ad87eb, type: 3}
+  m_Sprite: {fileID: 983967142338209625, guid: 53aa7573601f65e45a16a72573b80812, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -10539,7 +10541,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 323545231}
@@ -18420,7 +18422,7 @@ MonoBehaviour:
   activeDiceElement: {fileID: 474911778}
   typeIconContainer: {fileID: 1818882328}
   typeIconPrefab: {fileID: 7480928264014499497, guid: 3f091532d86532e49958b197913db8a4, type: 3}
-  worldOffset: {x: 10, y: -7, z: 0}
+  worldOffset: {x: 12, y: -4, z: 0}
   canvasGroup: {fileID: 1529936543}
 --- !u!1 &1538565425
 GameObject:
@@ -20552,14 +20554,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattlegroundParallax
   layers:
   - renderer: {fileID: 1911308678}
-    depthFactor: 0.1
-    cinematicOffsetY: -100
+    depthFactor: 1
+    cinematicOffsetY: -15
     cinematicOffsetX: 0
+    scaleMultiplierY: 1
   - renderer: {fileID: 1053097114}
-    depthFactor: 0.2
-    cinematicOffsetY: -40
+    depthFactor: 1
+    cinematicOffsetY: 20
     cinematicOffsetX: 0
-  transitionDuration: 0.45
+    scaleMultiplierY: 0.5
+  transitionDuration: 0.8
   easeCurve:
     serializedVersion: 2
     m_Curve:
@@ -24540,15 +24544,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1312279431953999791, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1312279431953999791, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1312279431953999791, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877950945152745331, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877950945152745331, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_Size.x
+      value: 2.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877950945152745331, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_Size.y
+      value: 4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877950945152745331, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -21012956204903566, guid: 33f06996f488a3747bebb95809335bfa, type: 3}
+    - target: {fileID: 3606042252556331649, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606042252556331649, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3606042252556331649, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3606042252556331649, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24595,9 +24627,29 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: hit
+      value: 
+      objectReference: {fileID: 2679978482176486455, guid: 48cecec3995b0854fa764d37ef0852d7, type: 3}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: idle
+      value: 
+      objectReference: {fileID: -21012956204903566, guid: 33f06996f488a3747bebb95809335bfa, type: 3}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: move
+      value: 
+      objectReference: {fileID: 5110175247624485333, guid: cf2fa56b38b4dac4e8d12a7e2966360b, type: 3}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: maxHP
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: attack
+      value: 
+      objectReference: {fileID: 8295223528925367636, guid: a0192f693cac0de4aa9cf92753f020e4, type: 3}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: windup
+      value: 
+      objectReference: {fileID: 2679978482176486455, guid: 48cecec3995b0854fa764d37ef0852d7, type: 3}
     - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: statusUI
       value: 
@@ -24606,6 +24658,10 @@ PrefabInstance:
       propertyPath: unitData
       value: 
       objectReference: {fileID: 11400000, guid: e4d78777e6c338a41b6bcddee7a81475, type: 2}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: unitName
+      value: Mandela of a Thug
+      objectReference: {fileID: 0}
     - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: slotRowUI
       value: 
@@ -24619,12 +24675,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: cdbaead86b3128143aa78b21bdc3e01c, type: 2}
     - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: damagePopupAnchor
+      value: 
+      objectReference: {fileID: 781766433}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+      propertyPath: damagePopupPrefab
+      value: 
+      objectReference: {fileID: 9182758906715513964, guid: d753659dbba7e8a45926b844f6fe1d24, type: 3}
+    - target: {fileID: 4231302753170920927, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: speedSlots.Array.data[0].ui
       value: 
       objectReference: {fileID: 1120593719}
     - target: {fileID: 7281601521785209357, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: m_Name
-      value: Honglu
+      value: Mandela
       objectReference: {fileID: 0}
     - target: {fileID: 7557251682672857250, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: deck
@@ -24825,7 +24889,7 @@ RectTransform:
   m_GameObject: {fileID: 9203882747641999051}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -60.80568}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8718110560342894366}
@@ -25745,7 +25809,7 @@ MonoBehaviour:
   hpFill: {fileID: 3472612816739773261}
   staggerFill: {fileID: 6315943124998571166}
   lightBar: {fileID: 716574706}
-  offset: {x: 0, y: -5, z: 0}
+  offset: {x: 0, y: -8, z: 0}
 --- !u!224 &9012745484732995579
 RectTransform:
   m_ObjectHideFlags: 0

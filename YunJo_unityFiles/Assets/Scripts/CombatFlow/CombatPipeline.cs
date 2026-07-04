@@ -20,7 +20,7 @@ public partial class CombatPipeline : MonoBehaviour
     //entry **
     public IEnumerator ResolveTurn()
     {
-        Debug.Log("[PIPELINE] -- TURN START");
+        Debug.Log("[PIPELINE] — TURN START");
         CacheUnits();
         CurrentPhase = CombatPipelinePhase.Resolve;
         foreach (var unit in allUnits)
@@ -80,7 +80,7 @@ public partial class CombatPipeline : MonoBehaviour
         intents = intents.OrderByDescending(i => i.priority).ToList();
         Debug.Log($"[PIPELINE] Built {intents.Count} total intent(s)");
         foreach (var i in intents)
-            Debug.Log($"  → {i.user.unitName} vs {i.target.unitName} | priority:{i.priority}");
+            Debug.Log($"  {i.user.unitName} vs {i.target.unitName} | priority:{i.priority}");
         yield return null;
     }
     //resolve intents
@@ -265,9 +265,6 @@ public partial class CombatPipeline : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    // =========================
-    // NEXT TURN — behind black screen
-    // =========================
     IEnumerator StartNextTurn()
     {
         Debug.Log("[PIPELINE] Starting next turn");

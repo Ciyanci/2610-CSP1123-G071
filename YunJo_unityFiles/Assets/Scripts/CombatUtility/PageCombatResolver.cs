@@ -159,21 +159,53 @@ public class PageCombatResolver : MonoBehaviour
         }
         
         Debug.Log($"[RESOLVER] Clash loop done. A remaining:{a.dice.Count - a.currentIndex} B remaining:{b.dice.Count - b.currentIndex}");
+        CombatPageRuntime winningPage = null;
+
+        if (a.IsFinished && !b.IsFinished)
+        {
+            winningPage = b;
+        }
+        else if (b.IsFinished && !a.IsFinished)
+        {
+            winningPage = a;
+        }
+
+        // Resolve the winner's remaining dice
         if (!a.IsFinished && a.owner.CanResolveAction() && !b.owner.IsDead)
         {
             Debug.Log($"[RESOLVER] Flushing remaining dice for {a.owner.unitName}");
             yield return RunRemainingDice(a, b.owner, groupA);
         }
+
         if (!b.IsFinished && b.owner.CanResolveAction() && !a.owner.IsDead)
         {
             Debug.Log($"[RESOLVER] Flushing remaining dice for {b.owner.unitName}");
             yield return RunRemainingDice(b, a.owner, groupB);
         }
+
+        // Reward Light after the clash is fully resolved
+        if (winningPage != null &&
+            winningPage.owner.CanResolveAction())
+        {
+            var winner = winningPage.owner;
+
+            winner.currentLight = Mathf.Min(
+                winner.currentLight + 1,
+                winner.maxLight);
+
+            winner.lightBarUI?.Refresh();
+
+            Debug.Log($"[RESOLVER] {winner.unitName} gained 1 Light for winning the clash.");
+        }
+
         completedPages.Add(a.PageId);
         completedPages.Add(b.PageId);
+
         activePages.Remove(a.PageId);
         activePages.Remove(b.PageId);
+
         Debug.Log($"[RESOLVER] ResolvePages complete: {a.owner.unitName} vs {b.owner.unitName}");
+
         diceGroupLeft?.Hide();
         diceGroupRight?.Hide();
         CombatCardDisplayUI.Instance?.Hide();

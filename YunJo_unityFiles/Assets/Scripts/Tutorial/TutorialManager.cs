@@ -72,6 +72,7 @@ public class TutorialManager : MonoBehaviour
         HideHint();
         CombatStateMachine.Instance.tutorialControllingInput = false;
         CombatFlowController.Instance.SetInputEnabled(true);
+        CombatInfoBar.Instance?.ShowDefault();
     }
 
     //tutorial panel

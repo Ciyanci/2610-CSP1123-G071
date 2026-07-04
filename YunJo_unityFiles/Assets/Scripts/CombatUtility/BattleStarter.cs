@@ -44,8 +44,9 @@ public class BattleStarter : MonoBehaviour
         unit.hp         = unit.maxHP;
         unit.maxStagger = data.GetMaxStagger(keypage);
         unit.stagger    = unit.maxStagger;
-        unit.maxLight   = data.maxLight;
-        unit.currentLight = data.maxLight;
+        unit.maxLight = data.maxLight;
+        unit.currentLight = 1;
+        unit.RefreshLight();
         unit.resistances  = data.GetResistances(keypage);
 
         //apply sprites if UnitData has them

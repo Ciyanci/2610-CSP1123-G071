@@ -17,16 +17,16 @@ public class BattleResultsUI : MonoBehaviour
 
     [Header("Result Colors")]
     public Color victoryColor = new Color(0.9f, 0.75f, 0.2f, 1f);
-    public Color defeatColor  = new Color(0.7f, 0.15f, 0.15f, 1f);
+    public Color defeatColor = new Color(0.7f, 0.15f, 0.15f, 1f);
 
     [Header("Timing")]
     public float fadeInDuration = 0.8f;
-    public float autoExitDelay  = 6.0f;  // 0 = wait for click
+    public float autoExitDelay = 6.0f;  // 0 = wait for click
 
     [Header("Exit")]
     public string exitSceneName = "MainMenu";
 
-    bool shown    = false;
+    bool shown = false;
     bool canClick = false;
     bool playerWon = false;
 
@@ -38,9 +38,7 @@ public class BattleResultsUI : MonoBehaviour
         panel?.SetActive(false);
     }
 
-    // =========================
-    // ENTRY POINTS
-    // =========================
+    //entry point
     public void ShowVictory()
     {
         playerWon = true;
@@ -52,9 +50,6 @@ public class BattleResultsUI : MonoBehaviour
         Show("DEFEAT",  defeatColor);
     }
 
-    // =========================
-    // SHOW
-    // =========================
     void Show(string result, Color color)
     {
         if (shown) return;
@@ -64,13 +59,9 @@ public class BattleResultsUI : MonoBehaviour
 
     IEnumerator ShowSequence(string result, Color color)
     {
-        // ✅ Hide all combat UI while screen is still black
         HideCombatUI();
-
-        // ✅ Fade black screen back out
         yield return TurnTransitionUI.Instance?.FadeFromBlack();
 
-        // Activate panel at zero alpha
         panel?.SetActive(true);
         if (panelGroup != null) panelGroup.alpha = 0f;
 
@@ -79,8 +70,6 @@ public class BattleResultsUI : MonoBehaviour
             resultText.text  = result;
             resultText.color = color;
         }
-
-        // Fade panel in
         float t = 0f;
         while (t < fadeInDuration)
         {
@@ -100,10 +89,6 @@ public class BattleResultsUI : MonoBehaviour
             Exit();
         }
     }
-
-    // =========================
-    // HIDE COMBAT UI
-    // =========================
     void HideCombatUI()
     {
         HandUI.Instance?.Hide();
@@ -119,10 +104,6 @@ public class BattleResultsUI : MonoBehaviour
                 u?.HideSpeed();
         }
     }
-
-    // =========================
-    // INPUT
-    // =========================
     void Update()
     {
         if (!canClick || !shown) return;

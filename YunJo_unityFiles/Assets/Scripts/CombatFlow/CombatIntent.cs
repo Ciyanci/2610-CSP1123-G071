@@ -24,7 +24,7 @@ public class CombatIntent
         if (runtimePage == null)
         {
             runtimePage = new CombatPageRuntime(user, target, card);
-            Debug.Log($"[PAGE] Created page {runtimePage.PageId}: {user.unitName} → {target.unitName}");
+            Debug.Log($"[PAGE] Created page {runtimePage.PageId}: {user.unitName} to {target.unitName}");
         }
         return runtimePage;
     }

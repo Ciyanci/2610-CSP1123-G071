@@ -9,7 +9,7 @@ public class CombatPrepManager : MonoBehaviour
     [Header("Scene To Load")]
     public string combatSceneName = "Combat_Stage1";
 
-    [Header("Player Units — assign in Inspector")]
+    [Header("Player Units")]
     public List<CharacterUnit> playerUnits = new();
 
     [Header("All Available Cards")]

@@ -20,9 +20,6 @@ public class TeamSlotUI : MonoBehaviour
     public CharacterUnit BoundUnit  { get; private set; }
     public UnitData      BoundEnemy { get; private set; }
 
-    // =========================
-    // ENEMY — read only
-    // =========================
     public void BindEnemy(UnitData unit, Action<UnitData> onSelect)
     {
         BoundUnit  = null;
@@ -49,10 +46,6 @@ public class TeamSlotUI : MonoBehaviour
             button?.onClick.AddListener(() => onSelect?.Invoke(unit));
     }
 
-
-    // =========================
-    // PLAYER — interactable
-    // =========================
     public void BindPlayerUnit(CharacterUnit unit, bool isLeader,
                                Action<CharacterUnit> onSelect)
     {
@@ -100,14 +93,9 @@ public class TeamSlotUI : MonoBehaviour
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
-
-            if (unit != null)
-                button.onClick.AddListener(() => onSelect?.Invoke(unit));
         }
     }
-    // =========================
-    // EMPTY
-    // =========================
+
     public void BindEmpty()
     {
         BoundUnit  = null;

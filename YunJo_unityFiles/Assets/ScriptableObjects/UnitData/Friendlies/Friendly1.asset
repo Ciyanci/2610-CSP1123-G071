@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Friendly1
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: Yi Sang
-  portrait: {fileID: 21300000, guid: d87a9a2eabdd64b46a9ee2f470ad87eb, type: 3}
-  idleSprite: {fileID: 21300000, guid: d87a9a2eabdd64b46a9ee2f470ad87eb, type: 3}
-  attackSprite: {fileID: 21300000, guid: 62f34766b170fa54d8433213a407bd05, type: 3}
-  hitSprite: {fileID: 21300000, guid: 9fe434e46fd7e9f459689be18b356181, type: 3}
-  windupSprite: {fileID: 21300000, guid: 0ee45bbdb625b2f41a213493d3f7d10b, type: 3}
-  moveSprite: {fileID: 21300000, guid: 6177c36cf4118e34e92c7088ac582338, type: 3}
+  portrait: {fileID: 983967142338209625, guid: 53aa7573601f65e45a16a72573b80812, type: 3}
+  idleSprite: {fileID: 983967142338209625, guid: 53aa7573601f65e45a16a72573b80812, type: 3}
+  attackSprite: {fileID: -5055833407284863860, guid: c8dd0557cb4558a4dbc7834fdeed2158, type: 3}
+  hitSprite: {fileID: 2428192973233196522, guid: 98318471481189c42863e044ae01f494, type: 3}
+  windupSprite: {fileID: 6005294875439876813, guid: 87c1315e2ffe7404083f88aee363b4fc, type: 3}
+  moveSprite: {fileID: -8797813088355249399, guid: 4ea435ed6ef42464a84996da34a798e9, type: 3}
   isLeader: 1
   lockedKeypage: {fileID: 11400000, guid: 5bf6d43ee7ad33d4ca61e8a0241ed98a, type: 2}
   baseMaxHP: 50

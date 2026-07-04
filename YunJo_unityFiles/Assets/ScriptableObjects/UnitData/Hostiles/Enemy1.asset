@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee11c12e232d8c94db97d4b4b8da3502, type: 3}
   m_Name: Enemy1
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: Hong Lu
-  portrait: {fileID: 21300000, guid: cdb24a93e7d91664cb13fef0152ddff3, type: 3}
-  idleSprite: {fileID: 21300000, guid: cdb24a93e7d91664cb13fef0152ddff3, type: 3}
-  attackSprite: {fileID: 21300000, guid: 8cf1d9c6c795fea4d93d38c436f1fc18, type: 3}
-  hitSprite: {fileID: 21300000, guid: b5971de5407c5004ba33ad82f16cf515, type: 3}
-  windupSprite: {fileID: 21300000, guid: d70c6d345e212f34189297c579b63cb7, type: 3}
-  moveSprite: {fileID: 21300000, guid: e29be83febce76946b1ed9cdc7cc36ae, type: 3}
+  unitName: Mandela of a Thug
+  portrait: {fileID: -21012956204903566, guid: 33f06996f488a3747bebb95809335bfa, type: 3}
+  idleSprite: {fileID: -21012956204903566, guid: 33f06996f488a3747bebb95809335bfa, type: 3}
+  attackSprite: {fileID: 8295223528925367636, guid: a0192f693cac0de4aa9cf92753f020e4, type: 3}
+  hitSprite: {fileID: 2679978482176486455, guid: 48cecec3995b0854fa764d37ef0852d7, type: 3}
+  windupSprite: {fileID: 2679978482176486455, guid: 48cecec3995b0854fa764d37ef0852d7, type: 3}
+  moveSprite: {fileID: 5110175247624485333, guid: cf2fa56b38b4dac4e8d12a7e2966360b, type: 3}
   isLeader: 1
   lockedKeypage: {fileID: 11400000, guid: cdbaead86b3128143aa78b21bdc3e01c, type: 2}
   baseMaxHP: 15
@@ -29,10 +29,10 @@ MonoBehaviour:
     pierce: 2
     blunt: 2
   starterDeck:
-  - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
-  - {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
+  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
+  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
+  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   uniqueCards: []
   innatePassives: []

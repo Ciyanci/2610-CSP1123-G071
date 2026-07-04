@@ -26,9 +26,9 @@ public class InfoBarCardView : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        if (cardName != null) cardName.text     = card.Name;
-        if (artwork  != null) artwork.sprite    = card.Artwork;
-        if (costText != null) costText.text     = card.Cost.ToString();
+        if (cardName != null) cardName.text = card.Name;
+        if (artwork  != null) artwork.sprite = card.Artwork;
+        if (costText != null) costText.text = card.Cost.ToString();
 
         //clear old rows
         foreach (var r in spawnedRows)
