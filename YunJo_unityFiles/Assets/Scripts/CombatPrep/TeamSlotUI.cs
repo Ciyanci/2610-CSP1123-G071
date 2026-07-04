@@ -93,6 +93,8 @@ public class TeamSlotUI : MonoBehaviour
         if (button != null)
         {
             button.onClick.RemoveAllListeners();
+        }
+    }
 
     public void BindEmpty()
     {
