@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Chapter 0 - 3
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 1
+  chapterNumber: Chapter 0 - 3
+  chapterName: "\u2018A silly bird must take flight first.\u2019"
+  hasBattleScene: 0
+  sentences:
+  - text: 'This is a mandela. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 0}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 2
+    characterSprite3: {fileID: -6884123267826601635, guid: 20125519f42736444835cdd98299f377, type: 3}
+    characterPos3: 1
+  - text: "\u2026Eugh\u2026 kind of like an undead. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 0}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 2
+    characterSprite3: {fileID: -6884123267826601635, guid: 20125519f42736444835cdd98299f377, type: 3}
+    characterPos3: 1
+  - text: 'They are somewhat similar. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 0}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 2
+    characterSprite3: {fileID: -6884123267826601635, guid: 20125519f42736444835cdd98299f377, type: 3}
+    characterPos3: 1
+  - text: 'What are you waiting for? '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: 'Huh? '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: 'HUH?!?!?! '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: 'You want me to go and fight that thing right now?! '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: 'That is what I ask of you, yes. This IS your responsibility as a Caretaker,
+      after all. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "I knew you were nuts, but you can\u2019t seriously expect me to fight
+      that thing without any prior training, right?!"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "I\u2019ve already enhanced your body when I reattached your limbs. Regardless,
+      I will still be overseeing you. You won\u2019t die unless I allow you to, remember?"
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "Eugh\u2026 I mean\u2026 my body does feel a lot easier to move around
+      than I remember, but\u2026 still\u2026"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "A weapon! What about my weapon?! I\u2019m but a frail poet, you seriously
+      can\u2019t ask me to beat that thing up with my bare fists!"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: 
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: A frail poet? Hardly. Anyone who has survived long enough while traversing
+      the Mainland has had to have survived a handful of fights. As for your weapon,
+      you already know what to use.
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "\u2026?"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "\u2026!"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "My flute?! Sure, it\u2019s pretty durable, and I\u2019ve used it for self-defense
+      before\u2026 but\u2026 but..!"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "Again, as I have done to your body, your flute has been enhanced. Go on.
+      I won\u2019t ask twice."
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "\u2026"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  - text: "Yes sir\u2026"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 1
+  backgroud: {fileID: -6494015019475169149, guid: 207406dba28aaad4e9270e2c2ab645f7, type: 3}
+  nextScene: {fileID: 11400000, guid: 64c1653c58f72ef458775c38406d7617, type: 2}

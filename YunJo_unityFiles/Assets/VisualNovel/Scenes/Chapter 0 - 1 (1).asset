@@ -10,35 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
-  m_Name: Introduction - 1
+  m_Name: Chapter 0 - 1 (1)
   m_EditorClassIdentifier: Assembly-CSharp::StoryScene
   hasChapterIntro: 1
   chapterNumber: Chapter 0 - 1
   chapterName: "\u2018An old man loses his horse; \u2019"
+  hasBattleScene: 0
   sentences:
   - text: Impermanence is of natural order, to defy it is to defy nature itself.
     speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 0}
     characterPos: 0
     characterSprite2: {fileID: 0}
     characterPos2: 0
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: "And yet even so\u2026 this garden\u2026"
     speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 0}
     characterPos: 0
     characterSprite2: {fileID: 0}
     characterPos2: 0
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: ...
     speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 0}
     characterPos: 0
     characterSprite2: {fileID: 0}
     characterPos2: 0
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   - text: What does it want of this world..?
     speaker: {fileID: 11400000, guid: c19b252c3ea4ae44dbe8b2b78b1186e7, type: 2}
+    jobTitle: 
     characterSprite: {fileID: 0}
     characterPos: 0
     characterSprite2: {fileID: 0}
     characterPos2: 0
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
   backgroud: {fileID: 21300000, guid: d5ff18ace011b3346aec336f3ab6834c, type: 3}
   nextScene: {fileID: 11400000, guid: 9e30212ad4261894e80fcedfc88a10cc, type: 2}

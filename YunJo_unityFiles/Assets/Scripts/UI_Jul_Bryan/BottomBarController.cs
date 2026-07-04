@@ -7,6 +7,7 @@ public class BottomBarController : MonoBehaviour
 {
     public TextMeshProUGUI barText;
     public TextMeshProUGUI personNameText;
+    public TextMeshProUGUI jobText;     // ← new
 
     private int sentenceIndex = -1;
     private StoryScene currentScene;
@@ -16,7 +17,7 @@ public class BottomBarController : MonoBehaviour
     {
         PLAYING, COMPLETED
     }
-    
+
     public void PlayScene(StoryScene scene)
     {
         currentScene = scene;
@@ -33,6 +34,7 @@ public class BottomBarController : MonoBehaviour
         
         personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
         personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
+        jobText.text = currentScene.sentences[sentenceIndex].jobTitle; // ← reads from sentence now
     }
 
     public void SkipToEnd()

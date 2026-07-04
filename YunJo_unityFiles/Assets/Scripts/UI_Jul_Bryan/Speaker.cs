@@ -5,5 +5,6 @@ using UnityEngine;
 public class Speaker : ScriptableObject
 {
     [SerializeField] public string speakerName;
+    [SerializeField] public string jobTitle;
     [SerializeField] public Color textColor;
 }

@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Chapter 0 - 5 (4)
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 0
+  chapterNumber: Chapter 0 - 5
+  chapterName: "\u2018A desperate dog leaps over the wall.\u2019"
+  hasBattleScene: 0
+  sentences:
+  - text: 'Garden looks real beautiful. '
+    speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
+    jobTitle: Thug
+    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
+    characterPos3: 0
+  - text: 'Probably a bunch of valuable things inside these buildings. Maybe valuable
+      herbs in the grass. '
+    speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
+    jobTitle: Thug
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: 0}
+    characterPos2: 1
+    characterSprite3: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
+    characterPos3: 0
+  - text: 'Greetings, dear guests. Welcome to the Garden. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
+    characterPos3: 0
+  - text: 'I am Lu Dongbin, the Head Caretaker of this garden. You may find what
+      you desire, but you may also yield something precious to us. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 2
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
+    characterPos3: 0
+  - text: 'You the owner, big guy? We''re allowed to take whatever we want from ''ere,
+      right? '
+    speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
+    jobTitle: Thug
+    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
+  - text: 'Indeed, you may earn a reward, to be exact. If you''re able to, of course. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+    characterSprite3: {fileID: 0}
+    characterPos3: 0
+  - text: 'So... what are we being rewarded with, exactly? '
+    speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
+    jobTitle: Thug
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
+    characterPos3: 0
+  - text: 'I can tell you''re interested in worldly material. Therefore, you may
+      be rewarded with valuable, powerful relics and such. '
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
+    characterPos3: 0
+  - text: 'Vivi! Beggars can''t be choosers, gotta cling on to anything we can get
+      a hold of. '
+    speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
+    jobTitle: Thug
+    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
+    characterPos3: 0
+  - text: May you prove worthy through the Garden's Trials, then.
+    speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 1
+    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
+    characterPos3: 0
+  backgroud: {fileID: -1987847278077066332, guid: f69b563bb67eeae44a7408f55ae060db, type: 3}
+  nextScene: {fileID: 0}
