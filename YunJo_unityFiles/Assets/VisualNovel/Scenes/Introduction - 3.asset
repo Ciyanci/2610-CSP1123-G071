@@ -12,6 +12,172 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
   m_Name: Introduction - 3
   m_EditorClassIdentifier: Assembly-CSharp::StoryScene
-  sentences: []
-  backgroud: {fileID: -1987847278077066332, guid: f69b563bb67eeae44a7408f55ae060db, type: 3}
+  sentences:
+  - text: "\u2026my limbs\u2026 they're all intact again?"
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 0}
+    characterPos2: 2
+  - text: 'You fainted due to blood loss. Your limbs have already been reattached,
+      you should be able to feel them again. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'Although you did trespass on the Garden, I also confiscated your limbs
+      without your consent, so treat this as an apology. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 4114157388386300877, guid: 5aa8130d623ac8149ae0912a814ac8e6, type: 3}
+    characterPos2: 2
+  - text: "And uhh\u2026 the warning.. is it still\u2026? "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'No, you needn''t hold your tongue now. I had a few thoughts while you
+      were blacked out. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'Fortunately for you, we are currently understaffed, and I present to you
+      a proposal: You''ll help out here in the Garden. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: "\u2026is this an elaborate scheme to kidnap people? Triads really are
+      getting a bit too creative with their methods these days\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'I''ve heard stories of the Prospect Garden hiring people from small-time
+      indie fixers to kidnap people for all kinds of twisted experiments. That''s
+      going to be me soon, isn''t it? You''re just a branch of the Prospect Garden,
+      aren''t you?! '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -559025268487425864, guid: 7aec235609635184db2bb983ac5a27bd, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: "Ugh\u2026 my life is really an unfortunate mess. "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 7073982150870612447, guid: 5563c4b7c8309f94f91b342d4cb160be, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'This is Penglai Garden, truly a garden. I don''t know the Prospect Garden
+      you''re talking about, but this place isn''t owned by a Triad at least. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: 6245203943244449581, guid: afbb448068b26134c9afa588342ecad8, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 8638030418892782636, guid: 5882e8749ab2fd94785bf5a006373826, type: 3}
+    characterPos2: 2
+  - text: 'Well, regardless of the case, I''m trapped here and you''ll exploit me,
+      right? '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 5361410859545721485, guid: ab26f2ca280cf114f8b2c830cb06e509, type: 3}
+    characterPos2: 2
+  - text: 'Yes. However, I''m letting you live for two main reasons. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'First, to figure out how you could enter this place uninvited. It could
+      pose a significant threat to the garden, should I neglect this. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'Second, I require memories from this world, the purpose for which you
+      needn''t know. You will assist in the process. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'Since you are a resident of the Mainland, I expect you to be helpful in
+      various ways. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: "Gahh\u2026. I knew this would happen to me eventually one day! People
+      would disappear without a trace, only to show up weeks later as barely identifiable
+      chunks of flesh\u2026 "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: "I would keep those stories close to heart and tread carefully, but now
+      do I know that such situations have nothing to do with carelessness\u2026 it
+      can happen in a moment's notice..! "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'Don''t be so concerned for your life, you will not die here unless I permit
+      it. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: 'So I was right! This IS a crazy mad scientist''s laboratory! You''re going
+      to keep me alive for your sick, twisted experiments! '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -559025268487425864, guid: 7aec235609635184db2bb983ac5a27bd, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: "What's your deal\u2026 taking people off the trails and shoving them into
+      tubes where you feed them all sorts of wind chimes and doohickeys until they
+      turn into wind chime people?! I'd rather die than be subjected to such a fate! "
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -559025268487425864, guid: 7aec235609635184db2bb983ac5a27bd, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterPos2: 2
+  - text: 'If you continue to spout such nonsense, I''ll gladly turn you into a wind
+      chime person as you so wish to become. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: 2485217457180400858, guid: 20c67fb15d6f3794cb0c28a6c5d5e7c2, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 8336303855667819306, guid: f8b19d39682d24840b4cee26a2b20e00, type: 3}
+    characterPos2: 2
+  - text: 'Sorry, sir. '
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
+    characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3603269594960806020, guid: 227a54e40ea747e41babac0e8b293d46, type: 3}
+    characterPos2: 2
+  - text: 'Now, let me introduce myself properly. '
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  - text: I am Lu Dongbin, the head caretaker of this garden.
+    speaker: {fileID: 11400000, guid: fda57ca6cb9d1f44f945d6e443627a54, type: 2}
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
+    characterPos: 0
+    characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
+    characterPos2: 2
+  backgroud: {fileID: 7692112337033927237, guid: c947a8a5a79326c4aa5510dd107d258e, type: 3}
   nextScene: {fileID: 0}
