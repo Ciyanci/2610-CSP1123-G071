@@ -19,7 +19,7 @@ public class LoadingBar : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneId)); //begin loading the next scene
     }
 
-    public void ContinuGame(int sceneId)
+    public void ContinueGame(int sceneId)
     {
         GameManager.Instance.LoadGame();
 
