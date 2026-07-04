@@ -12586,7 +12586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 695ab823bb0301949a874c87a9757ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CombatPrepManager
-  combatSceneName: BattleScene_Default
+  combatSceneName: BattleScene_Tutorial1
   playerUnits:
   - {fileID: 1013125686}
   allCards:
