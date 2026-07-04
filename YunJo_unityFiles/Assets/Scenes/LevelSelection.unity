@@ -290,8 +290,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.985}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -68.3, y: -2}
-  m_SizeDelta: {x: 100, y: 77.9662}
+  m_AnchoredPosition: {x: -62.9311, y: -1.9986}
+  m_SizeDelta: {x: 100, y: 70.0879}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174644127
 MonoBehaviour:
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 530670697}
   - component: {fileID: 530670696}
   m_Layer: 0
-  m_Name: StoryNode3
+  m_Name: StoryNode4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1262,8 +1262,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee702bd102ff76468d5942a1192e0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrameButton
-  title: Button Title
-  description: Details about this button...
+  title: Chapter 0-6
+  description: Han Xiangzi is reshuffled into the role of Lu Dongbin's assistant
+    and sent to the Kan Section to work alongside He Xiangu. Before the two can even
+    get acquainted, an unusual guest arrives, one who forced their way to an invitation
+    and has a very personal reason for being there.
 --- !u!114 &530670697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1548,8 +1551,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee702bd102ff76468d5942a1192e0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrameButton
-  title: Button Title
-  description: Details about this button...
+  title: Chapter 0-3
+  description: Han Xiangzi comes face to face with his first mandela and is promptly
+    told to deal with it on the spot. With no prior combat training, no weapon in
+    hand, and nothing but Lu Dongbin's unsettling confidence to go on, he is thrown
+    headfirst into his first real test as a Caretaker.
 --- !u!114 &717082308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2580,7 +2586,7 @@ GameObject:
   - component: {fileID: 1342227814}
   - component: {fileID: 1342227813}
   m_Layer: 0
-  m_Name: CombatNode
+  m_Name: StoryNode2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2618,8 +2624,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee702bd102ff76468d5942a1192e0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrameButton
-  title: Stage 2
-  description: Details about this button...
+  title: Chapter 0-2
+  description: Han Xiangzi receives his first proper briefing as a Caretaker of Penglai
+    Garden. Lu Dongbin explains the Garden's nature and the distorted memories known
+    as mandelas that he'll be responsible for dealing with. He barely has time to
+    process any of it before a disturbance in the Southern Courtyard cuts the lesson
+    short.
 --- !u!114 &1342227814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2684,7 +2694,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 21a56a4fe1fde70489f73e12e5de2e98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8730f1f4cd11c5b4fb30dae463201d89, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3065,7 +3075,7 @@ GameObject:
   - component: {fileID: 1436476644}
   - component: {fileID: 1436476643}
   m_Layer: 0
-  m_Name: CombatNode2
+  m_Name: StoryAndCombatNode2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3103,8 +3113,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee702bd102ff76468d5942a1192e0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrameButton
-  title: Button Title
-  description: Details about this button...
+  title: Chapter 0-5
+  description: Three street thugs on the run from the Guard Department stumble upon
+    a Garden invitation while picking through the spoils of a botched job. With debts
+    due, options exhausted, and nothing left to lose, Wei Jian drags his crew toward
+    the Garden on a gamble. Back in the Garden, Han Xiangzi and Lu Dongbin catch
+    a glimpse of their incoming guests through the invitation and head out to receive
+    them.
 --- !u!114 &1436476644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3169,7 +3184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 21a56a4fe1fde70489f73e12e5de2e98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 968a186a032b0ea48b1d7433665a3420, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3491,7 +3506,7 @@ GameObject:
   - component: {fileID: 1667133893}
   - component: {fileID: 1667133892}
   m_Layer: 0
-  m_Name: StoryNode2
+  m_Name: StoryNode3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3529,8 +3544,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee702bd102ff76468d5942a1192e0e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FrameButton
-  title: Button Title
-  description: Details about this button...
+  title: Chapter 0-4
+  description: Fresh off his first mandela encounter, Han Xiangzi learns there is
+    more to being a Caretaker than he was initially let on. Lu Dongbin walks him
+    through the Garden's invitation system and the Trials that come with it, a complex
+    arrangement where Caretakers serve as both hosts and combatants to outside guests.
+    Just as he starts to wrap his head around it all, the full scope of his new life
+    begins to sink in.
 --- !u!114 &1667133893
 MonoBehaviour:
   m_ObjectHideFlags: 0
