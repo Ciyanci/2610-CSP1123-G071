@@ -5,6 +5,12 @@ using UnityEngine;
 [System.Serializable]
 public class StoryScene : ScriptableObject
 {
+    [Header("Chapter Introduction")]
+    public bool hasChapterIntro;
+    public string chapterNumber;
+    public string chapterName;
+
+    [Header("Scene Data")]
     public List<Sentence> sentences;
     public Sprite backgroud;
     public StoryScene nextScene;
