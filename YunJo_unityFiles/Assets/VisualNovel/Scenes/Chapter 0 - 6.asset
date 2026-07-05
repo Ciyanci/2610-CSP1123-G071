@@ -16,6 +16,8 @@ MonoBehaviour:
   chapterNumber: Chapter 0 - 6
   chapterName: Caretaker, Kan Section
   hasBattleScene: 0
+  battleSceneName: 
+  loadMap: 1
   sentences:
   - text: Hmph... is it really so important to belong to a renowned triad?
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}

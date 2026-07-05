@@ -17,6 +17,7 @@ MonoBehaviour:
   chapterName: "\u2018A desperate dog leaps over the wall.\u2019"
   hasBattleScene: 1
   battleSceneName: BattleScene_Tutorial1
+  loadMap: 0
   sentences:
   - text: 'Garden looks real beautiful. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}

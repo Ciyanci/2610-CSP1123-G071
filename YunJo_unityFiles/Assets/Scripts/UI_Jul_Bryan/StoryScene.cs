@@ -14,6 +14,9 @@ public class StoryScene : ScriptableObject
     public bool hasBattleScene;
     public string battleSceneName = "";
 
+    [Header("Battle")]
+    public bool loadMap;
+
     [Header("Scene Data")]
     public List<Sentence> sentences;
     public Sprite backgroud;  //ALL REFERENCES TO "background" must be renamed to "backgroud" whoops

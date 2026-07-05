@@ -89,6 +89,11 @@ public class GameController : MonoBehaviour
             return;
         }
 
+        if (currentScene.loadMap)
+        {
+            SceneManager.LoadScene("LevelSelection");
+        }
+
         if (currentScene.nextScene != null)
         {
             currentScene = currentScene.nextScene;
@@ -107,12 +112,19 @@ public class GameController : MonoBehaviour
     {
         if (isIntroPlaying) return;
 
+        if (currentScene.hasBattleScene)
+        {
+            SceneManager.LoadScene(currentScene.battleSceneName);
+            return;
+        }
+
         if (GameManager.Instance == null)
         {
             Debug.LogError("[GameController] GameManager is NULL — loading level selection directly");
             FindObjectOfType<LoadingBar>(true).LoadScene(11);
             return;
         }
+
 
         GameManager.Instance.CompleteCurrentScene();
         GameManager.Instance.ReturnToLevelSelection();
