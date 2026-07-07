@@ -28,13 +28,24 @@ public class BottomBarController : MonoBehaviour
     public void PlayNextSentence()
     {
         StartCoroutine(TypeText(currentScene.sentences[++sentenceIndex].text));
-        
-        Debug.Log("Speaker: " + currentScene.sentences[sentenceIndex].speaker);
-        Debug.Log("Speaker Name: " + currentScene.sentences[sentenceIndex].speaker.speakerName);
-        
-        personNameText.text = currentScene.sentences[sentenceIndex].speaker.speakerName;
-        personNameText.color = currentScene.sentences[sentenceIndex].speaker.textColor;
-        jobText.text = currentScene.sentences[sentenceIndex].jobTitle; // ← reads from sentence now
+
+        var sentence = currentScene.sentences[sentenceIndex];
+
+        Debug.Log("Speaker: " + sentence.speaker);
+
+        if (sentence.speaker != null)
+        {
+            Debug.Log("Speaker Name: " + sentence.speaker.speakerName);
+            personNameText.text = sentence.speaker.speakerName;
+            personNameText.color = sentence.speaker.textColor;
+        }
+        else
+        {
+            Debug.LogWarning($"[BottomBar] Sentence {sentenceIndex} has no speaker assigned!");
+            personNameText.text = "";
+        }
+
+        jobText.text = sentence.jobTitle;
     }
 
     public void SkipToEnd()

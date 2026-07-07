@@ -3289,9 +3289,9 @@ MonoBehaviour:
   chapterNameText: {fileID: 455557423}
   backgroundImage1: {fileID: 396763699}
   backgroundImage2: {fileID: 776349028}
-  typingSpeed: 0.05
-  holdDuration: 2
-  fadeDuration: 0.5
+  typingSpeed: 0.045
+  holdDuration: 0.8
+  fadeDuration: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

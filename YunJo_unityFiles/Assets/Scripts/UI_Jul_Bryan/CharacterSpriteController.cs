@@ -6,6 +6,7 @@ public class CharacterSpriteController : MonoBehaviour
     public Image leftSlot;
     public Image centerSlot;
     public Image rightSlot;
+    public Image rightSlot2; // ← new
 
     public void Show(Sprite sprite, StoryScene.CharacterPosition pos)
     {
@@ -31,15 +32,17 @@ public class CharacterSpriteController : MonoBehaviour
         SetAlpha(leftSlot, 0f);
         SetAlpha(centerSlot, 0f);
         SetAlpha(rightSlot, 0f);
+        SetAlpha(rightSlot2, 0f); // ← new
     }
 
     private Image GetSlot(StoryScene.CharacterPosition pos)
     {
         return pos switch
         {
-            StoryScene.CharacterPosition.Left   => leftSlot,
-            StoryScene.CharacterPosition.Center => centerSlot,
-            StoryScene.CharacterPosition.Right  => rightSlot,
+            StoryScene.CharacterPosition.Left    => leftSlot,
+            StoryScene.CharacterPosition.Center  => centerSlot,
+            StoryScene.CharacterPosition.Right   => rightSlot,
+            StoryScene.CharacterPosition.Right2  => rightSlot2, // ← new
             _ => null
         };
     }
