@@ -11,8 +11,8 @@ public class ChapterIntroController : MonoBehaviour
     public Image backgroundImage1;
     public Image backgroundImage2;
 
-    public float typingSpeed = 0.05f;
-    public float holdDuration = 2f;
+    public float typingSpeed = 0.07f;
+    public float holdDuration = 1f;
     public float fadeDuration = 0.5f;
 
     public void Show(string number, string name, System.Action onComplete)
