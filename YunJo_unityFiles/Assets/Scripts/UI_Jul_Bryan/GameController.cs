@@ -188,8 +188,10 @@ public class GameController : MonoBehaviour
 
     public void SkipScene()
     {
+        
         if (isIntroPlaying || isFading) return;
 
+        CombatAudioManager.Instance.PlayTargetSelect();
         if (currentScene.hasBattleScene)
         {
             SceneManager.LoadScene(currentScene.battleSceneName);
@@ -213,6 +215,7 @@ public class GameController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
+            VNAudioManager.Instance.PlayClick();
             if (bottomBar.IsCompleted())
             {
                 if (bottomBar.IsLastSentence())
@@ -228,6 +231,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
+                CombatAudioManager.Instance.PlayTargetSelect();
                 bottomBar.SkipToEnd();
             }
         }
