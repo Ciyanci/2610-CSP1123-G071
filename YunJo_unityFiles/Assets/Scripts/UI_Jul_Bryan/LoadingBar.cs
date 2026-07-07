@@ -49,7 +49,7 @@ public class LoadingBar : MonoBehaviour
             float loadProgress = Mathf.Clamp01(operation.progress / 0.9f);
             float timerProgress = Mathf.Clamp01(timer / minLoadTime);
             LoadingBarFill.fillAmount = Mathf.Min(loadProgress, timerProgress);
-            yield return null;
+            yield return null; //makes it so that it stops every frame and redraws the scene
         }
 
         LoadingBarFill.fillAmount = 1f;
