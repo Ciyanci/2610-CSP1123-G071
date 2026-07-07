@@ -16,288 +16,290 @@ MonoBehaviour:
   chapterNumber: Chapter 0 - 5
   chapterName: "\u2018A desperate dog leaps over the wall.\u2019"
   hasBattleScene: 0
+  battleSceneName: 
+  loadMap: 0
   sentences:
   - text: "That was too close\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: "Goin' for a gut n' dash in the upper streets\u2026 we better make some
       good cash for that risk. "
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -8273754208076780329, guid: 1cccd5a1ef896a349b053459f0e7a2b7, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: 'Only jobs we can take right now. Gotta survive and climb outta this hell
       hole by any means necessary. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: 'Still dreamin'' about getting into a Triad, huh? '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6970128432287341212, guid: 782d53fa276771048bd80bbf6ce09e7d, type: 3}
+    characterPos2: 5
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 6
   - text: 'Heh, you know it. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 5
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 6
   - text: 'Hey, I hate to break the moment, but we''ve still gotta sell off this
       sucker''s guts and belongings first. Then, we''ve gotta prepare some cash to
       offer the Han Tong. '
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -4812720942261458453, guid: 0266d2cfffbcddf4796f1abbbd69182f, type: 3}
+    characterPos3: 5
   - text: "Mmn. This could very well be our chance to get connected with the Han
       Tong, become real syndicate affiliates. Maybe even get into a Triad with the
       connections we'll make\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: 'Alright, what''s our harvest lookin'' like? '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: "\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: 'Oi! Is this a damn joke or what? You sure you scooped the right stuff
       out?! '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 1165295299778589271, guid: fe8115b412ca5264a8d55f6541ca0d10, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: "Ugh\u2026 I told you, organ harvesting's delicate work, you just can't
       rush it! Besides, that guy didn't even have a single proper organ inside of
       him, it's all messed up! "
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 493809247692533833, guid: 0a3d779369fe00d4ca15b2c2c25a79d0, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 41671472475747459, guid: 20e61622acdafe0458d9c8b999e3a104, type: 3}
+    characterPos3: 5
   - text: 'When you said messed up, I didn''t expect it to look like a damn blob
       of someone''s leftovers inside a trash can! Looks like someone else blew them
       up and sewed the guy back up, hard to believe he was even walkin'' to begin
       with. Some rich lunatic scientists probably got to him before we did. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 1165295299778589271, guid: fe8115b412ca5264a8d55f6541ca0d10, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "Damn it\u2026 knew he was too easy to take down for someone his size.
       Thought we got a real catch there. Some stitchwork those scientists did, though\u2026
       didn't even see a damn stitch. "
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 493809247692533833, guid: 0a3d779369fe00d4ca15b2c2c25a79d0, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6814394620449198819, guid: 48e9b595ef8239f408519bafc476c2ab, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: 'Well? At least we have some stuff from his bag that we can sell. '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 493809247692533833, guid: 0a3d779369fe00d4ca15b2c2c25a79d0, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -8273754208076780329, guid: 1cccd5a1ef896a349b053459f0e7a2b7, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "\u2026 "
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 493809247692533833, guid: 0a3d779369fe00d4ca15b2c2c25a79d0, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 1832386936450801781, guid: a588d758365cf7745a9b2a537b7a7ac2, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: 'I don''t even know what I''m looking at. '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 493809247692533833, guid: 0a3d779369fe00d4ca15b2c2c25a79d0, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 4043191073054731169, guid: 54f1613793649fb49bbfb20f7950d6ca, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "Whatever scrap metal we can get from all this\u2026 it ain't gonna afford
       us our next meal, let alone cover the fee that we owe to the Han Tong\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -1446044679393444749, guid: 312a511722b720b429d6597a765387f6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: 'What''s that thing? '
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -1446044679393444749, guid: 312a511722b720b429d6597a765387f6, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 41671472475747459, guid: 20e61622acdafe0458d9c8b999e3a104, type: 3}
+    characterPos3: 5
   - text: 'Looks like a scroll. '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 1832386936450801781, guid: a588d758365cf7745a9b2a537b7a7ac2, type: 3}
+    characterPos2: 5
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 6
   - text: 'Lemme see it. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "Invitation\u2026 Garden\u2026? The hell's this about\u2026? "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: 'Rewards from a trial? '
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -4812720942261458453, guid: 0266d2cfffbcddf4796f1abbbd69182f, type: 3}
+    characterPos3: 5
   - text: "I dunno\u2026 sounds like some scam. It was a flop after all. Payment's
       due tomorrow as well\u2026 "
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -3352652732416661200, guid: 7630de9cb26695347947c5b29b33d034, type: 3}
+    characterPos2: 6
     characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterPos3: 5
   - text: 'One more round of a gut n'' dash? '
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterPos2: 6
+    characterSprite3: {fileID: -4812720942261458453, guid: 0266d2cfffbcddf4796f1abbbd69182f, type: 3}
+    characterPos3: 5
   - text: 'Ain''t no time for that. Too little time for too much prep. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: "\u2026we're heading for this garden. "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: "I don't know if this is real or not, or what rewards we'll even get, but\u2026
       but we're outta options. Only chance we have is this. "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: 'Woah, hey! Isn''t this basically suicide? Who the hell just gives out
       invitations to private property in this world without any ulterior motives?
       We don''t know what kinda place it is. '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 4043191073054731169, guid: 54f1613793649fb49bbfb20f7950d6ca, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: Can't be worse than getting pummeled to death by the Han Tong, or getting
       executed by the Guard Department; we're screwed! If ya wanna live, ya better
       shut yer asses up and follow me!
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 7611630015722281448, guid: 5b2a166e2435b104798a27b24b76744f, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   backgroud: {fileID: 7021770441055839263, guid: 322bd11d38011744f9f4c97a5c5be4c8, type: 3}
   nextScene: {fileID: 11400000, guid: acb4eb3c0cc679344b2a42a6686e8503, type: 2}

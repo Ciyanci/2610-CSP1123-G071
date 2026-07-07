@@ -158,8 +158,8 @@ MonoBehaviour:
   - text: "I'm looking\u2026 for my daughter."
     speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
     jobTitle: Invitation Usurper
-    characterSprite: {fileID: 0}
-    characterPos: 2
+    characterSprite: {fileID: -4621930804595893795, guid: 62ddd7b7a8a5c9a4b8af6e371c28fbfa, type: 3}
+    characterPos: 1
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
     characterPos2: 3
     characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}

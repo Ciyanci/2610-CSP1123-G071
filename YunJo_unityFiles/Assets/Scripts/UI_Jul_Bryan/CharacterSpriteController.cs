@@ -1,12 +1,18 @@
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterSpriteController : MonoBehaviour
 {
     public Image leftSlot;
+    public Image leftSlot2;
     public Image centerSlot;
+    public Image centerSlot2;
     public Image rightSlot;
-    public Image rightSlot2; // ← new
+    public Image rightSlot2;
+    public Image rightSlot3;
+    public Image centerSlot3;
+    public Image rightSlot4;
 
     public void Show(Sprite sprite, StoryScene.CharacterPosition pos)
     {
@@ -32,7 +38,12 @@ public class CharacterSpriteController : MonoBehaviour
         SetAlpha(leftSlot, 0f);
         SetAlpha(centerSlot, 0f);
         SetAlpha(rightSlot, 0f);
-        SetAlpha(rightSlot2, 0f); // ← new
+        SetAlpha(rightSlot2, 0f);
+        SetAlpha(leftSlot2, 0f);
+        SetAlpha(centerSlot2, 0f);
+        SetAlpha(rightSlot3, 0f);
+        SetAlpha(rightSlot4, 0f);
+        SetAlpha(centerSlot3, 0f);
     }
 
     private Image GetSlot(StoryScene.CharacterPosition pos)
@@ -40,9 +51,14 @@ public class CharacterSpriteController : MonoBehaviour
         return pos switch
         {
             StoryScene.CharacterPosition.Left    => leftSlot,
+            StoryScene.CharacterPosition.Left2   => leftSlot2,
             StoryScene.CharacterPosition.Center  => centerSlot,
+            StoryScene.CharacterPosition.Center2 => centerSlot2,
             StoryScene.CharacterPosition.Right   => rightSlot,
             StoryScene.CharacterPosition.Right2  => rightSlot2, // ← new
+            StoryScene.CharacterPosition.Right3  => rightSlot3,
+            StoryScene.CharacterPosition.Right4  => rightSlot4,
+            StoryScene.CharacterPosition.Center3  => centerSlot3,
             _ => null
         };
     }

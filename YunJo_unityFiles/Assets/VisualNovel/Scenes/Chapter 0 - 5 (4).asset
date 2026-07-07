@@ -22,97 +22,97 @@ MonoBehaviour:
   - text: 'Garden looks real beautiful. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 0}
     characterPos2: 1
-    characterSprite3: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos3: 6
   - text: 'Probably a bunch of valuable things inside these buildings. Maybe valuable
       herbs in the grass. '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 0}
     characterPos2: 1
-    characterSprite3: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 1832386936450801781, guid: a588d758365cf7745a9b2a537b7a7ac2, type: 3}
+    characterPos3: 6
   - text: 'Greetings, dear guests. Welcome to the Garden. '
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
     jobTitle: Head Caretaker
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 1
-    characterSprite3: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos3: 6
   - text: 'I am Lu Dongbin, the Head Caretaker of this garden. You may find what
       you desire, but you may also yield something precious to us. '
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
     jobTitle: Head Caretaker
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 1
-    characterSprite3: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos3: 6
   - text: 'You the owner, big guy? We''re allowed to take whatever we want from ''ere,
       right? '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos2: 2
     characterSprite3: {fileID: 0}
-    characterPos3: 0
+    characterPos3: 6
   - text: 'Indeed, you may earn a reward, to be exact. If you''re able to, of course. '
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
     jobTitle: Head Caretaker
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
     characterSprite3: {fileID: 0}
-    characterPos3: 0
+    characterPos3: 6
   - text: 'So... what are we being rewarded with, exactly? '
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: -4812720942261458453, guid: 0266d2cfffbcddf4796f1abbbd69182f, type: 3}
+    characterPos3: 3
   - text: 'I can tell you''re interested in worldly material. Therefore, you may
       be rewarded with valuable, powerful relics and such. '
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
     jobTitle: Head Caretaker
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 3
   - text: 'Vivi! Beggars can''t be choosers, gotta cling on to anything we can get
       a hold of. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 0
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 3
   - text: May you prove worthy through the Garden's Trials, then.
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
     jobTitle: Head Caretaker
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 0
+    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterPos: 4
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 3
   backgroud: {fileID: -1987847278077066332, guid: f69b563bb67eeae44a7408f55ae060db, type: 3}
   nextScene: {fileID: 0}

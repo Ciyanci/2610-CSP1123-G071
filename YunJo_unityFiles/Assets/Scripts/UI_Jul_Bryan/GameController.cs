@@ -191,7 +191,7 @@ public class GameController : MonoBehaviour
         
         if (isIntroPlaying || isFading) return;
 
-        CombatAudioManager.Instance.PlayTargetSelect();
+        VNAudioManager.Instance.PlaySkip();
         if (currentScene.hasBattleScene)
         {
             SceneManager.LoadScene(currentScene.battleSceneName);
@@ -231,7 +231,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                CombatAudioManager.Instance.PlayTargetSelect();
+                VNAudioManager.Instance.PlaySkip();
                 bottomBar.SkipToEnd();
             }
         }
