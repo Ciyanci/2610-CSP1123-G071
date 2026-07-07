@@ -25,7 +25,7 @@ MonoBehaviour:
     characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: "To be fair\u2026 it's all part of life in the Mainland. Whether you're
@@ -36,7 +36,7 @@ MonoBehaviour:
     characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   - text: "Well, in any case\u2026 there has been a few rearrangements to your life
@@ -46,7 +46,7 @@ MonoBehaviour:
     characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: 'Instead of being the sole Caretaker of one section, I believe you should
@@ -58,7 +58,7 @@ MonoBehaviour:
     characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: "\u2026 "
@@ -67,7 +67,7 @@ MonoBehaviour:
     characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   - text: 'Excuse me? '
@@ -76,7 +76,7 @@ MonoBehaviour:
     characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   - text: 'You seriously can''t expect me to be able to take on that much responsibility?! '
@@ -85,7 +85,7 @@ MonoBehaviour:
     characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   - text: 'Settle down. Your responsibilities remain virtually the same as before,
@@ -96,7 +96,7 @@ MonoBehaviour:
     characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: 'My decision is final. You can start making your way over to the Kan Section
@@ -106,7 +106,7 @@ MonoBehaviour:
     characterSprite: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: "\u2026yes sir. "
@@ -115,7 +115,7 @@ MonoBehaviour:
     characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 4
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   backgroud: {fileID: -2889761728585982002, guid: dde821efbab0ba74195bb14d40e3d0b2, type: 3}

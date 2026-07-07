@@ -21,21 +21,21 @@ MonoBehaviour:
   sentences:
   - text: "So this is the Kan Section\u2026 there's a lot of rivers flowing around,
       and a handful of ponds. It's honestly quite relaxing\u2026 "
-    speaker: {fileID: 0}
+    speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
     jobTitle: Assistant Head Caretaker
-    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   - text: 'Hello, I''m He Xiangu, in charge of the Kan Section. '
-    speaker: {fileID: 0}
+    speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
     jobTitle: Caretaker, Kan Section
-    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: "Hiya, I'm Han Xiangzi, apparently Lu Dongbin's helper now\u2026 "
@@ -44,16 +44,16 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos3: 0
   - text: 'Y-yes, Head Caretaker Lu told me all about it. '
     speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
     jobTitle: Caretaker, Kan Section
     characterSprite: {fileID: 0}
-    characterPos: 2
+    characterPos: 4
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: 'Head Caretaker Lu has also informed me that another invitation has been
@@ -61,18 +61,18 @@ MonoBehaviour:
     speaker: {fileID: 11400000, guid: f576f528c4b3bde4bb74304fedec25d1, type: 2}
     jobTitle: Caretaker, Kan Section
     characterSprite: {fileID: 0}
-    characterPos: 2
+    characterPos: 3
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos3: 0
   - text: "\u2026and what exactly makes this one so special? "
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
     jobTitle: Assistant Head Caretaker
     characterSprite: {fileID: 0}
-    characterPos: 2
+    characterPos: 4
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos3: 0
   - text: 'This invitation has been forcefully taken from the previously planned
@@ -84,7 +84,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
     characterPos3: 0
   - text: "\u2026huh, I never really thought about what would happen if the invitation
@@ -95,7 +95,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos3: 0
   - text: 'I doubt that the Garden never considered that possibility. '
@@ -104,7 +104,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
     characterPos3: 0
   - text: 'In any case, let us go receive this mysterious guest. '
@@ -113,7 +113,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
     characterPos3: 0
   - text: "Greetings, dear guest\u2026 welcome to the Garden. I am Han Xiangzi, Assistant
@@ -123,7 +123,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
     characterPos3: 0
   - text: 'You may find what you''re looking for, but you may also forfeit your precious
@@ -133,7 +133,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 1
+    characterPos2: 3
     characterSprite3: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
     characterPos3: 0
   - text: 'Dear guest, it seems you''re looking for something specific, something
@@ -143,7 +143,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos3: 0
   - text: 'P-please, tell us what you''re- '
@@ -152,7 +152,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -13727646140109958, guid: 387198f631716ed4b8adf6586a47d327, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos3: 0
   - text: "I'm looking\u2026 for my daughter."
@@ -161,7 +161,7 @@ MonoBehaviour:
     characterSprite: {fileID: 0}
     characterPos: 2
     characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 2
+    characterPos2: 3
     characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos3: 0
   backgroud: {fileID: -2889761728585982002, guid: dde821efbab0ba74195bb14d40e3d0b2, type: 3}
