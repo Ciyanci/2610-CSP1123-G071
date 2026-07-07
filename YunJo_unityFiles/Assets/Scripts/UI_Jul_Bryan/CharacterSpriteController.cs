@@ -13,6 +13,7 @@ public class CharacterSpriteController : MonoBehaviour
     public Image rightSlot3;
     public Image centerSlot3;
     public Image rightSlot4;
+    public Image centerSlot4;
 
     public void Show(Sprite sprite, StoryScene.CharacterPosition pos)
     {
@@ -44,6 +45,7 @@ public class CharacterSpriteController : MonoBehaviour
         SetAlpha(rightSlot3, 0f);
         SetAlpha(rightSlot4, 0f);
         SetAlpha(centerSlot3, 0f);
+        SetAlpha(centerSlot4, 0f);
     }
 
     private Image GetSlot(StoryScene.CharacterPosition pos)
@@ -59,6 +61,7 @@ public class CharacterSpriteController : MonoBehaviour
             StoryScene.CharacterPosition.Right3  => rightSlot3,
             StoryScene.CharacterPosition.Right4  => rightSlot4,
             StoryScene.CharacterPosition.Center3  => centerSlot3,
+            StoryScene.CharacterPosition.Center4 => centerSlot4,
             _ => null
         };
     }

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d70991a71c9649876788061c5a6cd, type: 3}
+  m_Name: Chapter 0 - 6 (3)
+  m_EditorClassIdentifier: Assembly-CSharp::StoryScene
+  hasChapterIntro: 0
+  chapterNumber: Chapter 0 - 6
+  chapterName: Caretaker, Kan Section
+  hasBattleScene: 0
+  battleSceneName: 
+  loadMap: 1
+  sentences:
+  - text: "I'm looking\u2026 for my daughter."
+    speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
+    jobTitle: Invitation Usurper
+    characterSprite: {fileID: 2005095869834140509, guid: 76fd6d88fa387044981a4240f3228a00, type: 3}
+    characterPos: 10
+    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
+    characterPos2: 9
+    characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
+    characterPos3: 9
+  backgroud: {fileID: -2889761728585982002, guid: dde821efbab0ba74195bb14d40e3d0b2, type: 3}
+  nextScene: {fileID: 0}
