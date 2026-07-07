@@ -29,10 +29,10 @@ MonoBehaviour:
     pierce: 2
     blunt: 2
   starterDeck:
-  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
-  - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
+  - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
+  - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
+  - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
+  - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
+  - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
   uniqueCards: []
   innatePassives: []

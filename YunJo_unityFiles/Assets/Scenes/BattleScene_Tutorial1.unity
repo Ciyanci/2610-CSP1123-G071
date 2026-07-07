@@ -10823,6 +10823,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942533560}
   m_CullTransparentMesh: 1
+--- !u!114 &953256799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8707484004146647794, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
+  m_PrefabInstance: {fileID: 2649934299848328820}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6166dc05d68835149870a8d47b36e610, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CardDeck
 --- !u!1 &953546468
 GameObject:
   m_ObjectHideFlags: 0
@@ -25716,7 +25727,7 @@ PrefabInstance:
     - target: {fileID: 7557251682672857250, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: deck
       value: 
-      objectReference: {fileID: 588782880}
+      objectReference: {fileID: 953256799}
     - target: {fileID: 8707484004146647794, guid: f69cd5e3e6527bd4493e03cbd6b5e828, type: 3}
       propertyPath: deckSize
       value: 5
