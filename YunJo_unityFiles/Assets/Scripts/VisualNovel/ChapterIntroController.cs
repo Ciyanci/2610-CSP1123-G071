@@ -2,17 +2,14 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.Drawing;
 
 public class ChapterIntroController : MonoBehaviour
 {
     public GameObject overlay;
     public TextMeshProUGUI chapterNumberText;
     public TextMeshProUGUI chapterNameText;
-    public GameObject bottomBar;
-    public GameObject characterLayer;
-    public Image backgroundImage1;      // ← new, drag Background1 here
-    public Image backgroundImage2;      // ← new, drag Background2 here
+    public Image backgroundImage1;
+    public Image backgroundImage2;
 
     public float typingSpeed = 0.05f;
     public float holdDuration = 2f;
@@ -25,18 +22,16 @@ public class ChapterIntroController : MonoBehaviour
 
     private IEnumerator PlayIntro(string number, string name, System.Action onComplete)
     {
-        // hide UI elements
-        bottomBar.SetActive(false);
-        characterLayer.SetActive(false);
-        ClearBackground();
-
-        // reset
+        // reset text
         chapterNumberText.text = "";
         chapterNameText.text = "";
-        overlay.SetActive(true);
 
-        // fade in
-        yield return StartCoroutine(FadeOverlay(0f, 1f));
+        // make overlay fully visible instantly, no fade in
+        CanvasGroup canvasGroup = overlay.GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = overlay.AddComponent<CanvasGroup>();
+        canvasGroup.alpha = 255f;
+        overlay.SetActive(true);
 
         // type chapter number
         yield return StartCoroutine(TypeText(chapterNumberText, number));
@@ -49,19 +44,16 @@ public class ChapterIntroController : MonoBehaviour
         // hold
         yield return new WaitForSeconds(holdDuration);
 
-        ResetBackground();              // ← restore background before fade out starts
+        ResetBackground();
 
-        // fade out
+        // fade out only
         yield return StartCoroutine(FadeOverlay(1f, 0f));
 
         overlay.SetActive(false);
 
-        // show UI elements again
-        bottomBar.SetActive(true);
-        characterLayer.SetActive(true);
-
         onComplete?.Invoke();
     }
+
     private void ClearBackground()
     {
         if (backgroundImage1 != null) backgroundImage1.color = UnityEngine.Color.black;

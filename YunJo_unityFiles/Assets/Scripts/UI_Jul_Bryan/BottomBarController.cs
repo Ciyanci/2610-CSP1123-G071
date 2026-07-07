@@ -72,5 +72,12 @@ public class BottomBarController : MonoBehaviour
         }
     }
 
+    public void ClearText()
+    {
+        if (barText != null) barText.text = "";
+        if (personNameText != null) personNameText.text = "";
+        if (jobText != null) jobText.text = "";
+    }
+
     public int GetSentenceIndex() => sentenceIndex;
 }
