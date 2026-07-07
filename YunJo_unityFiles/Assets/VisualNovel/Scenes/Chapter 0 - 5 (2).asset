@@ -16,6 +16,8 @@ MonoBehaviour:
   chapterNumber: Chapter 0 - 5
   chapterName: "\u2018A desperate dog leaps over the wall.\u2019"
   hasBattleScene: 0
+  battleSceneName: 
+  loadMap: 0
   sentences:
   - text: "That was too close\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
@@ -76,7 +78,7 @@ MonoBehaviour:
     characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
     characterPos3: 0
   - text: "Mmn. This could very well be our chance to get connected with the Han
-      Tong, become real syndicate affiliates. Maybe even get into a Triad with the
+      Tong, become real underworld affiliates. Maybe even get into a Triad with the
       connections we'll make\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
