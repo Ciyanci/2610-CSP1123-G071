@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 34651287d4e379447a1c19edeb301de8, type: 3}
-  m_Name: TEST1
+  m_Name: GUN
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  Name: TESTTT
-  Description: TWSTTTSSS
-  Effects: BOOM BOOM BOOM
-  Artwork: {fileID: 2404832421827759109, guid: 0c67fefbb4d02954b8b9e0eac4ab5c23, type: 3}
+  Name: GUN
+  Description: a GUN without bullets
+  Effects: Smack the enemy with an unloaded gun
+  Artwork: {fileID: 9057534121697406198, guid: 34be341e03ded94468abd9d3af602326, type: 3}
   Cost: 1
-  dice: []
+  dice:
+  - minRoll: 1
+    maxRoll: 2
+    power: 0
+    damageType: 2
+    effect: 0
   rarity: 2

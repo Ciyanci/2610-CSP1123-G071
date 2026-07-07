@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         loadingBar.LoadScene(levelSelectionSceneId);
     }
 
-    public void UnlockCard(CardData card)
+    public void UnlockCard(CardData card) //unlocks and saves the new card, for testing purposes
     {
         CardInventory.Add(card);
         SaveGame();
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
     {
         SaveData data = new SaveData();
 
-        foreach (CardData card in CardInventory.GetAll())
+        foreach (CardData card in CardInventory.GetAll())  //convert CardData objects into card names
         {
             data.unlockedCardNames.Add(card.Name);
         }
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
 
         CardInventory.Clear();
 
-        foreach (string name in data.unlockedCardNames)
+        foreach (string name in data.unlockedCardNames) //converts saved card names back into CardData objects
         {
             CardData found = allCardData.Find(card => card.Name == name);
 

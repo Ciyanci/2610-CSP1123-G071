@@ -32,7 +32,7 @@ public class LoadingBar : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneId));
     }
 
-    IEnumerator LoadSceneAsync(int sceneId) //ienumerator cuz it allows loading screen and bar to update while it loads the next scene, makes it so that it loads over multiple frames
+    IEnumerator LoadSceneAsync(int sceneId)
     {
         LoadingScreen.SetActive(true);
         LoadingBarFill.fillAmount = 0f;
@@ -43,17 +43,20 @@ public class LoadingBar : MonoBehaviour
         float timer = 0f;
         float minLoadTime = 2.5f;
 
-
         while (timer < minLoadTime || operation.progress < 0.9f)
         {
             timer += Time.unscaledDeltaTime;
-            float loadProgress = Mathf.Clamp01(operation.progress/0.9f);
-            float timerProgress = Mathf.Clamp01(timer/minLoadTime);
+            float loadProgress = Mathf.Clamp01(operation.progress / 0.9f);
+            float timerProgress = Mathf.Clamp01(timer / minLoadTime);
             LoadingBarFill.fillAmount = Mathf.Min(loadProgress, timerProgress);
-            yield return null;
+            yield return null; //makes it so that it stops every frame and redraws the scene
         }
+
         LoadingBarFill.fillAmount = 1f;
-        operation.allowSceneActivation = true;  
-        LoadingScreen.SetActive(false);
+        operation.allowSceneActivation = true; // ← activate scene while loading screen is still visible
+
+        // wait for scene to fully load before hiding
+        yield return new WaitUntil(() => operation.isDone);
+        LoadingScreen.SetActive(false); // ← hide only after scene is done
     }
 }

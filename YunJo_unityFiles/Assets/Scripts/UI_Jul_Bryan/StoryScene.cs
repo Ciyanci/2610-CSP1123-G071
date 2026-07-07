@@ -24,7 +24,7 @@ public class StoryScene : ScriptableObject
 
     public enum CharacterPosition
     {
-        Left, Center, Right, None
+        Left, Center, Right, Right2, None
     }
 
     [System.Serializable]

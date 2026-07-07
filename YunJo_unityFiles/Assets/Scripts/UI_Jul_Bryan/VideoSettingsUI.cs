@@ -7,7 +7,7 @@ public class VideoSettingsUI : MonoBehaviour
     [SerializeField] private TMP_Dropdown resolutionDropdown;
     [SerializeField] private TMP_Dropdown qualityDropdown;
 
-    private Resolution[] resolutions;
+    private Resolution[] resolutions;  //stores all resolutions supported by the user's monitor
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,7 +17,7 @@ public class VideoSettingsUI : MonoBehaviour
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
 
-        for (int i=0; i < resolutions.Length; i++)
+        for (int i=0; i < resolutions.Length; i++) //dropdown
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);

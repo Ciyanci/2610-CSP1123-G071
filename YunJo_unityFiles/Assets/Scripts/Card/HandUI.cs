@@ -144,25 +144,25 @@ public class HandUI : MonoBehaviour
         gameObject.SetActive(true);
         Clear();
 
-        int columns = 4;
+        int columns = 4;  //no of cards per row
         float xSpacing = cardSpacing;
         float ySpacing = 240f;
 
-        int rows = Mathf.CeilToInt(cards.Count / (float)columns);
+        int rows = Mathf.CeilToInt(cards.Count / (float)columns);  //calculate how many rows are needed
 
         for (int row = 0; row < rows; row++)
         {
-            int cardsInRow = Mathf.Min(columns, cards.Count - row * columns);
-            float startX = - (cardsInRow -1) * xSpacing * 0.5f;
+            int cardsInRow = Mathf.Min(columns, cards.Count - row * columns);  
+            float startX = - (cardsInRow -1) * xSpacing * 0.5f; //centre each row individually
 
-            for (int col = 0; col < cardsInRow; col++)
+            for (int col = 0; col < cardsInRow; col++) 
             {
-                int index = row * columns + col;
+                int index = row * columns + col; 
 
                 CardView v = Instantiate(prefab, container);
                 v.Setup(cards[index], null);
 
-                float x = startX + col * xSpacing;
+                float x = startX + col * xSpacing; 
                 float y = -row * ySpacing;
 
                 v.SetBasePosition(new Vector2(x,y));
