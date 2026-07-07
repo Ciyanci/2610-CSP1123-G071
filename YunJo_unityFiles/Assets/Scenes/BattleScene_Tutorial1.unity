@@ -18386,6 +18386,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8aa5da915c7cb4a865df4eb05c39e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsManager
+  masterSlider: {fileID: 1716686196}
+  musicSlider: {fileID: 243278636}
+  sfxSlider: {fileID: 1628157935}
   mixer: {fileID: 24100000, guid: b8bf266a6ce269b41a64e14eff5238e3, type: 2}
 --- !u!1 &1476381402
 GameObject:
