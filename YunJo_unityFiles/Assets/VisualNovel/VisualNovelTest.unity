@@ -5684,9 +5684,9 @@ MonoBehaviour:
   musicSource: {fileID: 1972854621}
   backgroundTrack: {fileID: 0}
   sfxSource: {fileID: 1796286021}
-  clickClip: {fileID: 0}
+  clickClip: {fileID: 8300000, guid: 5296e28cec340c1419f47312d90ec5a2, type: 3}
   backgroundChangeClip: {fileID: 8300000, guid: 779f15cce9b00bb4c9692cd754bd7ca0, type: 3}
-  skipClip: {fileID: 0}
+  skipClip: {fileID: 8300000, guid: 5296e28cec340c1419f47312d90ec5a2, type: 3}
 --- !u!4 &2030949497
 Transform:
   m_ObjectHideFlags: 0
