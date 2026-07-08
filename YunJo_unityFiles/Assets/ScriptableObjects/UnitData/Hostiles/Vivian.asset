@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee11c12e232d8c94db97d4b4b8da3502, type: 3}
+  m_Name: Vivian
+  m_EditorClassIdentifier: Assembly-CSharp::UnitData
+  unitName: Vivian
+  portrait: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
+  idleSprite: {fileID: 3801473033052803747, guid: 0e1da0c50a2111343ac557c91ada7bba, type: 3}
+  attackSprite: {fileID: -8914953582155266965, guid: 82eba73289bf3a04191497e3bcbf8574, type: 3}
+  hitSprite: {fileID: -314276838372973244, guid: 1fd394bbf2c93994fac70741dfecb2df, type: 3}
+  windupSprite: {fileID: 7392595853333704337, guid: 5241e2a151f50bb45a9fb6d32a31583c, type: 3}
+  moveSprite: {fileID: 7392595853333704337, guid: 5241e2a151f50bb45a9fb6d32a31583c, type: 3}
+  isLeader: 0
+  lockedKeypage: {fileID: 0}
+  baseMaxHP: 15
+  baseMaxStagger: 50
+  maxLight: 3
+  baseResistances:
+    slash: 2
+    pierce: 2
+    blunt: 2
+  starterDeck:
+  - {fileID: 11400000, guid: 756cf3d4c786140478874159e700e326, type: 2}
+  - {fileID: 11400000, guid: 756cf3d4c786140478874159e700e326, type: 2}
+  - {fileID: 11400000, guid: 756cf3d4c786140478874159e700e326, type: 2}
+  - {fileID: 11400000, guid: 756cf3d4c786140478874159e700e326, type: 2}
+  - {fileID: 11400000, guid: 756cf3d4c786140478874159e700e326, type: 2}
+  uniqueCards: []
+  innatePassives: []

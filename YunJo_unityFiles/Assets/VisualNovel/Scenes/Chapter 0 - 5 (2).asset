@@ -78,7 +78,7 @@ MonoBehaviour:
     characterSprite3: {fileID: -4812720942261458453, guid: 0266d2cfffbcddf4796f1abbbd69182f, type: 3}
     characterPos3: 5
   - text: "Mmn. This could very well be our chance to get connected with the Han
-      Tong, become real syndicate affiliates. Maybe even get into a Triad with the
+      Tong, become real underworld affiliates. Maybe even get into a Triad with the
       connections we'll make\u2026 "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
