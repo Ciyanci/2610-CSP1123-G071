@@ -16,109 +16,111 @@ MonoBehaviour:
   chapterNumber: Chapter 0 - 5
   chapterName: "\u2018A desperate dog leaps over the wall.\u2019"
   hasBattleScene: 0
+  battleSceneName: 
+  loadMap: 0
   sentences:
   - text: Oi! Come on, hurry up already would ya?
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 2221232519298515607, guid: 4b26040c48395794c8856f1ceb296cb9, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: 'Shut up! It ain''t easy telling what in this guy''s bag''s not gonna get
       us tracked, ya know?! '
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 7436028578939131067, guid: 27d726a32b01b8549aa92058998c7a09, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 6814394620449198819, guid: 48e9b595ef8239f408519bafc476c2ab, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
+    characterPos3: 5
   - text: "The hell\u2026? What even are these..? These don't look like the guts
       of a human whatsoever\u2026 "
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 7436028578939131067, guid: 27d726a32b01b8549aa92058998c7a09, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 41671472475747459, guid: 20e61622acdafe0458d9c8b999e3a104, type: 3}
+    characterPos3: 5
   - text: 'You gonna cut em already or what?! '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 7611630015722281448, guid: 5b2a166e2435b104798a27b24b76744f, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "Look, something's off about these organs. They look like they've been
       reorganised and dipped in a bunch of paint or something\u2026 "
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8324941074991305337, guid: cf69fe02695890e46ba86e09405546b8, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 41671472475747459, guid: 20e61622acdafe0458d9c8b999e3a104, type: 3}
+    characterPos3: 5
   - text: 'Forget about clean cuts, the Guard Department''s footsteps are getting
       louder! Just pull ''em out and let''s bolt! '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 2221232519298515607, guid: 4b26040c48395794c8856f1ceb296cb9, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: 'At this rate, we''re gonna be the ones getting our organs harvested! '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 7611630015722281448, guid: 5b2a166e2435b104798a27b24b76744f, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "Why's this even in his body\u2026? "
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -6487258757721845407, guid: a008bc2e4b7a8254a97be42dc6749ddb, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: -8324941074991305337, guid: cf69fe02695890e46ba86e09405546b8, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: 41671472475747459, guid: 20e61622acdafe0458d9c8b999e3a104, type: 3}
+    characterPos3: 5
   - text: 'Who cares?! We''re runnin'' out of time! '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 2221232519298515607, guid: 4b26040c48395794c8856f1ceb296cb9, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: 8750114838182634405, guid: 2241f22c7b1326744a70ab01d4a7273a, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: "Just about done\u2026! "
     speaker: {fileID: 11400000, guid: 7783895842adf0d4c88a132f6f84318d, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -3798211013133917639, guid: 924f6a9f2eb222449b1fe0598a2ac9a4, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 7649247613345778094, guid: 5fcc4f8cd9fbf4f4c847f555bf637680, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 7436028578939131067, guid: 27d726a32b01b8549aa92058998c7a09, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -8273754208076780329, guid: 1cccd5a1ef896a349b053459f0e7a2b7, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   - text: Come on, let's go!
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8889834946608363298, guid: 330a99bae833e2e46b3f461d3b86e6f3, type: 3}
-    characterPos: 2
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
-    characterPos2: 1
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
-    characterPos3: 0
+    characterSprite: {fileID: 2221232519298515607, guid: 4b26040c48395794c8856f1ceb296cb9, type: 3}
+    characterPos: 4
+    characterSprite2: {fileID: -1620387371588128969, guid: 6e6f368fc8a26be42879da6823f35980, type: 3}
+    characterPos2: 6
+    characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
+    characterPos3: 5
   backgroud: {fileID: 6033511714862589954, guid: 50e398a9b27667d46b57b0a61c8bbf86, type: 3}
   nextScene: {fileID: 11400000, guid: 8fe2812f1794bda4e910f4d695519682, type: 2}

@@ -17,7 +17,7 @@ MonoBehaviour:
   chapterName: Caretaker, Kan Section
   hasBattleScene: 0
   battleSceneName: 
-  loadMap: 1
+  loadMap: 0
   sentences:
   - text: "So this is the Kan Section\u2026 there's a lot of rivers flowing around,
       and a handful of ponds. It's honestly quite relaxing\u2026 "
@@ -155,14 +155,5 @@ MonoBehaviour:
     characterPos2: 3
     characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos3: 0
-  - text: "I'm looking\u2026 for my daughter."
-    speaker: {fileID: 11400000, guid: 2fcdb93d23c559947a72cbf3c8aa97c1, type: 2}
-    jobTitle: Invitation Usurper
-    characterSprite: {fileID: 0}
-    characterPos: 2
-    characterSprite2: {fileID: -4080215019528799530, guid: 96e4f96bdd6a53347b84a2a1642bbe73, type: 3}
-    characterPos2: 3
-    characterSprite3: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
-    characterPos3: 0
   backgroud: {fileID: -2889761728585982002, guid: dde821efbab0ba74195bb14d40e3d0b2, type: 3}
-  nextScene: {fileID: 0}
+  nextScene: {fileID: 11400000, guid: 719ab5145c527104a83102209944f9d8, type: 2}
