@@ -54,18 +54,18 @@ MonoBehaviour:
     characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
     characterPos: 4
     characterSprite2: {fileID: 6970128432287341212, guid: 782d53fa276771048bd80bbf6ce09e7d, type: 3}
-    characterPos2: 5
+    characterPos2: 6
     characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
-    characterPos3: 6
+    characterPos3: 5
   - text: 'Heh, you know it. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
     characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
     characterPos: 4
     characterSprite2: {fileID: 6034536823996443174, guid: c2d41ff0c3c180a4d8f230b9d81859d6, type: 3}
-    characterPos2: 5
+    characterPos2: 6
     characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
-    characterPos3: 6
+    characterPos3: 5
   - text: 'Hey, I hate to break the moment, but we''ve still gotta sell off this
       sucker''s guts and belongings first. Then, we''ve gotta prepare some cash to
       offer the Han Tong. '
@@ -202,9 +202,9 @@ MonoBehaviour:
     characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
     characterPos: 4
     characterSprite2: {fileID: 1832386936450801781, guid: a588d758365cf7745a9b2a537b7a7ac2, type: 3}
-    characterPos2: 5
+    characterPos2: 6
     characterSprite3: {fileID: -3621853274279848582, guid: 6ef34f445e8b3ab4d96baa48f052e442, type: 3}
-    characterPos3: 6
+    characterPos3: 5
   - text: 'Lemme see it. '
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
@@ -240,14 +240,14 @@ MonoBehaviour:
     characterPos: 4
     characterSprite2: {fileID: -3352652732416661200, guid: 7630de9cb26695347947c5b29b33d034, type: 3}
     characterPos2: 6
-    characterSprite3: {fileID: -3180170880247799624, guid: 2b8b07f61ca84aa4eae2c1fa15773c8e, type: 3}
+    characterSprite3: {fileID: 479627807845651575, guid: e5897e2a2404514458527ce9ffaf1cd1, type: 3}
     characterPos3: 5
   - text: 'One more round of a gut n'' dash? '
     speaker: {fileID: 11400000, guid: db9ed753fab686e4f90beb5635327654, type: 2}
     jobTitle: Thug
     characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
     characterPos: 4
-    characterSprite2: {fileID: 1251618067618672417, guid: 52cf599261243ae44a45cfdc854b2cee, type: 3}
+    characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
     characterPos2: 6
     characterSprite3: {fileID: -4812720942261458453, guid: 0266d2cfffbcddf4796f1abbbd69182f, type: 3}
     characterPos3: 5
@@ -263,7 +263,7 @@ MonoBehaviour:
   - text: "\u2026we're heading for this garden. "
     speaker: {fileID: 11400000, guid: 6661f94fc4b8f674e82b03f14bac71df, type: 2}
     jobTitle: Thug
-    characterSprite: {fileID: -8148698659060392986, guid: 12434e84e4c5f7f44a8d2d1deb2e6f77, type: 3}
+    characterSprite: {fileID: -5370081740218215352, guid: cf02b87f491e1ca408f7eccfed5ac119, type: 3}
     characterPos: 4
     characterSprite2: {fileID: 5886602299113974215, guid: 6996ee100b9b0a64486a211712438161, type: 3}
     characterPos2: 6

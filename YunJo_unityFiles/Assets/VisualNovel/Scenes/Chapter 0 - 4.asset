@@ -21,7 +21,7 @@ MonoBehaviour:
   sentences:
   - text: "Well\u2026 that wasn\u2019t so bad, actually."
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: -6220859904223034604, guid: 45b4fc3fbd6830b4c8b48bb341d3352b, type: 3}
     characterPos: 0
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
     characterPos3: 0
   - text: You will suffice.
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
   - text: I withheld some information before I could truly gauge how fit you are
       for the responsibility of a Caretaker.
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -50,7 +50,7 @@ MonoBehaviour:
   - text: "In addition to maintaining the peace in the Garden, you are also to tend
       to the \u2018guests\u2019 that we host here."
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: 7583987884068822478, guid: 1c0c927b75d008546aa7cb87a3af1664, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -59,7 +59,7 @@ MonoBehaviour:
     characterPos3: 0
   - text: Guests?
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos: 0
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
@@ -71,7 +71,7 @@ MonoBehaviour:
       of the planned guest. In most cases, already on their person, in a place of
       interest, or on a body that they are already looting.
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -81,7 +81,7 @@ MonoBehaviour:
   - text: Okay, but what do you mean by hosting them? Do I have to learn tea ceremonies
       as well?
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos: 0
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
@@ -94,7 +94,7 @@ MonoBehaviour:
       house rules of the Garden and reading them their rights, confirming their intentions,
       and then proceeding with their Trial."
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -105,7 +105,7 @@ MonoBehaviour:
       \u2018Trial\u2019 is some sort of challenge that the Guests are supposed to
       overcome?"
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: 1606658783463881559, guid: 40727bcd591a05448acb2f6861bb4f08, type: 3}
     characterPos: 0
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
@@ -116,7 +116,7 @@ MonoBehaviour:
       in the Garden\u2019s Trials, and our role in these Trials is to serve as the
       trial itself."
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -1787240519333269993, guid: f2a495eec40429f46add8d4fb61e5091, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -126,7 +126,7 @@ MonoBehaviour:
   - text: "So we\u2019re essentially kidnapping people and then beating them up for
       fun, and if they win, they get something cool to bring home."
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos: 0
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
@@ -135,7 +135,7 @@ MonoBehaviour:
     characterPos3: 0
   - text: Not quite.
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -147,7 +147,7 @@ MonoBehaviour:
       this timing where the essence of memories are the most volatile, and which,
       as you may have guessed, is where the Garden will benefit from these Trials."
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -159,7 +159,7 @@ MonoBehaviour:
       there is the possibility that you may perish in the process of these trials,
       but it\u2019s only temporary. You\u2019ll get back up when the Trial closes."
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 4114157388386300877, guid: 5aa8130d623ac8149ae0912a814ac8e6, type: 3}
@@ -171,7 +171,7 @@ MonoBehaviour:
       it is just the fastest and simplest route that the guests can take to their
       reward."
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
@@ -184,8 +184,8 @@ MonoBehaviour:
       may encounter in these Personal Trials is highly variable, be prepared to expect
       anything.
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
-    characterSprite: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
+    jobTitle: Head Caretaker
+    characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
     characterPos2: 2
@@ -194,7 +194,7 @@ MonoBehaviour:
   - text: "\u2026I think I get the gist of it now. So, how do these invitations actually
       work anyway?"
     speaker: {fileID: 11400000, guid: 4444d0eef7e7c2044a7431024e07105a, type: 2}
-    jobTitle: 
+    jobTitle: Caretaker
     characterSprite: {fileID: -4777918531010614747, guid: 34ee96cfd07cb8446ae90d1d480e3754, type: 3}
     characterPos: 0
     characterSprite2: {fileID: -5857114442203394712, guid: a5d7d45117a6bc2438c991599d5a350c, type: 3}
@@ -204,7 +204,7 @@ MonoBehaviour:
   - text: Open up the invitation and register the scrolls you wish to send out to
       these guests.
     speaker: {fileID: 11400000, guid: 9551ecb160c9ae0458976bafb3aae211, type: 2}
-    jobTitle: 
+    jobTitle: Head Caretaker
     characterSprite: {fileID: -5206761803832305590, guid: 8ea384a28134a4640a5836ccbd70faaf, type: 3}
     characterPos: 0
     characterSprite2: {fileID: 3656839501610869304, guid: 2b31f755715f9ab4488e2118816696c6, type: 3}
