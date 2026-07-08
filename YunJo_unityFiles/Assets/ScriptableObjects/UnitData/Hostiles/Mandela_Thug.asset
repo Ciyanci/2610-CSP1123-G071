@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee11c12e232d8c94db97d4b4b8da3502, type: 3}
-  m_Name: Enemy1
+  m_Name: Mandela_Thug
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: Mandela of a Thug
   portrait: {fileID: -21012956204903566, guid: 33f06996f488a3747bebb95809335bfa, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   moveSprite: {fileID: 5110175247624485333, guid: cf2fa56b38b4dac4e8d12a7e2966360b, type: 3}
   isLeader: 1
   lockedKeypage: {fileID: 11400000, guid: cdbaead86b3128143aa78b21bdc3e01c, type: 2}
-  baseMaxHP: 15
+  baseMaxHP: 20
   baseMaxStagger: 50
   maxLight: 3
   baseResistances:

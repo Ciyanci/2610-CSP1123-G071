@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee11c12e232d8c94db97d4b4b8da3502, type: 3}
-  m_Name: Friendly1
+  m_Name: Han_Xiangzi
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: Yi Sang
+  unitName: Han Xiangzi
   portrait: {fileID: 983967142338209625, guid: 53aa7573601f65e45a16a72573b80812, type: 3}
   idleSprite: {fileID: 983967142338209625, guid: 53aa7573601f65e45a16a72573b80812, type: 3}
   attackSprite: {fileID: -5055833407284863860, guid: c8dd0557cb4558a4dbc7834fdeed2158, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   moveSprite: {fileID: -8797813088355249399, guid: 4ea435ed6ef42464a84996da34a798e9, type: 3}
   isLeader: 1
   lockedKeypage: {fileID: 11400000, guid: 5bf6d43ee7ad33d4ca61e8a0241ed98a, type: 2}
-  baseMaxHP: 50
+  baseMaxHP: 150
   baseMaxStagger: 50
   maxLight: 3
   baseResistances:
@@ -29,11 +29,10 @@ MonoBehaviour:
     pierce: 2
     blunt: 2
   starterDeck:
-  - {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
   - {fileID: 11400000, guid: 3339ac580ad81a34b8a9ad89eb8fb2be, type: 2}
   - {fileID: 11400000, guid: dae4a7d2aa4fdb74d8e02d54def96011, type: 2}
   - {fileID: 11400000, guid: 47b35471e7f171a43ad1ba36ed3e4399, type: 2}
   - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
-  - {fileID: 11400000, guid: 4d8481497edc83d4eb8c743a6bc432a0, type: 2}
+  - {fileID: 11400000, guid: c34cac354c885d04683917753c5615e1, type: 2}
   uniqueCards: []
   innatePassives: []
